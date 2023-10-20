@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Type } from "@sinclair/typebox";
 import * as geobox from "../../dist/index.js";
 
