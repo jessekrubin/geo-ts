@@ -1,6 +1,6 @@
 import type { SchemaOptions } from "./typebox.js";
 import { Type } from "./typebox.js";
-import { Latitude, Longitude } from "./geojson-schema.js";
+import { Latitude, Longitude } from "./coord.js";
 
 export const Semver = () =>
   Type.String({
