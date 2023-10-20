@@ -30,7 +30,8 @@ export const validate${tname} = typia.createValidate<${tname}>()
 
 // PascalCase to kebab-case
 const typename2filename = (tname: string) => {
-  const filename = tname.replace(/([a-z])([A-Z])/g, "$1-$2")
+  const filename = tname
+    .replace(/([a-z])([A-Z])/g, "$1-$2")
     .replace(/\s+/g, "-")
     .toLowerCase();
   if (filename.includes("2d") || filename.includes("3d")) {
@@ -43,9 +44,9 @@ const bigAssFile = async (geotypes: GeotypesMetadata) => {
   const typeFunks = geotypes.geotypes.map((tname) => typeFunctions(tname));
   const lines = [
     // turn off eslint explicit any
-    '/* eslint-disable @typescript-eslint/no-explicit-any,@typescript-eslint/no-unused-vars */',
-    '// eslint-disable-next-line @typescript-eslint/ban-ts-comment',
-    '// @ts-nocheck',
+    "/* eslint-disable @typescript-eslint/no-explicit-any,@typescript-eslint/no-unused-vars */",
+    "// eslint-disable-next-line @typescript-eslint/ban-ts-comment",
+    "// @ts-nocheck",
     TYPIA_IMPORT,
     "import type {",
     geotypes.geotypes.map((tname) => `  ${tname},`).join("\n"),
@@ -62,12 +63,7 @@ const smallAssFiles = async (geotypes: GeotypesMetadata) => {
   const _smallAssFile = async (tname: string) => {
     const filename = typename2filename(tname);
     const typeFunks = typeFunctions(tname);
-    const lines = [
-      TYPIA_IMPORT,
-      `import type { ${tname} } from \'@jsse/geotypes\';`,
-      "",
-      typeFunks,
-    ];
+    const lines = [TYPIA_IMPORT, `import type { ${tname} } from \'@jsse/geotypes\';`, "", typeFunks];
     const string = lines.join("\n");
     await fs.writeFile(`./src/typia-input/${filename}.ts`, string);
     const info = {
@@ -97,14 +93,11 @@ function filterTypes(tname: string) {
 }
 
 async function main() {
-  const data = await fs.readJSON(
-    "../geotypes/geotypes.json",
-  ) as GeotypesMetadata;
+  const data = (await fs.readJSON("../geotypes/geotypes.json")) as GeotypesMetadata;
   await nuke_input_dir();
 
   data.geotypes = data.geotypes.filter(filterTypes);
   await bigAssFile(data);
-
 
   // // const
   // for (const tname of data.geotypes) {

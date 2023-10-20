@@ -20,6 +20,8 @@
     "dev": "vitest watch",
     "lint": "eslint src/** ./package.json",
     "fmt": "prettier --write .",
+    "fmtc": "prettier --check .",
+    "fmtl": "prettier --list-different .",
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {},

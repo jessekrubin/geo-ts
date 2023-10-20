@@ -1,1 +1,1 @@
-export * from '@jsse/geotypes';
+export * from "@jsse/geotypes";

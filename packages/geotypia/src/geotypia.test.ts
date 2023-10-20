@@ -1,8 +1,5 @@
-import {
-  describe, expect, it, test,
-
-} from 'vitest'
-import * as geotypia from './index.js'
+import { describe, expect, it, test } from "vitest";
+import * as geotypia from "./index.js";
 
 const geojsonPoint = {
   type: "Feature",
@@ -16,7 +13,6 @@ const geojsonPoint = {
 };
 
 describe("geojson-types", () => {
-
   test("should validate a point", () => {
     const pointFeature = geojsonPoint;
     expect(geotypia.isPointGeometry(pointFeature.geometry)).toBe(true);
@@ -34,7 +30,7 @@ describe("geojson-types", () => {
       },
     };
     expect(geotypia.isPointGeometry(invalidPoint.geometry)).toBe(false);
-  })
+  });
 
   test("throws on invalid point", () => {
     const invalidPoint = {
@@ -48,7 +44,5 @@ describe("geojson-types", () => {
       },
     };
     expect(() => geotypia.assertPointGeometry3d(invalidPoint.geometry)).toThrow();
-  })
-
-
-})
+  });
+});

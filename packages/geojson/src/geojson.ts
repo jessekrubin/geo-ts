@@ -36,7 +36,7 @@ import type {
   PolygonCoordinates,
   PolygonFeature,
   FeatureOptions,
-  FeatureGenericOptions
+  FeatureGenericOptions,
 } from "@jsse/geotypes";
 
 // } from "./geojson-types.js";
@@ -139,7 +139,9 @@ export const isBBox = (value: unknown): value is BBox2d =>
     typeof value[5] === "number" &&
     Number.isFinite(value[5]));
 
-export const featureProperties = <TProperties extends GeoJsonProperties | undefined = GeoJsonProperties>(properties?: TProperties): TProperties => {
+export const featureProperties = <TProperties extends GeoJsonProperties | undefined = GeoJsonProperties>(
+  properties?: TProperties,
+): TProperties => {
   if (properties === undefined) {
     return {} as TProperties;
   }
@@ -175,9 +177,9 @@ export const featureOptionsog = (options?: FeatureOptions) => {
   }
   return { id: optsId(optsId), bbox: optsBbox(options.bbox) };
 };
-export const featureOptions = <
-  TFeatureOptions extends Partial<FeatureGenericOptions> = FeatureGenericOptions
->(options?: TFeatureOptions): FeatureOptions<TFeatureOptions> => {
+export const featureOptions = <TFeatureOptions extends Partial<FeatureGenericOptions> = FeatureGenericOptions>(
+  options?: TFeatureOptions,
+): FeatureOptions<TFeatureOptions> => {
   if (options === undefined || (options.id === undefined && options.bbox === undefined)) {
     return {};
   }
@@ -321,13 +323,13 @@ export const multiPolygonGeometry = <TCoordinate extends Coordinate = Coordinate
 
 type PF<
   TProperties extends GeoJsonProperties | null | undefined = GeoJsonProperties | null | undefined,
-  TFeatureOptions extends Partial<FeatureGenericOptions> = Partial<FeatureGenericOptions>
-> = PointFeature<TProperties, TFeatureOptions>
+  TFeatureOptions extends Partial<FeatureGenericOptions> = Partial<FeatureGenericOptions>,
+> = PointFeature<TProperties, TFeatureOptions>;
 
-type thingy = PF['bbox']
+type thingy = PF["bbox"];
 export function point<
   TProperties extends GeoJsonProperties | null | undefined = GeoJsonProperties | null | undefined,
-  TFeatureOptions extends Partial<FeatureGenericOptions> = Partial<FeatureGenericOptions>
+  TFeatureOptions extends Partial<FeatureGenericOptions> = Partial<FeatureGenericOptions>,
 >(
   coordinates: Coordinate,
   properties?: TProperties,
@@ -337,30 +339,28 @@ export function point<
   // ): PointFeature<TProperties, TFeatureOptions> {
   const opts = {
     ...(options !== undefined ? options : {}),
-  } satisfies Partial<FeatureGenericOptions>
+  } satisfies Partial<FeatureGenericOptions>;
   const thingy = {
-
     type: "Feature" as const,
     geometry: pointGeometry(coordinates),
     properties: featureProperties(properties),
-  } satisfies Omit<Feature<PointGeometry<Coordinate>, TProperties, TFeatureOptions>, 'id' | 'crs' | 'bbox'>
+  } satisfies Omit<Feature<PointGeometry<Coordinate>, TProperties, TFeatureOptions>, "id" | "crs" | "bbox">;
   return {
     // type: "Feature" as const,
     // geometry: pointGeometry(coordinates),
     // properties: featureProperties(properties),
     ...thingy,
     ...opts,
-  }
+  };
   //  satisfies Feature<PointGeometry, TProperties, TFeatureOptions>
 }
 
-
 const p = point([1, 2], undefined, {
-  id: 'foo',
-  bbox: [1, 2, 3, 4]
+  id: "foo",
+  bbox: [1, 2, 3, 4],
 });
-type tp = typeof p
-type tp2 = tp['bbox']
+type tp = typeof p;
+type tp2 = tp["bbox"];
 
 // export const lineString = <TCoordinate extends Coordinate = Coordinate, TProperties extends GeoJsonProperties | undefined = GeoJsonProperties>(
 //   coordinates: LineStringCoordinates<TCoordinate>,

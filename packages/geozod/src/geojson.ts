@@ -91,7 +91,7 @@ export const geojsonFeatureId = <T extends ZFid | undefined = undefined>(schema?
 
 export type ZGeometrySchemaz<
   TCoord extends ZCoordinate | undefined = undefined,
-  TBBox extends ZBBox | undefined = undefined
+  TBBox extends ZBBox | undefined = undefined,
 > = {
   coordinate?: TCoord;
   bbox?: TBBox;
@@ -100,7 +100,7 @@ export type ZFeatureSchemaz<
   TCoord extends ZCoordinate | undefined = undefined,
   TBBox extends ZBBox | undefined = undefined,
   TProps extends z.ZodTypeAny | undefined = undefined,
-  TFeatureId extends ZFeatureId | undefined = undefined
+  TFeatureId extends ZFeatureId | undefined = undefined,
 > = {
   coordinate?: TCoord;
   bbox?: TBBox;
@@ -109,7 +109,7 @@ export type ZFeatureSchemaz<
 };
 
 export const pointGeometry = <TCoord extends ZCoordinate | undefined, TBBox extends ZBBox | undefined>(
-  schemaz?: ZGeometrySchemaz<TCoord, TBBox>
+  schemaz?: ZGeometrySchemaz<TCoord, TBBox>,
 ) =>
   z.object({
     type: z.literal("Point"),
@@ -118,7 +118,7 @@ export const pointGeometry = <TCoord extends ZCoordinate | undefined, TBBox exte
   });
 
 export const lineStringGeometry = <TCoord extends ZCoordinate | undefined, TBBox extends ZBBox | undefined>(
-  schemaz?: ZGeometrySchemaz<TCoord, TBBox>
+  schemaz?: ZGeometrySchemaz<TCoord, TBBox>,
 ) =>
   z.object({
     type: z.literal("LineString"),
@@ -127,7 +127,7 @@ export const lineStringGeometry = <TCoord extends ZCoordinate | undefined, TBBox
   });
 
 export const polygonGeometry = <TCoord extends ZCoordinate | undefined, TBBox extends ZBBox | undefined>(
-  schemaz?: ZGeometrySchemaz<TCoord, TBBox>
+  schemaz?: ZGeometrySchemaz<TCoord, TBBox>,
 ) =>
   z.object({
     type: z.literal("Polygon"),
@@ -136,7 +136,7 @@ export const polygonGeometry = <TCoord extends ZCoordinate | undefined, TBBox ex
   });
 
 export const multiPointGeometry = <TCoord extends ZCoordinate | undefined, TBBox extends ZBBox | undefined>(
-  schemaz?: ZGeometrySchemaz<TCoord, TBBox>
+  schemaz?: ZGeometrySchemaz<TCoord, TBBox>,
 ) =>
   z.object({
     type: z.literal("MultiPoint"),
@@ -145,7 +145,7 @@ export const multiPointGeometry = <TCoord extends ZCoordinate | undefined, TBBox
   });
 
 export const multiLineStringGeometry = <TCoord extends ZCoordinate | undefined, TBBox extends ZBBox | undefined>(
-  schemaz?: ZGeometrySchemaz<TCoord, TBBox>
+  schemaz?: ZGeometrySchemaz<TCoord, TBBox>,
 ) =>
   z.object({
     type: z.literal("MultiLineString"),
@@ -154,7 +154,7 @@ export const multiLineStringGeometry = <TCoord extends ZCoordinate | undefined, 
   });
 
 export const multiPolygonGeometry = <TCoord extends ZCoordinate | undefined, TBBox extends ZBBox | undefined>(
-  schemaz?: ZGeometrySchemaz<TCoord, TBBox>
+  schemaz?: ZGeometrySchemaz<TCoord, TBBox>,
 ) =>
   z.object({
     type: z.literal("MultiPolygon"),
@@ -173,7 +173,7 @@ export type ZGeometrySchema =
 
 export const feature = <TGeometry extends ZGeometrySchema, TProps extends z.ZodTypeAny | undefined = undefined>(
   geometrySchema: TGeometry,
-  propertiesSchema?: TProps
+  propertiesSchema?: TProps,
 ) =>
   z.object({
     type: z.literal("Feature"),
@@ -186,9 +186,9 @@ export const pointFeature = <
   TCoord extends ZCoordinate | undefined,
   TBBox extends ZBBox | undefined,
   TProps extends z.ZodTypeAny | undefined,
-  TFeatureId extends ZFeatureId | undefined = undefined
+  TFeatureId extends ZFeatureId | undefined = undefined,
 >(
-  schemaz?: ZFeatureSchemaz<TCoord, TBBox, TProps, TFeatureId>
+  schemaz?: ZFeatureSchemaz<TCoord, TBBox, TProps, TFeatureId>,
 ) =>
   z.object({
     type: z.literal("Feature"),
@@ -202,9 +202,9 @@ export const lineStringFeature = <
   TCoord extends ZCoordinate | undefined,
   TBBox extends ZBBox | undefined,
   TProps extends z.ZodTypeAny | undefined,
-  TFeatureId extends ZFeatureId | undefined = undefined
+  TFeatureId extends ZFeatureId | undefined = undefined,
 >(
-  schemaz?: ZFeatureSchemaz<TCoord, TBBox, TProps, TFeatureId>
+  schemaz?: ZFeatureSchemaz<TCoord, TBBox, TProps, TFeatureId>,
 ) =>
   z.object({
     type: z.literal("Feature"),
@@ -217,9 +217,9 @@ export const polygonFeature = <
   TCoord extends ZCoordinate | undefined,
   TBBox extends ZBBox | undefined,
   TProps extends z.ZodTypeAny | undefined,
-  TFeatureId extends ZFeatureId | undefined = undefined
+  TFeatureId extends ZFeatureId | undefined = undefined,
 >(
-  schemaz?: ZFeatureSchemaz<TCoord, TBBox, TProps, TFeatureId>
+  schemaz?: ZFeatureSchemaz<TCoord, TBBox, TProps, TFeatureId>,
 ) =>
   z.object({
     type: z.literal("Feature"),
@@ -232,9 +232,9 @@ export const multiPointFeature = <
   TCoord extends ZCoordinate | undefined,
   TBBox extends ZBBox | undefined,
   TProps extends z.ZodTypeAny | undefined,
-  TFeatureId extends ZFeatureId | undefined = undefined
+  TFeatureId extends ZFeatureId | undefined = undefined,
 >(
-  schemaz?: ZFeatureSchemaz<TCoord, TBBox, TProps, TFeatureId>
+  schemaz?: ZFeatureSchemaz<TCoord, TBBox, TProps, TFeatureId>,
 ) =>
   z.object({
     type: z.literal("Feature"),
@@ -247,9 +247,9 @@ export const multiLineStringFeature = <
   TCoord extends ZCoordinate | undefined,
   TBBox extends ZBBox | undefined,
   TProps extends z.ZodTypeAny | undefined,
-  TFeatureId extends ZFeatureId | undefined = undefined
+  TFeatureId extends ZFeatureId | undefined = undefined,
 >(
-  schemaz?: ZFeatureSchemaz<TCoord, TBBox, TProps, TFeatureId>
+  schemaz?: ZFeatureSchemaz<TCoord, TBBox, TProps, TFeatureId>,
 ) =>
   z.object({
     type: z.literal("Feature"),
@@ -262,9 +262,9 @@ export const multiPolygonFeature = <
   TCoord extends ZCoordinate | undefined,
   TBBox extends ZBBox | undefined,
   TProps extends z.ZodTypeAny | undefined,
-  TFeatureId extends ZFeatureId | undefined = undefined
+  TFeatureId extends ZFeatureId | undefined = undefined,
 >(
-  schemaz?: ZFeatureSchemaz<TCoord, TBBox, TProps, TFeatureId>
+  schemaz?: ZFeatureSchemaz<TCoord, TBBox, TProps, TFeatureId>,
 ) =>
   z.object({
     type: z.literal("Feature"),
@@ -274,7 +274,7 @@ export const multiPolygonFeature = <
   });
 
 export const geometriez = <TCoord extends ZCoordinate | undefined, TBBox extends ZBBox | undefined>(
-  schemaz?: ZGeometrySchemaz<TCoord, TBBox>
+  schemaz?: ZGeometrySchemaz<TCoord, TBBox>,
 ) => {
   return {
     pointGeometry: pointGeometry(schemaz),
@@ -298,9 +298,9 @@ export const featurez = <
   TCoord extends ZCoordinate | undefined,
   TBBox extends ZBBox | undefined,
   TProps extends z.ZodTypeAny | undefined,
-  TFeatureId extends ZFeatureId | undefined = undefined
+  TFeatureId extends ZFeatureId | undefined = undefined,
 >(
-  schemaz?: ZFeatureSchemaz<TCoord, TBBox, TProps, TFeatureId>
+  schemaz?: ZFeatureSchemaz<TCoord, TBBox, TProps, TFeatureId>,
 ) => {
   return {
     ...geometriez({

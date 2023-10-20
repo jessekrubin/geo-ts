@@ -1,1 +1,1 @@
-export * from './generated/geotypes.js'
+export * from "./generated/geotypes.js";
