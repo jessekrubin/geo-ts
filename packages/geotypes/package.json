@@ -29,7 +29,7 @@
     "build:tsup": "tsup --format cjs,esm --dts",
     "test": "vitest run",
     "dev": "vitest watch --coverage",
-    "lint": "eslint src/** --ext .ts",
+    "lint": "eslint .",
     "fmt": "prettier --write .",
     "prepublishOnly": "pnpm run build"
   },
