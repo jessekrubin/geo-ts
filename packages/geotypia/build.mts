@@ -42,15 +42,26 @@ const typename2filename = (tname: string) => {
 
 const bigAssFile = async (geotypes: GeotypesMetadata) => {
   const typeFunks = geotypes.geotypes.map((tname) => typeFunctions(tname));
+  const geotypes2import = [
+    ...geotypes.geotypes
+  ];
+  // blah blah sort
+  geotypes2import.sort(
+    (a, b) => a.localeCompare(b)
+  );
+  const geotypesImports = [
+    "import type {",
+    geotypes2import.map((tname) => `  ${tname},`).join("\n"),
+    "} from '@jsse/geotypes';",
+  ]
   const lines = [
     // turn off eslint explicit any
     "/* eslint-disable @typescript-eslint/no-explicit-any,@typescript-eslint/no-unused-vars */",
     "// eslint-disable-next-line @typescript-eslint/ban-ts-comment",
     "// @ts-nocheck",
     TYPIA_IMPORT,
-    "import type {",
-    geotypes.geotypes.map((tname) => `  ${tname},`).join("\n"),
-    "} from '@jsse/geotypes';",
+    "",
+    ...geotypesImports,
     "",
     ...typeFunks,
   ];

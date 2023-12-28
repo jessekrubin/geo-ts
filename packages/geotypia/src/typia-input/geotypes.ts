@@ -2,6 +2,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 import typia from 'typia';
+
 import type {
   BBox,
   BBox2d,
