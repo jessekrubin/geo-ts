@@ -20,12 +20,12 @@ const typeFunctionNames = (tname: string) => [
 
 const typeFunctions = (tname: string) => `
 // ${tname}
-export const assert${tname} = typia.createAssert<${tname}>()
-export const equals${tname} = typia.createEquals<${tname}>()
-export const is${tname} = typia.createIs<${tname}>()
-export const random${tname} = typia.createRandom<${tname}>()
-export const stringify${tname} = typia.json.createStringify<${tname}>()
-export const validate${tname} = typia.createValidate<${tname}>()
+export const assert${tname} = typia.createAssert<${tname}>();
+export const equals${tname} = typia.createEquals<${tname}>();
+export const is${tname} = typia.createIs<${tname}>();
+export const random${tname} = typia.createRandom<${tname}>();
+export const stringify${tname} = typia.json.createStringify<${tname}>();
+export const validate${tname} = typia.createValidate<${tname}>();
 `;
 
 // PascalCase to kebab-case
