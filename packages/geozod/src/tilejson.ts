@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { latitude, longitude } from "./geojson.js";
 
-export const tilejsonSemver = () => z.string().regex(/\d+\.\d+\.\d+\w?[\w\d]*/);
+export const tilejsonSemver = () => z.string().regex(/(?:\d+\.){2}\d+\w*/);
 
 export const tilejsonVersionLike = () => z.union([tilejsonSemver(), z.string()]);
 export const tilejsonZoom = () => z.number().int().min(0).max(30);

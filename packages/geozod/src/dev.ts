@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { pointGeometry, coordinate2d, coordinateNd, pointFeature } from "./geojson.js";
+import { coordinate2d, coordinateNd, pointFeature, pointGeometry } from "./geojson.js";
 
 const pnd = pointGeometry({
   coordinate: coordinateNd(),

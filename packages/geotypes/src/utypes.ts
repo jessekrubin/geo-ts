@@ -13,6 +13,6 @@ export type ExtendsUnknown<T> = T extends unknown ? true : false;
 export type ExtendsUnknownOrUndefined<T> = ExtendsUnknown<T> extends true
   ? true
   : ExtendsUndefined<T> extends true
-  ? true
-  : false;
+    ? true
+    : false;
 export type IsNullable<T> = IsVoid<T> extends true ? true : IsUnknownOrUndefined<T> extends true ? true : false;

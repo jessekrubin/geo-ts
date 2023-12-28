@@ -1,4 +1,5 @@
 import { $, fs } from "zx";
+
 const TYPIA_IMPORT = "import typia from 'typia';";
 
 type FileTypeExports = {
@@ -31,8 +32,8 @@ export const validate${tname} = typia.createValidate<${tname}>();
 // PascalCase to kebab-case
 const typename2filename = (tname: string) => {
   const filename = tname
-    .replace(/([a-z])([A-Z])/g, "$1-$2")
-    .replace(/\s+/g, "-")
+    .replaceAll(/([a-z])([A-Z])/g, "$1-$2")
+    .replaceAll(/\s+/g, "-")
     .toLowerCase();
   if (filename.includes("2d") || filename.includes("3d")) {
     return filename.replace("2d", "-2d").replace("3d", "-3d");
@@ -42,18 +43,14 @@ const typename2filename = (tname: string) => {
 
 const bigAssFile = async (geotypes: GeotypesMetadata) => {
   const typeFunks = geotypes.geotypes.map((tname) => typeFunctions(tname));
-  const geotypes2import = [
-    ...geotypes.geotypes
-  ];
+  const geotypes2import = [...geotypes.geotypes];
   // blah blah sort
-  geotypes2import.sort(
-    (a, b) => a.localeCompare(b)
-  );
+  geotypes2import.sort((a, b) => a.localeCompare(b));
   const geotypesImports = [
     "import type {",
     geotypes2import.map((tname) => `  ${tname},`).join("\n"),
     "} from '@jsse/geotypes';",
-  ]
+  ];
   const lines = [
     // turn off eslint explicit any
     "/* eslint-disable @typescript-eslint/no-explicit-any,@typescript-eslint/no-unused-vars */",

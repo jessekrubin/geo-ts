@@ -253,12 +253,12 @@ type FeatureProperties<TProperties> = IsUndefined<TProperties> extends true
       properties?: GeoJsonProperties | null;
     }
   : ExtendsUndefined<TProperties> extends true
-  ? {
-      properties?: TProperties;
-    }
-  : {
-      properties: TProperties;
-    };
+    ? {
+        properties?: TProperties;
+      }
+    : {
+        properties: TProperties;
+      };
 
 export type Feature<
   TGeometry extends Geometry = Geometry,
