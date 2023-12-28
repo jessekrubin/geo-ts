@@ -1,16 +1,16 @@
 {
   "name": "@jsse/geo-ts",
-  "private": true,
   "type": "module",
   "version": "0.0.0",
+  "private": true,
   "description": "geo-json-schemas by way of typebox",
   "publishConfig": {
     "access": "public"
   },
+  "license": "MIT",
   "engines": {
     "node": "^18.0.0 || >=20.0.0"
   },
-  "license": "MIT",
   "scripts": {
     "prepublish": "pnpm run build",
     "build-fast": "tsup src/index.ts --format cjs,esm",

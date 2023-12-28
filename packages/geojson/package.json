@@ -1,30 +1,31 @@
 {
   "name": "@jsse/geojson",
+  "type": "module",
   "version": "0.0.1",
   "description": "geojson",
   "publishConfig": {
     "access": "public"
   },
-  "files": [
-    "dist"
-  ],
-  "type": "module",
-  "main": "./dist/geojson.cjs",
-  "module": "./dist/geojson.js",
-  "types": "./dist/geojson.d.ts",
+  "license": "MIT",
   "exports": {
     ".": {
-      "require": "./dist/geojson.cjs",
+      "types": "./dist/geojson.d.ts",
       "import": "./dist/geojson.js",
-      "types": "./dist/geojson.d.ts"
+      "require": "./dist/geojson.cjs"
     },
     "./types": {
-      "require": "./dist/types.cjs",
+      "types": "./dist/types.d.ts",
       "import": "./dist/types.js",
-      "types": "./dist/types.d.ts"
+      "require": "./dist/types.cjs"
     },
     "./pacakge.json": "./package.json"
   },
+  "main": "./dist/geojson.cjs",
+  "module": "./dist/geojson.js",
+  "types": "./dist/geojson.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build-tsc": "tsc --noEmit",
     "build-fast": "tsup src/geojson.ts --format cjs,esm",
@@ -36,7 +37,6 @@
     "prepublishOnly": "pnpm run build",
     "prepare": "ts-patch install"
   },
-  "license": "MIT",
   "dependencies": {
     "@jsse/geotypes": "workspace:*"
   },
