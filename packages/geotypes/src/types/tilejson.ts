@@ -48,3 +48,4 @@ export type Tilejson300Vector = {
 } & TilejsonCommon<TilejsonVectorFormat>;
 
 export type Tilejson300 = Tilejson300Raster | Tilejson300Vector;
+export type Tilejson = Tilejson300;

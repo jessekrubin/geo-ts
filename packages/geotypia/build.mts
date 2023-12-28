@@ -49,7 +49,7 @@ const bigAssFile = async (geotypes: GeotypesMetadata) => {
   const geotypesImports = [
     "import type {",
     geotypes2import.map((tname) => `  ${tname},`).join("\n"),
-    "} from '@jsse/geotypes';",
+    "} from \"@jsse/geotypes\";",
   ];
   const lines = [
     // turn off eslint explicit any

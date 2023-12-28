@@ -94,6 +94,7 @@ import type {
   PolygonGeometry3d,
   PolygonGeometryType,
   SimpleStyleProperties,
+  Tilejson,
   Tilejson300,
   Tilejson300Raster,
   Tilejson300Vector,
@@ -104,7 +105,7 @@ import type {
   TilejsonVectorLayer,
   TilejsonVectorLayers,
   Z,
-} from '@jsse/geotypes';
+} from "@jsse/geotypes";
 
 
 // BBox
@@ -915,6 +916,15 @@ export const isSimpleStyleProperties = typia.createIs<SimpleStyleProperties>();
 export const randomSimpleStyleProperties = typia.createRandom<SimpleStyleProperties>();
 export const stringifySimpleStyleProperties = typia.json.createStringify<SimpleStyleProperties>();
 export const validateSimpleStyleProperties = typia.createValidate<SimpleStyleProperties>();
+
+
+// Tilejson
+export const assertTilejson = typia.createAssert<Tilejson>();
+export const equalsTilejson = typia.createEquals<Tilejson>();
+export const isTilejson = typia.createIs<Tilejson>();
+export const randomTilejson = typia.createRandom<Tilejson>();
+export const stringifyTilejson = typia.json.createStringify<Tilejson>();
+export const validateTilejson = typia.createValidate<Tilejson>();
 
 
 // Tilejson300
