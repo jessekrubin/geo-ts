@@ -1,16 +1,22 @@
 import { z } from "zod";
 
-const simplestyleTitle = z.string({ description: "A title to show when this item is clicked or hovered over" });
+const simplestyleTitle = z.string({
+  description: "A title to show when this item is clicked or hovered over",
+});
 const simplestyleDescription = z.string({
-  description: "A description to show when this item is clicked or hovered over",
+  description:
+    "A description to show when this item is clicked or hovered over",
 });
 const simplestyleMarkerSymbol = z.string({
   description:
     'A symbol to position in the center of this icon if not provided or "", no symbol is overlaid and only the marker is shown Allowed values include - Icon ID - An integer 0 through 9 - A lowercase character "a" through "z"',
 });
-const simplestyleMarkerColor = z.string({ description: "The marker's color; value must follow COLOR RULES" });
+const simplestyleMarkerColor = z.string({
+  description: "The marker's color; value must follow COLOR RULES",
+});
 const simplestyleStroke = z.string({
-  description: "The color of a line as part of a polygon, polyline, or multigeometry value must follow COLOR RULES",
+  description:
+    "The color of a line as part of a polygon, polyline, or multigeometry value must follow COLOR RULES",
 });
 const simplestyleStrokeOpacity = z
   .number({
@@ -27,7 +33,10 @@ const StrokeWidth = z
   })
   .min(0)
   .refine((value) => value >= 0);
-const Fill = z.string({ description: "The color of the interior of a polygon value must follow COLOR RULES" });
+const Fill = z.string({
+  description:
+    "The color of the interior of a polygon value must follow COLOR RULES",
+});
 const simplestyleFillOpacity = z
   .number({
     description:

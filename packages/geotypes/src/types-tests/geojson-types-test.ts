@@ -57,7 +57,10 @@ function noop<T>(v: T): T {
     },
   };
 
-  type FeatureWithProperties = Feature<PointGeometry, { howdy: "doody" } | undefined>;
+  type FeatureWithProperties = Feature<
+    PointGeometry,
+    { howdy: "doody" } | undefined
+  >;
   type FeatureWithPropertiesProperties = FeatureWithProperties["properties"];
 
   const featureWithProperties: FeatureWithProperties = {

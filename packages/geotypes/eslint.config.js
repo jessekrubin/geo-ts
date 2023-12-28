@@ -3,7 +3,11 @@ import jsse from "@jsse/eslint-config";
 export default [
   ...jsse({
     typescript: {
-      tsconfigPath: ["tsconfig.json", "tsconfig.tsd.json", "tsconfig.eslint.json"],
+      tsconfigPath: [
+        "tsconfig.json",
+        "tsconfig.tsd.json",
+        "tsconfig.eslint.json",
+      ],
     },
   }),
   {

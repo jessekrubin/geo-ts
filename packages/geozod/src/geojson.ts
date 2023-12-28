@@ -15,29 +15,43 @@ export type Coordinate = Coordinate2d | Coordinate3d;
 // export type ZBBox = ZBBox2d | ZBBox3d | ZBBoxNd;
 
 export type IsDefined<T> = Extract<T, undefined> extends never ? true : false;
-export type AssertCoordinate<T, E extends ZCoordinate = ZCoordinate> = T extends E ? T : never;
-export type ZGeojsonCoordinate<T extends ZCoordinate | undefined> = IsDefined<T> extends true
-  ? AssertCoordinate<T, ZCoordinate>
-  : ReturnType<typeof coordinate>;
+export type AssertCoordinate<
+  T,
+  E extends ZCoordinate = ZCoordinate,
+> = T extends E ? T : never;
+export type ZGeojsonCoordinate<T extends ZCoordinate | undefined> =
+  IsDefined<T> extends true
+    ? AssertCoordinate<T, ZCoordinate>
+    : ReturnType<typeof coordinate>;
 export type AssertBBox<T, E extends ZBBox = ZBBox> = T extends E ? T : never;
-export type ZGeojsonBoundingBox<T extends ZBBox | undefined> = IsDefined<T> extends true
-  ? AssertBBox<T, ZBBox>
-  : ReturnType<typeof bbox>;
+export type ZGeojsonBoundingBox<T extends ZBBox | undefined> =
+  IsDefined<T> extends true ? AssertBBox<T, ZBBox> : ReturnType<typeof bbox>;
 
-export type AssertProperties<T, E extends z.ZodTypeAny = z.ZodTypeAny> = T extends E ? T : never;
-export type ZGeojsonProperties<T extends z.ZodTypeAny | undefined> = IsDefined<T> extends true
-  ? AssertProperties<T, z.ZodTypeAny>
-  : ReturnType<typeof z.record>;
+export type AssertProperties<
+  T,
+  E extends z.ZodTypeAny = z.ZodTypeAny,
+> = T extends E ? T : never;
+export type ZGeojsonProperties<T extends z.ZodTypeAny | undefined> =
+  IsDefined<T> extends true
+    ? AssertProperties<T, z.ZodTypeAny>
+    : ReturnType<typeof z.record>;
 
-export type ZFid = z.ZodUnion<[z.ZodString, z.ZodNumber]> | z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
+export type ZFid =
+  | z.ZodUnion<[z.ZodString, z.ZodNumber]>
+  | z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNumber]>>;
 export type AssertFeatureId<T, E extends ZFid> = T extends E ? T : never;
-export type ZGeojsonFeatureId<T extends ZFid | undefined> = IsDefined<T> extends true
-  ? AssertFeatureId<T, ZFid>
-  : ReturnType<typeof featureId>;
+export type ZGeojsonFeatureId<T extends ZFid | undefined> =
+  IsDefined<T> extends true
+    ? AssertFeatureId<T, ZFid>
+    : ReturnType<typeof featureId>;
 
 export const featureId = () => z.union([z.string(), z.number()]).optional();
 
-export type LonLatOptionz = { min?: number; max?: number; description?: string };
+export type LonLatOptionz = {
+  min?: number;
+  max?: number;
+  description?: string;
+};
 export const latitude = (optionz?: LonLatOptionz) => {
   const { min = -90, max = 90 } = optionz ?? {};
   if (min > max) throw new Error("min must be less than max");
@@ -54,19 +68,34 @@ export const longitude = (optionz?: LonLatOptionz) => {
   if (optionz?.max !== undefined) s.max(max);
   return s;
 };
-export const latitudeWgs84 = () => z.number({ description: "Latitude WGS84" }).min(-90).max(90);
-export const longitudeWgs84 = () => z.number({ description: "Longitude WGS84" }).min(-180).max(180);
+export const latitudeWgs84 = () =>
+  z.number({ description: "Latitude WGS84" }).min(-90).max(90);
+export const longitudeWgs84 = () =>
+  z.number({ description: "Longitude WGS84" }).min(-180).max(180);
 
 export const coordinate2d = () => z.tuple([longitude(), latitude()]);
-export const coordinate2dWgs84 = () => z.tuple([longitudeWgs84(), latitudeWgs84()]);
-export const coordinate3d = () => z.tuple([longitude(), latitude(), z.number()]);
-export const coordinate3dWgs84 = () => z.tuple([longitudeWgs84(), latitudeWgs84(), z.number()]);
+export const coordinate2dWgs84 = () =>
+  z.tuple([longitudeWgs84(), latitudeWgs84()]);
+export const coordinate3d = () =>
+  z.tuple([longitude(), latitude(), z.number()]);
+export const coordinate3dWgs84 = () =>
+  z.tuple([longitudeWgs84(), latitudeWgs84(), z.number()]);
 export const coordinateNd = () => z.union([coordinate2d(), coordinate3d()]);
 export const coordinate = () => z.union([coordinate2d(), coordinate3d()]);
-export const coordinateWgs84 = () => z.union([coordinate2dWgs84(), coordinate3dWgs84()]);
+export const coordinateWgs84 = () =>
+  z.union([coordinate2dWgs84(), coordinate3dWgs84()]);
 
-export const bbox2d = () => z.tuple([longitude(), latitude(), longitude(), latitude()]);
-export const bbox3d = () => z.tuple([longitude(), latitude(), longitude(), latitude(), z.number(), z.number()]);
+export const bbox2d = () =>
+  z.tuple([longitude(), latitude(), longitude(), latitude()]);
+export const bbox3d = () =>
+  z.tuple([
+    longitude(),
+    latitude(),
+    longitude(),
+    latitude(),
+    z.number(),
+    z.number(),
+  ]);
 export const bbox = () => z.union([bbox2d(), bbox3d()]);
 
 export type ZFeatureId = ReturnType<typeof featureId>;
@@ -80,14 +109,29 @@ export type ZBBox3d = ReturnType<typeof bbox3d>;
 export type ZBBoxNd = ReturnType<typeof bbox>;
 export type ZBBox = ZBBox2d | ZBBox3d | ZBBoxNd;
 
-export const geojsonCoordinate = <T extends ZCoordinate | undefined = undefined>(schema?: T) =>
-  (schema === undefined ? coordinate() : schema) as ZGeojsonCoordinate<T>;
-export const geojsonBoundingBox = <T extends ZBBox | undefined = undefined>(schema?: T) =>
+export const geojsonCoordinate = <
+  T extends ZCoordinate | undefined = undefined,
+>(
+  schema?: T,
+) => (schema === undefined ? coordinate() : schema) as ZGeojsonCoordinate<T>;
+export const geojsonBoundingBox = <T extends ZBBox | undefined = undefined>(
+  schema?: T,
+) =>
   (schema === undefined ? bbox().optional() : schema) as ZGeojsonBoundingBox<T>;
-export const geojsonProperties = <T extends z.ZodTypeAny | undefined = undefined>(schema?: T) =>
-  (schema === undefined ? z.record(z.any()).optional() : schema) as ZGeojsonProperties<T>;
-export const geojsonFeatureId = <T extends ZFid | undefined = undefined>(schema?: T) =>
-  (schema === undefined ? featureId().optional() : schema) as ZGeojsonFeatureId<T>;
+export const geojsonProperties = <
+  T extends z.ZodTypeAny | undefined = undefined,
+>(
+  schema?: T,
+) =>
+  (schema === undefined
+    ? z.record(z.any()).optional()
+    : schema) as ZGeojsonProperties<T>;
+export const geojsonFeatureId = <T extends ZFid | undefined = undefined>(
+  schema?: T,
+) =>
+  (schema === undefined
+    ? featureId().optional()
+    : schema) as ZGeojsonFeatureId<T>;
 
 export type ZGeometrySchemaz<
   TCoord extends ZCoordinate | undefined = undefined,
@@ -108,7 +152,10 @@ export type ZFeatureSchemaz<
   featureId?: TFeatureId;
 };
 
-export const pointGeometry = <TCoord extends ZCoordinate | undefined, TBBox extends ZBBox | undefined>(
+export const pointGeometry = <
+  TCoord extends ZCoordinate | undefined,
+  TBBox extends ZBBox | undefined,
+>(
   schemaz?: ZGeometrySchemaz<TCoord, TBBox>,
 ) =>
   z.object({
@@ -117,7 +164,10 @@ export const pointGeometry = <TCoord extends ZCoordinate | undefined, TBBox exte
     bbox: geojsonBoundingBox(schemaz?.bbox),
   });
 
-export const lineStringGeometry = <TCoord extends ZCoordinate | undefined, TBBox extends ZBBox | undefined>(
+export const lineStringGeometry = <
+  TCoord extends ZCoordinate | undefined,
+  TBBox extends ZBBox | undefined,
+>(
   schemaz?: ZGeometrySchemaz<TCoord, TBBox>,
 ) =>
   z.object({
@@ -126,16 +176,24 @@ export const lineStringGeometry = <TCoord extends ZCoordinate | undefined, TBBox
     bbox: geojsonBoundingBox(schemaz?.bbox),
   });
 
-export const polygonGeometry = <TCoord extends ZCoordinate | undefined, TBBox extends ZBBox | undefined>(
+export const polygonGeometry = <
+  TCoord extends ZCoordinate | undefined,
+  TBBox extends ZBBox | undefined,
+>(
   schemaz?: ZGeometrySchemaz<TCoord, TBBox>,
 ) =>
   z.object({
     type: z.literal("Polygon"),
-    coordinates: z.array(z.array(geojsonCoordinate(schemaz?.coordinate)).min(4)),
+    coordinates: z.array(
+      z.array(geojsonCoordinate(schemaz?.coordinate)).min(4),
+    ),
     bbox: geojsonBoundingBox(schemaz?.bbox),
   });
 
-export const multiPointGeometry = <TCoord extends ZCoordinate | undefined, TBBox extends ZBBox | undefined>(
+export const multiPointGeometry = <
+  TCoord extends ZCoordinate | undefined,
+  TBBox extends ZBBox | undefined,
+>(
   schemaz?: ZGeometrySchemaz<TCoord, TBBox>,
 ) =>
   z.object({
@@ -144,7 +202,10 @@ export const multiPointGeometry = <TCoord extends ZCoordinate | undefined, TBBox
     bbox: geojsonBoundingBox(schemaz?.bbox),
   });
 
-export const multiLineStringGeometry = <TCoord extends ZCoordinate | undefined, TBBox extends ZBBox | undefined>(
+export const multiLineStringGeometry = <
+  TCoord extends ZCoordinate | undefined,
+  TBBox extends ZBBox | undefined,
+>(
   schemaz?: ZGeometrySchemaz<TCoord, TBBox>,
 ) =>
   z.object({
@@ -153,13 +214,18 @@ export const multiLineStringGeometry = <TCoord extends ZCoordinate | undefined, 
     bbox: geojsonBoundingBox(schemaz?.bbox),
   });
 
-export const multiPolygonGeometry = <TCoord extends ZCoordinate | undefined, TBBox extends ZBBox | undefined>(
+export const multiPolygonGeometry = <
+  TCoord extends ZCoordinate | undefined,
+  TBBox extends ZBBox | undefined,
+>(
   schemaz?: ZGeometrySchemaz<TCoord, TBBox>,
 ) =>
   z.object({
     type: z.literal("MultiPolygon"),
     // coordinates: geojsonCoordinate(schemaz?.coordinate),
-    coordinates: z.array(z.array(z.array(geojsonCoordinate(schemaz?.coordinate)).min(4))),
+    coordinates: z.array(
+      z.array(z.array(geojsonCoordinate(schemaz?.coordinate)).min(4)),
+    ),
     bbox: geojsonBoundingBox(schemaz?.bbox),
   });
 
@@ -171,7 +237,10 @@ export type ZGeometrySchema =
   | ReturnType<typeof multiLineStringGeometry>
   | ReturnType<typeof multiPolygonGeometry>;
 
-export const feature = <TGeometry extends ZGeometrySchema, TProps extends z.ZodTypeAny | undefined = undefined>(
+export const feature = <
+  TGeometry extends ZGeometrySchema,
+  TProps extends z.ZodTypeAny | undefined = undefined,
+>(
   geometrySchema: TGeometry,
   propertiesSchema?: TProps,
 ) =>
@@ -193,7 +262,10 @@ export const pointFeature = <
   z.object({
     type: z.literal("Feature"),
     id: geojsonFeatureId(schemaz?.featureId),
-    geometry: pointGeometry({ coordinate: schemaz?.coordinate, bbox: schemaz?.bbox }),
+    geometry: pointGeometry({
+      coordinate: schemaz?.coordinate,
+      bbox: schemaz?.bbox,
+    }),
     properties: geojsonProperties(schemaz?.properties),
     bbox: geojsonBoundingBox(schemaz?.bbox),
   });
@@ -208,7 +280,10 @@ export const lineStringFeature = <
 ) =>
   z.object({
     type: z.literal("Feature"),
-    geometry: lineStringGeometry({ coordinate: schemaz?.coordinate, bbox: schemaz?.bbox }),
+    geometry: lineStringGeometry({
+      coordinate: schemaz?.coordinate,
+      bbox: schemaz?.bbox,
+    }),
     properties: geojsonProperties(schemaz?.properties),
     bbox: geojsonBoundingBox(schemaz?.bbox),
   });
@@ -223,7 +298,10 @@ export const polygonFeature = <
 ) =>
   z.object({
     type: z.literal("Feature"),
-    geometry: polygonGeometry({ coordinate: schemaz?.coordinate, bbox: schemaz?.bbox }),
+    geometry: polygonGeometry({
+      coordinate: schemaz?.coordinate,
+      bbox: schemaz?.bbox,
+    }),
     properties: geojsonProperties(schemaz?.properties),
     bbox: geojsonBoundingBox(schemaz?.bbox),
   });
@@ -238,7 +316,10 @@ export const multiPointFeature = <
 ) =>
   z.object({
     type: z.literal("Feature"),
-    geometry: multiPointGeometry({ coordinate: schemaz?.coordinate, bbox: schemaz?.bbox }),
+    geometry: multiPointGeometry({
+      coordinate: schemaz?.coordinate,
+      bbox: schemaz?.bbox,
+    }),
     properties: geojsonProperties(schemaz?.properties),
     bbox: geojsonBoundingBox(schemaz?.bbox),
   });
@@ -253,7 +334,10 @@ export const multiLineStringFeature = <
 ) =>
   z.object({
     type: z.literal("Feature"),
-    geometry: multiLineStringGeometry({ coordinate: schemaz?.coordinate, bbox: schemaz?.bbox }),
+    geometry: multiLineStringGeometry({
+      coordinate: schemaz?.coordinate,
+      bbox: schemaz?.bbox,
+    }),
     properties: geojsonProperties(schemaz?.properties),
     bbox: geojsonBoundingBox(schemaz?.bbox),
   });
@@ -268,12 +352,18 @@ export const multiPolygonFeature = <
 ) =>
   z.object({
     type: z.literal("Feature"),
-    geometry: multiPolygonGeometry({ coordinate: schemaz?.coordinate, bbox: schemaz?.bbox }),
+    geometry: multiPolygonGeometry({
+      coordinate: schemaz?.coordinate,
+      bbox: schemaz?.bbox,
+    }),
     properties: geojsonProperties(schemaz?.properties),
     bbox: geojsonBoundingBox(schemaz?.bbox),
   });
 
-export const geometriez = <TCoord extends ZCoordinate | undefined, TBBox extends ZBBox | undefined>(
+export const geometriez = <
+  TCoord extends ZCoordinate | undefined,
+  TBBox extends ZBBox | undefined,
+>(
   schemaz?: ZGeometrySchemaz<TCoord, TBBox>,
 ) => {
   return {
@@ -286,7 +376,9 @@ export const geometriez = <TCoord extends ZCoordinate | undefined, TBBox extends
   };
 };
 
-export const featureCollection = <TGeom extends ZGeometrySchema>(geometrySchema: TGeom) => {
+export const featureCollection = <TGeom extends ZGeometrySchema>(
+  geometrySchema: TGeom,
+) => {
   return z.object({
     type: z.literal("FeatureCollection"),
     features: z.array(feature(geometrySchema)),

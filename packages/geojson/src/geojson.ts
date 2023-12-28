@@ -48,7 +48,10 @@ import type {
 // };
 
 export const isCoordinate2d = (value: unknown): value is Coordinate2d =>
-  Array.isArray(value) && value.length === 2 && typeof value[0] === "number" && typeof value[1] === "number";
+  Array.isArray(value) &&
+  value.length === 2 &&
+  typeof value[0] === "number" &&
+  typeof value[1] === "number";
 export const isCoordinate3d = (value: unknown): value is Coordinate3d =>
   Array.isArray(value) &&
   value.length === 3 &&
@@ -57,14 +60,18 @@ export const isCoordinate3d = (value: unknown): value is Coordinate3d =>
   typeof value[2] === "number";
 export const isCoordinate = (value: unknown): value is Coordinate =>
   Array.isArray(value) &&
-  ((value.length === 2 && typeof value[0] === "number" && typeof value[1] === "number") ||
+  ((value.length === 2 &&
+    typeof value[0] === "number" &&
+    typeof value[1] === "number") ||
     (value.length === 3 &&
       typeof value[0] === "number" &&
       typeof value[1] === "number" &&
       typeof value[2] === "number"));
 
 export const isCoordinates2d = (value: unknown): value is Coordinate2d[] =>
-  Array.isArray(value) && value.length > 0 && value.every((v) => isCoordinate2d(v));
+  Array.isArray(value) &&
+  value.length > 0 &&
+  value.every((v) => isCoordinate2d(v));
 export const isCoordinates3d = (value: unknown): value is Coordinate3d[] =>
   Array.isArray(value) &&
   value.length > 0 &&
@@ -82,8 +89,13 @@ export const isCoordinates = (value: unknown): value is Coordinate[] =>
   value.every(
     (el) =>
       Array.isArray(el) &&
-      ((el.length === 2 && typeof el[0] === "number" && typeof el[1] === "number") ||
-        (el.length === 3 && typeof el[0] === "number" && typeof el[1] === "number" && typeof el[2] === "number")),
+      ((el.length === 2 &&
+        typeof el[0] === "number" &&
+        typeof el[1] === "number") ||
+        (el.length === 3 &&
+          typeof el[0] === "number" &&
+          typeof el[1] === "number" &&
+          typeof el[2] === "number")),
   );
 
 export const isBBox2d = (value: unknown): value is BBox2d =>
@@ -139,7 +151,9 @@ export const isBBox = (value: unknown): value is BBox2d =>
     typeof value[5] === "number" &&
     Number.isFinite(value[5]));
 
-export const featureProperties = <TProperties extends GeoJsonProperties | undefined = GeoJsonProperties>(
+export const featureProperties = <
+  TProperties extends GeoJsonProperties | undefined = GeoJsonProperties,
+>(
   properties?: TProperties,
 ): TProperties => {
   if (properties === undefined) {
@@ -160,13 +174,18 @@ const optsBbox = (bbox: unknown): BBox => {
 };
 const optsId = (id: unknown): string | number => {
   if (typeof id !== "string" && typeof id !== "number") {
-    throw new Error(`Invalid id: ${JSON.stringify(id)}; must be string or number`);
+    throw new Error(
+      `Invalid id: ${JSON.stringify(id)}; must be string or number`,
+    );
   }
   return id;
 };
 
 export const featureOptionsog = (options?: FeatureOptions) => {
-  if (options === undefined || (options.id === undefined && options.bbox === undefined)) {
+  if (
+    options === undefined ||
+    (options.id === undefined && options.bbox === undefined)
+  ) {
     return {};
   }
   if (options.id === undefined && options.bbox !== undefined) {
@@ -177,10 +196,16 @@ export const featureOptionsog = (options?: FeatureOptions) => {
   }
   return { id: optsId(optsId), bbox: optsBbox(options.bbox) };
 };
-export const featureOptions = <TFeatureOptions extends Partial<FeatureGenericOptions> = FeatureGenericOptions>(
+export const featureOptions = <
+  TFeatureOptions extends
+    Partial<FeatureGenericOptions> = FeatureGenericOptions,
+>(
   options?: TFeatureOptions,
 ): FeatureOptions<TFeatureOptions> => {
-  if (options === undefined || (options.id === undefined && options.bbox === undefined)) {
+  if (
+    options === undefined ||
+    (options.id === undefined && options.bbox === undefined)
+  ) {
     return {};
   }
   if (options.id === undefined && options.bbox !== undefined) {
@@ -192,25 +217,37 @@ export const featureOptions = <TFeatureOptions extends Partial<FeatureGenericOpt
   return { id: optsId(optsId), bbox: optsBbox(options.bbox) };
 };
 
-export const pointCoordinates = <TCoordinate extends Coordinate = Coordinate>(coordinates: TCoordinate) => {
+export const pointCoordinates = <TCoordinate extends Coordinate = Coordinate>(
+  coordinates: TCoordinate,
+) => {
   if (isCoordinate(coordinates)) {
     return coordinates;
   }
   throw new Error(
-    `Invalid coordinates: ${JSON.stringify(coordinates)}; must be [number, number] or [number, number, number]`,
+    `Invalid coordinates: ${JSON.stringify(
+      coordinates,
+    )}; must be [number, number] or [number, number, number]`,
   );
 };
 
-export const isLineStringCoordinates = <TCoordinate extends Coordinate = Coordinate>(
+export const isLineStringCoordinates = <
+  TCoordinate extends Coordinate = Coordinate,
+>(
   coordinates: TCoordinate[],
 ): coordinates is LineStringCoordinates<TCoordinate> => {
   return isCoordinates(coordinates) && coordinates.length >= 2;
 };
-export const lineStringCoordinates = <TCoordinate extends Coordinate = Coordinate>(
+export const lineStringCoordinates = <
+  TCoordinate extends Coordinate = Coordinate,
+>(
   coordinates: TCoordinate[],
 ): LineStringCoordinates<TCoordinate> => {
   if (coordinates.length < 2) {
-    throw new Error(`Invalid coordinates: ${JSON.stringify(coordinates)}; must be an array of two or more coordinates`);
+    throw new Error(
+      `Invalid coordinates: ${JSON.stringify(
+        coordinates,
+      )}; must be an array of two or more coordinates`,
+    );
   }
   if (!isLineStringCoordinates(coordinates)) {
     throw new Error(
@@ -222,17 +259,25 @@ export const lineStringCoordinates = <TCoordinate extends Coordinate = Coordinat
   return coordinates;
 };
 
-export const isPolygonCoordinates = <TCoordinate extends Coordinate = Coordinate>(
+export const isPolygonCoordinates = <
+  TCoordinate extends Coordinate = Coordinate,
+>(
   coordinates: unknown,
 ): coordinates is PolygonCoordinates<TCoordinate> => {
   // return Array.isArray(coordinates) && coordinates.every((el) => isPolygonInnerCoordinates(el)
   return (
     Array.isArray(coordinates) &&
     coordinates.every(
-      (value) => Array.isArray(value) && value.length >= 4 && value.every((value) => isCoordinate(value)),
+      (value) =>
+        Array.isArray(value) &&
+        value.length >= 4 &&
+        value.every((value) => isCoordinate(value)),
     ) &&
     coordinates[0].length === coordinates[coordinates.length - 1].length &&
-    coordinates[0].every((el: Coordinate, index: number) => el === coordinates[coordinates.length - 1][index])
+    coordinates[0].every(
+      (el: Coordinate, index: number) =>
+        el === coordinates[coordinates.length - 1][index],
+    )
   );
 };
 
@@ -240,7 +285,9 @@ export const polygonCoordinates = <TCoordinate extends Coordinate = Coordinate>(
   coordinates: unknown,
 ): PolygonCoordinates<TCoordinate> => {
   if (!isPolygonCoordinates<TCoordinate>(coordinates)) {
-    throw new Error(`Invalid polygon coordinates: ${JSON.stringify(coordinates)}`);
+    throw new Error(
+      `Invalid polygon coordinates: ${JSON.stringify(coordinates)}`,
+    );
   }
   return coordinates;
 };
@@ -253,10 +300,14 @@ export const pointGeometry = <TCoordinate extends Coordinate = Coordinate>(
     coordinates: pointCoordinates(coordinates),
   };
 };
-export const pointGeometry2d = <TCoordinate extends Coordinate2d = Coordinate2d>(
+export const pointGeometry2d = <
+  TCoordinate extends Coordinate2d = Coordinate2d,
+>(
   coordinates: TCoordinate,
 ): PointGeometry2d => pointGeometry(coordinates);
-export const pointGeometry3d = <TCoordinate extends Coordinate3d = Coordinate3d>(
+export const pointGeometry3d = <
+  TCoordinate extends Coordinate3d = Coordinate3d,
+>(
   coordinates: TCoordinate,
 ): PointGeometry3d => pointGeometry(coordinates);
 
@@ -268,10 +319,14 @@ export const lineStringGeometry = <TCoordinate extends Coordinate = Coordinate>(
     coordinates: lineStringCoordinates(coordinates),
   };
 };
-export const lineStringGeometry2d = <TCoordinate extends Coordinate2d = Coordinate2d>(
+export const lineStringGeometry2d = <
+  TCoordinate extends Coordinate2d = Coordinate2d,
+>(
   coordinates: LineStringCoordinates<TCoordinate>,
 ): LineStringGeometry2d => lineStringGeometry(coordinates);
-export const lineStringGeometry3d = <TCoordinate extends Coordinate3d = Coordinate3d>(
+export const lineStringGeometry3d = <
+  TCoordinate extends Coordinate3d = Coordinate3d,
+>(
   coordinates: LineStringCoordinates<TCoordinate>,
 ): LineStringGeometry3d => lineStringGeometry(coordinates);
 
@@ -281,10 +336,14 @@ export const polygonGeometry = <TCoordinate extends Coordinate = Coordinate>(
   type: "Polygon",
   coordinates: polygonCoordinates(coordinates),
 });
-export const polygonGeometry2d = <TCoordinate extends Coordinate2d = Coordinate2d>(
+export const polygonGeometry2d = <
+  TCoordinate extends Coordinate2d = Coordinate2d,
+>(
   coordinates: PolygonCoordinates<TCoordinate>,
 ): PolygonGeometry2d => polygonGeometry(coordinates);
-export const polygonGeometry3d = <TCoordinate extends Coordinate3d = Coordinate3d>(
+export const polygonGeometry3d = <
+  TCoordinate extends Coordinate3d = Coordinate3d,
+>(
   coordinates: PolygonCoordinates<TCoordinate>,
 ): PolygonGeometry3d => polygonGeometry(coordinates);
 
@@ -294,27 +353,39 @@ export const multiPointGeometry = <TCoordinate extends Coordinate = Coordinate>(
   type: "MultiPoint",
   coordinates,
 });
-export const multiPointGeometry2d = <TCoordinate extends Coordinate2d = Coordinate2d>(
+export const multiPointGeometry2d = <
+  TCoordinate extends Coordinate2d = Coordinate2d,
+>(
   coordinates: MultiPointCoordinates<TCoordinate>,
 ): MultiPointGeometry2d => multiPointGeometry(coordinates);
-export const multiPointGeometry3d = <TCoordinate extends Coordinate3d = Coordinate3d>(
+export const multiPointGeometry3d = <
+  TCoordinate extends Coordinate3d = Coordinate3d,
+>(
   coordinates: MultiPointCoordinates<TCoordinate>,
 ): MultiPointGeometry3d => multiPointGeometry(coordinates);
 
-export const multiLineStringGeometry = <TCoordinate extends Coordinate = Coordinate>(
+export const multiLineStringGeometry = <
+  TCoordinate extends Coordinate = Coordinate,
+>(
   coordinates: MultiLineStringCoordinates<TCoordinate>,
 ): MultiLineStringGeometry<TCoordinate> => ({
   type: "MultiLineString",
   coordinates,
 });
-export const multiLineStringGeometry2d = <TCoordinate extends Coordinate2d = Coordinate2d>(
+export const multiLineStringGeometry2d = <
+  TCoordinate extends Coordinate2d = Coordinate2d,
+>(
   coordinates: MultiLineStringCoordinates<TCoordinate>,
 ): MultiLineStringGeometry2d => multiLineStringGeometry(coordinates);
-export const multiLineStringGeometry3d = <TCoordinate extends Coordinate3d = Coordinate3d>(
+export const multiLineStringGeometry3d = <
+  TCoordinate extends Coordinate3d = Coordinate3d,
+>(
   coordinates: MultiLineStringCoordinates<TCoordinate>,
 ): MultiLineStringGeometry3d => multiLineStringGeometry(coordinates);
 
-export const multiPolygonGeometry = <TCoordinate extends Coordinate = Coordinate>(
+export const multiPolygonGeometry = <
+  TCoordinate extends Coordinate = Coordinate,
+>(
   coordinates: MultiPolygonCoordinates<TCoordinate>,
 ): MultiPolygonGeometry<TCoordinate> => ({
   type: "MultiPolygon",
@@ -322,14 +393,22 @@ export const multiPolygonGeometry = <TCoordinate extends Coordinate = Coordinate
 });
 
 type PF<
-  TProperties extends GeoJsonProperties | null | undefined = GeoJsonProperties | null | undefined,
-  TFeatureOptions extends Partial<FeatureGenericOptions> = Partial<FeatureGenericOptions>,
+  TProperties extends GeoJsonProperties | null | undefined =
+    | GeoJsonProperties
+    | null
+    | undefined,
+  TFeatureOptions extends
+    Partial<FeatureGenericOptions> = Partial<FeatureGenericOptions>,
 > = PointFeature<TProperties, TFeatureOptions>;
 
 type thingy = PF["bbox"];
 export function point<
-  TProperties extends GeoJsonProperties | null | undefined = GeoJsonProperties | null | undefined,
-  TFeatureOptions extends Partial<FeatureGenericOptions> = Partial<FeatureGenericOptions>,
+  TProperties extends GeoJsonProperties | null | undefined =
+    | GeoJsonProperties
+    | null
+    | undefined,
+  TFeatureOptions extends
+    Partial<FeatureGenericOptions> = Partial<FeatureGenericOptions>,
 >(
   coordinates: Coordinate,
   properties?: TProperties,
@@ -344,7 +423,10 @@ export function point<
     type: "Feature" as const,
     geometry: pointGeometry(coordinates),
     properties: featureProperties(properties),
-  } satisfies Omit<Feature<PointGeometry<Coordinate>, TProperties, TFeatureOptions>, "id" | "crs" | "bbox">;
+  } satisfies Omit<
+    Feature<PointGeometry<Coordinate>, TProperties, TFeatureOptions>,
+    "id" | "crs" | "bbox"
+  >;
   return {
     // type: "Feature" as const,
     // geometry: pointGeometry(coordinates),

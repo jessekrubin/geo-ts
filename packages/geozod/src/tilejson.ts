@@ -3,7 +3,8 @@ import { latitude, longitude } from "./geojson.js";
 
 export const tilejsonSemver = () => z.string().regex(/(?:\d+\.){2}\d+\w*/);
 
-export const tilejsonVersionLike = () => z.union([tilejsonSemver(), z.string()]);
+export const tilejsonVersionLike = () =>
+  z.union([tilejsonSemver(), z.string()]);
 export const tilejsonZoom = () => z.number().int().min(0).max(30);
 
 // raster tiles
@@ -11,18 +12,21 @@ export const tilejsonFormatJpg = () => z.literal("jpg");
 export const tilejsonFormatPng = () => z.literal("png");
 // vector tiles
 export const tilejsonFormatPbf = () => z.literal("pbf");
-export const tilejsonFormat = () => z.union([tilejsonFormatJpg(), tilejsonFormatPng(), tilejsonFormatPbf()]);
+export const tilejsonFormat = () =>
+  z.union([tilejsonFormatJpg(), tilejsonFormatPng(), tilejsonFormatPbf()]);
 
 // scheme
 export const tilejsonSchemeTms = () => z.literal("tms");
 export const tilejsonSchemeXyz = () => z.literal("xyz");
-export const tilejsonScheme = () => z.union([tilejsonSchemeTms(), tilejsonSchemeXyz()]).default("xyz");
+export const tilejsonScheme = () =>
+  z.union([tilejsonSchemeTms(), tilejsonSchemeXyz()]).default("xyz");
 
 export const tilejsonBounds = () =>
   z
     .tuple([longitude(), latitude(), longitude(), latitude()])
     .default([-180, -85.051_128_779_806_59, 180, 85.051_128_779_806_6]);
-export const tilejsonCenter = () => z.tuple([longitude(), latitude(), tilejsonZoom()]).default([0, 0, 0]);
+export const tilejsonCenter = () =>
+  z.tuple([longitude(), latitude(), tilejsonZoom()]).default([0, 0, 0]);
 
 export const tilejson220 = () =>
   z
@@ -59,7 +63,8 @@ export const tilejsonVectorLayer = () =>
     })
     .nonstrict();
 
-export const tilejsonVectorLayers = () => z.array(tilejsonVectorLayer()).default([]);
+export const tilejsonVectorLayers = () =>
+  z.array(tilejsonVectorLayer()).default([]);
 
 export const tilejson300Raster = () =>
   z
@@ -115,4 +120,5 @@ export const tilejson300Vector = () =>
     })
     .nonstrict();
 
-export const tilejson300 = () => z.union([tilejson300Raster(), tilejson300Vector()]);
+export const tilejson300 = () =>
+  z.union([tilejson300Raster(), tilejson300Vector()]);

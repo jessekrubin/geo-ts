@@ -71,7 +71,12 @@ const smallAssFiles = async (geotypes: GeotypesMetadata) => {
   const _smallAssFile = async (tname: string) => {
     const filename = typename2filename(tname);
     const typeFunks = typeFunctions(tname);
-    const lines = [TYPIA_IMPORT, `import type { ${tname} } from \'@jsse/geotypes\';`, "", typeFunks];
+    const lines = [
+      TYPIA_IMPORT,
+      `import type { ${tname} } from \'@jsse/geotypes\';`,
+      "",
+      typeFunks,
+    ];
     const string = lines.join("\n");
     await fs.writeFile(`./src/typia-input/${filename}.ts`, string);
     const info = {
@@ -101,7 +106,9 @@ function filterTypes(tname: string) {
 }
 
 async function main() {
-  const data = (await fs.readJSON("../geotypes/geotypes.json")) as GeotypesMetadata;
+  const data = (await fs.readJSON(
+    "../geotypes/geotypes.json",
+  )) as GeotypesMetadata;
   await nuke_input_dir();
 
   data.geotypes = data.geotypes.filter(filterTypes);

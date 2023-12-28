@@ -43,6 +43,8 @@ describe("geojson-types", () => {
         howdy: "partner",
       },
     };
-    expect(() => geotypia.assertPointGeometry3d(invalidPoint.geometry)).toThrow();
+    expect(() =>
+      geotypia.assertPointGeometry3d(invalidPoint.geometry),
+    ).toThrow();
   });
 });
