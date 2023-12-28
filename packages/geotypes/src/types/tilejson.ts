@@ -21,7 +21,7 @@ export type TilejsonCommon<TFormat extends TilejsonFormat = TilejsonFormat> = {
   tilejson: string;
   tiles: string[];
 
-  vector_layers: TilejsonVectorLayers;
+  vector_layers?: TilejsonVectorLayers;
 
   // optional
   version?: Nullable<string>;
