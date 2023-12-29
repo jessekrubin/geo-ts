@@ -1,0 +1,36 @@
+{
+  "name": "@jsse/geo-ts",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "description": "geo-json-schemas by way of typebox",
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": "^18.0.0 || >=20.0.0"
+  },
+  "scripts": {
+    "prepublish": "pnpm run build",
+    "build-fast": "tsup src/index.ts --format cjs,esm",
+    "build": "pnpm run lint && pnpm run test && pnpm run build:tsup",
+    "build:tsup": "tsup src/index.ts --format cjs,esm --dts",
+    "test": "vitest run && vitest typecheck --run",
+    "dev": "vitest watch",
+    "lint": "eslint .",
+    "fmt": "prettier --write .",
+    "fmtc": "prettier --check .",
+    "fmtl": "prettier --list-different .",
+    "prepublishOnly": "pnpm run build"
+  },
+  "devDependencies": {
+    "@jsse/eslint-config": "^0.0.11",
+    "eslint": "^8.56.0",
+    "prettier": "3.1.1",
+    "tsup": "8.0.1",
+    "tsx": "^4.7.0",
+    "typescript": "5.3.3",
+    "vitest": "1.1.0"
+  }
+}

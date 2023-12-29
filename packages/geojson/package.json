@@ -1,0 +1,60 @@
+{
+  "name": "@jsse/geojson",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "geojson",
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./dist/geojson.d.ts",
+      "import": "./dist/geojson.js",
+      "require": "./dist/geojson.cjs"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/types.js",
+      "require": "./dist/types.cjs"
+    },
+    "./pacakge.json": "./package.json"
+  },
+  "main": "./dist/geojson.cjs",
+  "module": "./dist/geojson.js",
+  "types": "./dist/geojson.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build-tsc": "tsc --noEmit",
+    "build-fast": "tsup src/geojson.ts --format cjs,esm",
+    "build": "pnpm build-tsc && tsup --format cjs,esm --dts",
+    "test": "vitest run",
+    "dev": "vitest watch --coverage",
+    "lint": "eslint src/** --ext .ts",
+    "fmt": "prettier --write .",
+    "prepublishOnly": "pnpm run build",
+    "prepare": "ts-patch install"
+  },
+  "dependencies": {
+    "@jsse/geotypes": "workspace:*"
+  },
+  "devDependencies": {
+    "@jsse/eslint-config": "^0.0.11",
+    "@types/geojson": "^7946.0.13",
+    "@typescript-eslint/eslint-plugin": "^6.16.0",
+    "@typescript-eslint/parser": "^6.16.0",
+    "@vitest/coverage-v8": "^1.1.0",
+    "esbuild": "^0.19.10",
+    "eslint": "^8.56.0",
+    "prettier": "3.1.1",
+    "ts-node": "^10.9.2",
+    "ts-patch": "^3.1.1",
+    "tsup": "8.0.1",
+    "tsx": "^4.7.0",
+    "typescript": "5.3.3",
+    "typia": "^5.3.5",
+    "vitest": "1.1.0"
+  }
+}
