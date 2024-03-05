@@ -28,7 +28,7 @@ export type Coordinate =
   | [x: Longitude, y: Latitude, z: number]
   | readonly [x: Longitude, y: Latitude]
   | readonly [x: Longitude, y: Latitude, z: number];
-export type BBox2d =
+export type GeojsonBBox2d =
   | [west: Longitude, south: Latitude, east: Longitude, north: Latitude]
   | readonly [
       west: Longitude,
@@ -36,7 +36,7 @@ export type BBox2d =
       east: Longitude,
       north: Latitude,
     ];
-export type BBox3d =
+export type GeojsonBBox3d =
   | [
       west: Longitude,
       south: Latitude,
@@ -53,7 +53,7 @@ export type BBox3d =
       minZ: number,
       maxZ: number,
     ];
-export type BBox =
+export type GeojsonBBox =
   | [west: Longitude, south: Latitude, east: Longitude, north: Latitude]
   | readonly [
       west: Longitude,
@@ -228,7 +228,7 @@ export type CoordinateReferenceSystemNullable =
 export type FeatureGenericOptions<
   // TProperties = GeoJsonProperties | undefined,
   TFeatureId extends string | number | undefined = string | number | undefined,
-  TBBox extends BBox | undefined = BBox | undefined,
+  TBBox extends GeojsonBBox | undefined = GeojsonBBox | undefined,
   TCrs extends CoordinateReferenceSystem | undefined | null =
     | CoordinateReferenceSystem
     | undefined,
@@ -252,7 +252,7 @@ export type FeatureGeneric<
   TCoordinate extends Coordinate = Coordinate,
   TGeometry extends Geometry<TCoordinate> = Geometry<TCoordinate>,
   // TProperties extends GeoJsonProperties | undefined = GeoJsonProperties | undefined,
-  TBBox extends BBox | undefined = BBox | undefined,
+  TBBox extends GeojsonBBox | undefined = GeojsonBBox | undefined,
   TCrs extends CoordinateReferenceSystem | undefined | null =
     | CoordinateReferenceSystem
     | undefined,
@@ -293,7 +293,7 @@ export type FeatureOptions<
   IsUndefined<TOptions> extends true
     ? {
         id?: string | number;
-        bbox?: BBox;
+        bbox?: GeojsonBBox;
         crs?: CoordinateReferenceSystem | null;
       }
     : // (("id" extends keyof TOptions ? { id: TOptions["id"] } : { id?: string | number }) &
@@ -306,7 +306,7 @@ export type FeatureOptions<
           ? IsNullable<TOptions["bbox"]> extends true
             ? { bbox?: TOptions["bbox"] }
             : { bbox: TOptions["bbox"] }
-          : { bbox?: BBox }) &
+          : { bbox?: GeojsonBBox }) &
         ("crs" extends keyof TOptions
           ? IsNullable<TOptions["crs"]> extends true
             ? { crs?: TOptions["crs"] }

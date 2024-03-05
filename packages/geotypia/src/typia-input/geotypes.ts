@@ -6,7 +6,10 @@ import typia from "typia";
 import type {
   BBox,
   BBox2d,
+  BBox2dReadonly,
   BBox3d,
+  BBox3dReadonly,
+  BBoxReadonly,
   Coord,
   Coord2d,
   Coord2dLike,
@@ -28,6 +31,9 @@ import type {
   FeatureGenericOptions,
   FeatureOptions,
   FeatureType,
+  GeojsonBBox,
+  GeojsonBBox2d,
+  GeojsonBBox3d,
   GeoJsonProperties,
   Geometry,
   Geometry2d,
@@ -132,6 +138,15 @@ export const stringifyBBox2d = typia.json.createStringify<BBox2d>();
 export const validateBBox2d = typia.createValidate<BBox2d>();
 
 
+// BBox2dReadonly
+export const assertBBox2dReadonly = typia.createAssert<BBox2dReadonly>();
+export const equalsBBox2dReadonly = typia.createEquals<BBox2dReadonly>();
+export const isBBox2dReadonly = typia.createIs<BBox2dReadonly>();
+export const randomBBox2dReadonly = typia.createRandom<BBox2dReadonly>();
+export const stringifyBBox2dReadonly = typia.json.createStringify<BBox2dReadonly>();
+export const validateBBox2dReadonly = typia.createValidate<BBox2dReadonly>();
+
+
 // BBox3d
 export const assertBBox3d = typia.createAssert<BBox3d>();
 export const equalsBBox3d = typia.createEquals<BBox3d>();
@@ -139,6 +154,24 @@ export const isBBox3d = typia.createIs<BBox3d>();
 export const randomBBox3d = typia.createRandom<BBox3d>();
 export const stringifyBBox3d = typia.json.createStringify<BBox3d>();
 export const validateBBox3d = typia.createValidate<BBox3d>();
+
+
+// BBox3dReadonly
+export const assertBBox3dReadonly = typia.createAssert<BBox3dReadonly>();
+export const equalsBBox3dReadonly = typia.createEquals<BBox3dReadonly>();
+export const isBBox3dReadonly = typia.createIs<BBox3dReadonly>();
+export const randomBBox3dReadonly = typia.createRandom<BBox3dReadonly>();
+export const stringifyBBox3dReadonly = typia.json.createStringify<BBox3dReadonly>();
+export const validateBBox3dReadonly = typia.createValidate<BBox3dReadonly>();
+
+
+// BBoxReadonly
+export const assertBBoxReadonly = typia.createAssert<BBoxReadonly>();
+export const equalsBBoxReadonly = typia.createEquals<BBoxReadonly>();
+export const isBBoxReadonly = typia.createIs<BBoxReadonly>();
+export const randomBBoxReadonly = typia.createRandom<BBoxReadonly>();
+export const stringifyBBoxReadonly = typia.json.createStringify<BBoxReadonly>();
+export const validateBBoxReadonly = typia.createValidate<BBoxReadonly>();
 
 
 // Coord
@@ -328,6 +361,33 @@ export const isFeatureType = typia.createIs<FeatureType>();
 export const randomFeatureType = typia.createRandom<FeatureType>();
 export const stringifyFeatureType = typia.json.createStringify<FeatureType>();
 export const validateFeatureType = typia.createValidate<FeatureType>();
+
+
+// GeojsonBBox
+export const assertGeojsonBBox = typia.createAssert<GeojsonBBox>();
+export const equalsGeojsonBBox = typia.createEquals<GeojsonBBox>();
+export const isGeojsonBBox = typia.createIs<GeojsonBBox>();
+export const randomGeojsonBBox = typia.createRandom<GeojsonBBox>();
+export const stringifyGeojsonBBox = typia.json.createStringify<GeojsonBBox>();
+export const validateGeojsonBBox = typia.createValidate<GeojsonBBox>();
+
+
+// GeojsonBBox2d
+export const assertGeojsonBBox2d = typia.createAssert<GeojsonBBox2d>();
+export const equalsGeojsonBBox2d = typia.createEquals<GeojsonBBox2d>();
+export const isGeojsonBBox2d = typia.createIs<GeojsonBBox2d>();
+export const randomGeojsonBBox2d = typia.createRandom<GeojsonBBox2d>();
+export const stringifyGeojsonBBox2d = typia.json.createStringify<GeojsonBBox2d>();
+export const validateGeojsonBBox2d = typia.createValidate<GeojsonBBox2d>();
+
+
+// GeojsonBBox3d
+export const assertGeojsonBBox3d = typia.createAssert<GeojsonBBox3d>();
+export const equalsGeojsonBBox3d = typia.createEquals<GeojsonBBox3d>();
+export const isGeojsonBBox3d = typia.createIs<GeojsonBBox3d>();
+export const randomGeojsonBBox3d = typia.createRandom<GeojsonBBox3d>();
+export const stringifyGeojsonBBox3d = typia.json.createStringify<GeojsonBBox3d>();
+export const validateGeojsonBBox3d = typia.createValidate<GeojsonBBox3d>();
 
 
 // GeoJsonProperties

@@ -1,6 +1,17 @@
 {
   "files": [
     {
+      "fspath": "./src/types/bbox.ts",
+      "types": [
+        "BBox",
+        "BBox2d",
+        "BBox2dReadonly",
+        "BBox3d",
+        "BBox3dReadonly",
+        "BBoxReadonly"
+      ]
+    },
+    {
       "fspath": "./src/types/coord.ts",
       "types": [
         "Coord",
@@ -26,9 +37,6 @@
     {
       "fspath": "./src/types/geojson.ts",
       "types": [
-        "BBox",
-        "BBox2d",
-        "BBox3d",
         "Coordinate",
         "Coordinate2d",
         "Coordinate3d",
@@ -42,6 +50,9 @@
         "FeatureGenericOptions",
         "FeatureOptions",
         "FeatureType",
+        "GeojsonBBox",
+        "GeojsonBBox2d",
+        "GeojsonBBox3d",
         "GeoJsonProperties",
         "Geometry",
         "Geometry2d",
@@ -162,7 +173,10 @@
   "geotypes": [
     "BBox",
     "BBox2d",
+    "BBox2dReadonly",
     "BBox3d",
+    "BBox3dReadonly",
+    "BBoxReadonly",
     "Coord",
     "Coord2d",
     "Coord2dLike",
@@ -184,6 +198,9 @@
     "FeatureGenericOptions",
     "FeatureOptions",
     "FeatureType",
+    "GeojsonBBox",
+    "GeojsonBBox2d",
+    "GeojsonBBox3d",
     "GeoJsonProperties",
     "Geometry",
     "Geometry2d",
