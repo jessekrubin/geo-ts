@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: "*"
   pull_request:
-    branches: [main]
+    branches: "*"
 
 jobs:
   test:
@@ -12,8 +12,8 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
-        node-version: [16.x]
+        os: [ubuntu-latest]
+        node-version: [20.x]
 
     runs-on: ${{ matrix.os }}
 
@@ -25,6 +25,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+
+      - uses: extractions/setup-just@v1
 
       - name: Cache ~/.pnpm-store
         uses: actions/cache@v2
@@ -46,7 +48,7 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Build and Test
-        run: pnpm test
+        run: just ci
 
   # release:
   #   runs-on: ubuntu-latest
