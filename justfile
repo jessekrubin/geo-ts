@@ -23,3 +23,7 @@ fmt:
 
 change:
     pnpm run change
+
+publish:
+    # filter root package
+    pnpm publish -r --filter \!@jsse/geo-ts
