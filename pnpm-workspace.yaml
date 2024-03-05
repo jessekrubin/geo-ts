@@ -1,5 +1,3 @@
 packages:
-  - "packages/geobox"
   - "packages/geotypes"
   - "packages/geotypia"
-  - "packages/geozod"
