@@ -3,6 +3,8 @@ import type { Coord2d, Coord3d } from "@jsse/geotypes";
 /**
  * Return coordinate array
  *
+ * WHY? so you don't have to explicitly type `[x, y]/[x, y, z] as const`
+ *
  * @param x {number} x coordinate
  * @param y {number} y coordinate
  *
@@ -11,6 +13,8 @@ import type { Coord2d, Coord3d } from "@jsse/geotypes";
 export function coord(x: number, y: number): Coord2d;
 /**
  * Return coordinate array
+ *
+ * WHY? so you don't have to explicitly type `[x, y]/[x, y, z] as const`
  *
  * @param x {number} x coordinate
  * @param y {number} y coordinate
@@ -21,6 +25,8 @@ export function coord(x: number, y: number): Coord2d;
 export function coord(x: number, y: number, z: number): Coord3d;
 /**
  * Return coordinate array
+ *
+ * WHY? so you don't have to explicitly type `[x, y]/[x, y, z] as const`
  *
  * @param x {number} x coordinate
  * @param y {number} y coordinate
@@ -35,6 +41,8 @@ export function coord(x: number, y: number, z?: number): Coord2d | Coord3d {
 /**
  * Return 2d coordinate array
  *
+ * WHY? so you don't have to explicitly type `[x, y] as const`
+ *
  * @param x {number} x coordinate
  * @param y {number} y coordinate
  * @returns {Coord2d} 2d coordinate array [x, y]
@@ -45,6 +53,8 @@ export function coord2d(x: number, y: number): Coord2d {
 
 /**
  * Return 3d coordinate array
+ *
+ * WHY? so you don't have to explicitly type `[x, y, z] as const`
  *
  * @param x {number} x coordinate
  * @param y {number} y coordinate
