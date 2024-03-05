@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: "*"
   pull_request:
-    branches: [main]
+    branches: "*"
 
 jobs:
   test:
@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-        node-version: [16.x]
+        node-version: [20.x]
 
     runs-on: ${{ matrix.os }}
 
