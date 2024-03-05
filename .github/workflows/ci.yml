@@ -26,7 +26,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - uses: extractions/setup-just@v2
-
       - name: Cache ~/.pnpm-store
         uses: actions/cache@v4
         env:
