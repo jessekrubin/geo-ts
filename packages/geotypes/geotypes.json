@@ -2,9 +2,6 @@
   "files": [
     {
       "fspath": "./src/types/coord.ts",
-<<<<<<< HEAD
-      "types": ["LngLat", "LngLatZ", "LonLat", "LonLatZ", "Z"]
-=======
       "types": [
         "Coord",
         "Coord2d",
@@ -18,11 +15,13 @@
         "LonLatZ",
         "Z"
       ]
->>>>>>> a4b78c2fc41cd1e3a7e8da5e7a5cebd6b391f193
     },
     {
       "fspath": "./src/types/deckgl.ts",
-      "types": ["DeckglMapViewstate", "DeckglTilejson"]
+      "types": [
+        "DeckglMapViewstate",
+        "DeckglTilejson"
+      ]
     },
     {
       "fspath": "./src/types/geojson.ts",
@@ -108,7 +107,11 @@
     },
     {
       "fspath": "./src/types/geostats.ts",
-      "types": ["Geostats", "GeostatsAttribute", "GeostatsLayer"]
+      "types": [
+        "Geostats",
+        "GeostatsAttribute",
+        "GeostatsLayer"
+      ]
     },
     {
       "fspath": "./src/types/hgt.ts",
@@ -128,11 +131,17 @@
     },
     {
       "fspath": "./src/types/mbtiles.ts",
-      "types": ["MbtilesMetadata", "MbtilesMetadataRow", "MbtilesTilesRow"]
+      "types": [
+        "MbtilesMetadata",
+        "MbtilesMetadataRow",
+        "MbtilesTilesRow"
+      ]
     },
     {
       "fspath": "./src/types/simplestyle.ts",
-      "types": ["SimpleStyleProperties"]
+      "types": [
+        "SimpleStyleProperties"
+      ]
     },
     {
       "fspath": "./src/types/tilejson.ts",

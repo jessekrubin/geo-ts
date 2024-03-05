@@ -14,10 +14,6 @@
   "scripts": {
     "build": "pnpm run lint",
     "build-fast": "tsup src/index.ts --format cjs,esm",
-<<<<<<< HEAD
-    "build": "pnpm run lint",
-=======
->>>>>>> a4b78c2fc41cd1e3a7e8da5e7a5cebd6b391f193
     "build:tsup": "tsup src/index.ts --format cjs,esm --dts",
     "change": "changeset",
     "dev": "vitest watch",
