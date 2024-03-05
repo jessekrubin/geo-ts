@@ -1,5 +1,8 @@
 build: build-packages lint
 
+# command run in ci
+ci: build-packages lint
+
 build-root:
     pnpm run -w build
 

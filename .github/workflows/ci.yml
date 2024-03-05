@@ -26,6 +26,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - uses: extractions/setup-just@v1
+
       - name: Cache ~/.pnpm-store
         uses: actions/cache@v2
         env:
@@ -46,7 +48,7 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Build and Test
-        run: pnpm test
+        run: just ci
 
   # release:
   #   runs-on: ubuntu-latest
