@@ -12,17 +12,19 @@
     "node": "^18.0.0 || >=20.0.0"
   },
   "scripts": {
-    "prepublish": "pnpm run build",
-    "build-fast": "tsup src/index.ts --format cjs,esm",
     "build": "pnpm run lint",
+    "build-fast": "tsup src/index.ts --format cjs,esm",
     "build:tsup": "tsup src/index.ts --format cjs,esm --dts",
-    "test": "vitest run && vitest typecheck --run",
+    "change": "changeset",
     "dev": "vitest watch",
-    "lint": "eslint .",
     "fmt": "prettier --write .",
     "fmtc": "prettier --check .",
     "fmtl": "prettier --list-different .",
-    "prepublishOnly": "pnpm run build"
+    "lint": "eslint .",
+    "prepublish": "pnpm run build",
+    "prepublishOnly": "pnpm run build",
+    "publish": "pnpm publish -r",
+    "test": "vitest run && vitest typecheck --run"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
