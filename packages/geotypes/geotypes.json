@@ -29,10 +29,7 @@
     },
     {
       "fspath": "./src/types/deckgl.ts",
-      "types": [
-        "DeckglMapViewstate",
-        "DeckglTilejson"
-      ]
+      "types": ["DeckglMapViewstate", "DeckglTilejson"]
     },
     {
       "fspath": "./src/types/geojson.ts",
@@ -118,11 +115,7 @@
     },
     {
       "fspath": "./src/types/geostats.ts",
-      "types": [
-        "Geostats",
-        "GeostatsAttribute",
-        "GeostatsLayer"
-      ]
+      "types": ["Geostats", "GeostatsAttribute", "GeostatsLayer"]
     },
     {
       "fspath": "./src/types/hgt.ts",
@@ -142,31 +135,27 @@
     },
     {
       "fspath": "./src/types/mbtiles.ts",
-      "types": [
-        "MbtilesMetadata",
-        "MbtilesMetadataRow",
-        "MbtilesTilesRow"
-      ]
+      "types": ["MbtilesMetadata", "MbtilesMetadataRow", "MbtilesTilesRow"]
     },
     {
       "fspath": "./src/types/simplestyle.ts",
-      "types": [
-        "SimpleStyleProperties"
-      ]
+      "types": ["SimpleStyleProperties"]
     },
     {
       "fspath": "./src/types/tilejson.ts",
       "types": [
         "Tilejson",
         "Tilejson300",
-        "Tilejson300Raster",
-        "Tilejson300Vector",
         "TilejsonCommon",
         "TilejsonFormat",
+        "TilejsonRaster",
         "TilejsonRasterFormat",
+        "TilejsonScheme",
+        "TilejsonVector",
         "TilejsonVectorFormat",
         "TilejsonVectorLayer",
-        "TilejsonVectorLayers"
+        "TilejsonVectorLayers",
+        "TilejsonVersion"
       ]
     }
   ],
@@ -286,14 +275,16 @@
     "SouthWestHgtFilename",
     "Tilejson",
     "Tilejson300",
-    "Tilejson300Raster",
-    "Tilejson300Vector",
     "TilejsonCommon",
     "TilejsonFormat",
+    "TilejsonRaster",
     "TilejsonRasterFormat",
+    "TilejsonScheme",
+    "TilejsonVector",
     "TilejsonVectorFormat",
     "TilejsonVectorLayer",
     "TilejsonVectorLayers",
+    "TilejsonVersion",
     "Z"
   ]
 }
