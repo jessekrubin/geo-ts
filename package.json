@@ -1,7 +1,7 @@
 {
   "name": "@jsse/geo-ts",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "description": "geo-json-schemas by way of typebox",
   "publishConfig": {
