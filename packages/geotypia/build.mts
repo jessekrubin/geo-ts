@@ -1,7 +1,8 @@
+import process from "node:process";
 import { $, fs } from "zx";
 
-const TYPIA_IMPORT = "import typia from 'typia';";
-
+const TYPIA_IMPORT = 'import typia from "typia";';
+const BIG_FILE = true;
 type FileTypeExports = {
   fspath: string;
   types: string[];
@@ -49,7 +50,7 @@ const bigAssFile = async (geotypes: GeotypesMetadata) => {
   const geotypesImports = [
     "import type {",
     geotypes2import.map((tname) => `  ${tname},`).join("\n"),
-    "} from \"@jsse/geotypes\";",
+    '} from "@jsse/geotypes";',
   ];
   const lines = [
     // turn off eslint explicit any
@@ -66,14 +67,13 @@ const bigAssFile = async (geotypes: GeotypesMetadata) => {
   await fs.writeFile("./src/typia-input/geotypes.ts", string);
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const smallAssFiles = async (geotypes: GeotypesMetadata) => {
   const _smallAssFile = async (tname: string) => {
     const filename = typename2filename(tname);
     const typeFunks = typeFunctions(tname);
     const lines = [
       TYPIA_IMPORT,
-      `import type { ${tname} } from \'@jsse/geotypes\';`,
+      `import type { ${tname} } from "@jsse/geotypes";`,
       "",
       typeFunks,
     ];
@@ -86,7 +86,9 @@ const smallAssFiles = async (geotypes: GeotypesMetadata) => {
     return info;
   };
 
-  const infos = await Promise.all(geotypes.geotypes.map(_smallAssFile));
+  const infos = await Promise.all(
+    geotypes.geotypes.map((tname) => _smallAssFile(tname)),
+  );
   return infos;
 
   // for (const tname of data.geotypes) {
@@ -111,8 +113,12 @@ async function main() {
   )) as GeotypesMetadata;
   await nuke_input_dir();
 
-  data.geotypes = data.geotypes.filter(filterTypes);
-  await bigAssFile(data);
+  data.geotypes = data.geotypes.filter((tname) => filterTypes(tname));
+  if (BIG_FILE) {
+    await bigAssFile(data);
+  } else {
+    await smallAssFiles(data);
+  }
 
   // // const
   // for (const tname of data.geotypes) {
@@ -125,4 +131,5 @@ try {
   await main();
 } catch (e) {
   console.error(e);
+  process.exit(1);
 }

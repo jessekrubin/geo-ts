@@ -289,40 +289,42 @@ export type FeatureGeneric<
 
 export type FeatureOptions<
   TOptions extends Partial<FeatureGenericOptions> | undefined = undefined,
-> = IsUndefined<TOptions> extends true
-  ? {
-      id?: string | number;
-      bbox?: BBox;
-      crs?: CoordinateReferenceSystem | null;
-    }
-  : // (("id" extends keyof TOptions ? { id: TOptions["id"] } : { id?: string | number }) &
-    ("id" extends keyof TOptions
-      ? IsNullable<TOptions["id"]> extends true
-        ? { id?: TOptions["id"] }
-        : { id: TOptions["id"] }
-      : { id?: string | number }) &
-      ("bbox" extends keyof TOptions
-        ? IsNullable<TOptions["bbox"]> extends true
-          ? { bbox?: TOptions["bbox"] }
-          : { bbox: TOptions["bbox"] }
-        : { bbox?: BBox }) &
-      ("crs" extends keyof TOptions
-        ? IsNullable<TOptions["crs"]> extends true
-          ? { crs?: TOptions["crs"] }
-          : { crs: TOptions["crs"] }
-        : { crs?: CoordinateReferenceSystem | null });
-
-type FeatureProperties<TProperties> = IsUndefined<TProperties> extends true
-  ? {
-      properties?: GeoJsonProperties | null;
-    }
-  : ExtendsUndefined<TProperties> extends true
+> =
+  IsUndefined<TOptions> extends true
     ? {
-        properties?: TProperties;
+        id?: string | number;
+        bbox?: BBox;
+        crs?: CoordinateReferenceSystem | null;
       }
-    : {
-        properties: TProperties;
-      };
+    : // (("id" extends keyof TOptions ? { id: TOptions["id"] } : { id?: string | number }) &
+      ("id" extends keyof TOptions
+        ? IsNullable<TOptions["id"]> extends true
+          ? { id?: TOptions["id"] }
+          : { id: TOptions["id"] }
+        : { id?: string | number }) &
+        ("bbox" extends keyof TOptions
+          ? IsNullable<TOptions["bbox"]> extends true
+            ? { bbox?: TOptions["bbox"] }
+            : { bbox: TOptions["bbox"] }
+          : { bbox?: BBox }) &
+        ("crs" extends keyof TOptions
+          ? IsNullable<TOptions["crs"]> extends true
+            ? { crs?: TOptions["crs"] }
+            : { crs: TOptions["crs"] }
+          : { crs?: CoordinateReferenceSystem | null });
+
+type FeatureProperties<TProperties> =
+  IsUndefined<TProperties> extends true
+    ? {
+        properties?: GeoJsonProperties | null;
+      }
+    : ExtendsUndefined<TProperties> extends true
+      ? {
+          properties?: TProperties;
+        }
+      : {
+          properties: TProperties;
+        };
 
 export type Feature<
   TGeometry extends Geometry = Geometry,
