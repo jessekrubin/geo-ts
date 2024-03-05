@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: "*"
   pull_request:
-    branches: [main]
+    branches: "*"
 
 jobs:
   test:
@@ -12,22 +12,28 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
-        node-version: [16.x]
+        os: [ubuntu-latest]
+        node-version: [20.x]
 
     runs-on: ${{ matrix.os }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 
+<<<<<<< HEAD
+      - uses: extractions/setup-just@v2
+=======
+      - uses: extractions/setup-just@v1
+>>>>>>> 110a6d7521ee031af29fddd0e933158b0d969727
+
       - name: Cache ~/.pnpm-store
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         env:
           cache-name: cache-pnpm-store
         with:
@@ -46,19 +52,19 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Build and Test
-        run: pnpm test
+        run: just ci
 
   # release:
   #   runs-on: ubuntu-latest
   #   needs: ["test"]
   #   if: "!contains(github.event.head_commit.message, 'skip-release') && !contains(github.event.head_commit.message, 'skip-ci') && github.event_name != 'pull_request'"
   #   steps:
-  #     - uses: actions/checkout@v3
-  #     - uses: actions/setup-node@v3
+  #     - uses: actions/checkout@v4
+  #     - uses: actions/setup-node@v4
   #       with:
   #         node-version: 18.x
   #     - name: Cache ~/.pnpm-store
-  #       uses: actions/cache@v2
+  #       uses: actions/cache@v4
   #       env:
   #         cache-name: cache-pnpm-store
   #       with:

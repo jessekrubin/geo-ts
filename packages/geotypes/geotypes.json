@@ -2,7 +2,23 @@
   "files": [
     {
       "fspath": "./src/types/coord.ts",
+<<<<<<< HEAD
       "types": ["LngLat", "LngLatZ", "LonLat", "LonLatZ", "Z"]
+=======
+      "types": [
+        "Coord",
+        "Coord2d",
+        "Coord2dLike",
+        "Coord3d",
+        "Coord3dLike",
+        "CoordLike",
+        "LngLat",
+        "LngLatZ",
+        "LonLat",
+        "LonLatZ",
+        "Z"
+      ]
+>>>>>>> a4b78c2fc41cd1e3a7e8da5e7a5cebd6b391f193
     },
     {
       "fspath": "./src/types/deckgl.ts",
@@ -138,11 +154,17 @@
     "BBox",
     "BBox2d",
     "BBox3d",
+    "Coord",
+    "Coord2d",
+    "Coord2dLike",
+    "Coord3d",
+    "Coord3dLike",
     "Coordinate",
     "Coordinate2d",
     "Coordinate3d",
     "CoordinateReferenceSystem",
     "CoordinateReferenceSystemNullable",
+    "CoordLike",
     "DeckglMapViewstate",
     "DeckglTilejson",
     "Feature",

@@ -1,7 +1,7 @@
 {
   "name": "@jsse/geo-ts",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "description": "geo-json-schemas by way of typebox",
   "publishConfig": {
@@ -12,25 +12,32 @@
     "node": "^18.0.0 || >=20.0.0"
   },
   "scripts": {
-    "prepublish": "pnpm run build",
-    "build-fast": "tsup src/index.ts --format cjs,esm",
     "build": "pnpm run lint",
+    "build-fast": "tsup src/index.ts --format cjs,esm",
+<<<<<<< HEAD
+    "build": "pnpm run lint",
+=======
+>>>>>>> a4b78c2fc41cd1e3a7e8da5e7a5cebd6b391f193
     "build:tsup": "tsup src/index.ts --format cjs,esm --dts",
-    "test": "vitest run && vitest typecheck --run",
+    "change": "changeset",
     "dev": "vitest watch",
-    "lint": "eslint .",
     "fmt": "prettier --write .",
     "fmtc": "prettier --check .",
     "fmtl": "prettier --list-different .",
-    "prepublishOnly": "pnpm run build"
+    "lint": "eslint .",
+    "prepublish": "pnpm run build",
+    "prepublishOnly": "pnpm run build",
+    "publish": "pnpm publish -r",
+    "test": "vitest run && vitest typecheck --run"
   },
   "devDependencies": {
-    "@jsse/eslint-config": "^0.0.11",
-    "eslint": "^8.56.0",
-    "prettier": "3.1.1",
-    "tsup": "8.0.1",
-    "tsx": "^4.7.0",
+    "@changesets/cli": "^2.27.1",
+    "@jsse/eslint-config": "^0.1.2",
+    "eslint": "^8.57.0",
+    "prettier": "3.2.5",
+    "tsup": "8.0.2",
+    "tsx": "^4.7.1",
     "typescript": "5.3.3",
-    "vitest": "1.1.0"
+    "vitest": "1.3.1"
   }
 }

@@ -1,3 +1,7 @@
 packages:
+<<<<<<< HEAD
+=======
+  - "packages/geo"
+>>>>>>> a4b78c2fc41cd1e3a7e8da5e7a5cebd6b391f193
   - "packages/geotypes"
   - "packages/geotypia"

@@ -7,11 +7,17 @@ import type {
   BBox,
   BBox2d,
   BBox3d,
+  Coord,
+  Coord2d,
+  Coord2dLike,
+  Coord3d,
+  Coord3dLike,
   Coordinate,
   Coordinate2d,
   Coordinate3d,
   CoordinateReferenceSystem,
   CoordinateReferenceSystemNullable,
+  CoordLike,
   DeckglMapViewstate,
   DeckglTilejson,
   Feature,
@@ -131,6 +137,55 @@ export const randomBBox3d = typia.createRandom<BBox3d>();
 export const stringifyBBox3d = typia.json.createStringify<BBox3d>();
 export const validateBBox3d = typia.createValidate<BBox3d>();
 
+<<<<<<< HEAD
+=======
+
+// Coord
+export const assertCoord = typia.createAssert<Coord>();
+export const equalsCoord = typia.createEquals<Coord>();
+export const isCoord = typia.createIs<Coord>();
+export const randomCoord = typia.createRandom<Coord>();
+export const stringifyCoord = typia.json.createStringify<Coord>();
+export const validateCoord = typia.createValidate<Coord>();
+
+
+// Coord2d
+export const assertCoord2d = typia.createAssert<Coord2d>();
+export const equalsCoord2d = typia.createEquals<Coord2d>();
+export const isCoord2d = typia.createIs<Coord2d>();
+export const randomCoord2d = typia.createRandom<Coord2d>();
+export const stringifyCoord2d = typia.json.createStringify<Coord2d>();
+export const validateCoord2d = typia.createValidate<Coord2d>();
+
+
+// Coord2dLike
+export const assertCoord2dLike = typia.createAssert<Coord2dLike>();
+export const equalsCoord2dLike = typia.createEquals<Coord2dLike>();
+export const isCoord2dLike = typia.createIs<Coord2dLike>();
+export const randomCoord2dLike = typia.createRandom<Coord2dLike>();
+export const stringifyCoord2dLike = typia.json.createStringify<Coord2dLike>();
+export const validateCoord2dLike = typia.createValidate<Coord2dLike>();
+
+
+// Coord3d
+export const assertCoord3d = typia.createAssert<Coord3d>();
+export const equalsCoord3d = typia.createEquals<Coord3d>();
+export const isCoord3d = typia.createIs<Coord3d>();
+export const randomCoord3d = typia.createRandom<Coord3d>();
+export const stringifyCoord3d = typia.json.createStringify<Coord3d>();
+export const validateCoord3d = typia.createValidate<Coord3d>();
+
+
+// Coord3dLike
+export const assertCoord3dLike = typia.createAssert<Coord3dLike>();
+export const equalsCoord3dLike = typia.createEquals<Coord3dLike>();
+export const isCoord3dLike = typia.createIs<Coord3dLike>();
+export const randomCoord3dLike = typia.createRandom<Coord3dLike>();
+export const stringifyCoord3dLike = typia.json.createStringify<Coord3dLike>();
+export const validateCoord3dLike = typia.createValidate<Coord3dLike>();
+
+
+>>>>>>> a4b78c2fc41cd1e3a7e8da5e7a5cebd6b391f193
 // Coordinate
 export const assertCoordinate = typia.createAssert<Coordinate>();
 export const equalsCoordinate = typia.createEquals<Coordinate>();
@@ -182,6 +237,15 @@ export const stringifyCoordinateReferenceSystemNullable =
   typia.json.createStringify<CoordinateReferenceSystemNullable>();
 export const validateCoordinateReferenceSystemNullable =
   typia.createValidate<CoordinateReferenceSystemNullable>();
+
+// CoordLike
+export const assertCoordLike = typia.createAssert<CoordLike>();
+export const equalsCoordLike = typia.createEquals<CoordLike>();
+export const isCoordLike = typia.createIs<CoordLike>();
+export const randomCoordLike = typia.createRandom<CoordLike>();
+export const stringifyCoordLike = typia.json.createStringify<CoordLike>();
+export const validateCoordLike = typia.createValidate<CoordLike>();
+
 
 // DeckglMapViewstate
 export const assertDeckglMapViewstate =
