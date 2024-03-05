@@ -1,7 +1,7 @@
 {
   "name": "@jsse/geotypia",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "@jsse/geotypes + typia",
   "publishConfig": {
     "access": "public"
