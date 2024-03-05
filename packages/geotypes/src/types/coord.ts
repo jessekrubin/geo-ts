@@ -11,3 +11,9 @@ export type Z = {
 };
 export type LngLatZ = LngLat & Z;
 export type LonLatZ = LonLat & Z;
+export type Coord2d = [x: number, y: number];
+export type Coord3d = [x: number, y: number, z: number];
+export type Coord = Coord2d | Coord3d;
+export type Coord2dLike = Coord2d | LngLat | LonLat;
+export type Coord3dLike = Coord3d | LngLatZ | LonLatZ;
+export type CoordLike = Coord | LngLat | LonLat | LngLatZ | LonLatZ;
