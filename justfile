@@ -20,3 +20,6 @@ fmtc:
 
 fmt:
     pnpm run fmt
+
+change:
+    pnpm run change

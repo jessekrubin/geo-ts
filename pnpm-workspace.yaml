@@ -1,3 +1,4 @@
 packages:
+  - "packages/geo"
   - "packages/geotypes"
   - "packages/geotypia"
