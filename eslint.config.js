@@ -11,7 +11,7 @@ export default jsse(
       "./packages/geojson/**",
       "./packages/geozod/**",
       "**/generated/**/*",
-      "packages/geotypia/src/typia-input/**",
+      "packages/geotypia/src/typia-src/**",
       "./packages/geojson/**",
     ],
   },

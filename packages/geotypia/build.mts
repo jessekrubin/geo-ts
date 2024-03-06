@@ -1,6 +1,7 @@
 import process from "node:process";
 import { $, fs } from "zx";
 
+const TYPIA_SRC = "./src/typia-src";
 const TYPIA_IMPORT = 'import typia from "typia";';
 const BIG_FILE = true;
 type FileTypeExports = {
@@ -64,7 +65,7 @@ const bigAssFile = async (geotypes: GeotypesMetadata) => {
     ...typeFunks,
   ];
   const string = lines.join("\n");
-  await fs.writeFile("./src/typia-input/geotypes.ts", string);
+  await fs.writeFile(`${TYPIA_SRC}/geotypes.ts`, string);
 };
 
 const smallAssFiles = async (geotypes: GeotypesMetadata) => {
@@ -78,7 +79,7 @@ const smallAssFiles = async (geotypes: GeotypesMetadata) => {
       typeFunks,
     ];
     const string = lines.join("\n");
-    await fs.writeFile(`./src/typia-input/${filename}.ts`, string);
+    await fs.writeFile(`${TYPIA_SRC}/${filename}.ts`, string);
     const info = {
       filename,
       fn_names: typeFunctionNames(tname),
@@ -90,21 +91,22 @@ const smallAssFiles = async (geotypes: GeotypesMetadata) => {
     geotypes.geotypes.map((tname) => _smallAssFile(tname)),
   );
   return infos;
-
-  // for (const tname of data.geotypes) {
-  //   const filename = typename2filename(tname);
-
-  //   await fs.writeFile(`./src/typia-input/${filename}.ts`, typeFunctions(tname));
-  // }
 };
 
 async function nuke_input_dir() {
-  await $`rm -rfv ./src/typia-input`;
-  await $`mkdir ./src/typia-input`;
+  await $`rm -rfv ${TYPIA_SRC}`;
+  await $`mkdir -p ${TYPIA_SRC}`;
 }
 
+const BLACKLIST_TYPES = ["Z"];
+const BLACKLIST_TYPES_PATTERNS = ["Hgt", "Readonly"];
+const BLACKLIST_TYPES_SET = new Set(BLACKLIST_TYPES);
+
 function filterTypes(tname: string) {
-  return !tname.includes("Hgt");
+  return (
+    !BLACKLIST_TYPES_SET.has(tname) &&
+    !BLACKLIST_TYPES_PATTERNS.some((pattern) => tname.includes(pattern))
+  );
 }
 
 async function main() {

@@ -26,7 +26,7 @@
     "build": "pnpm run gen && pnpm run build:tsup",
     "build:tsup": "tsup --format cjs,esm --dts",
     "gen": "tsx build.mts && pnpm run gen:typia",
-    "gen:typia": "typia generate --input src/typia-input --output src/generated",
+    "gen:typia": "typia generate --input src/typia-src --output src/generated",
     "test": "vitest run",
     "dev": "vitest watch --coverage",
     "lint": "eslint src/** --ext .ts",
