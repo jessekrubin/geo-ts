@@ -21,8 +21,8 @@ fmtc:
 fmt:
     pnpm run fmt
 
-change:
-    pnpm run change
+change *ARGS:
+    pnpm run change {{ARGS}}
 
 publish:
     # filter root package
