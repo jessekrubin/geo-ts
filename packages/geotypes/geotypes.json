@@ -135,7 +135,7 @@
     },
     {
       "fspath": "./src/types/mbtiles.ts",
-      "types": ["MbtilesMetadata", "MbtilesMetadataRow", "MbtilesTilesRow"]
+      "types": ["MbtilesMetadataRow", "MbtilesMetadataRows", "MbtilesTilesRow"]
     },
     {
       "fspath": "./src/types/simplestyle.ts",
@@ -148,6 +148,7 @@
         "Tilejson300",
         "TilejsonCommon",
         "TilejsonFormat",
+        "TilejsonFormatExtra",
         "TilejsonRaster",
         "TilejsonRasterFormat",
         "TilejsonScheme",
@@ -224,8 +225,8 @@
     "LongitudeWgs84",
     "LonLat",
     "LonLatZ",
-    "MbtilesMetadata",
     "MbtilesMetadataRow",
+    "MbtilesMetadataRows",
     "MbtilesTilesRow",
     "MultiLineStringCoordinates",
     "MultiLineStringFeature",
@@ -277,6 +278,7 @@
     "Tilejson300",
     "TilejsonCommon",
     "TilejsonFormat",
+    "TilejsonFormatExtra",
     "TilejsonRaster",
     "TilejsonRasterFormat",
     "TilejsonScheme",

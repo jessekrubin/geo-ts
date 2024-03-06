@@ -6,10 +6,7 @@ import typia from "typia";
 import type {
   BBox,
   BBox2d,
-  BBox2dReadonly,
   BBox3d,
-  BBox3dReadonly,
-  BBoxReadonly,
   Coord,
   Coord2d,
   Coord2dLike,
@@ -61,8 +58,8 @@ import type {
   LongitudeWgs84,
   LonLat,
   LonLatZ,
-  MbtilesMetadata,
   MbtilesMetadataRow,
+  MbtilesMetadataRows,
   MbtilesTilesRow,
   MultiLineStringCoordinates,
   MultiLineStringFeature,
@@ -110,6 +107,7 @@ import type {
   Tilejson300,
   TilejsonCommon,
   TilejsonFormat,
+  TilejsonFormatExtra,
   TilejsonRaster,
   TilejsonRasterFormat,
   TilejsonScheme,
@@ -118,7 +116,6 @@ import type {
   TilejsonVectorLayer,
   TilejsonVectorLayers,
   TilejsonVersion,
-  Z,
 } from "@jsse/geotypes";
 
 // BBox
@@ -137,15 +134,6 @@ export const randomBBox2d = typia.createRandom<BBox2d>();
 export const stringifyBBox2d = typia.json.createStringify<BBox2d>();
 export const validateBBox2d = typia.createValidate<BBox2d>();
 
-// BBox2dReadonly
-export const assertBBox2dReadonly = typia.createAssert<BBox2dReadonly>();
-export const equalsBBox2dReadonly = typia.createEquals<BBox2dReadonly>();
-export const isBBox2dReadonly = typia.createIs<BBox2dReadonly>();
-export const randomBBox2dReadonly = typia.createRandom<BBox2dReadonly>();
-export const stringifyBBox2dReadonly =
-  typia.json.createStringify<BBox2dReadonly>();
-export const validateBBox2dReadonly = typia.createValidate<BBox2dReadonly>();
-
 // BBox3d
 export const assertBBox3d = typia.createAssert<BBox3d>();
 export const equalsBBox3d = typia.createEquals<BBox3d>();
@@ -153,23 +141,6 @@ export const isBBox3d = typia.createIs<BBox3d>();
 export const randomBBox3d = typia.createRandom<BBox3d>();
 export const stringifyBBox3d = typia.json.createStringify<BBox3d>();
 export const validateBBox3d = typia.createValidate<BBox3d>();
-
-// BBox3dReadonly
-export const assertBBox3dReadonly = typia.createAssert<BBox3dReadonly>();
-export const equalsBBox3dReadonly = typia.createEquals<BBox3dReadonly>();
-export const isBBox3dReadonly = typia.createIs<BBox3dReadonly>();
-export const randomBBox3dReadonly = typia.createRandom<BBox3dReadonly>();
-export const stringifyBBox3dReadonly =
-  typia.json.createStringify<BBox3dReadonly>();
-export const validateBBox3dReadonly = typia.createValidate<BBox3dReadonly>();
-
-// BBoxReadonly
-export const assertBBoxReadonly = typia.createAssert<BBoxReadonly>();
-export const equalsBBoxReadonly = typia.createEquals<BBoxReadonly>();
-export const isBBoxReadonly = typia.createIs<BBoxReadonly>();
-export const randomBBoxReadonly = typia.createRandom<BBoxReadonly>();
-export const stringifyBBoxReadonly = typia.json.createStringify<BBoxReadonly>();
-export const validateBBoxReadonly = typia.createValidate<BBoxReadonly>();
 
 // Coord
 export const assertCoord = typia.createAssert<Coord>();
@@ -676,15 +647,6 @@ export const randomLonLatZ = typia.createRandom<LonLatZ>();
 export const stringifyLonLatZ = typia.json.createStringify<LonLatZ>();
 export const validateLonLatZ = typia.createValidate<LonLatZ>();
 
-// MbtilesMetadata
-export const assertMbtilesMetadata = typia.createAssert<MbtilesMetadata>();
-export const equalsMbtilesMetadata = typia.createEquals<MbtilesMetadata>();
-export const isMbtilesMetadata = typia.createIs<MbtilesMetadata>();
-export const randomMbtilesMetadata = typia.createRandom<MbtilesMetadata>();
-export const stringifyMbtilesMetadata =
-  typia.json.createStringify<MbtilesMetadata>();
-export const validateMbtilesMetadata = typia.createValidate<MbtilesMetadata>();
-
 // MbtilesMetadataRow
 export const assertMbtilesMetadataRow =
   typia.createAssert<MbtilesMetadataRow>();
@@ -697,6 +659,19 @@ export const stringifyMbtilesMetadataRow =
   typia.json.createStringify<MbtilesMetadataRow>();
 export const validateMbtilesMetadataRow =
   typia.createValidate<MbtilesMetadataRow>();
+
+// MbtilesMetadataRows
+export const assertMbtilesMetadataRows =
+  typia.createAssert<MbtilesMetadataRows>();
+export const equalsMbtilesMetadataRows =
+  typia.createEquals<MbtilesMetadataRows>();
+export const isMbtilesMetadataRows = typia.createIs<MbtilesMetadataRows>();
+export const randomMbtilesMetadataRows =
+  typia.createRandom<MbtilesMetadataRows>();
+export const stringifyMbtilesMetadataRows =
+  typia.json.createStringify<MbtilesMetadataRows>();
+export const validateMbtilesMetadataRows =
+  typia.createValidate<MbtilesMetadataRows>();
 
 // MbtilesTilesRow
 export const assertMbtilesTilesRow = typia.createAssert<MbtilesTilesRow>();
@@ -1247,6 +1222,19 @@ export const stringifyTilejsonFormat =
   typia.json.createStringify<TilejsonFormat>();
 export const validateTilejsonFormat = typia.createValidate<TilejsonFormat>();
 
+// TilejsonFormatExtra
+export const assertTilejsonFormatExtra =
+  typia.createAssert<TilejsonFormatExtra>();
+export const equalsTilejsonFormatExtra =
+  typia.createEquals<TilejsonFormatExtra>();
+export const isTilejsonFormatExtra = typia.createIs<TilejsonFormatExtra>();
+export const randomTilejsonFormatExtra =
+  typia.createRandom<TilejsonFormatExtra>();
+export const stringifyTilejsonFormatExtra =
+  typia.json.createStringify<TilejsonFormatExtra>();
+export const validateTilejsonFormatExtra =
+  typia.createValidate<TilejsonFormatExtra>();
+
 // TilejsonRaster
 export const assertTilejsonRaster = typia.createAssert<TilejsonRaster>();
 export const equalsTilejsonRaster = typia.createEquals<TilejsonRaster>();
@@ -1334,11 +1322,3 @@ export const randomTilejsonVersion = typia.createRandom<TilejsonVersion>();
 export const stringifyTilejsonVersion =
   typia.json.createStringify<TilejsonVersion>();
 export const validateTilejsonVersion = typia.createValidate<TilejsonVersion>();
-
-// Z
-export const assertZ = typia.createAssert<Z>();
-export const equalsZ = typia.createEquals<Z>();
-export const isZ = typia.createIs<Z>();
-export const randomZ = typia.createRandom<Z>();
-export const stringifyZ = typia.json.createStringify<Z>();
-export const validateZ = typia.createValidate<Z>();

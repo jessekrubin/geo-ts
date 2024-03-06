@@ -4,6 +4,7 @@ export type TilejsonScheme = "xyz" | "tms";
 export type TilejsonVersion = "2.0.0" | "2.1.0" | "2.2.0" | "3.0.0";
 export type TilejsonRasterFormat = "png" | "jpg" | "webp";
 export type TilejsonVectorFormat = "pbf";
+export type TilejsonFormatExtra = "pbfgz" | "json" | "geojson" | "unknown";
 export type TilejsonFormat = TilejsonRasterFormat | TilejsonVectorFormat;
 
 export type TilejsonVectorLayer = {
