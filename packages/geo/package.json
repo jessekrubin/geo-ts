@@ -34,11 +34,11 @@
     "@jsse/geotypes": "workspace:*"
   },
   "devDependencies": {
-    "@jsse/eslint-config": "^0.0.11",
+    "@jsse/eslint-config": "^0.1.3",
     "eslint": "^8.56.0",
     "prettier": "^3.1.1",
     "tsup": "^8.0.1",
-    "typescript": "^5.3.3",
+    "typescript": "^5.4.2",
     "vitest": "^1.1.0"
   }
 }
