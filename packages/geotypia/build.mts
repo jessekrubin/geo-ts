@@ -12,16 +12,19 @@ type GeotypesMetadata = {
   files: FileTypeExports[];
   geotypes: string[];
 };
-const typeFunctionNames = (tname: string) => [
-  `assert${tname}`,
-  `equals${tname}`,
-  `is${tname}`,
-  `random${tname}`,
-  `stringify${tname}`,
-  `validate${tname}`,
-];
+function typeFunctionNames(tname: string) {
+  return [
+    `assert${tname}`,
+    `equals${tname}`,
+    `is${tname}`,
+    `random${tname}`,
+    `stringify${tname}`,
+    `validate${tname}`,
+  ];
+}
 
-const typeFunctions = (tname: string) => `
+function typeFunctions(tname: string) {
+  return `
 // ${tname}
 export const assert${tname} = typia.createAssert<${tname}>();
 export const equals${tname} = typia.createEquals<${tname}>();
@@ -30,9 +33,10 @@ export const random${tname} = typia.createRandom<${tname}>();
 export const stringify${tname} = typia.json.createStringify<${tname}>();
 export const validate${tname} = typia.createValidate<${tname}>();
 `;
+}
 
 // PascalCase to kebab-case
-const typename2filename = (tname: string) => {
+function typename2filename(tname: string) {
   const filename = tname
     .replaceAll(/([a-z])([A-Z])/g, "$1-$2")
     .replaceAll(/\s+/g, "-")
@@ -41,9 +45,9 @@ const typename2filename = (tname: string) => {
     return filename.replace("2d", "-2d").replace("3d", "-3d");
   }
   return filename;
-};
+}
 
-const bigAssFile = async (geotypes: GeotypesMetadata) => {
+async function bigAssFile(geotypes: GeotypesMetadata) {
   const typeFunks = geotypes.geotypes.map((tname) => typeFunctions(tname));
   const geotypes2import = [...geotypes.geotypes];
   // blah blah sort
@@ -66,9 +70,9 @@ const bigAssFile = async (geotypes: GeotypesMetadata) => {
   ];
   const string = lines.join("\n");
   await fs.writeFile(`${TYPIA_SRC}/geotypes.ts`, string);
-};
+}
 
-const smallAssFiles = async (geotypes: GeotypesMetadata) => {
+async function smallAssFiles(geotypes: GeotypesMetadata) {
   const _smallAssFile = async (tname: string) => {
     const filename = typename2filename(tname);
     const typeFunks = typeFunctions(tname);
@@ -91,7 +95,7 @@ const smallAssFiles = async (geotypes: GeotypesMetadata) => {
     geotypes.geotypes.map((tname) => _smallAssFile(tname)),
   );
   return infos;
-};
+}
 
 async function nuke_input_dir() {
   await $`rm -rfv ${TYPIA_SRC}`;

@@ -5,3 +5,4 @@ dist
 scratch/
 coverage
 src/dev/
+.tsup/**
