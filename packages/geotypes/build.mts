@@ -9,7 +9,7 @@ type GeotypesMetadata = {
   geotypes: string[];
 };
 
-const lineIsCommentedOut = (line: string) => {
+function lineIsCommentedOut(line: string) {
   if (line.startsWith("//")) {
     return true;
   }
@@ -17,10 +17,11 @@ const lineIsCommentedOut = (line: string) => {
     return true;
   }
   return false;
-};
-const lineStartsWithExportType = (line: string) =>
-  line.startsWith("export type");
-const exportedTypesForFile = async (file: string): Promise<FileTypeExports> => {
+}
+function lineStartsWithExportType(line: string) {
+  return line.startsWith("export type");
+}
+async function exportedTypesForFile(file: string): Promise<FileTypeExports> {
   const string = await fs.readFile(file, {
     encoding: "utf-8",
   });
@@ -76,9 +77,9 @@ const exportedTypesForFile = async (file: string): Promise<FileTypeExports> => {
     fspath: file,
     types: typesFinal,
   };
-};
+}
 
-const typesIndex = async (files: FileTypeExports[]) => {
+async function typesIndex(files: FileTypeExports[]) {
   const filepaths = files.map((file) =>
     path.basename(file.fspath).replace(".ts", ".js"),
   );
@@ -100,16 +101,16 @@ const typesIndex = async (files: FileTypeExports[]) => {
     "./geotypes.json",
     JSON.stringify(geotypesMetadata, undefined, 2),
   );
-};
+}
 
-const main = async () => {
+async function main() {
   const filesAll = await glob("./src/types/*.ts");
   const files = filesAll.filter((file) => !file.includes("index.ts"));
   const allTypes = await Promise.all(
     files.map(async (file) => exportedTypesForFile(file)),
   );
   await typesIndex(allTypes);
-};
+}
 
 try {
   await main();

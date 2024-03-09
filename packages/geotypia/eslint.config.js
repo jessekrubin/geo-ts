@@ -1,4 +1,6 @@
 // eslint.config.js
 import jsse from "@jsse/eslint-config";
 
-export default jsse({});
+export default jsse({
+  ignores: ["**/generated/**/*", "**/typia-src/**"],
+});

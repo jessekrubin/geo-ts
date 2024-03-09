@@ -1,7 +1,7 @@
 import jsse from "@jsse/eslint-config";
 
-export default [
-  ...jsse({
+export default jsse(
+  {
     typescript: {
       tsconfigPath: [
         "tsconfig.json",
@@ -9,7 +9,8 @@ export default [
         "tsconfig.eslint.json",
       ],
     },
-  }),
+  },
+
   {
     files: ["src/types-tests/*.ts", "src/types-tests/*.tsx"],
     rules: {
@@ -18,4 +19,4 @@ export default [
       "no-lone-blocks": "off",
     },
   },
-];
+);
