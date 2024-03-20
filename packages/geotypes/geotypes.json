@@ -29,7 +29,10 @@
     },
     {
       "fspath": "./src/types/deckgl.ts",
-      "types": ["DeckglMapViewstate", "DeckglTilejson"]
+      "types": [
+        "DeckglMapViewstate",
+        "DeckglTilejson"
+      ]
     },
     {
       "fspath": "./src/types/geojson.ts",
@@ -115,31 +118,37 @@
     },
     {
       "fspath": "./src/types/geostats.ts",
-      "types": ["Geostats", "GeostatsAttribute", "GeostatsLayer"]
+      "types": [
+        "Geostats",
+        "GeostatsAttribute",
+        "GeostatsLayer"
+      ]
     },
     {
       "fspath": "./src/types/hgt.ts",
       "types": [
-        "HgtEastLongitudes",
-        "HgtFilename",
         "HgtLatitudes",
         "HgtLongitudes",
-        "HgtNorthLatitudes",
-        "HgtSouthLatitudes",
-        "HgtWestLongitudes",
-        "NorthEastHgtFilename",
-        "NorthWestHgtFilename",
-        "SouthEastHgtFilename",
-        "SouthWestHgtFilename"
+        "HgtString",
+        "NorthEastHgtString",
+        "NorthWestHgtString",
+        "SouthEastHgtString",
+        "SouthWestHgtString"
       ]
     },
     {
       "fspath": "./src/types/mbtiles.ts",
-      "types": ["MbtilesMetadataRow", "MbtilesMetadataRows", "MbtilesTilesRow"]
+      "types": [
+        "MbtilesMetadataRow",
+        "MbtilesMetadataRows",
+        "MbtilesTilesRow"
+      ]
     },
     {
       "fspath": "./src/types/simplestyle.ts",
-      "types": ["SimpleStyleProperties"]
+      "types": [
+        "SimpleStyleProperties"
+      ]
     },
     {
       "fspath": "./src/types/tilejson.ts",
@@ -200,13 +209,9 @@
     "Geostats",
     "GeostatsAttribute",
     "GeostatsLayer",
-    "HgtEastLongitudes",
-    "HgtFilename",
     "HgtLatitudes",
     "HgtLongitudes",
-    "HgtNorthLatitudes",
-    "HgtSouthLatitudes",
-    "HgtWestLongitudes",
+    "HgtString",
     "Latitude",
     "LatitudeWgs84",
     "LinearRing",
@@ -253,8 +258,8 @@
     "MultiPolygonGeometry3d",
     "MultiPolygonGeometryType",
     "NamedCoordinateReferenceSystem",
-    "NorthEastHgtFilename",
-    "NorthWestHgtFilename",
+    "NorthEastHgtString",
+    "NorthWestHgtString",
     "PointCoordinates",
     "PointFeature",
     "PointFeature2d",
@@ -272,8 +277,8 @@
     "PolygonGeometry3d",
     "PolygonGeometryType",
     "SimpleStyleProperties",
-    "SouthEastHgtFilename",
-    "SouthWestHgtFilename",
+    "SouthEastHgtString",
+    "SouthWestHgtString",
     "Tilejson",
     "Tilejson300",
     "TilejsonCommon",
