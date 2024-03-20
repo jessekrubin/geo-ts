@@ -65,6 +65,24 @@ export function coord3d(x: number, y: number, z: number): Coord3d {
   return [x, y, z];
 }
 
+export function isCoord2d(
+  coord: Coord2d | Coord3d | number[],
+): coord is Coord2d {
+  return Array.isArray(coord) && coord.length === 2;
+}
+
+export function isCoord3d(
+  coord: Coord2d | Coord3d | number[],
+): coord is Coord3d {
+  return Array.isArray(coord) && coord.length === 3;
+}
+
+export function isCoord(
+  coord: Coord2d | Coord3d | number[],
+): coord is Coord2d | Coord3d {
+  return Array.isArray(coord) && (coord.length === 2 || coord.length === 3);
+}
+
 /**
  * Convert array to coord (stupid util)
  *
