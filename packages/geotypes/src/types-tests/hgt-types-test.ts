@@ -1,0 +1,15 @@
+import type { HgtString } from "../types/hgt.js";
+
+const validN00 = "N00E000" satisfies HgtString;
+
+// @ts-expect-error
+const invalidN90 = "N90E000" satisfies HgtString;
+
+// @ts-expect-error
+const invalidE180 = "N00E180" satisfies HgtString;
+
+// @ts-expect-error
+const invalidW000 = "N00W000" satisfies HgtString;
+
+// @ts-expect-error
+const invalidS00 = "S00E000" satisfies HgtString;
