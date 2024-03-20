@@ -6,4 +6,4 @@ scratch/
 coverage
 src/dev/
 .tsup/**
-.idea/ 
+.idea/
