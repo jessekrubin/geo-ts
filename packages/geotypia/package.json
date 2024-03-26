@@ -9,9 +9,9 @@
   "license": "MIT",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/geotypia.mjs",
+      "require": "./dist/geotypia.cjs"
     },
     "./pacakge.json": "./package.json"
   },
@@ -23,13 +23,16 @@
   ],
   "scripts": {
     "build-fast": "tsup src/index.ts --format cjs,esm",
-    "build": "pnpm run gen && pnpm run build:tsc",
-    "build:tsc": "tsc && pnpm run build:tsc:cjs && pnpm run build:tsc:esm",
+    "build": "pnpm run gen && pnpm run build:tsc && pnpm run bundle",
+    "build:tsc": "pnpm run build:tsc:cjs && pnpm run build:tsc:esm",
     "build:tsc:cjs": "tsc -p tsconfig.cjs.json",
     "build:tsc:esm": "tsc -p tsconfig.esm.json",
     "build:tsup": "tsup --format cjs,esm",
     "build:dts": "tsc --emitDeclarationOnly",
-    "gen": "tsx build.mts prebuild && pnpm run gen:typia",
+    "bundle": "pnpm run bundle:cjs && pnpm run bundle:esm",
+    "bundle:cjs": "esbuild dist/esm/index.js --bundle --format=cjs --outfile=dist/geotypia.cjs --external:typia --external:@jsse/geotypes",
+    "bundle:esm": "esbuild dist/esm/index.js --bundle --format=esm --outfile=dist/geotypia.mjs --external:typia --external:@jsse/geotypes",
+    "gen": "tsx build.mts prebuild && pnpm run gen:typia && prettier --write src --cache",
     "gen:typia": "typia generate --input src/typia-src --output src/generated --project tsconfig.json",
     "test": "vitest run",
     "dev": "vitest watch --coverage",

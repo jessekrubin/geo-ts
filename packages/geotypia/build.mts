@@ -151,7 +151,6 @@ async function smallAssFiles(geotypes: GeotypesMetadata) {
     const lines = [
       TYPIA_IMPORT,
       `import type { ${tname} } from "@jsse/geotypes";`,
-      "",
       typeFunks,
     ];
     const string = lines.join("\n");
