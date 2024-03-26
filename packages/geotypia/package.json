@@ -24,7 +24,9 @@
   "scripts": {
     "build-fast": "tsup src/index.ts --format cjs,esm",
     "build": "pnpm run gen && pnpm run build:tsc",
-    "build:tsc": "tsc",
+    "build:tsc": "tsc && pnpm run build:tsc:cjs && pnpm run build:tsc:esm",
+    "build:tsc:cjs": "tsc -p tsconfig.cjs.json",
+    "build:tsc:esm": "tsc -p tsconfig.esm.json",
     "build:tsup": "tsup --format cjs,esm",
     "build:dts": "tsc --emitDeclarationOnly",
     "gen": "tsx build.mts prebuild && pnpm run gen:typia",

@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-use-before-define,@typescript-eslint/no-unused-expressions */
 import process from "node:process";
+import path from "node:path";
 import { $, argv, chalk, echo, fs } from "zx";
 
 const TYPIA_SRC = "./src/typia-src";
 const TYPIA_IMPORT = 'import typia from "typia";';
-const BIG_FILE = true;
+const BIG_FILE = false;
 type FileTypeExports = {
   fspath: string;
   types: string[];
@@ -143,6 +144,7 @@ async function bigAssFile(geotypes: GeotypesMetadata) {
 }
 
 async function smallAssFiles(geotypes: GeotypesMetadata) {
+  await fs.mkdirp(path.join("src", "geotypes"));
   const _smallAssFile = async (tname: string) => {
     const filename = typename2filename(tname);
     const typeFunks = typeFunctions(tname);
@@ -153,7 +155,9 @@ async function smallAssFiles(geotypes: GeotypesMetadata) {
       typeFunks,
     ];
     const string = lines.join("\n");
-    await fs.writeFile(`${TYPIA_SRC}/${filename}.ts`, string);
+    const outputFilepath = path.join("src", "geotypes", `${filename}.ts`);
+    await fs.writeFile(outputFilepath, string);
+    // await fs.writeFile(`${TYPIA_SRC}/${filename}.ts`, string);
     const info = {
       filename,
       fn_names: typeFunctionNames(tname),
@@ -164,7 +168,23 @@ async function smallAssFiles(geotypes: GeotypesMetadata) {
   const infos = await Promise.all(
     geotypes.geotypes.map((tname) => _smallAssFile(tname)),
   );
-  return infos;
+  console.log(infos);
+  const indexLines = [
+    `/* auto-generated ~ build.mts */`,
+    ...infos.map(
+      (info) => {
+        return [
+          "export {",
+          ...info.fn_names.map((fn_name) => `  ${fn_name},`),
+          `} from "./geotypes/${info.filename}.js";`,
+        ].join("\n");
+      },
+      // `export { ${info.fn_names.join(", ")} } from "./geotypes/${info.filename}.js";`,
+    ),
+  ];
+  const indexString = indexLines.join("\n");
+  const indexFilepath = path.join("src", "geotypes.ts");
+  await fs.writeFile(indexFilepath, indexString);
 }
 
 async function nuke_input_dir() {
