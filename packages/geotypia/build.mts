@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-use-before-define,@typescript-eslint/no-unused-expressions */
 import process from "node:process";
-import { $, fs } from "zx";
+import { $, argv, chalk, echo, fs } from "zx";
 
 const TYPIA_SRC = "./src/typia-src";
 const TYPIA_IMPORT = 'import typia from "typia";';
@@ -12,6 +13,75 @@ type GeotypesMetadata = {
   files: FileTypeExports[];
   geotypes: string[];
 };
+
+const DEBUG = argv.debug;
+const HELP = argv.h || argv.help;
+
+const COMMANDS = {
+  help: "Show this message",
+  clean: "Remove the dist directory",
+  prebuild: "Create the necessary directories for the build",
+  "typia-gen": "Generate typia files",
+} as const;
+
+function helpMsgString() {
+  const maxCommandStrLen = Math.max(
+    ...Object.keys(COMMANDS).map((c) => c.length),
+  );
+  const commandsHelpMsgBody = Object.entries(COMMANDS)
+    .map(([command, desc]) => {
+      const padding = " ".repeat(maxCommandStrLen - command.length);
+      return `   ${command}${padding} - ${desc}`;
+    })
+    .join("\n");
+  const lines = [
+    "USAGE: 'tsx build.mts <command>'",
+    "",
+    "COMMANDS:",
+    commandsHelpMsgBody,
+    "",
+    "OPTIONS:",
+    "   -h, --help - Show this message",
+    "   --debug    - Log a bunch of stuff to stderr",
+  ];
+  return lines.join("\n");
+}
+
+function echoHelp() {
+  echo(helpMsgString());
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function errecho(...args: any[]) {
+  echo(chalk.red("ERROR: ", ...args));
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function debug(...args: any[]) {
+  if (DEBUG) {
+    echo(...args);
+  }
+}
+
+const COMMANDS_FNS = {
+  prebuild: preBuild,
+  help: async () => {
+    echoHelp();
+  },
+  clean: async () => {
+    await $`rimraf dist`;
+  },
+  "typia-gen": async () => {
+    // $`pnpm run typia-gen`;
+    await $`npx typia generate --input src/typia-src --output src/generated --project tsconfig.json`;
+  },
+} satisfies {
+  [K in keyof typeof COMMANDS]: () => Promise<void>;
+};
+
+function isCommand(command: string): command is keyof typeof COMMANDS {
+  return command in COMMANDS;
+}
 function typeFunctionNames(tname: string) {
   return [
     `assert${tname}`,
@@ -113,7 +183,7 @@ function filterTypes(tname: string) {
   );
 }
 
-async function main() {
+async function genTypiaSrc() {
   const data = (await fs.readJSON(
     "../geotypes/geotypes.json",
   )) as GeotypesMetadata;
@@ -125,17 +195,56 @@ async function main() {
   } else {
     await smallAssFiles(data);
   }
-
-  // // const
-  // for (const tname of data.geotypes) {
-  //   const filename = typename2filename(tname);
-  //   await fs.writeFile(`./src/typia-input/${filename}.ts`, typeFunctions(tname));
-  // }
 }
 
-try {
-  await main();
-} catch (e) {
-  console.error(e);
-  process.exit(1);
+async function preBuild() {
+  await genTypiaSrc();
 }
+
+async function run(command: keyof typeof COMMANDS) {
+  debug`Running command: ${command}`;
+  const ti = Date.now();
+  await COMMANDS_FNS[command]();
+  const tf = Date.now();
+  debug`Finished: ${command} (dt: ${tf - ti}ms)`;
+}
+
+async function main() {
+  if (argv._.length === 0) {
+    errecho`No command specified`;
+    echoHelp();
+    process.exit(1);
+  }
+  if (HELP) {
+    echoHelp();
+    process.exit(0);
+  }
+
+  debug({
+    argv,
+  });
+  if (argv._.length > 1) {
+    errecho`Too many commands specified`;
+    echoHelp();
+    process.exit(1);
+  }
+  const command = argv._[0];
+  if (!isCommand(command)) {
+    errecho`Unknown command: ${command}`;
+    echoHelp();
+    process.exit(1);
+  }
+
+  await run(command);
+}
+
+main()
+  .catch((e) => {
+    console.error(e);
+    debug`Exiting with error`;
+    process.exit(1);
+  })
+  .finally(() => {
+    debug`Exiting`;
+    process.exit(0);
+  });
