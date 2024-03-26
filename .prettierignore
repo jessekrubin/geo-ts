@@ -21,4 +21,4 @@ package-lock.json
 pnpm-lock.yaml
 justfile
 **/dist/
-**/generated/**
+generated/
