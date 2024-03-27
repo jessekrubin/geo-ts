@@ -108,9 +108,9 @@ export function coordIsWgs84(coord: Coord2d | Coord3d): boolean {
 
 export function coordIsWebMercator(coord: Coord2d | Coord3d): boolean {
   return (
-    coord[0] >= -20026376.39 &&
-    coord[0] <= 20026376.39 &&
-    coord[1] >= -20048966.1 &&
-    coord[1] <= 20048966.1
+    coord[0] >= -20_026_376.39 &&
+    coord[0] <= 20_026_376.39 &&
+    coord[1] >= -20_048_966.1 &&
+    coord[1] <= 20_048_966.1
   );
 }

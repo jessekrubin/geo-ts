@@ -117,7 +117,7 @@ function typename2filename(tname: string) {
   return filename;
 }
 
-async function bigAssFile(geotypes: GeotypesMetadata) {
+async function bigMonoFile(geotypes: GeotypesMetadata) {
   const typeFunks = geotypes.geotypes.map((tname) => typeFunctions(tname));
   const geotypes2import = [...geotypes.geotypes];
   // blah blah sort
@@ -142,27 +142,26 @@ async function bigAssFile(geotypes: GeotypesMetadata) {
   await fs.writeFile(`${TYPIA_SRC}/geotypes.ts`, string);
 }
 
-async function smallAssFiles(geotypes: GeotypesMetadata) {
-  const _smallAssFile = async (tname: string) => {
-    const filename = typename2filename(tname);
-    const typeFunks = typeFunctions(tname);
-    const lines = [
-      TYPIA_IMPORT,
-      `import type { ${tname} } from "@jsse/geotypes";`,
-      "",
-      typeFunks,
-    ];
-    const string = lines.join("\n");
-    await fs.writeFile(`${TYPIA_SRC}/${filename}.ts`, string);
-    const info = {
-      filename,
-      fn_names: typeFunctionNames(tname),
-    };
-    return info;
+async function smallSingleFile(tname: string) {
+  const filename = typename2filename(tname);
+  const typeFunks = typeFunctions(tname);
+  const lines = [
+    TYPIA_IMPORT,
+    `import type { ${tname} } from "@jsse/geotypes";`,
+    "",
+    typeFunks,
+  ];
+  const string = lines.join("\n");
+  await fs.writeFile(`${TYPIA_SRC}/${filename}.ts`, string);
+  const info = {
+    filename,
+    fn_names: typeFunctionNames(tname),
   };
-
+  return info;
+}
+async function smallFiles(geotypes: GeotypesMetadata) {
   const infos = await Promise.all(
-    geotypes.geotypes.map((tname) => _smallAssFile(tname)),
+    geotypes.geotypes.map((tname) => smallSingleFile(tname)),
   );
   return infos;
 }
@@ -190,11 +189,7 @@ async function genTypiaSrc() {
   await nuke_input_dir();
 
   data.geotypes = data.geotypes.filter((tname) => filterTypes(tname));
-  if (BIG_FILE) {
-    await bigAssFile(data);
-  } else {
-    await smallAssFiles(data);
-  }
+  await (BIG_FILE ? bigMonoFile(data) : smallFiles(data));
 }
 
 async function preBuild() {
