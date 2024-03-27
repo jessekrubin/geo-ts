@@ -167,7 +167,6 @@ async function smallAssFiles(geotypes: GeotypesMetadata) {
   const infos = await Promise.all(
     geotypes.geotypes.map((tname) => _smallAssFile(tname)),
   );
-  console.log(infos);
   const indexLines = [
     `/* auto-generated ~ build.mts */`,
     ...infos.map(

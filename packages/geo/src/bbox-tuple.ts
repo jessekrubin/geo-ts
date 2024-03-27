@@ -1,4 +1,4 @@
-import type { BBox2d, BBox3d } from "@jsse/geotypes";
+import type { BBox2d, BBox3d, BBox } from "@jsse/geotypes";
 
 export function bbox2d(
   xmin: number,
@@ -45,6 +45,45 @@ export function bbox(
   return zmin === undefined || zmax === undefined
     ? bbox2d(xmin, ymin, xmax, ymax)
     : bbox3d(xmin, ymin, xmax, ymax, zmin, zmax);
+}
+
+export function isBBox2d(bbox: BBox2d | BBox3d | number[]): bbox is BBox2d {
+  return bbox.length === 4 && bbox.every((n) => typeof n === "number");
+}
+
+export function isBBox3d(bbox: BBox2d | BBox3d | number[]): bbox is BBox3d {
+  return (
+    bbox.length === 6 &&
+    bbox.every((n) => typeof n === "number") &&
+    bbox[4] < bbox[5]
+  );
+}
+
+export function isBBox(
+  bbox: BBox2d | BBox3d | number[],
+): bbox is BBox2d | BBox3d {
+  return (
+    (bbox.length === 4 || bbox.length === 6) &&
+    bbox.every((n) => typeof n === "number")
+  );
+}
+
+export function bbox3d2bbox2d(bbox: BBox3d): BBox2d {
+  return bbox.slice(0, 4) as BBox2d;
+}
+
+export function bboxIsAntimeridian(bbox: BBox2d | BBox3d): boolean {
+  return bbox[0] > bbox[2];
+}
+
+export function bboxesAntimeridian<T extends BBox>(bbox: T): [T] | [T, T] {
+  if (!bboxIsAntimeridian(bbox)) {
+    return [bbox];
+  }
+  const [xmin, ymin, xmax, ymax, ...rest] = bbox;
+  const bboxLeft = [xmin, ymin, 180, ymax, ...rest] as T;
+  const bboxRight = [-180, ymin, xmax, ymax, ...rest] as T;
+  return [bboxLeft, bboxRight];
 }
 
 /**
