@@ -75,7 +75,7 @@ export function bboxIsWebMercator(bbox: BBox2d | BBox3d): boolean {
   return (
     bbox[0] >= -180 &&
     bbox[2] <= 180 &&
-    bbox[1] >= -85.05112877980659 &&
-    bbox[3] <= 85.0511287798066
+    bbox[1] >= -85.051_128_779_806_59 &&
+    bbox[3] <= 85.051_128_779_806_6
   );
 }

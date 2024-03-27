@@ -23,7 +23,7 @@ function lineStartsWithExportType(line: string) {
 }
 async function exportedTypesForFile(file: string): Promise<FileTypeExports> {
   const string = await fs.readFile(file, {
-    encoding: "utf-8",
+    encoding: "utf8",
   });
   const lines = string.split("\n");
   const exportedTypes = lines
@@ -89,12 +89,12 @@ async function typesIndex(files: FileTypeExports[]) {
 
   const geotypesMetadata: GeotypesMetadata = {
     files,
-    geotypes: [
-      ...files.flatMap((file) => file.types),
+    geotypes: files
+      .flatMap((file) => file.types)
       // ...new Set(
       //   ...files.map((file) => file.types),
       // ),
-    ].sort((a, b) => a.localeCompare(b)),
+      .sort((a, b) => a.localeCompare(b)),
   };
   console.log(geotypesMetadata.geotypes);
   await fs.writeFile(
