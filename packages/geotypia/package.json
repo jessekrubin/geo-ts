@@ -40,22 +40,22 @@
     "@jsse/geotypes": "workspace:*"
   },
   "devDependencies": {
-    "@jsse/eslint-config": "^0.1.7",
-    "@microsoft/api-extractor": "^7.43.0",
+    "@jsse/eslint-config": "^0.1.10",
+    "@microsoft/api-extractor": "^7.43.1",
     "@types/geojson": "^7946.0.14",
-    "@typescript-eslint/eslint-plugin": "^7.5.0",
-    "@typescript-eslint/parser": "^7.5.0",
-    "@vitest/coverage-v8": "^1.4.0",
+    "@typescript-eslint/eslint-plugin": "^7.6.0",
+    "@typescript-eslint/parser": "^7.6.0",
+    "@vitest/coverage-v8": "^1.5.0",
     "esbuild": "^0.20.2",
-    "eslint": "^8.57.0",
+    "eslint": "^9.0.0",
     "prettier": "3.2.5",
     "ts-node": "^10.9.2",
     "ts-patch": "^3.1.2",
     "tsup": "8.0.2",
-    "tsx": "^4.7.1",
-    "typescript": "5.4.3",
-    "typia": "^5.5.10",
-    "vitest": "1.4.0",
-    "zx": "^7.2.3"
+    "tsx": "^4.7.2",
+    "typescript": "5.4.5",
+    "typia": "^6.0.1",
+    "vitest": "1.5.0",
+    "zx": "^8.0.1"
   }
 }
