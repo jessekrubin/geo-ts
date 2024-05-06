@@ -39,7 +39,7 @@
     "lint": "eslint .",
     "fmt": "prettier --write .",
     "prepublishOnly": "pnpm run build",
-    "prepare": "ts-patch install"
+    "prepare": "ts-patch install && typia patch"
   },
   "dependencies": {
     "@jsse/geotypes": "workspace:*"
@@ -58,8 +58,8 @@
     "ts-patch": "^3.1.2",
     "tsup": "8.0.2",
     "tsx": "^4.9.3",
-    "typescript": "5.4.5",
-    "typia": "^6.0.3",
+    "typescript": "5.4.2",
+    "typia": "^5.5.10",
     "vitest": "1.6.0",
     "zx": "^8.0.2"
   }
