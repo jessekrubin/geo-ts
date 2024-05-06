@@ -168,7 +168,7 @@ async function smallAssFiles(geotypes: GeotypesMetadata) {
     geotypes.geotypes.map((tname) => _smallAssFile(tname)),
   );
   const indexLines = [
-    `/* auto-generated ~ build.mts */`,
+    "/* auto-generated ~ build.mts */",
     ...infos.map(
       (info) => {
         return [

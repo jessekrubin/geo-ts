@@ -1,4 +1,4 @@
-import type { BBox2d, BBox3d, BBox } from "@jsse/geotypes";
+import type { BBox, BBox2d, BBox3d } from "@jsse/geotypes";
 
 export function bbox2d(
   xmin: number,

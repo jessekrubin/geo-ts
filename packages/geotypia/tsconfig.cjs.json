@@ -1,9 +1,9 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "dist/cjs",
     "module": "CommonJS",
     "moduleResolution": "node",
+    "outDir": "dist/cjs",
     "plugins": [
       {
         "transform": "typia/lib/transform"
