@@ -208,11 +208,7 @@ async function genTypiaSrc() {
   await nuke_input_dir();
 
   data.geotypes = data.geotypes.filter((tname) => filterTypes(tname));
-  if (BIG_FILE) {
-    await bigAssFile(data);
-  } else {
-    await smallAssFiles(data);
-  }
+  await (BIG_FILE ? bigAssFile(data) : smallAssFiles(data));
 }
 
 async function preBuild() {
