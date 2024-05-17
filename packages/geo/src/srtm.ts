@@ -213,7 +213,6 @@ export function* bbox2srtms(bbox: BBox): Generator<SrtmTile> {
   const [xmin, ymin, xmax, ymax] = bbox;
   // if is antimeridian bbox, split into two bboxes
   if (xmin > xmax) {
-    console.log("here?");
     yield* bbox2srtms([xmin, ymin, 180, ymax]);
     yield* bbox2srtms([-180, ymin, xmax, ymax]);
     return;

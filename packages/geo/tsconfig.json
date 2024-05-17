@@ -10,8 +10,12 @@
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "noEmit": false,
-    "outDir": "dist",
+    "rootDir": "src",
+    "baseUrl": ".",
+    "outDir": "dist/esm",
     "esModuleInterop": true,
     "skipLibCheck": true
-  }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

@@ -14,7 +14,7 @@ test("ll2srtm", () => {
     for (let lat = -90; lat <= 90; lat += 1) {
       const srtm = ll2srtm({ lng, lat });
       if (!isSrtmString(srtm.str)) {
-        console.log({ lng, lat, srtm });
+        console.warn({ lng, lat, srtm });
       }
       assert(isSrtmString(srtm.str));
       assert(srtm.ns === (lat >= 0 ? "N" : "S"));

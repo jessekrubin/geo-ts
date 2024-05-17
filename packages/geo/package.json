@@ -12,19 +12,21 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./pacakge.json": "./package.json"
+    "./package.json": "./package.json"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "build-fast": "tsup src/index.ts --format cjs,esm",
-    "build": "pnpm run build:tsup",
+    "build": "pnpm run build:tsup && pnpm run build:tsc",
     "build:tsup": "tsup --format cjs,esm --dts",
+    "build:tsc": "tsc --project tsconfig.json && tsc --project tsconfig.cjs.json",
     "test": "vitest run",
+    "cov": "vitest run --coverage",
     "dev": "vitest watch --coverage",
     "lint": "eslint src",
-    "fmt": "prettier --write .",
+    "fmt": "prettier --write . --ignore-path ../../.prettierignore",
     "nodetest": "node --import tsx --test ./src/*test.ts",
     "prepublishOnly": "pnpm run build"
   },
@@ -37,6 +39,7 @@
   "devDependencies": {
     "@jsse/eslint-config": "^0.1.14",
     "@jsse/tsconfig": "^0.0.2",
+    "@vitest/coverage-v8": "^1.6.0",
     "eslint": "^8.56.0",
     "prettier": "^3.1.1",
     "tsup": "^8.0.1",
