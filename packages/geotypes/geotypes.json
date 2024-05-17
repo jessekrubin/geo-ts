@@ -29,10 +29,7 @@
     },
     {
       "fspath": "./src/types/deckgl.ts",
-      "types": [
-        "DeckglMapViewstate",
-        "DeckglTilejson"
-      ]
+      "types": ["DeckglMapViewstate", "DeckglTilejson"]
     },
     {
       "fspath": "./src/types/geojson.ts",
@@ -111,25 +108,15 @@
     },
     {
       "fspath": "./src/types/geostats.ts",
-      "types": [
-        "Geostats",
-        "GeostatsAttribute",
-        "GeostatsLayer"
-      ]
+      "types": ["Geostats", "GeostatsAttribute", "GeostatsLayer"]
     },
     {
       "fspath": "./src/types/mbtiles.ts",
-      "types": [
-        "MbtilesMetadataRow",
-        "MbtilesMetadataRows",
-        "MbtilesTilesRow"
-      ]
+      "types": ["MbtilesMetadataRow", "MbtilesMetadataRows", "MbtilesTilesRow"]
     },
     {
       "fspath": "./src/types/simplestyle.ts",
-      "types": [
-        "SimpleStyleProperties"
-      ]
+      "types": ["SimpleStyleProperties"]
     },
     {
       "fspath": "./src/types/srtm.ts",

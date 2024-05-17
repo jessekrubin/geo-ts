@@ -1,14 +1,33 @@
 import type { BBox, BBox2d, BBox3d } from "@jsse/geotypes";
 
+export function bbox2d(bbox: BBox2d): BBox2d;
 export function bbox2d(
   xmin: number,
   ymin: number,
   xmax: number,
   ymax: number,
+): BBox2d;
+/**
+ * Returns a 2d bounding box array.
+ * @param bboxOrXmin - 2d bounding box tuple ([xmin, ymin, xmax, ymax]) or xmin coordinate.
+ * @param ymin - ymin coordinate (optional).
+ * @param xmax - xmax coordinate (optional).
+ * @param ymax - ymax coordinate (optional).
+ * @returns {BBox2d} - 2d bounding box array.
+ */
+export function bbox2d(
+  bboxOrXmin: BBox2d | number,
+  ymin?: number,
+  xmax?: number,
+  ymax?: number,
 ): BBox2d {
-  return [xmin, ymin, xmax, ymax];
+  if (Array.isArray(bboxOrXmin)) {
+    return bboxOrXmin as BBox2d;
+  }
+  return [bboxOrXmin, ymin as number, xmax as number, ymax as number];
 }
 
+export function bbox3d(bbox: BBox3d): BBox3d;
 export function bbox3d(
   xmin: number,
   ymin: number,
@@ -16,9 +35,40 @@ export function bbox3d(
   ymax: number,
   zmin: number,
   zmax: number,
+): BBox3d;
+/**
+ * Returns a 3d bounding box array.
+ * @param bboxOrXmin - 3d bounding box tuple ([xmin, ymin, xmax, ymax, zmin, zmax]) or xmin coordinate.
+ * @param ymin - ymin coordinate (optional).
+ * @param xmax - xmax coordinate (optional).
+ * @param ymax - ymax coordinate (optional).
+ * @param zmin - zmin coordinate (optional).
+ * @param zmax - zmax coordinate (optional).
+ * @returns {BBox3d} - 3d bounding box array.
+ */
+export function bbox3d(
+  bboxOrXmin: BBox3d | number,
+  ymin?: number,
+  xmax?: number,
+  ymax?: number,
+  zmin?: number,
+  zmax?: number,
 ): BBox3d {
-  return [xmin, ymin, xmax, ymax, zmin, zmax];
+  if (Array.isArray(bboxOrXmin)) {
+    return bboxOrXmin as BBox3d;
+  }
+  return [
+    bboxOrXmin,
+    ymin as number,
+    xmax as number,
+    ymax as number,
+    zmin as number,
+    zmax as number,
+  ];
 }
+
+export function bbox(bbox: BBox2d): BBox2d;
+export function bbox(bbox: BBox3d): BBox3d;
 export function bbox(
   xmin: number,
   ymin: number,
@@ -33,17 +83,39 @@ export function bbox(
   zmin: number,
   zmax: number,
 ): BBox3d;
+/**
+ * Returns a bounding box array.
+ * @param bboxOrXmin - 2d or 3d bounding box tuple or xmin coordinate.
+ * @param ymin - ymin coordinate (optional).
+ * @param xmax - xmax coordinate (optional).
+ * @param ymax - ymax coordinate (optional).
+ * @param zmin - zmin coordinate (optional).
+ * @param zmax - zmax coordinate (optional).
+ * @returns {BBox2d | BBox3d} - 2d or 3d bounding box array.
+ */
 export function bbox(
-  xmin: number,
-  ymin: number,
-  xmax: number,
-  ymax: number,
+  bboxOrXmin: BBox2d | BBox3d | number,
+  ymin?: number,
+  xmax?: number,
+  ymax?: number,
   zmin?: number,
   zmax?: number,
 ): BBox2d | BBox3d {
+  if (Array.isArray(bboxOrXmin)) {
+    return bboxOrXmin.length === 4
+      ? bbox2d(bboxOrXmin as BBox2d)
+      : bbox3d(bboxOrXmin as BBox3d);
+  }
   return zmin === undefined || zmax === undefined
-    ? bbox2d(xmin, ymin, xmax, ymax)
-    : bbox3d(xmin, ymin, xmax, ymax, zmin, zmax);
+    ? bbox2d(bboxOrXmin, ymin as number, xmax as number, ymax as number)
+    : bbox3d(
+        bboxOrXmin,
+        ymin as number,
+        xmax as number,
+        ymax as number,
+        zmin,
+        zmax,
+      );
 }
 
 export function isBBox2d(bbox: BBox2d | BBox3d | number[]): bbox is BBox2d {
