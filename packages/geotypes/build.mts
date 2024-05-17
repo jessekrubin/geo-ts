@@ -89,12 +89,12 @@ async function typesIndex(files: FileTypeExports[]) {
 
   const geotypesMetadata: GeotypesMetadata = {
     files,
-    geotypes: 
-      files.flatMap((file) => file.types)
+    geotypes: files
+      .flatMap((file) => file.types)
       // ...new Set(
       //   ...files.map((file) => file.types),
       // ),
-    .sort((a, b) => a.localeCompare(b)),
+      .sort((a, b) => a.localeCompare(b)),
   };
   console.log(geotypesMetadata.geotypes);
   await fs.writeFile(

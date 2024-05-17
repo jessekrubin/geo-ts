@@ -100,8 +100,13 @@ export function bboxesAntimeridian<T extends BBox>(bbox: T): [T] | [T, T] {
  */
 export function arr2bbox(arr: number[]): BBox2d | BBox3d {
   if (arr.length < 4 || arr.length > 6) throw new Error("Invalid array length");
-  if (!arr.every((n) => typeof n === "number")) throw new Error("Invalid array type");
-  return arr.length === 6 ? (arr as BBox3d) : arr.length === 4 ? (arr as BBox2d) : arr.slice(0, 4) as BBox2d;
+  if (!arr.every((n) => typeof n === "number"))
+    throw new Error("Invalid array type");
+  return arr.length === 6
+    ? (arr as BBox3d)
+    : arr.length === 4
+      ? (arr as BBox2d)
+      : (arr.slice(0, 4) as BBox2d);
 }
 
 export function bboxIsWgs84(bbox: BBox2d | BBox3d): boolean {

@@ -80,7 +80,11 @@ export function isCoord3d(
 export function isCoord(
   coord: Coord2d | Coord3d | number[],
 ): coord is Coord2d | Coord3d {
-  return Array.isArray(coord) && (coord.length === 2 || coord.length === 3) && coord.every((el) => typeof el === "number");
+  return (
+    Array.isArray(coord) &&
+    (coord.length === 2 || coord.length === 3) &&
+    coord.every((el) => typeof el === "number")
+  );
 }
 
 export function assertsCoord2d(
@@ -97,7 +101,8 @@ export function assertsCoord2d(
  * @throws {Error} Invalid array length
  */
 export function arr2coord(arr: number[]): Coord2d | Coord3d {
-  if (!isCoord(arr)) throw new Error(`Invalid array length ${arr.length} for coord`);
+  if (!isCoord(arr))
+    throw new Error(`Invalid array length ${arr.length} for coord`);
   return arr;
 }
 

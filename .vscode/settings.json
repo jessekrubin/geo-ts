@@ -1,11 +1,7 @@
 {
   "editor.formatOnSave": true,
   "editor.renderWhitespace": "boundary",
-  "editor.rulers": [
-    88,
-    100,
-    120
-  ],
+  "editor.rulers": [88, 100, 120],
   "editor.stickyScroll.enabled": true,
   "editor.tabSize": 2,
   "files.associations": {

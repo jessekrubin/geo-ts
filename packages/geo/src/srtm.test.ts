@@ -95,7 +95,10 @@ test("srtm-invalid", () => {
 test("bae-area-srtm-tiles", () => {
   // tile id (20, 49, 7) bbox of bay area
   const bbox = tuple(
-    -123.75, 36.597_889_133_070_21, -120.9375, 38.822_590_976_177_1,
+    -123.75,
+    36.597_889_133_070_21,
+    -120.9375,
+    38.822_590_976_177_1,
   );
   const srtmtiles = [...bbox2srtms(bbox)];
   const geojsonPolygons = srtmtiles.map((srtm) => {
