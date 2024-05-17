@@ -441,17 +441,6 @@ const collectionAllNull: FeatureCollection<null, null> = {
   features: [featureAllNull],
 };
 
-type t = FeatureCollection<Point | null, TestProperty | null>;
-
-const collectionMaybeNull2: t = {
-  type: "FeatureCollection",
-  features: [
-    featureAllNull,
-    featurePropertyNull,
-    featureGeometryNull,
-    featureNoNull,
-  ],
-};
 const collectionMaybeNull: FeatureCollection<
   Point | null,
   TestProperty | null
