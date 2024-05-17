@@ -1,32 +1,32 @@
 /**
- * Hgt (height/srtm) types
+ * Srtm (height/srtm) types
  */
 
 type Digits = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 type One2Nine = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 type Zero2Seven = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
-type HgtLongitudes_001_To_009 = `00${One2Nine}`;
-type HgtLongitudes_010_To_100 = `0${One2Nine}${Digits}`;
-type HgtLongitudes_100_To_179 = `1${Zero2Seven}${Digits}`;
-type HgtLongitudes_001_To_179 =
-  | HgtLongitudes_001_To_009
-  | HgtLongitudes_010_To_100
-  | HgtLongitudes_100_To_179;
-type HgtLatitudes_01_To_09 = `0${One2Nine}`;
-type HgtLatitudes_10_To_89 = `0${One2Nine}${Digits}`;
-type HgtLatitudes_01_To_89 = HgtLatitudes_01_To_09 | HgtLatitudes_10_To_89;
-type HgtWestLongitudes = `W${HgtLongitudes_001_To_179}` | "W180"; // W000 is invalid
-type HgtEastLongitudes = `E${HgtLongitudes_001_To_179}` | "E000"; // E180 is invalid
-type HgtNorthLatitudes = `N${HgtLatitudes_01_To_89}` | "N00"; // N90 is invalid
-type HgtSouthLatitudes = `S${HgtLatitudes_01_To_89}` | "S90"; // S00 is invalid
-export type HgtLatitudes = HgtNorthLatitudes | HgtSouthLatitudes;
+type SrtmLongitudes_001_To_009 = `00${One2Nine}`;
+type SrtmLongitudes_010_To_100 = `0${One2Nine}${Digits}`;
+type SrtmLongitudes_100_To_179 = `1${Zero2Seven}${Digits}`;
+type SrtmLongitudes_001_To_179 =
+  | SrtmLongitudes_001_To_009
+  | SrtmLongitudes_010_To_100
+  | SrtmLongitudes_100_To_179;
+type SrtmLatitudes_01_To_09 = `0${One2Nine}`;
+type SrtmLatitudes_10_To_89 = `0${One2Nine}${Digits}`;
+type SrtmLatitudes_01_To_89 = SrtmLatitudes_01_To_09 | SrtmLatitudes_10_To_89;
+type SrtmWestLongitudes = `W${SrtmLongitudes_001_To_179}` | "W180"; // W000 is invalid
+type SrtmEastLongitudes = `E${SrtmLongitudes_001_To_179}` | "E000"; // E180 is invalid
+type SrtmNorthLatitudes = `N${SrtmLatitudes_01_To_89}` | "N00"; // N90 is invalid
+type SrtmSouthLatitudes = `S${SrtmLatitudes_01_To_89}` | "S90"; // S00 is invalid
+export type SrtmLatitudes = SrtmNorthLatitudes | SrtmSouthLatitudes;
 
-export type HgtLongitudes = HgtEastLongitudes | HgtWestLongitudes;
-export type NorthEastHgtString = `${HgtNorthLatitudes}${HgtEastLongitudes}`;
-export type NorthWestHgtString = `${HgtNorthLatitudes}${HgtWestLongitudes}`;
-export type SouthEastHgtString = `${HgtSouthLatitudes}${HgtEastLongitudes}`;
-export type SouthWestHgtString = `${HgtSouthLatitudes}${HgtWestLongitudes}`;
+export type SrtmLongitudes = SrtmEastLongitudes | SrtmWestLongitudes;
+export type NorthEastSrtmString = `${SrtmNorthLatitudes}${SrtmEastLongitudes}`;
+export type NorthWestSrtmString = `${SrtmNorthLatitudes}${SrtmWestLongitudes}`;
+export type SouthEastSrtmString = `${SrtmSouthLatitudes}${SrtmEastLongitudes}`;
+export type SouthWestSrtmString = `${SrtmSouthLatitudes}${SrtmWestLongitudes}`;
 
 /**
  * HGT (height/srtm) filename types
@@ -69,8 +69,8 @@ export type SouthWestHgtString = `${HgtSouthLatitudes}${HgtWestLongitudes}`;
  *     voids are assigned the value -32768.
  * ```
  */
-export type HgtString =
-  | NorthEastHgtString
-  | NorthWestHgtString
-  | SouthEastHgtString
-  | SouthWestHgtString;
+export type SrtmString =
+  | NorthEastSrtmString
+  | NorthWestSrtmString
+  | SouthEastSrtmString
+  | SouthWestSrtmString;

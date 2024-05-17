@@ -42,7 +42,8 @@
     "prepare": "ts-patch install && typia patch"
   },
   "dependencies": {
-    "@jsse/geotypes": "workspace:*"
+    "@jsse/geotypes": "workspace:*",
+    "graphql": "^16.8.1"
   },
   "devDependencies": {
     "@jsse/eslint-config": "^0.1.13",

@@ -1,5 +1,4 @@
 import type { BBox, BBox2d, BBox3d } from "@jsse/geotypes";
-
 export function bbox2d(
   xmin: number,
   ymin: number,
@@ -19,7 +18,6 @@ export function bbox3d(
 ): BBox3d {
   return [xmin, ymin, xmax, ymax, zmin, zmax];
 }
-
 export function bbox(
   xmin: number,
   ymin: number,
@@ -101,9 +99,8 @@ export function bboxesAntimeridian<T extends BBox>(bbox: T): [T] | [T, T] {
  */
 export function arr2bbox(arr: number[]): BBox2d | BBox3d {
   if (arr.length < 4 || arr.length > 6) throw new Error("Invalid array length");
-  if (arr.length === 6)
-    return bbox3d(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5]);
-  return bbox2d(arr[0], arr[1], arr[2], arr[3]);
+  if (!arr.every((n) => typeof n === "number")) throw new Error("Invalid array type");
+  return arr.length === 6 ? (arr as BBox3d) : arr.length === 4 ? (arr as BBox2d) : arr.slice(0, 4) as BBox2d;
 }
 
 export function bboxIsWgs84(bbox: BBox2d | BBox3d): boolean {

@@ -125,18 +125,6 @@
       ]
     },
     {
-      "fspath": "./src/types/hgt.ts",
-      "types": [
-        "HgtLatitudes",
-        "HgtLongitudes",
-        "HgtString",
-        "NorthEastHgtString",
-        "NorthWestHgtString",
-        "SouthEastHgtString",
-        "SouthWestHgtString"
-      ]
-    },
-    {
       "fspath": "./src/types/mbtiles.ts",
       "types": [
         "MbtilesMetadataRow",
@@ -148,6 +136,18 @@
       "fspath": "./src/types/simplestyle.ts",
       "types": [
         "SimpleStyleProperties"
+      ]
+    },
+    {
+      "fspath": "./src/types/srtm.ts",
+      "types": [
+        "NorthEastSrtmString",
+        "NorthWestSrtmString",
+        "SouthEastSrtmString",
+        "SouthWestSrtmString",
+        "SrtmLatitudes",
+        "SrtmLongitudes",
+        "SrtmString"
       ]
     },
     {
@@ -209,9 +209,6 @@
     "Geostats",
     "GeostatsAttribute",
     "GeostatsLayer",
-    "HgtLatitudes",
-    "HgtLongitudes",
-    "HgtString",
     "Latitude",
     "LatitudeWgs84",
     "LinearRing",
@@ -258,8 +255,8 @@
     "MultiPolygonGeometry3d",
     "MultiPolygonGeometryType",
     "NamedCoordinateReferenceSystem",
-    "NorthEastHgtString",
-    "NorthWestHgtString",
+    "NorthEastSrtmString",
+    "NorthWestSrtmString",
     "PointCoordinates",
     "PointFeature",
     "PointFeature2d",
@@ -277,8 +274,11 @@
     "PolygonGeometry3d",
     "PolygonGeometryType",
     "SimpleStyleProperties",
-    "SouthEastHgtString",
-    "SouthWestHgtString",
+    "SouthEastSrtmString",
+    "SouthWestSrtmString",
+    "SrtmLatitudes",
+    "SrtmLongitudes",
+    "SrtmString",
     "Tilejson",
     "Tilejson300",
     "TilejsonCommon",

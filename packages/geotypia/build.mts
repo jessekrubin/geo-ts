@@ -191,7 +191,7 @@ async function nuke_input_dir() {
 }
 
 const BLACKLIST_TYPES = ["Z"];
-const BLACKLIST_TYPES_PATTERNS = ["Hgt", "Readonly"];
+const BLACKLIST_TYPES_PATTERNS = ["Hgt", "Readonly", "Srtm"];
 const BLACKLIST_TYPES_SET = new Set(BLACKLIST_TYPES);
 
 function filterTypes(tname: string) {

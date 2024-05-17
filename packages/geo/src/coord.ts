@@ -80,7 +80,13 @@ export function isCoord3d(
 export function isCoord(
   coord: Coord2d | Coord3d | number[],
 ): coord is Coord2d | Coord3d {
-  return Array.isArray(coord) && (coord.length === 2 || coord.length === 3);
+  return Array.isArray(coord) && (coord.length === 2 || coord.length === 3) && coord.every((el) => typeof el === "number");
+}
+
+export function assertsCoord2d(
+  coord: Coord2d | Coord3d | number[],
+): asserts coord is Coord2d {
+  if (!isCoord2d(coord)) throw new Error(`Invalid coord2d: ${coord}`);
 }
 
 /**
@@ -91,13 +97,8 @@ export function isCoord(
  * @throws {Error} Invalid array length
  */
 export function arr2coord(arr: number[]): Coord2d | Coord3d {
-  if (arr.length === 2) {
-    return [arr[0], arr[1]];
-  }
-  if (arr.length === 3) {
-    return [arr[0], arr[1], arr[2]];
-  }
-  throw new Error(`Invalid array length ${arr.length} for coord`);
+  if (!isCoord(arr)) throw new Error(`Invalid array length ${arr.length} for coord`);
+  return arr;
 }
 
 export function coordIsWgs84(coord: Coord2d | Coord3d): boolean {

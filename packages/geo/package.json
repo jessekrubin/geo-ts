@@ -23,8 +23,9 @@
     "build:tsup": "tsup --format cjs,esm --dts",
     "test": "vitest run",
     "dev": "vitest watch --coverage",
-    "lint": "eslint src/** --ext .ts",
+    "lint": "eslint src",
     "fmt": "prettier --write .",
+    "nodetest": "node --import tsx --test ./src/*test.ts",
     "prepublishOnly": "pnpm run build"
   },
   "publishConfig": {
@@ -35,9 +36,11 @@
   },
   "devDependencies": {
     "@jsse/eslint-config": "^0.1.13",
+    "@jsse/tsconfig": "^0.0.2",
     "eslint": "^8.56.0",
     "prettier": "^3.1.1",
     "tsup": "^8.0.1",
+    "tsx": "^4.9.3",
     "typescript": "^5.4.5",
     "vitest": "^1.6.0"
   }
