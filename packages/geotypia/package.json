@@ -42,11 +42,11 @@
     "prepare": "ts-patch install && typia patch"
   },
   "dependencies": {
-    "@jsse/geotypes": "workspace:*",
-    "graphql": "^16.8.1"
+    "@jsse/geotypes": "workspace:*"
   },
   "devDependencies": {
     "@jsse/eslint-config": "^0.1.13",
+    "@jsse/tsconfig": "^0.0.2",
     "@microsoft/api-extractor": "^7.43.0",
     "@types/geojson": "^7946.0.14",
     "@typescript-eslint/eslint-plugin": "^7.8.0",

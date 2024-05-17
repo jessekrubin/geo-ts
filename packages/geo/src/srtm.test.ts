@@ -1,12 +1,12 @@
-import { test, expect, assert } from "vitest";
+import { assert, expect, test } from "vitest";
 import { tuple } from "./tuple.js";
 import {
-  ll2srtm,
-  isSrtmString,
-  srtm2bbox,
-  parseSrtmString,
-  parseSrtm,
   bbox2srtms,
+  isSrtmString,
+  ll2srtm,
+  parseSrtm,
+  parseSrtmString,
+  srtm2bbox,
 } from "./srtm.js";
 
 test("ll2srtm", () => {
@@ -19,10 +19,10 @@ test("ll2srtm", () => {
       assert(isSrtmString(srtm.str));
       assert(srtm.ns === (lat >= 0 ? "N" : "S"));
       assert(srtm.ew === (lng >= 0 ? "E" : "W"));
-      if (lat !== 90) {
-        assert(srtm.lat === Math.floor(Math.abs(lat)));
-      } else {
+      if (lat === 90) {
         assert(srtm.lat === 89);
+      } else {
+        assert(srtm.lat === Math.floor(Math.abs(lat)));
       }
       if (lng !== 180 && lng !== -180) {
         assert(srtm.lng === Math.floor(Math.abs(lng)));
@@ -67,14 +67,14 @@ test("srtm-valid-is-180x360", () => {
   }
   expect(valid.size).toBe(180 * 360);
   // check that all ids are unique and equal to 0..180*360
-  const idsArr = Array.from(idsSet);
+  const idsArr = [...idsSet];
   const invalidIds = idsArr.filter((id) => id < 0 || id >= 180 * 360);
   expect(
     invalidIds.length,
     `invalid ids: ${invalidIds.length}, ${invalidIds.join(", ")}`,
   ).toBe(0);
   expect(idsSet.size).toBe(180 * 360);
-  expect(Array.from(idsSet).sort((a, b) => a - b)).toStrictEqual(expectedIds);
+  expect([...idsSet].sort((a, b) => a - b)).toStrictEqual(expectedIds);
 });
 
 /**
@@ -95,7 +95,7 @@ test("srtm-invalid", () => {
 test("bae-area-srtm-tiles", () => {
   // tile id (20, 49, 7) bbox of bay area
   const bbox = tuple(
-    ...[-123.75, 36.59788913307021, -120.9375, 38.8225909761771],
+    -123.75, 36.597_889_133_070_21, -120.9375, 38.822_590_976_177_1,
   );
   const srtmtiles = [...bbox2srtms(bbox)];
   const geojsonPolygons = srtmtiles.map((srtm) => {
@@ -128,15 +128,15 @@ test("bae-area-srtm-tiles", () => {
       type: "Polygon",
       coordinates: [
         [
-          [-123.75, 36.59788913307021],
-          [-123.75, 38.8225909761771],
-          [-120.9375, 38.8225909761771],
-          [-120.9375, 36.59788913307021],
-          [-123.75, 36.59788913307021],
+          [-123.75, 36.597_889_133_070_21],
+          [-123.75, 38.822_590_976_177_1],
+          [-120.9375, 38.822_590_976_177_1],
+          [-120.9375, 36.597_889_133_070_21],
+          [-123.75, 36.597_889_133_070_21],
         ],
       ],
     },
-    bbox: [-123.75, 36.59788913307021, -120.9375, 38.8225909761771],
+    bbox: [-123.75, 36.597_889_133_070_21, -120.9375, 38.822_590_976_177_1],
     properties: {
       title: "XYZ tile (20, 49, 7)",
       properties: {
@@ -161,7 +161,7 @@ test("bae-area-srtm-tiles", () => {
       lat: 36,
       ew: "W",
       lng: 124,
-      ix: { x: 56, y: 126, id: 45416 },
+      ix: { x: 56, y: 126, id: 45_416 },
     },
     {
       str: "N36W123",
@@ -169,7 +169,7 @@ test("bae-area-srtm-tiles", () => {
       lat: 36,
       ew: "W",
       lng: 123,
-      ix: { x: 57, y: 126, id: 45417 },
+      ix: { x: 57, y: 126, id: 45_417 },
     },
     {
       str: "N36W122",
@@ -177,7 +177,7 @@ test("bae-area-srtm-tiles", () => {
       lat: 36,
       ew: "W",
       lng: 122,
-      ix: { x: 58, y: 126, id: 45418 },
+      ix: { x: 58, y: 126, id: 45_418 },
     },
     {
       str: "N36W121",
@@ -185,7 +185,7 @@ test("bae-area-srtm-tiles", () => {
       lat: 36,
       ew: "W",
       lng: 121,
-      ix: { x: 59, y: 126, id: 45419 },
+      ix: { x: 59, y: 126, id: 45_419 },
     },
     {
       str: "N37W124",
@@ -193,7 +193,7 @@ test("bae-area-srtm-tiles", () => {
       lat: 37,
       ew: "W",
       lng: 124,
-      ix: { x: 56, y: 127, id: 45776 },
+      ix: { x: 56, y: 127, id: 45_776 },
     },
     {
       str: "N37W123",
@@ -201,7 +201,7 @@ test("bae-area-srtm-tiles", () => {
       lat: 37,
       ew: "W",
       lng: 123,
-      ix: { x: 57, y: 127, id: 45777 },
+      ix: { x: 57, y: 127, id: 45_777 },
     },
     {
       str: "N37W122",
@@ -209,7 +209,7 @@ test("bae-area-srtm-tiles", () => {
       lat: 37,
       ew: "W",
       lng: 122,
-      ix: { x: 58, y: 127, id: 45778 },
+      ix: { x: 58, y: 127, id: 45_778 },
     },
     {
       str: "N37W121",
@@ -217,7 +217,7 @@ test("bae-area-srtm-tiles", () => {
       lat: 37,
       ew: "W",
       lng: 121,
-      ix: { x: 59, y: 127, id: 45779 },
+      ix: { x: 59, y: 127, id: 45_779 },
     },
     {
       str: "N38W124",
@@ -225,7 +225,7 @@ test("bae-area-srtm-tiles", () => {
       lat: 38,
       ew: "W",
       lng: 124,
-      ix: { x: 56, y: 128, id: 46136 },
+      ix: { x: 56, y: 128, id: 46_136 },
     },
     {
       str: "N38W123",
@@ -233,7 +233,7 @@ test("bae-area-srtm-tiles", () => {
       lat: 38,
       ew: "W",
       lng: 123,
-      ix: { x: 57, y: 128, id: 46137 },
+      ix: { x: 57, y: 128, id: 46_137 },
     },
     {
       str: "N38W122",
@@ -241,7 +241,7 @@ test("bae-area-srtm-tiles", () => {
       lat: 38,
       ew: "W",
       lng: 122,
-      ix: { x: 58, y: 128, id: 46138 },
+      ix: { x: 58, y: 128, id: 46_138 },
     },
     {
       str: "N38W121",
@@ -249,7 +249,7 @@ test("bae-area-srtm-tiles", () => {
       lat: 38,
       ew: "W",
       lng: 121,
-      ix: { x: 59, y: 128, id: 46139 },
+      ix: { x: 59, y: 128, id: 46_139 },
     },
   ];
   const expectedFeatureCollection = {
@@ -262,15 +262,15 @@ test("bae-area-srtm-tiles", () => {
           type: "Polygon",
           coordinates: [
             [
-              [-123.75, 36.59788913307021],
-              [-123.75, 38.8225909761771],
-              [-120.9375, 38.8225909761771],
-              [-120.9375, 36.59788913307021],
-              [-123.75, 36.59788913307021],
+              [-123.75, 36.597_889_133_070_21],
+              [-123.75, 38.822_590_976_177_1],
+              [-120.9375, 38.822_590_976_177_1],
+              [-120.9375, 36.597_889_133_070_21],
+              [-123.75, 36.597_889_133_070_21],
             ],
           ],
         },
-        bbox: [-123.75, 36.59788913307021, -120.9375, 38.8225909761771],
+        bbox: [-123.75, 36.597_889_133_070_21, -120.9375, 38.822_590_976_177_1],
         properties: {
           title: "XYZ tile (20, 49, 7)",
           properties: {
@@ -292,7 +292,7 @@ test("bae-area-srtm-tiles", () => {
             lat: 36,
             ew: "W",
             lng: 124,
-            ix: { x: 56, y: 126, id: 45416 },
+            ix: { x: 56, y: 126, id: 45_416 },
           },
         },
         geometry: {
@@ -317,7 +317,7 @@ test("bae-area-srtm-tiles", () => {
             lat: 36,
             ew: "W",
             lng: 123,
-            ix: { x: 57, y: 126, id: 45417 },
+            ix: { x: 57, y: 126, id: 45_417 },
           },
         },
         geometry: {
@@ -342,7 +342,7 @@ test("bae-area-srtm-tiles", () => {
             lat: 36,
             ew: "W",
             lng: 122,
-            ix: { x: 58, y: 126, id: 45418 },
+            ix: { x: 58, y: 126, id: 45_418 },
           },
         },
         geometry: {
@@ -367,7 +367,7 @@ test("bae-area-srtm-tiles", () => {
             lat: 36,
             ew: "W",
             lng: 121,
-            ix: { x: 59, y: 126, id: 45419 },
+            ix: { x: 59, y: 126, id: 45_419 },
           },
         },
         geometry: {
@@ -392,7 +392,7 @@ test("bae-area-srtm-tiles", () => {
             lat: 37,
             ew: "W",
             lng: 124,
-            ix: { x: 56, y: 127, id: 45776 },
+            ix: { x: 56, y: 127, id: 45_776 },
           },
         },
         geometry: {
@@ -417,7 +417,7 @@ test("bae-area-srtm-tiles", () => {
             lat: 37,
             ew: "W",
             lng: 123,
-            ix: { x: 57, y: 127, id: 45777 },
+            ix: { x: 57, y: 127, id: 45_777 },
           },
         },
         geometry: {
@@ -442,7 +442,7 @@ test("bae-area-srtm-tiles", () => {
             lat: 37,
             ew: "W",
             lng: 122,
-            ix: { x: 58, y: 127, id: 45778 },
+            ix: { x: 58, y: 127, id: 45_778 },
           },
         },
         geometry: {
@@ -467,7 +467,7 @@ test("bae-area-srtm-tiles", () => {
             lat: 37,
             ew: "W",
             lng: 121,
-            ix: { x: 59, y: 127, id: 45779 },
+            ix: { x: 59, y: 127, id: 45_779 },
           },
         },
         geometry: {
@@ -492,7 +492,7 @@ test("bae-area-srtm-tiles", () => {
             lat: 38,
             ew: "W",
             lng: 124,
-            ix: { x: 56, y: 128, id: 46136 },
+            ix: { x: 56, y: 128, id: 46_136 },
           },
         },
         geometry: {
@@ -517,7 +517,7 @@ test("bae-area-srtm-tiles", () => {
             lat: 38,
             ew: "W",
             lng: 123,
-            ix: { x: 57, y: 128, id: 46137 },
+            ix: { x: 57, y: 128, id: 46_137 },
           },
         },
         geometry: {
@@ -542,7 +542,7 @@ test("bae-area-srtm-tiles", () => {
             lat: 38,
             ew: "W",
             lng: 122,
-            ix: { x: 58, y: 128, id: 46138 },
+            ix: { x: 58, y: 128, id: 46_138 },
           },
         },
         geometry: {
@@ -567,7 +567,7 @@ test("bae-area-srtm-tiles", () => {
             lat: 38,
             ew: "W",
             lng: 121,
-            ix: { x: 59, y: 128, id: 46139 },
+            ix: { x: 59, y: 128, id: 46_139 },
           },
         },
         geometry: {

@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "chicoff.mapfile",
+    "dbaeumer.vscode-eslint",
+    "editorconfig.editorconfig",
+    "esbenp.prettier-vscode",
+    "johnpapa.vscode-peacock",
+    "ms-azuretools.vscode-docker",
+    "prisma.prisma",
+    "rvest.vs-code-prettier-eslint"
+  ]
+}

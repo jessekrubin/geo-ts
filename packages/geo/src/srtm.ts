@@ -127,9 +127,9 @@ export function parseSrtmString(str: string): SrtmTile {
     throw new Error(`invalid srtm string: ${str}`);
   }
   const ns = str[0] as "N" | "S";
-  const lat = parseInt(str.slice(1, 3), 10);
+  const lat = Number.parseInt(str.slice(1, 3), 10);
   const ew = str[3] as "E" | "W";
-  const lng = parseInt(str.slice(4, 7), 10);
+  const lng = Number.parseInt(str.slice(4, 7), 10);
   const x = (ew === "W" ? -lng : lng) + 180;
   const y = (ns === "S" ? -lat : lat) + 90;
   return {
@@ -144,19 +144,6 @@ export function parseSrtmString(str: string): SrtmTile {
       id: y * 360 + x,
     },
   };
-}
-
-export function parseSrtm(input: SrtmLike): SrtmTile {
-  if (typeof input === "string") {
-    return parseSrtmString(input);
-  }
-  if (typeof input === "number" || typeof input === "bigint") {
-    return srtmid2srtm(input);
-  }
-  if ("x" in input && "y" in input) {
-    return xy2srtm(input);
-  }
-  return ll2srtm(input);
 }
 
 export function srtmll2srtm(input: SrtmTileLngLat): SrtmTile {
@@ -238,4 +225,17 @@ export function* bbox2srtms(bbox: BBox): Generator<SrtmTile> {
       yield xy2srtm({ x: _x, y: _y });
     }
   }
+}
+
+export function parseSrtm(input: SrtmLike): SrtmTile {
+  if (typeof input === "string") {
+    return parseSrtmString(input);
+  }
+  if (typeof input === "number" || typeof input === "bigint") {
+    return srtmid2srtm(input);
+  }
+  if ("x" in input && "y" in input) {
+    return xy2srtm(input);
+  }
+  return ll2srtm(input);
 }

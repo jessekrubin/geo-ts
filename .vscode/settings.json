@@ -1,3 +1,33 @@
 {
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "editor.renderWhitespace": "boundary",
+  "editor.rulers": [
+    88,
+    100,
+    120
+  ],
+  "editor.stickyScroll.enabled": true,
+  "editor.tabSize": 2,
+  "files.associations": {
+    "**/*.code-workspace": "json",
+    "**/config/*.json": "jsonc",
+    "**/config/jest.config.json": "json",
+    "**/config/rig.json": "jsonc",
+    "**/config/rush-project.json": "jsonc",
+    "**/config/typescript.json": "jsonc",
+    "**/package.json": "json",
+    "rush.json": "jsonc"
+  },
+  "files.trimTrailingWhitespace": true,
+  "python.formatting.provider": "black",
+  "search.exclude": {
+    "**/bower_components": true,
+    "**/coverage": true,
+    "**/dist": true,
+    "**/lib": true,
+    "**/lib-amd": true,
+    "**/node_modules": true,
+    "**/temp": true,
+    "**/test/**/temp": false
+  }
 }
