@@ -25,7 +25,7 @@
     "test": "vitest run",
     "cov": "vitest run --coverage",
     "dev": "vitest watch --coverage",
-    "lint": "eslint src",
+    "lint": "eslint .",
     "fmt": "prettier --write . --ignore-path ../../.prettierignore",
     "nodetest": "node --import tsx --test ./src/*test.ts",
     "prepublishOnly": "pnpm run build"
