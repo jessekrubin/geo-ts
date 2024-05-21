@@ -1,68 +1,75 @@
-import type { Coord2d, Coord3d } from "@jsse/geotypes";
+import type { Coord, Coord2d, Coord3d } from "@jsse/geotypes";
 
-/**
- * Return coordinate array
- *
- * WHY? so you don't have to explicitly type `[x, y]/[x, y, z] as const`
- *
- * @param x {number} x coordinate
- * @param y {number} y coordinate
- *
- * @returns {Coord2d} 2d coordinate array [x, y]
- */
+export function coord(c2d: Coord2d): Coord2d;
+export function coord(c3d: Coord3d): Coord3d;
 export function coord(x: number, y: number): Coord2d;
-/**
- * Return coordinate array
- *
- * WHY? so you don't have to explicitly type `[x, y]/[x, y, z] as const`
- *
- * @param x {number} x coordinate
- * @param y {number} y coordinate
- * @param z {number} z coordinate
- *
- * @returns {Coord3d} 3d coordinate array [x, y, z]
- */
 export function coord(x: number, y: number, z: number): Coord3d;
 /**
- * Return coordinate array
- *
- * WHY? so you don't have to explicitly type `[x, y]/[x, y, z] as const`
- *
- * @param x {number} x coordinate
- * @param y {number} y coordinate
- * @param z {number} z coordinate
- *
- * @returns {Coord2d | Coord3d} 2d or 3d coordinate array [x, y] or [x, y, z]
+ * Returns a 2d or 3d coordinate tuple and infers the type.
+ * @param x - Coordinate tuple ([x, y] or [x, y, z]) or x coordinate.
+ * @param y - y coordinate (optional).
+ * @param z - z coordinate (optional).
+ * @returns {Coord2d | Coord3d} - 2d or 3d coordinate array.
  */
-export function coord(x: number, y: number, z?: number): Coord2d | Coord3d {
-  return z === undefined ? [x, y] : [x, y, z];
+export function coord(
+  x: Coord2d | Coord3d | number,
+  y?: number,
+  z?: number,
+): Coord2d | Coord3d {
+  if (Array.isArray(x)) {
+    return x.length === 2 ? (x as Coord2d) : (x as Coord3d);
+  }
+  return z === undefined ? [x, y as number] : [x, y as number, z];
+}
+
+export function coord2d(c2d: Coord2d): Coord2d;
+export function coord2d(x: number, y: number): Coord2d;
+/**
+ * Returns a 2d coordinate tuple.
+ * @param x - 2d coordinate tuple ([x, y]) or x coordinate.
+ * @param y - y coordinate (optional).
+ * @returns {Coord2d} - 2d coordinate array.
+ */
+export function coord2d(x: Coord2d | number, y?: number): Coord2d {
+  if (Array.isArray(x)) {
+    return x as Coord2d;
+  }
+  return [x, y as number];
+}
+
+export function coord3d(c3d: Coord3d): Coord3d;
+export function coord3d(x: number, y: number, z: number): Coord3d;
+/**
+ * Returns a 3d coordinate tuple.
+ * @param x - 3d coordinate tuple ([x, y, z]) or x coordinate.
+ * @param y - y coordinate (optional).
+ * @param z - z coordinate (optional).
+ * @returns {Coord3d} - 3d coordinate array.
+ */
+export function coord3d(x: Coord3d | number, y?: number, z?: number): Coord3d {
+  if (Array.isArray(x)) {
+    return x as Coord3d;
+  }
+  return [x, y as number, z as number];
 }
 
 /**
- * Return 2d coordinate array
- *
- * WHY? so you don't have to explicitly type `[x, y] as const`
- *
- * @param x {number} x coordinate
- * @param y {number} y coordinate
- * @returns {Coord2d} 2d coordinate array [x, y]
+ * Returns an array of coordinates.
+ * @param coords - Coordinates as separate arguments or as an array.
+ * @returns {Coord2d[] | Coord3d[]} - Array of 2d or 3d coordinates.
  */
-export function coord2d(x: number, y: number): Coord2d {
-  return [x, y];
-}
-
-/**
- * Return 3d coordinate array
- *
- * WHY? so you don't have to explicitly type `[x, y, z] as const`
- *
- * @param x {number} x coordinate
- * @param y {number} y coordinate
- * @param z {number} z coordinate
- * @returns {Coord3d} 3d coordinate array [x, y, z]
- */
-export function coord3d(x: number, y: number, z: number): Coord3d {
-  return [x, y, z];
+export function coords(...coords: Coord2d[]): Coord2d[];
+export function coords(...coords: Coord3d[]): Coord3d[];
+export function coords(...coords: (Coord2d | Coord3d)[]): (Coord2d | Coord3d)[];
+export function coords(coords: Coord2d[]): Coord2d[];
+export function coords(coords: Coord3d[]): Coord3d[];
+export function coords(coords: (Coord2d | Coord3d)[]): (Coord2d | Coord3d)[];
+export function coords(...args: Coord[] | Coord[][]): Coord[] {
+  if (Array.isArray(args[0]) && Array.isArray((args[0] as Coord[])[0])) {
+    // Flatten the array if the first argument is an array of arrays
+    return (args as Coord[][])[0] || [];
+  }
+  return args as Coord[];
 }
 
 export function isCoord2d(
@@ -80,7 +87,17 @@ export function isCoord3d(
 export function isCoord(
   coord: Coord2d | Coord3d | number[],
 ): coord is Coord2d | Coord3d {
-  return Array.isArray(coord) && (coord.length === 2 || coord.length === 3);
+  return (
+    Array.isArray(coord) &&
+    (coord.length === 2 || coord.length === 3) &&
+    coord.every((el) => typeof el === "number")
+  );
+}
+
+export function assertsCoord2d(
+  coord: Coord2d | Coord3d | number[],
+): asserts coord is Coord2d {
+  if (!isCoord2d(coord)) throw new Error(`Invalid coord2d: ${coord}`);
 }
 
 /**
@@ -91,13 +108,9 @@ export function isCoord(
  * @throws {Error} Invalid array length
  */
 export function arr2coord(arr: number[]): Coord2d | Coord3d {
-  if (arr.length === 2) {
-    return [arr[0], arr[1]];
-  }
-  if (arr.length === 3) {
-    return [arr[0], arr[1], arr[2]];
-  }
-  throw new Error(`Invalid array length ${arr.length} for coord`);
+  if (!isCoord(arr))
+    throw new Error(`Invalid array length ${arr.length} for coord`);
+  return arr;
 }
 
 export function coordIsWgs84(coord: Coord2d | Coord3d): boolean {

@@ -105,7 +105,9 @@ async function typesIndex(files: FileTypeExports[]) {
 
 async function main() {
   const filesAll = await glob("./src/types/*.ts");
-  const files = filesAll.filter((file) => !file.includes("index.ts"));
+  const files = filesAll
+    .filter((file) => !file.includes("index.ts"))
+    .sort((a, b) => a.localeCompare(b));
   const allTypes = await Promise.all(
     files.map(async (file) => exportedTypesForFile(file)),
   );

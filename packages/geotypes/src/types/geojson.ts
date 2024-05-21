@@ -1,4 +1,10 @@
-import type { ExtendsUndefined, IsNullable, IsUndefined } from "../utypes.js";
+import type {
+  ExtendsUndefined,
+  Fmt,
+  IsNull,
+  IsOptional,
+  IsUndefined,
+} from "../utypes.js";
 
 export type Longitude = number;
 export type Latitude = number;
@@ -17,17 +23,11 @@ export type LongitudeWgs84 = number;
  */
 export type LatitudeWgs84 = number;
 
-export type Coordinate2d =
-  | [x: Longitude, y: Latitude]
-  | readonly [x: Longitude, y: Latitude];
-export type Coordinate3d =
-  | [x: Longitude, y: Latitude, z: number]
-  | readonly [x: Longitude, y: Latitude, z: number];
+export type Coordinate2d = [x: Longitude, y: Latitude];
+export type Coordinate3d = [x: Longitude, y: Latitude, z: number];
 export type Coordinate =
   | [x: Longitude, y: Latitude]
-  | [x: Longitude, y: Latitude, z: number]
-  | readonly [x: Longitude, y: Latitude]
-  | readonly [x: Longitude, y: Latitude, z: number];
+  | [x: Longitude, y: Latitude, z: number];
 export type GeojsonBBox2d =
   | [west: Longitude, south: Latitude, east: Longitude, north: Latitude]
   | readonly [
@@ -79,27 +79,29 @@ export type GeojsonBBox =
     ];
 
 // 'type' property literals
-export type PointGeometryType = "Point";
-export type LineStringGeometryType = "LineString";
-export type PolygonGeometryType = "Polygon";
-export type MultiPointGeometryType = "MultiPoint";
-export type MultiLineStringGeometryType = "MultiLineString";
-export type MultiPolygonGeometryType = "MultiPolygon";
+// export type PointGeometryType = "Point";
+// export type LineStringGeometryType = "LineString";
+// export type PolygonGeometryType = "Polygon";
+// export type MultiPointGeometryType = "MultiPoint";
+// export type MultiLineStringGeometryType = "MultiLineString";
+// export type MultiPolygonGeometryType = "MultiPolygon";
 
-export type GeometryType =
+export type GeoJsonGeometryTypes =
   | "Point"
   | "LineString"
   | "Polygon"
   | "MultiPoint"
   | "MultiLineString"
-  | "MultiPolygon";
-
+  | "MultiPolygon"
+  | "GeometryCollection";
+export type GeoJsonTypes =
+  | "Feature"
+  | "FeatureCollection"
+  | GeoJsonGeometryTypes;
 export type FeatureType = "Feature";
 export type FeatureCollectionType = "FeatureCollection";
 export type GeometryCollectionType = "GeometryCollection";
 
-export type PointCoordinates<TCoordinate extends Coordinate = Coordinate> =
-  TCoordinate;
 /**
  * A LineString is an array of two or more positions.
  * const lineString: LineStringCoordinates = [ [100.0, 0.0], [101.0, 1.0] ];
@@ -128,81 +130,82 @@ export type LinearRing<TCoordinate extends Coordinate = Coordinate> = [
  *   ]
  * ];
  */
-export type PolygonCoordinates<TCoordinate extends Coordinate = Coordinate> = [
-  LinearRing<TCoordinate>,
-];
-
-export type MultiPointCoordinates<TCoordinate extends Coordinate = Coordinate> =
-  TCoordinate[];
-export type MultiLineStringCoordinates<
-  TCoordinate extends Coordinate = Coordinate,
-> = [
-  LineStringCoordinates<TCoordinate>,
-  ...LineStringCoordinates<TCoordinate>[],
-];
-export type MultiPolygonCoordinates<
-  TCoordinate extends Coordinate = Coordinate,
-> = [PolygonCoordinates<TCoordinate>, ...PolygonCoordinates<TCoordinate>[]];
+// export type PolygonCoordinates<TCoordinate extends Coordinate = Coordinate> = [
+//   LinearRing<TCoordinate>,
+// ];
+// export type MultiPointCoordinates<TCoordinate extends Coordinate = Coordinate> =
+//   TCoordinate[];
+// export type MultiLineStringCoordinates<
+//   TCoordinate extends Coordinate = Coordinate,
+// > = [
+//     LineStringCoordinates<TCoordinate>,
+//     ...LineStringCoordinates<TCoordinate>[],
+//   ];
+// export type MultiPolygonCoordinates<
+//   TCoordinate extends Coordinate = Coordinate,
+// > = [PolygonCoordinates<TCoordinate>, ...PolygonCoordinates<TCoordinate>[]];
 
 // Geometry object types
 export type PointGeometry<TCoordinate extends Coordinate = Coordinate> = {
-  type: PointGeometryType;
-  coordinates: PointCoordinates<TCoordinate>;
+  type: "Point";
+  coordinates: TCoordinate;
 };
 export type LineStringGeometry<TCoordinate extends Coordinate = Coordinate> = {
-  type: LineStringGeometryType;
-  coordinates: LineStringCoordinates<TCoordinate>;
+  type: "LineString";
+  coordinates: [TCoordinate, TCoordinate, ...TCoordinate[]];
 };
 export type PolygonGeometry<TCoordinate extends Coordinate = Coordinate> = {
-  type: PolygonGeometryType;
-  coordinates: PolygonCoordinates<TCoordinate>;
+  type: "Polygon";
+  coordinates: TCoordinate[][];
 };
 export type MultiPointGeometry<TCoordinate extends Coordinate = Coordinate> = {
-  type: MultiPointGeometryType;
-  coordinates: MultiPointCoordinates<TCoordinate>;
+  type: "MultiPoint";
+  coordinates: TCoordinate[];
 };
 export type MultiLineStringGeometry<
   TCoordinate extends Coordinate = Coordinate,
 > = {
-  type: MultiLineStringGeometryType;
-  coordinates: MultiLineStringCoordinates<TCoordinate>;
+  type: "MultiLineString";
+  coordinates: TCoordinate[][];
 };
 export type MultiPolygonGeometry<TCoordinate extends Coordinate = Coordinate> =
   {
-    type: MultiPolygonGeometryType;
-    coordinates: MultiPolygonCoordinates<TCoordinate>;
+    type: "MultiPolygon";
+    coordinates: TCoordinate[][][];
   };
 
-// 2d Geometry object types
-export type PointGeometry2d = PointGeometry<Coordinate2d>;
-export type LineStringGeometry2d = LineStringGeometry<Coordinate2d>;
-export type PolygonGeometry2d = PolygonGeometry<Coordinate2d>;
-export type MultiPointGeometry2d = MultiPointGeometry<Coordinate2d>;
-export type MultiLineStringGeometry2d = MultiLineStringGeometry<Coordinate2d>;
-export type MultiPolygonGeometry2d = MultiPolygonGeometry<Coordinate2d>;
-
-// 3d Geometry object types
-export type PointGeometry3d = PointGeometry<Coordinate3d>;
-export type LineStringGeometry3d = LineStringGeometry<Coordinate3d>;
-export type PolygonGeometry3d = PolygonGeometry<Coordinate3d>;
-export type MultiPointGeometry3d = MultiPointGeometry<Coordinate3d>;
-export type MultiLineStringGeometry3d = MultiLineStringGeometry<Coordinate3d>;
-export type MultiPolygonGeometry3d = MultiPolygonGeometry<Coordinate3d>;
-
-export type Geometry<TCoordinate extends Coordinate = Coordinate> =
+export type PrimitiveGeometry<TCoordinate extends Coordinate = Coordinate> =
   | PointGeometry<TCoordinate>
   | LineStringGeometry<TCoordinate>
   | PolygonGeometry<TCoordinate>
   | MultiPointGeometry<TCoordinate>
   | MultiLineStringGeometry<TCoordinate>
   | MultiPolygonGeometry<TCoordinate>;
+
+/**
+ * Use `interface` instead of `type` for declaration merging => recursive type
+ */
+// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
+export interface GeometryCollection<G extends Geometry = Geometry> {
+  type: "GeometryCollection";
+  geometries: G[];
+}
+
+export type Geometry<TCoordinate extends Coordinate = Coordinate> =
+  | PrimitiveGeometry<TCoordinate>
+  | GeometryCollection<Geometry<TCoordinate>>;
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type GeoJsonProperties = { [name: string]: any } | null;
+// export type GeoJsonProperties = Record<string, unknown> | null;
 export type Geometry2d = Geometry<Coordinate2d>;
 export type Geometry3d = Geometry<Coordinate3d>;
 
-export type GeoJsonProperties = Record<string, unknown> | null;
-
-// export type GeoJsonPropertiesDefault = { [name: string]: any } | null;
-
+/**
+ * =====================================================================================
+ * GEOJSON Coordinate Reference System Objects
+ * =====================================================================================
+ */
 export type NamedCoordinateReferenceSystem = {
   type: "name";
   properties: {
@@ -225,6 +228,9 @@ export type CoordinateReferenceSystemNullable =
   | null
   | undefined;
 
+/**
+ * =====================================================================================
+ */
 export type FeatureGenericOptions<
   // TProperties = GeoJsonProperties | undefined,
   TFeatureId extends string | number | undefined = string | number | undefined,
@@ -297,21 +303,23 @@ export type FeatureOptions<
         crs?: CoordinateReferenceSystem | null;
       }
     : // (("id" extends keyof TOptions ? { id: TOptions["id"] } : { id?: string | number }) &
-      ("id" extends keyof TOptions
-        ? IsNullable<TOptions["id"]> extends true
-          ? { id?: TOptions["id"] }
-          : { id: TOptions["id"] }
-        : { id?: string | number }) &
-        ("bbox" extends keyof TOptions
-          ? IsNullable<TOptions["bbox"]> extends true
-            ? { bbox?: TOptions["bbox"] }
-            : { bbox: TOptions["bbox"] }
-          : { bbox?: GeojsonBBox }) &
-        ("crs" extends keyof TOptions
-          ? IsNullable<TOptions["crs"]> extends true
-            ? { crs?: TOptions["crs"] }
-            : { crs: TOptions["crs"] }
-          : { crs?: CoordinateReferenceSystem | null });
+      Fmt<
+        ("id" extends keyof TOptions
+          ? IsOptional<TOptions["id"]> extends true
+            ? { id?: TOptions["id"] }
+            : { id: TOptions["id"] }
+          : { id?: string | number }) &
+          ("bbox" extends keyof TOptions
+            ? IsOptional<TOptions["bbox"]> extends true
+              ? { bbox?: TOptions["bbox"] }
+              : { bbox: TOptions["bbox"] }
+            : { bbox?: GeojsonBBox }) &
+          ("crs" extends keyof TOptions
+            ? IsOptional<TOptions["crs"]> extends true
+              ? { crs?: TOptions["crs"] }
+              : { crs: TOptions["crs"] }
+            : { crs?: CoordinateReferenceSystem | null })
+      >;
 
 type FeatureProperties<TProperties> =
   IsUndefined<TProperties> extends true
@@ -322,62 +330,56 @@ type FeatureProperties<TProperties> =
       ? {
           properties?: TProperties;
         }
-      : {
-          properties: TProperties;
-        };
+      : IsOptional<TProperties> extends true
+        ?
+            | {
+                properties: null;
+              }
+            | {
+                properties: TProperties;
+              }
+        : IsNull<TProperties> extends true
+          ? {
+              properties: null;
+            }
+          : {
+              properties: TProperties;
+            };
 
 export type Feature<
-  TGeometry extends Geometry = Geometry,
+  TGeometry extends Geometry | null = Geometry | null,
   TProperties extends GeoJsonProperties | null | undefined | unknown =
     | GeoJsonProperties
     | null
     | undefined,
   TFeatureOptions extends
-    | Partial<FeatureGenericOptions>
-    | undefined = FeatureGenericOptions,
+    Partial<FeatureGenericOptions> = Partial<FeatureGenericOptions>,
 > = {
-  type: FeatureType;
+  type: "Feature";
   geometry: TGeometry;
 } & FeatureOptions<TFeatureOptions> &
   FeatureProperties<TProperties>;
 
 export type FeatureCollection<
-  TGeometry extends Geometry = Geometry,
+  TGeometry extends Geometry | null = Geometry,
   TProperties extends GeoJsonProperties | null | undefined | unknown =
     | GeoJsonProperties
     | null
     | undefined,
   TFeatureOptions extends
-    | Partial<FeatureGenericOptions>
-    | undefined = undefined,
+    Partial<FeatureGenericOptions> = FeatureGenericOptions,
 > = {
-  type: FeatureCollectionType;
+  type: "FeatureCollection";
   features: Feature<TGeometry, TProperties, TFeatureOptions>[];
-} & FeatureOptions<TFeatureOptions> &
-  FeatureProperties<TProperties>;
+} & FeatureOptions<TFeatureOptions>;
 
 export type PointFeature<
   TProperties extends GeoJsonProperties | undefined =
     | GeoJsonProperties
     | undefined,
   TFeatureOptions extends
-    | Partial<FeatureGenericOptions>
-    | undefined = undefined,
-> = Feature<PointGeometry, TProperties, TFeatureOptions>;
-
-export type PointFeature2d<
-  TProperties extends GeoJsonProperties | undefined =
-    | GeoJsonProperties
-    | undefined,
-  TFeatureOptions extends
     Partial<FeatureGenericOptions> = FeatureGenericOptions,
-> = Feature<PointGeometry2d, TProperties, TFeatureOptions>;
-export type PointFeature3d<
-  TProperties extends GeoJsonProperties | undefined =
-    | GeoJsonProperties
-    | undefined,
-  FeatureOptions extends Partial<FeatureGenericOptions> = FeatureGenericOptions,
-> = Feature<PointGeometry3d, TProperties, FeatureOptions>;
+> = Feature<PointGeometry, TProperties, TFeatureOptions>;
 
 export type LineStringFeature<
   TCoordinate extends Coordinate = Coordinate,
@@ -386,21 +388,6 @@ export type LineStringFeature<
     | undefined,
   FeatureOptions extends Partial<FeatureGenericOptions> = FeatureGenericOptions,
 > = Feature<LineStringGeometry<TCoordinate>, TProperties, FeatureOptions>;
-export type LineStringFeature2d<
-  FeatureOptions extends Partial<FeatureGenericOptions> = FeatureGenericOptions,
-> = Feature<
-  LineStringGeometry2d,
-  GeoJsonProperties | undefined,
-  FeatureOptions
->;
-
-export type LineStringFeature3d<
-  FeatureOptions extends Partial<FeatureGenericOptions> = FeatureGenericOptions,
-> = Feature<
-  LineStringGeometry3d,
-  GeoJsonProperties | undefined,
-  FeatureOptions
->;
 
 export type PolygonFeature<
   TCoordinate extends Coordinate = Coordinate,
@@ -410,14 +397,6 @@ export type PolygonFeature<
   FeatureOptions extends Partial<FeatureGenericOptions> = FeatureGenericOptions,
 > = Feature<PolygonGeometry<TCoordinate>, TProperties, FeatureOptions>;
 
-export type PolygonFeature2d<
-  FeatureOptions extends Partial<FeatureGenericOptions> = FeatureGenericOptions,
-> = Feature<PolygonGeometry2d, GeoJsonProperties | undefined, FeatureOptions>;
-
-export type PolygonFeature3d<
-  FeatureOptions extends Partial<FeatureGenericOptions> = FeatureGenericOptions,
-> = Feature<PolygonGeometry3d, GeoJsonProperties | undefined, FeatureOptions>;
-
 export type MultiPointFeature<
   TProperties extends GeoJsonProperties | undefined =
     | GeoJsonProperties
@@ -425,6 +404,99 @@ export type MultiPointFeature<
   FeatureOptions extends Partial<FeatureGenericOptions> = FeatureGenericOptions,
 > = Feature<MultiPointGeometry, TProperties, FeatureOptions>;
 
+export type MultiLineStringFeature<
+  TCoordinate extends Coordinate = Coordinate,
+  TProperties extends GeoJsonProperties | undefined =
+    | GeoJsonProperties
+    | undefined,
+  FeatureOptions extends Partial<FeatureGenericOptions> = FeatureGenericOptions,
+> = Feature<MultiLineStringGeometry<TCoordinate>, TProperties, FeatureOptions>;
+
+export type MultiPolygonFeature<
+  TCoordinate extends Coordinate = Coordinate,
+  TProperties extends GeoJsonProperties | undefined =
+    | GeoJsonProperties
+    | undefined,
+  FeatureOptions extends Partial<FeatureGenericOptions> = FeatureGenericOptions,
+> = Feature<MultiPolygonGeometry<TCoordinate>, TProperties, FeatureOptions>;
+
+// COMPAT W/ `@types/geojson`
+export type Point<TCoordinate extends Coordinate = Coordinate> =
+  PointGeometry<TCoordinate>;
+export type LineString<TCoordinate extends Coordinate = Coordinate> =
+  LineStringGeometry<TCoordinate>;
+export type Polygon<TCoordinate extends Coordinate = Coordinate> =
+  PolygonGeometry<TCoordinate>;
+export type MultiPoint<TCoordinate extends Coordinate = Coordinate> =
+  MultiPointGeometry<TCoordinate>;
+export type MultiLineString<TCoordinate extends Coordinate = Coordinate> =
+  MultiLineStringGeometry<TCoordinate>;
+export type MultiPolygon<TCoordinate extends Coordinate = Coordinate> =
+  MultiPolygonGeometry<TCoordinate>;
+export type GeometryObject<TCoordinate extends Coordinate = Coordinate> =
+  Geometry<TCoordinate>;
+
+/**
+ * =================================================================================
+ * 2D GEOMETRY ~ 2D GEOMETRY ~ 2D GEOMETRY ~ 2D GEOMETRY ~ 2D GEOMETRY ~ 2D GEOMETRY
+ * =================================================================================
+ */
+export type PointGeometry2d = PointGeometry<Coordinate2d>;
+export type LineStringGeometry2d = LineStringGeometry<Coordinate2d>;
+export type PolygonGeometry2d = PolygonGeometry<Coordinate2d>;
+export type MultiPointGeometry2d = MultiPointGeometry<Coordinate2d>;
+export type MultiLineStringGeometry2d = MultiLineStringGeometry<Coordinate2d>;
+export type MultiPolygonGeometry2d = MultiPolygonGeometry<Coordinate2d>;
+
+/**
+ * =================================================================================
+ * 3D GEOMETRY ~ 3D GEOMETRY ~ 3D GEOMETRY ~ 3D GEOMETRY ~ 3D GEOMETRY ~ 3D GEOMETRY
+ * =================================================================================
+ */
+export type PointGeometry3d = PointGeometry<Coordinate3d>;
+export type LineStringGeometry3d = LineStringGeometry<Coordinate3d>;
+export type PolygonGeometry3d = PolygonGeometry<Coordinate3d>;
+export type MultiPointGeometry3d = MultiPointGeometry<Coordinate3d>;
+export type MultiLineStringGeometry3d = MultiLineStringGeometry<Coordinate3d>;
+export type MultiPolygonGeometry3d = MultiPolygonGeometry<Coordinate3d>;
+
+export type PointFeature2d<
+  TProperties extends GeoJsonProperties | undefined =
+    | GeoJsonProperties
+    | undefined,
+  TFeatureOptions extends
+    Partial<FeatureGenericOptions> = FeatureGenericOptions,
+> = Feature<PointGeometry2d, TProperties, TFeatureOptions>;
+
+export type PointFeature3d<
+  TProperties extends GeoJsonProperties | undefined =
+    | GeoJsonProperties
+    | undefined,
+  FeatureOptions extends Partial<FeatureGenericOptions> = FeatureGenericOptions,
+> = Feature<PointGeometry3d, TProperties, FeatureOptions>;
+
+export type LineStringFeature2d<
+  FeatureOptions extends Partial<FeatureGenericOptions> = FeatureGenericOptions,
+> = Feature<
+  LineStringGeometry2d,
+  GeoJsonProperties | undefined,
+  FeatureOptions
+>;
+export type LineStringFeature3d<
+  FeatureOptions extends Partial<FeatureGenericOptions> = FeatureGenericOptions,
+> = Feature<
+  LineStringGeometry3d,
+  GeoJsonProperties | undefined,
+  FeatureOptions
+>;
+
+export type PolygonFeature2d<
+  FeatureOptions extends Partial<FeatureGenericOptions> = FeatureGenericOptions,
+> = Feature<PolygonGeometry2d, GeoJsonProperties | undefined, FeatureOptions>;
+
+export type PolygonFeature3d<
+  FeatureOptions extends Partial<FeatureGenericOptions> = FeatureGenericOptions,
+> = Feature<PolygonGeometry3d, GeoJsonProperties | undefined, FeatureOptions>;
 export type MultiPointFeature2d<
   FeatureOptions extends Partial<FeatureGenericOptions> = FeatureGenericOptions,
 > = Feature<
@@ -441,14 +513,6 @@ export type MultiPointFeature3d<
   FeatureOptions
 >;
 
-export type MultiLineStringFeature<
-  TCoordinate extends Coordinate = Coordinate,
-  TProperties extends GeoJsonProperties | undefined =
-    | GeoJsonProperties
-    | undefined,
-  FeatureOptions extends Partial<FeatureGenericOptions> = FeatureGenericOptions,
-> = Feature<MultiLineStringGeometry<TCoordinate>, TProperties, FeatureOptions>;
-
 export type MultiLineStringFeature2d<
   FeatureOptions extends Partial<FeatureGenericOptions> = FeatureGenericOptions,
 > = Feature<
@@ -464,14 +528,6 @@ export type MultiLineStringFeature3d<
   GeoJsonProperties | undefined,
   FeatureOptions
 >;
-
-export type MultiPolygonFeature<
-  TCoordinate extends Coordinate = Coordinate,
-  TProperties extends GeoJsonProperties | undefined =
-    | GeoJsonProperties
-    | undefined,
-  FeatureOptions extends Partial<FeatureGenericOptions> = FeatureGenericOptions,
-> = Feature<MultiPolygonGeometry<TCoordinate>, TProperties, FeatureOptions>;
 
 export type MultiPolygonFeature2d<
   FeatureOptions extends Partial<FeatureGenericOptions> = FeatureGenericOptions,

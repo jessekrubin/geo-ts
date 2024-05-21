@@ -1,4 +1,5 @@
 {
+  "extends": "@jsse/tsconfig/tsconfig.json",
   "compilerOptions": {
     "target": "ES2021",
     "rootDir": "src",

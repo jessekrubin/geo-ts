@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-use-before-define,@typescript-eslint/no-unused-expressions */
 import process from "node:process";
+import path from "node:path";
 import { $, argv, chalk, echo, fs } from "zx";
 
 const TYPIA_SRC = "./src/typia-src";
 const TYPIA_IMPORT = 'import typia from "typia";';
-const BIG_FILE = true;
+const BIG_FILE = false;
 type FileTypeExports = {
   fspath: string;
   types: string[];
@@ -163,7 +164,22 @@ async function smallFiles(geotypes: GeotypesMetadata) {
   const infos = await Promise.all(
     geotypes.geotypes.map((tname) => smallSingleFile(tname)),
   );
-  return infos;
+  const indexLines = [
+    "/* auto-generated ~ build.mts */",
+    ...infos.map(
+      (info) => {
+        return [
+          "export {",
+          ...info.fn_names.map((fn_name) => `  ${fn_name},`),
+          `} from "./geotypes/${info.filename}.js";`,
+        ].join("\n");
+      },
+      // `export { ${info.fn_names.join(", ")} } from "./geotypes/${info.filename}.js";`,
+    ),
+  ];
+  const indexString = indexLines.join("\n");
+  const indexFilepath = path.join("src", "geotypes.ts");
+  await fs.writeFile(indexFilepath, indexString);
 }
 
 async function nuke_input_dir() {
@@ -172,7 +188,7 @@ async function nuke_input_dir() {
 }
 
 const BLACKLIST_TYPES = ["Z"];
-const BLACKLIST_TYPES_PATTERNS = ["Hgt", "Readonly"];
+const BLACKLIST_TYPES_PATTERNS = ["Hgt", "Readonly", "Srtm"];
 const BLACKLIST_TYPES_SET = new Set(BLACKLIST_TYPES);
 
 function filterTypes(tname: string) {
