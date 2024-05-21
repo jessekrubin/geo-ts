@@ -9,7 +9,7 @@
   "license": "MIT",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/esm/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
@@ -17,14 +17,15 @@
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/esm/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
     "build-fast": "tsup src/geojson.ts --format cjs,esm",
     "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.tsd.json",
-    "build": "pnpm run typecheck && pnpm run build:indexes && pnpm run build:tsup",
+    "build": "pnpm run typecheck && pnpm run build:indexes && pnpm run build:tsup && pnpm run build:tsc",
+    "build:tsc": "tsc",
     "build:indexes": "tsx ./build.mts",
     "build:tsup": "tsup --format cjs,esm --dts",
     "test": "vitest run",
@@ -34,16 +35,16 @@
     "prepublishOnly": "pnpm run build"
   },
   "devDependencies": {
-    "@jsse/eslint-config": "^0.1.14",
+    "@jsse/eslint-config": "^0.1.15",
     "@types/geojson": "^7946.0.14",
-    "@typescript-eslint/eslint-plugin": "^7.9.0",
-    "@typescript-eslint/parser": "^7.9.0",
+    "@typescript-eslint/eslint-plugin": "^7.10.0",
+    "@typescript-eslint/parser": "^7.10.0",
     "@vitest/coverage-v8": "^1.6.0",
     "esbuild": "^0.21.3",
     "eslint": "^8.57.0",
     "prettier": "3.2.5",
     "tsup": "8.0.2",
-    "tsx": "^4.10.3",
+    "tsx": "^4.10.5",
     "typescript": "5.4.5",
     "vitest": "1.6.0",
     "zx": "^8.1.0"

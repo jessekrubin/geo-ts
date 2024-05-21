@@ -29,15 +29,11 @@
     },
     {
       "fspath": "./src/types/deckgl.ts",
-      "types": [
-        "DeckglMapViewstate",
-        "DeckglTilejson"
-      ]
+      "types": ["DeckglMapViewstate", "DeckglTilejson"]
     },
     {
       "fspath": "./src/types/geojson.ts",
       "types": [
-        "{",
         "Coordinate",
         "Coordinate2d",
         "Coordinate3d",
@@ -62,9 +58,11 @@
         "Geometry3d",
         "GeometryCollection",
         "GeometryCollectionType",
+        "GeometryObject",
         "Latitude",
         "LatitudeWgs84",
         "LinearRing",
+        "LineString",
         "LineStringCoordinates",
         "LineStringFeature",
         "LineStringFeature2d",
@@ -75,18 +73,21 @@
         "LinkedCoordinateReferenceSystem",
         "Longitude",
         "LongitudeWgs84",
+        "MultiLineString",
         "MultiLineStringFeature",
         "MultiLineStringFeature2d",
         "MultiLineStringFeature3d",
         "MultiLineStringGeometry",
         "MultiLineStringGeometry2d",
         "MultiLineStringGeometry3d",
+        "MultiPoint",
         "MultiPointFeature",
         "MultiPointFeature2d",
         "MultiPointFeature3d",
         "MultiPointGeometry",
         "MultiPointGeometry2d",
         "MultiPointGeometry3d",
+        "MultiPolygon",
         "MultiPolygonFeature",
         "MultiPolygonFeature2d",
         "MultiPolygonFeature3d",
@@ -94,12 +95,14 @@
         "MultiPolygonGeometry2d",
         "MultiPolygonGeometry3d",
         "NamedCoordinateReferenceSystem",
+        "Point",
         "PointFeature",
         "PointFeature2d",
         "PointFeature3d",
         "PointGeometry",
         "PointGeometry2d",
         "PointGeometry3d",
+        "Polygon",
         "PolygonFeature",
         "PolygonFeature2d",
         "PolygonFeature3d",
@@ -111,25 +114,15 @@
     },
     {
       "fspath": "./src/types/geostats.ts",
-      "types": [
-        "Geostats",
-        "GeostatsAttribute",
-        "GeostatsLayer"
-      ]
+      "types": ["Geostats", "GeostatsAttribute", "GeostatsLayer"]
     },
     {
       "fspath": "./src/types/mbtiles.ts",
-      "types": [
-        "MbtilesMetadataRow",
-        "MbtilesMetadataRows",
-        "MbtilesTilesRow"
-      ]
+      "types": ["MbtilesMetadataRow", "MbtilesMetadataRows", "MbtilesTilesRow"]
     },
     {
       "fspath": "./src/types/simplestyle.ts",
-      "types": [
-        "SimpleStyleProperties"
-      ]
+      "types": ["SimpleStyleProperties"]
     },
     {
       "fspath": "./src/types/srtm.ts",
@@ -163,7 +156,6 @@
     }
   ],
   "geotypes": [
-    "{",
     "BBox",
     "BBox2d",
     "BBox2dReadonly",
@@ -202,12 +194,14 @@
     "Geometry3d",
     "GeometryCollection",
     "GeometryCollectionType",
+    "GeometryObject",
     "Geostats",
     "GeostatsAttribute",
     "GeostatsLayer",
     "Latitude",
     "LatitudeWgs84",
     "LinearRing",
+    "LineString",
     "LineStringCoordinates",
     "LineStringFeature",
     "LineStringFeature2d",
@@ -225,18 +219,21 @@
     "MbtilesMetadataRow",
     "MbtilesMetadataRows",
     "MbtilesTilesRow",
+    "MultiLineString",
     "MultiLineStringFeature",
     "MultiLineStringFeature2d",
     "MultiLineStringFeature3d",
     "MultiLineStringGeometry",
     "MultiLineStringGeometry2d",
     "MultiLineStringGeometry3d",
+    "MultiPoint",
     "MultiPointFeature",
     "MultiPointFeature2d",
     "MultiPointFeature3d",
     "MultiPointGeometry",
     "MultiPointGeometry2d",
     "MultiPointGeometry3d",
+    "MultiPolygon",
     "MultiPolygonFeature",
     "MultiPolygonFeature2d",
     "MultiPolygonFeature3d",
@@ -246,12 +243,14 @@
     "NamedCoordinateReferenceSystem",
     "NorthEastSrtmString",
     "NorthWestSrtmString",
+    "Point",
     "PointFeature",
     "PointFeature2d",
     "PointFeature3d",
     "PointGeometry",
     "PointGeometry2d",
     "PointGeometry3d",
+    "Polygon",
     "PolygonFeature",
     "PolygonFeature2d",
     "PolygonFeature3d",
