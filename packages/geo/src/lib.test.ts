@@ -93,6 +93,25 @@ describe("coord", () => {
       [2, 2],
       [3, 3, 3],
     ]);
+
+    expect(_coords_array_of_2d).toEqual([
+      [0, 0],
+      [1, 1],
+      [2, 2],
+      [3, 3],
+    ]);
+    expect(_coords_array_of_3d).toEqual([
+      [0, 0, 0],
+      [1, 1, 1],
+      [2, 2, 2],
+      [3, 3, 3],
+    ]);
+    expect(_coords_array_of_mixed).toEqual([
+      [0, 0],
+      [1, 1, 1],
+      [2, 2],
+      [3, 3, 3],
+    ]);
   });
 });
 

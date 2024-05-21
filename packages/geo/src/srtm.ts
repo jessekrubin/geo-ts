@@ -44,6 +44,7 @@ export type SrtmLike =
   | SrtmTileLngLat
   | SrtmString
   | SrtmTileXy
+  | { lng: number; lat: number }
   | number
   | bigint
   | string;

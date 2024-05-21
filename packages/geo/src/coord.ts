@@ -1,6 +1,4 @@
 import type { Coord, Coord2d, Coord3d } from "@jsse/geotypes";
-import type { C } from "vitest/dist/reporters-yx5ZTtEV.js";
-
 export function coord(c2d: Coord2d): Coord2d;
 export function coord(c3d: Coord3d): Coord3d;
 export function coord(x: number, y: number): Coord2d;
