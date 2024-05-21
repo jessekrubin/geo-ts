@@ -1,5 +1,6 @@
 import type {
   ExtendsUndefined,
+  Fmt,
   IsNull,
   IsOptional,
   IsUndefined,
@@ -302,21 +303,23 @@ export type FeatureOptions<
         crs?: CoordinateReferenceSystem | null;
       }
     : // (("id" extends keyof TOptions ? { id: TOptions["id"] } : { id?: string | number }) &
-      ("id" extends keyof TOptions
-        ? IsOptional<TOptions["id"]> extends true
-          ? { id?: TOptions["id"] }
-          : { id: TOptions["id"] }
-        : { id?: string | number }) &
-        ("bbox" extends keyof TOptions
-          ? IsOptional<TOptions["bbox"]> extends true
-            ? { bbox?: TOptions["bbox"] }
-            : { bbox: TOptions["bbox"] }
-          : { bbox?: GeojsonBBox }) &
-        ("crs" extends keyof TOptions
-          ? IsOptional<TOptions["crs"]> extends true
-            ? { crs?: TOptions["crs"] }
-            : { crs: TOptions["crs"] }
-          : { crs?: CoordinateReferenceSystem | null });
+      Fmt<
+        ("id" extends keyof TOptions
+          ? IsOptional<TOptions["id"]> extends true
+            ? { id?: TOptions["id"] }
+            : { id: TOptions["id"] }
+          : { id?: string | number }) &
+          ("bbox" extends keyof TOptions
+            ? IsOptional<TOptions["bbox"]> extends true
+              ? { bbox?: TOptions["bbox"] }
+              : { bbox: TOptions["bbox"] }
+            : { bbox?: GeojsonBBox }) &
+          ("crs" extends keyof TOptions
+            ? IsOptional<TOptions["crs"]> extends true
+              ? { crs?: TOptions["crs"] }
+              : { crs: TOptions["crs"] }
+            : { crs?: CoordinateReferenceSystem | null })
+      >;
 
 type FeatureProperties<TProperties> =
   IsUndefined<TProperties> extends true
