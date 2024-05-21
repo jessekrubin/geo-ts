@@ -41,7 +41,7 @@
     "@typescript-eslint/parser": "^7.10.0",
     "@vitest/coverage-v8": "^1.6.0",
     "esbuild": "^0.21.3",
-    "eslint": "^8.57.0",
+    "eslint": "^9.3.0",
     "prettier": "3.2.5",
     "tsup": "8.0.2",
     "tsx": "^4.10.5",
