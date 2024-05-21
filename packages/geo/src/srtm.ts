@@ -146,20 +146,6 @@ export function parseSrtmString(str: string): SrtmTile {
   };
 }
 
-export function srtmll2srtm(input: SrtmTileLngLat): SrtmTile {
-  return ll2srtm(input);
-}
-
-export function srtmTileId(srtm: SrtmTile): SrtmTileIx {
-  const x = (srtm.ew === "W" ? -srtm.lng : srtm.lng) + 180;
-  const y = (srtm.ns === "S" ? -srtm.lat : srtm.lat) + 90;
-  return {
-    x,
-    y,
-    id: y * 360 + x,
-  };
-}
-
 export function xy2srtm({ x, y }: SrtmTileXy): SrtmTile {
   if (
     x < 0 ||
@@ -171,22 +157,7 @@ export function xy2srtm({ x, y }: SrtmTileXy): SrtmTile {
   ) {
     throw new Error(`invalid srtm x/y: ${x}/${y}`);
   }
-  const lng = x - 180;
-  const lat = y - 90;
-  const ns = lat >= 0 ? "N" : "S";
-  const ew = lng >= 0 ? "E" : "W";
-  return {
-    str: `${ns}${Math.abs(lat).toString().padStart(2, "0")}${ew}${Math.abs(lng).toString().padStart(3, "0")}` as SrtmString,
-    ns,
-    lat: Math.abs(lat),
-    ew,
-    lng: Math.abs(lng),
-    ix: {
-      x,
-      y,
-      id: y * 360 + x,
-    },
-  };
+  return ll2srtm({ lng: x - 180, lat: y - 90 });
 }
 
 export function srtmid2srtm(id: number | bigint): SrtmTile {
@@ -227,11 +198,11 @@ export function* bbox2srtms(bbox: BBox): Generator<SrtmTile> {
 }
 
 export function parseSrtm(input: SrtmLike): SrtmTile {
-  if (typeof input === "string") {
-    return parseSrtmString(input);
-  }
   if (typeof input === "number" || typeof input === "bigint") {
     return srtmid2srtm(input);
+  }
+  if (typeof input === "string") {
+    return parseSrtmString(input);
   }
   if ("x" in input && "y" in input) {
     return xy2srtm(input);

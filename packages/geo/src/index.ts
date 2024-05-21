@@ -19,3 +19,4 @@ export {
   coordIsWebMercator,
   coordIsWgs84,
 } from "./coord.js";
+export * from "./srtm.js";

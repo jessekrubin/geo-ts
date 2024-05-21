@@ -1,4 +1,5 @@
-import type { Coord2d, Coord3d } from "@jsse/geotypes";
+import type { Coord, Coord2d, Coord3d } from "@jsse/geotypes";
+import type { C } from "vitest/dist/reporters-yx5ZTtEV.js";
 
 export function coord(c2d: Coord2d): Coord2d;
 export function coord(c3d: Coord3d): Coord3d;
@@ -55,13 +56,21 @@ export function coord3d(x: Coord3d | number, y?: number, z?: number): Coord3d {
 
 /**
  * Returns an array of coordinates.
- * @param coords - Array of coordinates.
+ * @param coords - Coordinates as separate arguments or as an array.
  * @returns {Coord2d[] | Coord3d[]} - Array of 2d or 3d coordinates.
  */
+export function coords(...coords: Coord2d[]): Coord2d[];
+export function coords(...coords: Coord3d[]): Coord3d[];
+export function coords(...coords: (Coord2d | Coord3d)[]): (Coord2d | Coord3d)[];
 export function coords(coords: Coord2d[]): Coord2d[];
 export function coords(coords: Coord3d[]): Coord3d[];
-export function coords(coords: (Coord2d | Coord3d)[]): (Coord2d | Coord3d)[] {
-  return coords;
+export function coords(coords: (Coord2d | Coord3d)[]): (Coord2d | Coord3d)[];
+export function coords(...args: Coord[] | Coord[][]): Coord[] {
+  if (Array.isArray(args[0]) && Array.isArray((args[0] as Coord[])[0])) {
+    // Flatten the array if the first argument is an array of arrays
+    return (args as Coord[][])[0] || [];
+  }
+  return args as Coord[];
 }
 
 export function isCoord2d(

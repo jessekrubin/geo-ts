@@ -1,4 +1,4 @@
-import { assert, expect, test } from "vitest";
+import { assert, describe, expect, test } from "vitest";
 import { tuple } from "./tuple.js";
 import {
   bbox2srtms,
@@ -7,32 +7,134 @@ import {
   parseSrtm,
   parseSrtmString,
   srtm2bbox,
+  srtmid2srtm,
+  xy2srtm,
 } from "./srtm.js";
 
-test("ll2srtm", () => {
-  for (let lng = -180; lng <= 180; lng += 1) {
-    for (let lat = -90; lat <= 90; lat += 1) {
-      const srtm = ll2srtm({ lng, lat });
-      if (!isSrtmString(srtm.str)) {
-        console.warn({ lng, lat, srtm });
+describe("srtm", () => {
+  test("ll2srtm", () => {
+    for (let lng = -180; lng <= 180; lng += 1) {
+      for (let lat = -90; lat <= 90; lat += 1) {
+        const srtm = ll2srtm({ lng, lat });
+        if (!isSrtmString(srtm.str)) {
+          console.warn({ lng, lat, srtm });
+        }
+        assert(isSrtmString(srtm.str));
+        assert(srtm.ns === (lat >= 0 ? "N" : "S"));
+        assert(srtm.ew === (lng >= 0 ? "E" : "W"));
+        if (lat === 90) {
+          assert(srtm.lat === 89);
+        } else {
+          assert(srtm.lat === Math.floor(Math.abs(lat)));
+        }
+        if (lng !== 180 && lng !== -180) {
+          assert(srtm.lng === Math.floor(Math.abs(lng)));
+        } else {
+          assert(srtm.lng === 179);
+        }
+        const roundTrip = parseSrtmString(srtm.str);
+        expect(roundTrip).toStrictEqual(srtm);
+
+        const srtmFromId = srtmid2srtm(srtm.ix.id);
+        expect(srtmFromId).toStrictEqual(srtm);
       }
-      assert(isSrtmString(srtm.str));
-      assert(srtm.ns === (lat >= 0 ? "N" : "S"));
-      assert(srtm.ew === (lng >= 0 ? "E" : "W"));
-      if (lat === 90) {
-        assert(srtm.lat === 89);
-      } else {
-        assert(srtm.lat === Math.floor(Math.abs(lat)));
-      }
-      if (lng !== 180 && lng !== -180) {
-        assert(srtm.lng === Math.floor(Math.abs(lng)));
-      } else {
-        assert(srtm.lng === 179);
-      }
-      const roundTrip = parseSrtmString(srtm.str);
-      expect(roundTrip).toStrictEqual(srtm);
     }
-  }
+  });
+
+  test("xy2srtm", () => {
+    for (let x = 0; x < 360; x += 1) {
+      for (let y = 0; y < 180; y += 1) {
+        const fromxy = xy2srtm({ x, y });
+        const fromll = ll2srtm({ lng: x - 180, lat: y - 90 });
+        expect(fromxy).toStrictEqual(fromll);
+      }
+    }
+  });
+
+  test("bbox2srtms", () => {
+    const bbox = tuple(-180, -90, 180, 90);
+    const srtms = [...bbox2srtms(bbox)];
+    const dupcount = new Map<string, number>();
+    for (const srtm of srtms) {
+      const key = srtm.str;
+      const count = dupcount.get(key) || 0;
+      dupcount.set(key, count + 1);
+    }
+    const duplicates = [...dupcount.entries()].filter(
+      ([_, count]) => count > 1,
+    );
+    expect(duplicates).toStrictEqual([]);
+  });
+
+  test("bbox2srtsm-antimeridian", () => {
+    const bbox = tuple(170, -90, -170, 90);
+    const srtms = [...bbox2srtms(bbox)];
+    const dupcount = new Map<string, number>();
+    for (const srtm of srtms) {
+      const key = srtm.str;
+      const count = dupcount.get(key) || 0;
+      dupcount.set(key, count + 1);
+    }
+    const duplicates = [...dupcount.entries()].filter(
+      ([_, count]) => count > 1,
+    );
+    expect(duplicates).toStrictEqual([]);
+  });
+
+  // testing parsing srtmlike
+  test("parse", () => {
+    const srtm = parseSrtm({ lng: 0, lat: 0 });
+    const parsed = parseSrtm(srtm.str);
+    expect(parsed).toStrictEqual(srtm);
+    const fromid = parseSrtm(srtm.ix.id);
+    expect(fromid).toStrictEqual(srtm);
+    const fromxy = parseSrtm({ x: srtm.ix.x, y: srtm.ix.y });
+    expect(fromxy).toStrictEqual(srtm);
+  });
+
+  test("srtm2bbox", () => {
+    const neIsh = ll2srtm({ lng: 170, lat: 80 });
+    const neBbox = srtm2bbox(neIsh);
+    expect(neBbox).toStrictEqual([170, 80, 171, 81]);
+
+    const seIsh = ll2srtm({ lng: 170, lat: -80 });
+    const seBbox = srtm2bbox(seIsh);
+    expect(seBbox).toStrictEqual([170, -80, 171, -79]);
+
+    const nwIsh = ll2srtm({ lng: -170, lat: 80 });
+    const nwBbox = srtm2bbox(nwIsh);
+    expect(nwBbox).toStrictEqual([-170, 80, -169, 81]);
+
+    const swIsh = ll2srtm({ lng: -170, lat: -80 });
+    const swBbox = srtm2bbox(swIsh);
+    expect(swBbox).toStrictEqual([-170, -80, -169, -79]);
+  });
+});
+
+describe("invalid", () => {
+  test("srtm-invalid-lat", () => {
+    expect(() => ll2srtm({ lng: 0, lat: 91 })).toThrow();
+  });
+
+  test("srtm-invalid-lng", () => {
+    expect(() => ll2srtm({ lng: 181, lat: 0 })).toThrow();
+  });
+
+  test("parse-srtm-string", () => {
+    expect(() => parseSrtmString("N00W000")).toThrow();
+  });
+
+  test("srtmid-invalid", () => {
+    expect(() => srtmid2srtm(-1)).toThrow();
+    expect(() => srtmid2srtm(180 * 360)).toThrow();
+  });
+
+  test("xy2srtm-invalid", () => {
+    expect(() => xy2srtm({ x: -1, y: 0 })).toThrow();
+    expect(() => xy2srtm({ x: 0, y: -1 })).toThrow();
+    expect(() => xy2srtm({ x: 360, y: 0 })).toThrow();
+    expect(() => xy2srtm({ x: 0, y: 180 })).toThrow();
+  });
 });
 
 test("parse-srtm", () => {
