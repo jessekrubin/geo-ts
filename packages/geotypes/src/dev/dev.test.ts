@@ -1,12 +1,10 @@
 /* eslint-disable unused-imports/no-unused-vars */
 import { expect, test } from "vitest";
 import type {
-  Coord,
   Coord2d,
   Coord3d,
   CoordinateReferenceSystem,
   Feature,
-  FeatureGenericOptions,
   FeatureOpts,
   GeoJsonProperties,
   NormalizeFeatureOptions,

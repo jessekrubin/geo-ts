@@ -1,9 +1,6 @@
-import { P } from "vitest/dist/reporters-yx5ZTtEV.js";
 import type {
-  ExtendsUndefined,
   Fmt,
   IsFalse,
-  IsNull,
   IsOptional,
   IsUndefined,
 } from "../utypes.js";
@@ -33,52 +30,52 @@ export type Coordinate =
 export type GeojsonBBox2d =
   | [west: Longitude, south: Latitude, east: Longitude, north: Latitude]
   | readonly [
-      west: Longitude,
-      south: Latitude,
-      east: Longitude,
-      north: Latitude,
-    ];
+    west: Longitude,
+    south: Latitude,
+    east: Longitude,
+    north: Latitude,
+  ];
 export type GeojsonBBox3d =
   | [
-      west: Longitude,
-      south: Latitude,
-      east: Longitude,
-      north: Latitude,
-      minZ: number,
-      maxZ: number,
-    ]
+    west: Longitude,
+    south: Latitude,
+    east: Longitude,
+    north: Latitude,
+    minZ: number,
+    maxZ: number,
+  ]
   | readonly [
-      west: Longitude,
-      south: Latitude,
-      east: Longitude,
-      north: Latitude,
-      minZ: number,
-      maxZ: number,
-    ];
+    west: Longitude,
+    south: Latitude,
+    east: Longitude,
+    north: Latitude,
+    minZ: number,
+    maxZ: number,
+  ];
 export type GeojsonBBox =
   | [west: Longitude, south: Latitude, east: Longitude, north: Latitude]
   | readonly [
-      west: Longitude,
-      south: Latitude,
-      east: Longitude,
-      north: Latitude,
-    ]
+    west: Longitude,
+    south: Latitude,
+    east: Longitude,
+    north: Latitude,
+  ]
   | [
-      west: Longitude,
-      south: Latitude,
-      east: Longitude,
-      north: Latitude,
-      minZ: number,
-      maxZ: number,
-    ]
+    west: Longitude,
+    south: Latitude,
+    east: Longitude,
+    north: Latitude,
+    minZ: number,
+    maxZ: number,
+  ]
   | readonly [
-      west: Longitude,
-      south: Latitude,
-      east: Longitude,
-      north: Latitude,
-      minZ: number,
-      maxZ: number,
-    ];
+    west: Longitude,
+    south: Latitude,
+    east: Longitude,
+    north: Latitude,
+    minZ: number,
+    maxZ: number,
+  ];
 
 // 'type' property literals
 // export type PointGeometryType = "Point";
@@ -236,8 +233,8 @@ export type FeatureOpts<
   TFeatureId extends string | number | undefined = string | number | undefined,
   TBBox extends GeojsonBBox | undefined = GeojsonBBox | undefined,
   TCrs extends CoordinateReferenceSystem | undefined | null =
-    | CoordinateReferenceSystem
-    | undefined,
+  | CoordinateReferenceSystem
+  | undefined,
 > = {
   id: TFeatureId;
   bbox: TBBox;
@@ -249,43 +246,43 @@ export type NormalizeFeatureOptions<
   T extends Partial<FeatureOpts> | undefined = undefined,
 > =
   IsUndefined<T> extends true
-    ? {
-        id?: string | number;
-        bbox?: GeojsonBBox;
-        crs?: CoordinateReferenceSystem | null;
-      }
-    : Fmt<Required<Pick<T, keyof T>> & Partial<Omit<FeatureOpts, keyof T>>>;
+  ? {
+    id?: string | number;
+    bbox?: GeojsonBBox;
+    crs?: CoordinateReferenceSystem | null;
+  }
+  : Fmt<Required<Pick<T, keyof T>> & Partial<Omit<FeatureOpts, keyof T>>>;
 
 export type FeatureOptionsWTF<
   TOptions extends Partial<FeatureOpts> | false | undefined = undefined,
 > =
   IsUndefined<TOptions> extends true
-    ? {
-        id?: string | number;
-        bbox?: GeojsonBBox;
-        crs?: CoordinateReferenceSystem | null;
-      }
-    : IsFalse<TOptions> extends true
-      ? {
-          id: never;
-          bbox: never;
-          crs: never;
-        }
-      : ("id" extends keyof TOptions
-          ? IsOptional<TOptions["id"]> extends true
-            ? { id?: TOptions["id"] }
-            : { id: TOptions["id"] }
-          : { id?: string | number }) &
-          ("bbox" extends keyof TOptions
-            ? IsOptional<TOptions["bbox"]> extends true
-              ? { bbox?: TOptions["bbox"] }
-              : { bbox: TOptions["bbox"] }
-            : { bbox?: GeojsonBBox }) &
-          ("crs" extends keyof TOptions
-            ? IsOptional<TOptions["crs"]> extends true
-              ? { crs?: TOptions["crs"] }
-              : { crs: TOptions["crs"] }
-            : { crs?: CoordinateReferenceSystem | null });
+  ? {
+    id?: string | number;
+    bbox?: GeojsonBBox;
+    crs?: CoordinateReferenceSystem | null;
+  }
+  : IsFalse<TOptions> extends true
+  ? {
+    id: never;
+    bbox: never;
+    crs: never;
+  }
+  : ("id" extends keyof TOptions
+    ? IsOptional<TOptions["id"]> extends true
+    ? { id?: TOptions["id"] }
+    : { id: TOptions["id"] }
+    : { id?: string | number }) &
+  ("bbox" extends keyof TOptions
+    ? IsOptional<TOptions["bbox"]> extends true
+    ? { bbox?: TOptions["bbox"] }
+    : { bbox: TOptions["bbox"] }
+    : { bbox?: GeojsonBBox }) &
+  ("crs" extends keyof TOptions
+    ? IsOptional<TOptions["crs"]> extends true
+    ? { crs?: TOptions["crs"] }
+    : { crs: TOptions["crs"] }
+    : { crs?: CoordinateReferenceSystem | null });
 
 /**
  * Feature
@@ -294,15 +291,15 @@ export type Feature<
   TGeometry extends Geometry | null = Geometry | null,
   TProperties extends GeoJsonProperties | null | undefined = GeoJsonProperties,
   TFeatureOptions extends Partial<FeatureOpts> | undefined =
-    | Partial<FeatureOpts>
-    | undefined,
+  | Partial<FeatureOpts>
+  | undefined,
 > = Fmt<
   {
     type: "Feature";
     geometry: TGeometry;
     properties: IsUndefined<TProperties> extends true
-      ? GeoJsonProperties | null
-      : TProperties;
+    ? GeoJsonProperties | null
+    : TProperties;
   } & NormalizeFeatureOptions<TFeatureOptions>
 >;
 
