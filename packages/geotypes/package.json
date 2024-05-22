@@ -36,6 +36,8 @@
   },
   "devDependencies": {
     "@jsse/eslint-config": "^0.1.15",
+    "@turf/helpers": "^6.5.0",
+    "@turf/turf": "^6.5.0",
     "@types/geojson": "^7946.0.14",
     "@typescript-eslint/eslint-plugin": "^7.10.0",
     "@typescript-eslint/parser": "^7.10.0",
