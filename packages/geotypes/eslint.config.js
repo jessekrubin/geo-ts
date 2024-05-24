@@ -12,7 +12,7 @@ export default jsse(
   },
 
   {
-    files: ["src/types-tests/*.ts", "src/types-tests/*.tsx"],
+    files: ["src/types-tests/*.ts", "src/types-tests/*.tsx", "tests/*.ts"],
     rules: {
       "unused-imports/no-unused-vars": "off",
       "no-unused-vars": "off",

@@ -8,7 +8,7 @@
     "strict": true,
     "strictNullChecks": true,
     "noImplicitAny": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "declaration": true,
     "noEmit": false,
     "outDir": "dist/esm",

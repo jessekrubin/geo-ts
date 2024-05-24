@@ -1,4 +1,4 @@
-/* eslint-disable unused-imports/no-unused-vars */
+/* eslint-disable unused-imports/no-unused-vars,@typescript-eslint/no-unused-vars */
 import { expect, test } from "vitest";
 import type {
   Coord2d,
