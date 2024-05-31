@@ -1,5 +1,11 @@
 # @jsse/geotypes
 
+## 0.0.5
+
+### Patch Changes
+
+- 72975e1: changeset flow setup
+
 ## 0.0.4
 
 ### Patch Changes
