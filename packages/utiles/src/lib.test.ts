@@ -49,19 +49,26 @@ describe("zoom", () => {
 
   test("zoomset", () => {
     expect(ut.zvec2zset([])).toBe(0);
-    expect(ut.zvec2zset([0, 1, 2])).toBe(3_758_096_384);
-    expect(ut.zset2zvec(0)).toEqual([]);
-    expect(ut.zset2zvec(3_758_096_384)).toEqual([0, 1, 2]);
+    expect(ut.zset2zvec(0b0000_0000_0000_0000_0000_0000_0000_0111)).toEqual([
+      0, 1, 2,
+    ]);
+    expect(ut.zset2zvec(0b1111_0000_0000_0000_0000_0000_0000_0000)).toEqual([
+      0, 1, 2,
+    ]);
+
+    expect(ut.zvec2zset([0, 1, 2])).toBe(
+      0b0000_0000_0000_0000_0000_0000_0000_0111,
+    );
 
     expect(
       ut.zvec2zset([
         0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
         20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
       ]),
-    ).toBe(4_294_967_294);
+    ).toBe(0b0111_1111_1111_1111_1111_1111_1111_1111);
 
     expect(() => ut.zset2zvec(-1)).toThrow();
-    expect(() => ut.zset2zvec(4_294_967_295)).toThrow();
+    expect(() => ut.zset2zvec(4_294_967_295 + 1)).toThrow();
     // @ts-expect-error invalid zoom
     expect(() => ut.zvec2zset([0, 1, 2, 31])).toThrow();
   });
