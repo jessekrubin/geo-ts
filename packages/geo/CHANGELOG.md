@@ -1,5 +1,13 @@
 # @jsse/geo
 
+## 0.0.5
+
+### Patch Changes
+
+- 72975e1: changeset flow setup
+- Updated dependencies [72975e1]
+  - @jsse/geotypes@0.0.5
+
 ## 0.0.4
 
 ### Patch Changes
