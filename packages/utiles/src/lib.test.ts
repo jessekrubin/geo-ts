@@ -38,7 +38,6 @@ describe("quadkey", () => {
   });
 });
 
-
 describe("zoom", () => {
   test("isZoom", () => {
     expect(ut.isZoom(0)).toBe(true);
@@ -46,7 +45,7 @@ describe("zoom", () => {
     expect(ut.isZoom(-1)).toBe(false);
     expect(ut.isZoom(31)).toBe(false);
     expect(ut.isZoom(0.5)).toBe(false);
-  })
+  });
 
   test("zoomset", () => {
     expect(ut.zvec2zset([])).toBe(0);

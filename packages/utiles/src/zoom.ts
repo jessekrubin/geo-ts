@@ -1,9 +1,7 @@
 import { type ZoomInt } from "./types.js";
 
 export function isZoom(z: unknown): z is ZoomInt {
-  return (
-    typeof z === "number" && Number.isInteger(z) && z >= 0 && z <= 30
-  );
+  return typeof z === "number" && Number.isInteger(z) && z >= 0 && z <= 30;
 }
 
 /**
@@ -12,7 +10,7 @@ export function isZoom(z: unknown): z is ZoomInt {
  * 0b11100000_00000000_00000000_00000000 = 3_758_096_384 -> [0, 1, 2]
  *
  * @param zooms C
- * @returns
+ * @returns zset integer number (u32) 0b11100000_00000000_00000000_00000000 = 3_758_096_384 -> [0, 1, 2]
  */
 export function zvec2zset(zooms: ZoomInt[]) {
   let zset = 0;
@@ -32,7 +30,7 @@ export function zvec2zset(zooms: ZoomInt[]) {
  * 0b11100000_00000000_00000000_00000000 = 3_758_096_384 -> [0, 1, 2]
  *
  * @param zset
- * @returns
+ * @returns zooms array
  */
 export function zset2zvec(zset: number) {
   if (zset < 0 || zset > 4_294_967_294) {
