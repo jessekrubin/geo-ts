@@ -13,7 +13,6 @@ export function isZoom(z: unknown): z is ZoomInt {
  * @returns zset integer number (u32)
  */
 export function zvec2zset(zooms: ZoomInt[]) {
-  // eslint-disable-next-line no-bitwise
   let zset = 0;
   for (const z of zooms) {
     if (!isZoom(z)) {
@@ -49,6 +48,7 @@ export function zset2zvec(zset: number): number[] {
   if (zset & (1 << 31)) {
     const zoomLevels: number[] = [];
     for (let i = 0; i < 31; i++) {
+      // eslint-disable-next-line no-bitwise
       if (zset & (1 << (30 - i))) {
         zoomLevels.push(i);
       }

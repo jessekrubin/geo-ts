@@ -121,6 +121,10 @@
       "types": ["MbtilesMetadataRow", "MbtilesMetadataRows", "MbtilesTilesRow"]
     },
     {
+      "fspath": "./src/types/rect.ts",
+      "types": ["Rect2d", "Rect3d"]
+    },
+    {
       "fspath": "./src/types/simplestyle.ts",
       "types": ["SimpleStyleProperties"]
     },
@@ -258,6 +262,8 @@
     "PolygonGeometry2d",
     "PolygonGeometry3d",
     "PrimitiveGeometry",
+    "Rect2d",
+    "Rect3d",
     "SimpleStyleProperties",
     "SouthEastSrtmString",
     "SouthWestSrtmString",
