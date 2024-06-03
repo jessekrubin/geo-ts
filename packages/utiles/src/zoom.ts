@@ -12,14 +12,32 @@ export function isZoom(z: unknown): z is ZoomInt {
  * @param zooms C
  * @returns zset integer number (u32)
  */
-export function zvec2zset(zooms: ZoomInt[]) {
+export function zvec2zset(
+  zooms: ZoomInt[],
+  options?: {
+    err?: boolean;
+  },
+) {
+  if (zooms.length === 0) {
+    return 0;
+  }
+  if (options?.err !== false) {
+    let zset = 0;
+    for (const z of zooms) {
+      if (!isZoom(z)) {
+        throw new Error(`Invalid zoom: ${z}`);
+      }
+      // eslint-disable-next-line no-bitwise
+      zset |= 1 << z;
+    }
+    return zset;
+  }
   let zset = 0;
   for (const z of zooms) {
-    if (!isZoom(z)) {
-      throw new Error(`Invalid zoom: ${z}`);
+    if (isZoom(z)) {
+      // eslint-disable-next-line no-bitwise
+      zset |= 1 << z;
     }
-    // eslint-disable-next-line no-bitwise
-    zset |= 1 << z;
   }
   return zset;
 }
