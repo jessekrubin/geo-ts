@@ -1,7 +1,7 @@
 import type { BBox, BBox2d, BBox3d } from "@jsse/geotypes";
 import { MAX_LAT_WEB, MAX_LNG, MIN_LAT_WEB, MIN_LNG } from "./const.js";
 import type { TileArr } from "./types.js";
-import { bbox2bboxes, bboxclip, bbox2dify } from "./bbox.js";
+import { bbox2bboxes, bbox2dify, bboxclip } from "./bbox.js";
 import { zbox, zboxgen } from "./zbox.js";
 
 export type TilesOptions = {

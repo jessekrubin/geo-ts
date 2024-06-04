@@ -3,11 +3,10 @@ import fs from "node:fs";
 import { expect, test } from "vitest";
 import * as tiletype from "./tile-type.js";
 
-const PWD = import.meta.dirname;
-
 // resolve filepath for test data
 function filepathResolve(filename: string) {
-  return `${PWD}/../test-data/${filename}`;
+  // eslint-disable-next-line n/no-path-concat
+  return `${__dirname}/../test-data/${filename}`;
 }
 
 function readTestFile(filename: string): Uint8Array {
