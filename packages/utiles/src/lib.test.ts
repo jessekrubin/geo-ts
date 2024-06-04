@@ -56,7 +56,9 @@ describe("zoom", () => {
       0, 1, 2,
     ]);
 
-    expect(ut.zvec2zset([0, 1, 2])).toBe(
+    expect(ut.zset2zvec(0b0000_0000_0000_0000_0000_0000_0000_0000)).toEqual([]);
+
+    expect(ut.zvec2zset([0, 1, 2], { err: false })).toBe(
       0b0000_0000_0000_0000_0000_0000_0000_0111,
     );
 

@@ -34,6 +34,7 @@ describe("tilebelt tests", () => {
   test("get parent", () => {
     const parent = tilebelt.getParent(tile1);
     expect(parent).toBeTruthy();
+    // @ts-expect-error - will have parent
     expect(parent.length).toBe(3);
     expect(parent).toEqual([2, 5, 9]);
   });
@@ -41,7 +42,9 @@ describe("tilebelt tests", () => {
   test("get siblings", () => {
     const siblings = tilebelt.getSiblings(tile1);
     expect(siblings).toBeTruthy();
+    // @ts-expect-error - will have sibs
     expect(siblings.length).toBe(4);
+    // @ts-expect-error - will have sibs
     expect(siblings[0].length).toBe(3);
   });
 
@@ -136,7 +139,9 @@ describe("tilebelt tests", () => {
     const bbox = [-84, 11, -84, 11] as [number, number, number, number];
     const tile = tilebelt.bboxToTile(bbox);
     expect(tile).toBeTruthy();
-    expect(tile).toEqual([71_582_788, 125_964_677, 28]);
+    // tilebelt returns the following bc their `MAX_ZOOM` is 28
+    expect(tile).not.toEqual([71_582_788, 125_964_677, 28]);
+    expect(tile).toEqual([286_331_153, 503_858_708, 30]);
   });
 
   test("bbox to tile -- dc", () => {

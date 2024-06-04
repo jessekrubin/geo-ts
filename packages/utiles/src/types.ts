@@ -1,3 +1,7 @@
+export type TileArr = [x: number, y: number, z: number];
+export type TileObj = { x: number; y: number; z: number };
+export type TileLike = TileArr | TileObj;
+
 export type ZoomInt =
   | 0
   | 1
@@ -30,4 +34,3 @@ export type ZoomInt =
   | 28
   | 29
   | 30;
-export type ZoomStr = `${ZoomInt}`;

@@ -10,6 +10,8 @@ export function isZoom(z: unknown): z is ZoomInt {
  * 0b11110000_00000000_00000000_00000000 = 3_758_096_384 -> [0, 1, 2]
  *
  * @param zooms C
+ * @param options Options object
+ * @param options.err Throw an error if an invalid zoom is found
  * @returns zset integer number (u32)
  */
 export function zvec2zset(
