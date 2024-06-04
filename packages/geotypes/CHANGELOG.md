@@ -1,5 +1,12 @@
 # @jsse/geotypes
 
+## 0.0.7
+
+### Patch Changes
+
+- 586b432: Dummy patch bump for changesets test
+- 5764975: yet another dummy pr
+
 ## 0.0.6
 
 ### Patch Changes
