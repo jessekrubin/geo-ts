@@ -7,3 +7,4 @@ export * from "./types/mbtiles.js";
 export * from "./types/simplestyle.js";
 export * from "./types/srtm.js";
 export * from "./types/tilejson.js";
+export * from "./types/rect.js";
