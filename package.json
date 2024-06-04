@@ -25,7 +25,7 @@
     "prepublishOnly": "pnpm run build",
     "publish": "pnpm publish -r",
     "version": "changeset version && pnpm fmt",
-    "release": "pnpm run build && rchangeset publish",
+    "release": "pnpm run build && changeset publish",
     "test": "vitest run && vitest typecheck --run"
   },
   "devDependencies": {
