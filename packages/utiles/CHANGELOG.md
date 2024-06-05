@@ -1,5 +1,11 @@
 # @jsse/utiles
 
+## 0.0.8
+
+### Patch Changes
+
+- @jsse/geotypes@0.0.8
+
 ## 0.0.7
 
 ### Patch Changes

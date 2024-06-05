@@ -1,5 +1,12 @@
 # @jsse/geo
 
+## 0.0.8
+
+### Patch Changes
+
+- fb725a0: peer deps
+  - @jsse/geotypes@0.0.8
+
 ## 0.0.7
 
 ### Patch Changes
