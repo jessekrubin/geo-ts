@@ -143,6 +143,12 @@ importers:
         specifier: ^1.6.0
         version: 1.6.0
 
+  thingy:
+    dependencies:
+      '@jsse/geo':
+        specifier: workspace:^
+        version: link:../packages/geo
+
 packages:
 
   /@alloc/quick-lru@5.2.0:

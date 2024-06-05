@@ -33,11 +33,12 @@
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
-    "@jsse/geotypes": "workspace:*"
+  "peerDependencies": {
+    "@jsse/geotypes": "^0.0.7"
   },
   "devDependencies": {
     "@jsse/eslint-config": "^0.1.15",
+    "@jsse/geotypes": "workspace:*",
     "@jsse/tsconfig": "^0.0.3",
     "@vitest/coverage-v8": "^1.6.0",
     "eslint": "^9.4.0",
