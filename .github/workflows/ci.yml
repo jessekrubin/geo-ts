@@ -58,25 +58,28 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20.x
-      - uses: extractions/setup-just@v2
-      - name: Cache ~/.pnpm-store
-        uses: actions/cache@v4
-        env:
-          cache-name: cache-pnpm-store
+          
+      - uses: pnpm/action-setup@v4
         with:
-          path: ~/.pnpm-store
-          key: pnpm-store-${{ runner.os }}-node20x-${{ env.cache-name }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          version: 8
+          run_install: false
+
+      - name: pnpm-store-dir
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+          
+      - name: pnpm-cache-setup
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ matrix.node-version }}-release-${{ env.cache-name }}-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            pnpm-store-${{ runner.os }}-node20x-${{ env.cache-name }}-
-            pnpm-store-${{ runner.os }}-node20x-
-            pnpm-store-${{ runner.os }}-
-
-      - name: Install pnpm
-        run: npm i -g pnpm
-
+            ${{ runner.os }}-pnpm-store-${{ matrix.node-version }}-release-${{ env.cache-name }}-
+            ${{ runner.os }}-pnpm-store-${{ matrix.node-version }}-release-
+            
       - name: Install deps
         run: pnpm i
-
       # Runs a set of commands using the runners shell
       - name: Build and Test
         run: just ci
