@@ -1,7 +1,7 @@
 {
   "name": "@jsse/geo",
   "type": "module",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "geo typescript",
   "author": "jessekrubin",
   "license": "MIT",
@@ -33,14 +33,15 @@
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
-    "@jsse/geotypes": "workspace:*"
+  "peerDependencies": {
+    "@jsse/geotypes": "^0.0.8"
   },
   "devDependencies": {
     "@jsse/eslint-config": "^0.1.15",
+    "@jsse/geotypes": "workspace:*",
     "@jsse/tsconfig": "^0.0.3",
     "@vitest/coverage-v8": "^1.6.0",
-    "eslint": "^9.4.0",
+    "eslint": "^8.56.0",
     "prettier": "^3.3.0",
     "tsup": "^8.1.0",
     "tsx": "^4.11.2",
