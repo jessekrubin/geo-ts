@@ -30,18 +30,11 @@
     },
     {
       "fspath": "./src/types/deckgl.ts",
-      "types": [
-        "DeckglMapViewstate",
-        "DeckglTilejson"
-      ]
+      "types": ["DeckglMapViewstate", "DeckglTilejson"]
     },
     {
       "fspath": "./src/types/gdal.ts",
-      "types": [
-        "CornerCoordinates",
-        "GeoTransform",
-        "Wgs84Extent"
-      ]
+      "types": ["CornerCoordinates", "GeoTransform", "Wgs84Extent"]
     },
     {
       "fspath": "./src/types/geojson.ts",
@@ -123,32 +116,19 @@
     },
     {
       "fspath": "./src/types/geostats.ts",
-      "types": [
-        "Geostats",
-        "GeostatsAttribute",
-        "GeostatsLayer"
-      ]
+      "types": ["Geostats", "GeostatsAttribute", "GeostatsLayer"]
     },
     {
       "fspath": "./src/types/mbtiles.ts",
-      "types": [
-        "MbtilesMetadataRow",
-        "MbtilesMetadataRows",
-        "MbtilesTilesRow"
-      ]
+      "types": ["MbtilesMetadataRow", "MbtilesMetadataRows", "MbtilesTilesRow"]
     },
     {
       "fspath": "./src/types/rect.ts",
-      "types": [
-        "Rect2d",
-        "Rect3d"
-      ]
+      "types": ["Rect2d", "Rect3d"]
     },
     {
       "fspath": "./src/types/simplestyle.ts",
-      "types": [
-        "SimpleStyleProperties"
-      ]
+      "types": ["SimpleStyleProperties"]
     },
     {
       "fspath": "./src/types/srtm.ts",
@@ -182,9 +162,7 @@
     },
     {
       "fspath": "./src/types/zbox.ts",
-      "types": [
-        "ZBox"
-      ]
+      "types": ["ZBox"]
     }
   ],
   "geotypes": [

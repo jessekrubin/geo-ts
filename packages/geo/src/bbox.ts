@@ -31,27 +31,27 @@ export function bbox3d(bbox: BBox3d): BBox3d;
 export function bbox3d(
   xmin: number,
   ymin: number,
+  zmin: number,
   xmax: number,
   ymax: number,
-  zmin: number,
   zmax: number,
 ): BBox3d;
 /**
  * Returns a 3d bounding box array.
- * @param bboxOrXmin - 3d bounding box tuple ([xmin, ymin, xmax, ymax, zmin, zmax]) or xmin coordinate.
+ * @param bboxOrXmin - 3d bounding box tuple ([xmin, ymin, zmin, xmax, ymax, zmax]) or xmin coordinate.
  * @param ymin - ymin coordinate (optional).
+ * @param zmin - zmin coordinate (optional).
  * @param xmax - xmax coordinate (optional).
  * @param ymax - ymax coordinate (optional).
- * @param zmin - zmin coordinate (optional).
  * @param zmax - zmax coordinate (optional).
  * @returns {BBox3d} - 3d bounding box array.
  */
 export function bbox3d(
   bboxOrXmin: BBox3d | number,
   ymin?: number,
+  zmin?: number,
   xmax?: number,
   ymax?: number,
-  zmin?: number,
   zmax?: number,
 ): BBox3d {
   if (Array.isArray(bboxOrXmin)) {
@@ -60,9 +60,9 @@ export function bbox3d(
   return [
     bboxOrXmin,
     ymin as number,
+    zmin as number,
     xmax as number,
     ymax as number,
-    zmin as number,
     zmax as number,
   ];
 }
@@ -78,44 +78,37 @@ export function bbox(
 export function bbox(
   xmin: number,
   ymin: number,
+  zmin: number,
   xmax: number,
   ymax: number,
-  zmin: number,
   zmax: number,
 ): BBox3d;
 /**
  * Returns a bounding box array.
- * @param bboxOrXmin - 2d or 3d bounding box tuple or xmin coordinate.
- * @param ymin - ymin coordinate (optional).
- * @param xmax - xmax coordinate (optional).
- * @param ymax - ymax coordinate (optional).
- * @param zmin - zmin coordinate (optional).
- * @param zmax - zmax coordinate (optional).
+ * @param bboxOrA - 2d or 3d bounding box tuple or xmin coordinate.
+ * @param b - ymin coordinate (optional).
+ * @param c - zmin coordinate (optional).
+ * @param d - xmax coordinate (optional).
+ * @param e - ymax coordinate (optional).
+ * @param f - zmax coordinate (optional).
  * @returns {BBox2d | BBox3d} - 2d or 3d bounding box array.
  */
 export function bbox(
-  bboxOrXmin: BBox2d | BBox3d | number,
-  ymin?: number,
-  xmax?: number,
-  ymax?: number,
-  zmin?: number,
-  zmax?: number,
+  bboxOrA: BBox2d | BBox3d | number,
+  b?: number,
+  c?: number,
+  d?: number,
+  e?: number,
+  f?: number,
 ): BBox2d | BBox3d {
-  if (Array.isArray(bboxOrXmin)) {
-    return bboxOrXmin.length === 4
-      ? bbox2d(bboxOrXmin as BBox2d)
-      : bbox3d(bboxOrXmin as BBox3d);
+  if (Array.isArray(bboxOrA)) {
+    return bboxOrA.length === 4
+      ? bbox2d(bboxOrA as BBox2d)
+      : bbox3d(bboxOrA as BBox3d);
   }
-  return zmin === undefined || zmax === undefined
-    ? bbox2d(bboxOrXmin, ymin as number, xmax as number, ymax as number)
-    : bbox3d(
-        bboxOrXmin,
-        ymin as number,
-        xmax as number,
-        ymax as number,
-        zmin,
-        zmax,
-      );
+  return e === undefined || f === undefined
+    ? bbox2d(bboxOrA, b as number, c as number, d as number)
+    : bbox3d(bboxOrA, b as number, c as number, d as number, e as number, f);
 }
 
 export function isBBox2d(bbox: BBox2d | BBox3d | number[]): bbox is BBox2d {
@@ -126,7 +119,7 @@ export function isBBox3d(bbox: BBox2d | BBox3d | number[]): bbox is BBox3d {
   return (
     bbox.length === 6 &&
     bbox.every((n) => typeof n === "number") &&
-    bbox[4] < bbox[5]
+    bbox[3] < bbox[5]
   );
 }
 
@@ -144,7 +137,7 @@ export function bbox3d2bbox2d(bbox: BBox3d): BBox2d {
 }
 
 export function bboxIsAntimeridian(bbox: BBox2d | BBox3d): boolean {
-  return bbox[0] > bbox[2];
+  return bbox.length === 4 ? bbox[0] > bbox[2] : bbox[0] > bbox[3];
 }
 
 export function bboxesAntimeridian<T extends BBox>(bbox: T): [T] | [T, T] {
@@ -186,10 +179,13 @@ export function bboxIsWgs84(bbox: BBox2d | BBox3d): boolean {
 }
 
 export function bboxIsWebMercator(bbox: BBox2d | BBox3d): boolean {
-  return (
-    bbox[0] >= -180 &&
+  return bbox.length === 4
+    ? bbox[0] >= -180 &&
     bbox[2] <= 180 &&
     bbox[1] >= -85.051_128_779_806_59 &&
     bbox[3] <= 85.051_128_779_806_6
-  );
+    : bbox[0] >= -180 &&
+    bbox[3] <= 180 &&
+    bbox[1] >= -85.051_128_779_806_59 &&
+    bbox[4] <= 85.051_128_779_806_6;
 }
