@@ -33,7 +33,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "peerDependencies": {
+  "dependencies": {
     "@jsse/geotypes": "^0.0.11"
   },
   "devDependencies": {
