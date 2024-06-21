@@ -27,7 +27,8 @@
     "dev": "vitest watch --coverage",
     "lint": "eslint .",
     "fmt": "prettier --write . --ignore-path ../../.prettierignore",
-    "nodetest": "node --import tsx --test ./src/*test.ts"
+    "nodetest": "node --import tsx --test ./src/*test.ts",
+    "prepare": "pnpm run build"
   },
   "publishConfig": {
     "access": "public"
