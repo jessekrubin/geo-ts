@@ -22,7 +22,7 @@
     "fmtl": "prettier --list-different .",
     "lint": "eslint .",
     "publish": "pnpm publish -r",
-    "version": "changeset version && pnpm fmt",
+    "version": "changeset version && pnpm install && pnpm fmt",
     "release": "pnpm run -r build && changeset publish",
     "test": "vitest run && vitest typecheck --run"
   },

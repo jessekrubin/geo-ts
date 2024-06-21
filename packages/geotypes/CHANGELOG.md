@@ -1,5 +1,11 @@
 # @jsse/geotypes
 
+## 0.0.12
+
+### Patch Changes
+
+- 144bd46: not a peer
+
 ## 0.0.11
 
 ### Patch Changes
