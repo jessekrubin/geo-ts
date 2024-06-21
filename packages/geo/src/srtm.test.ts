@@ -1,6 +1,8 @@
 import { assert, describe, expect, test } from "vitest";
 import { tuple } from "./tuple.js";
 import {
+  SRTM_LAT_RE,
+  SRTM_LNG_RE,
   bbox2srtms,
   isSrtmString,
   ll2srtm,
@@ -12,6 +14,36 @@ import {
 } from "./srtm.js";
 
 describe("srtm", () => {
+  test.each([
+    // valid
+    { str: "N00E000", ok: true },
+    { str: "S90W179", ok: true },
+    // invalid - N90, E180, W000, S00
+    { str: "N90E000", ok: false },
+    { str: "N00E180", ok: false },
+    { str: "N00W000", ok: false },
+    { str: "S00E000", ok: false },
+
+    // invalid - lat, lng
+    { str: "N00E181", ok: false },
+    { str: "N00W181", ok: false },
+    { str: "N91E000", ok: false },
+    { str: "S91E000", ok: false },
+    { str: "S00E181", ok: false },
+    { str: "S00W181", ok: false },
+    { str: "S91W000", ok: false },
+  ])("is-srtm-string %j", ({ str, ok }) => {
+    const lngPart = str.slice(3, 7);
+    const lngOk = SRTM_LNG_RE.test(lngPart);
+    const latPart = str.slice(0, 3);
+    const latOk = SRTM_LAT_RE.test(latPart);
+    if ((latOk && lngOk) !== ok) {
+      console.log({ lngPart, lngOk });
+      console.log({ latPart, latOk });
+    }
+    expect(latOk && lngOk).toBe(ok);
+    expect(isSrtmString(str)).toBe(ok);
+  });
   test("ll2srtm", () => {
     for (let lng = -180; lng <= 180; lng += 1) {
       for (let lat = -90; lat <= 90; lat += 1) {
@@ -19,7 +51,10 @@ describe("srtm", () => {
         if (!isSrtmString(srtm.str)) {
           console.warn({ lng, lat, srtm });
         }
-        assert(isSrtmString(srtm.str));
+        assert(
+          isSrtmString(srtm.str),
+          `invalid srtm string: ${srtm.str}, ${lng}, ${lat}`,
+        );
         assert(srtm.ns === (lat >= 0 ? "N" : "S"));
         assert(srtm.ew === (lng >= 0 ? "E" : "W"));
         if (lat === 90) {

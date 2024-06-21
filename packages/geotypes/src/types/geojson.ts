@@ -5,6 +5,7 @@ import type {
   IsOptional,
   IsUndefined,
 } from "../utypes.js";
+import type { BBox } from "./bbox.js";
 
 export type Longitude = number;
 export type Latitude = number;
@@ -28,63 +29,6 @@ export type Coordinate3d = [x: Longitude, y: Latitude, z: number];
 export type Coordinate =
   | [x: Longitude, y: Latitude]
   | [x: Longitude, y: Latitude, z: number];
-export type GeojsonBBox2d =
-  | [west: Longitude, south: Latitude, east: Longitude, north: Latitude]
-  | readonly [
-      west: Longitude,
-      south: Latitude,
-      east: Longitude,
-      north: Latitude,
-    ];
-export type GeojsonBBox3d =
-  | [
-      west: Longitude,
-      south: Latitude,
-      east: Longitude,
-      north: Latitude,
-      minZ: number,
-      maxZ: number,
-    ]
-  | readonly [
-      west: Longitude,
-      south: Latitude,
-      east: Longitude,
-      north: Latitude,
-      minZ: number,
-      maxZ: number,
-    ];
-export type GeojsonBBox =
-  | [west: Longitude, south: Latitude, east: Longitude, north: Latitude]
-  | readonly [
-      west: Longitude,
-      south: Latitude,
-      east: Longitude,
-      north: Latitude,
-    ]
-  | [
-      west: Longitude,
-      south: Latitude,
-      east: Longitude,
-      north: Latitude,
-      minZ: number,
-      maxZ: number,
-    ]
-  | readonly [
-      west: Longitude,
-      south: Latitude,
-      east: Longitude,
-      north: Latitude,
-      minZ: number,
-      maxZ: number,
-    ];
-
-// 'type' property literals
-// export type PointGeometryType = "Point";
-// export type LineStringGeometryType = "LineString";
-// export type PolygonGeometryType = "Polygon";
-// export type MultiPointGeometryType = "MultiPoint";
-// export type MultiLineStringGeometryType = "MultiLineString";
-// export type MultiPolygonGeometryType = "MultiPolygon";
 
 export type GeoJsonGeometryTypes =
   | "Point"
@@ -234,7 +178,7 @@ export type CoordinateReferenceSystemNullable =
 export type FeatureGenericOptions<
   // TProperties = GeoJsonProperties | undefined,
   TFeatureId extends string | number | undefined = string | number | undefined,
-  TBBox extends GeojsonBBox | undefined = GeojsonBBox | undefined,
+  TBBox extends BBox | undefined = BBox | undefined,
   TCrs extends CoordinateReferenceSystem | undefined | null =
     | CoordinateReferenceSystem
     | undefined,
@@ -258,7 +202,7 @@ export type FeatureGeneric<
   TCoordinate extends Coordinate = Coordinate,
   TGeometry extends Geometry<TCoordinate> = Geometry<TCoordinate>,
   // TProperties extends GeoJsonProperties | undefined = GeoJsonProperties | undefined,
-  TBBox extends GeojsonBBox | undefined = GeojsonBBox | undefined,
+  TBBox extends BBox | undefined = BBox | undefined,
   TCrs extends CoordinateReferenceSystem | undefined | null =
     | CoordinateReferenceSystem
     | undefined,
@@ -299,7 +243,7 @@ export type FeatureOptions<
   IsUndefined<TOptions> extends true
     ? {
         id?: string | number;
-        bbox?: GeojsonBBox;
+        bbox?: BBox;
         crs?: CoordinateReferenceSystem | null;
       }
     : // (("id" extends keyof TOptions ? { id: TOptions["id"] } : { id?: string | number }) &
@@ -313,7 +257,7 @@ export type FeatureOptions<
             ? IsOptional<TOptions["bbox"]> extends true
               ? { bbox?: TOptions["bbox"] }
               : { bbox: TOptions["bbox"] }
-            : { bbox?: GeojsonBBox }) &
+            : { bbox?: BBox }) &
           ("crs" extends keyof TOptions
             ? IsOptional<TOptions["crs"]> extends true
               ? { crs?: TOptions["crs"] }

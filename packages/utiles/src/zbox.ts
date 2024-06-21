@@ -1,9 +1,7 @@
-import type { BBox, Rect2d } from "@jsse/geotypes";
+import type { BBox, ZBox } from "@jsse/geotypes";
 import type { TileArr } from "./types.js";
 import { bbox2dify, bboxclip } from "./bbox.js";
 import { tile } from "./utiles.js";
-
-export type ZBox = Rect2d & { z: number };
 
 export function zbox({ bbox, z }: { bbox: BBox; z: number }): ZBox {
   const [w, s, e, n] = bboxclip(bbox2dify(bbox));
