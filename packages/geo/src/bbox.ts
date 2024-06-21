@@ -181,11 +181,11 @@ export function bboxIsWgs84(bbox: BBox2d | BBox3d): boolean {
 export function bboxIsWebMercator(bbox: BBox2d | BBox3d): boolean {
   return bbox.length === 4
     ? bbox[0] >= -180 &&
-    bbox[2] <= 180 &&
-    bbox[1] >= -85.051_128_779_806_59 &&
-    bbox[3] <= 85.051_128_779_806_6
+        bbox[2] <= 180 &&
+        bbox[1] >= -85.051_128_779_806_59 &&
+        bbox[3] <= 85.051_128_779_806_6
     : bbox[0] >= -180 &&
-    bbox[3] <= 180 &&
-    bbox[1] >= -85.051_128_779_806_59 &&
-    bbox[4] <= 85.051_128_779_806_6;
+        bbox[3] <= 180 &&
+        bbox[1] >= -85.051_128_779_806_59 &&
+        bbox[4] <= 85.051_128_779_806_6;
 }
