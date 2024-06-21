@@ -1,5 +1,13 @@
 # @jsse/geo
 
+## 0.0.12
+
+### Patch Changes
+
+- 144bd46: not a peer
+- Updated dependencies [144bd46]
+  - @jsse/geotypes@0.0.12
+
 ## 0.0.11
 
 ### Patch Changes
