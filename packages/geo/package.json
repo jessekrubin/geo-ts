@@ -1,7 +1,7 @@
 {
   "name": "@jsse/geo",
   "type": "module",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "geo typescript",
   "author": "jessekrubin",
   "license": "MIT",
@@ -34,7 +34,7 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@jsse/geotypes": "^0.0.8"
+    "@jsse/geotypes": "^0.0.9"
   },
   "devDependencies": {
     "@jsse/eslint-config": "^0.1.15",

@@ -1,5 +1,15 @@
 # @jsse/geo
 
+## 0.0.9
+
+### Patch Changes
+
+- b560681: srtm parsing fixes and regex
+- b560681: geo package bbox fns fixed
+- Updated dependencies [b560681]
+- Updated dependencies [b560681]
+  - @jsse/geotypes@0.0.9
+
 ## 0.0.8
 
 ### Patch Changes
