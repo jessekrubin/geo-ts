@@ -50,6 +50,11 @@ export type SrtmLike =
   | string;
 
 const SRTM_MAX_ID = 180 * 360 - 1;
+// Regular expression to match valid SRTM strings with latitude and longitude ranges
+export const SRTM_LNG_RE = /^(E1[0-7]\d|E0\d\d|W(1[0-7]\d|0\d[1-9]|0[1-9]\d))$/;
+export const SRTM_LAT_RE = /^(N[0-8]\d|S(?!00)[0-8]\d|S90)$/;
+export const SRTM_RE =
+  /^(N[0-8]\d|S(?!00)[0-8]\d|S90)(E1[0-7]\d|E0\d\d|W(1[0-7]\d|0\d[1-9]|0[1-9]\d))$/;
 
 /**
  *
@@ -75,26 +80,12 @@ export function ll2srtm({ lng, lat }: { lng: number; lat: number }): SrtmTile {
   }
   const ns = lat >= 0 ? "N" : "S";
   const ew = lng >= 0 ? "E" : "W";
-  const latInt =
-    lat === 90
-      ? 89
-      : lat >= 0
-        ? Math.floor(lat)
-        : lat > -1
-          ? 1
-          : Math.ceil(Math.abs(lat));
-  const lngInt =
-    lng === 180 || lng === -180
-      ? 179
-      : lng >= 0
-        ? Math.floor(lng)
-        : Math.ceil(Math.abs(lng));
+  const latInt = lat === 90 ? 89 : Math.abs(Math.floor(lat));
+  const lngInt = lng === 180 || lng === -180 ? 179 : Math.abs(Math.floor(lng));
   const latStr = latInt.toString().padStart(2, "0");
   const lngStr = lngInt.toString().padStart(3, "0");
-
   const x = (ew === "W" ? -lngInt : lngInt) + 180;
   const y = (ns === "S" ? -latInt : latInt) + 90;
-
   return {
     ns,
     lat: latInt,
@@ -109,20 +100,23 @@ export function ll2srtm({ lng, lat }: { lng: number; lat: number }): SrtmTile {
   };
 }
 
-const _re = /^[NS]\d{2}[EW]\d{3}$/;
-export function isSrtmString(str: string): str is SrtmString {
-  if (
-    str.length !== 7 ||
-    str.startsWith("S00") ||
-    str.startsWith("N90") ||
-    str.endsWith("E180") ||
-    str.endsWith("W000")
-  ) {
-    return false;
-  }
-  return _re.test(str);
+export function isSrtmLngString(str: string): boolean {
+  return SRTM_LNG_RE.test(str);
 }
-
+export function isSrtmLatString(str: string): boolean {
+  return SRTM_LAT_RE.test(str);
+}
+export function isSrtmString(str: string): str is SrtmString {
+  return (
+    !(
+      str.length !== 7 ||
+      str.startsWith("S00") ||
+      str.startsWith("N90") ||
+      str.endsWith("E180") ||
+      str.endsWith("W000")
+    ) && SRTM_RE.test(str)
+  );
+}
 export function parseSrtmString(str: string): SrtmTile {
   if (!isSrtmString(str)) {
     throw new Error(`invalid srtm string: ${str}`);
