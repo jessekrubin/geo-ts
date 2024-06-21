@@ -1,5 +1,12 @@
 # @jsse/geotypes
 
+## 0.0.9
+
+### Patch Changes
+
+- b560681: geo-bbox types fixed and zbox
+- b560681: geo package bbox fns fixed
+
 ## 0.0.8
 
 ## 0.0.7
