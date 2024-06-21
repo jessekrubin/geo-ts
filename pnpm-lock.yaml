@@ -34,13 +34,14 @@ importers:
         version: 1.6.0
 
   packages/geo:
+    dependencies:
+      '@jsse/geotypes':
+        specifier: ^0.0.11
+        version: link:../geotypes
     devDependencies:
       '@jsse/eslint-config':
         specifier: ^0.1.17
         version: 0.1.17(eslint@8.57.0)(typescript@5.4.5)(vitest@1.6.0)
-      '@jsse/geotypes':
-        specifier: workspace:*
-        version: link:../geotypes
       '@jsse/tsconfig':
         specifier: ^0.0.3
         version: 0.0.3
