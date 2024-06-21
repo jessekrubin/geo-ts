@@ -24,3 +24,10 @@ export type BBox3dReadonly = readonly [
   zmax: number,
 ];
 export type BBoxReadonly = BBox2dReadonly | BBox3dReadonly;
+
+export type GeoBBox = {
+  west: number;
+  south: number;
+  east: number;
+  north: number;
+};

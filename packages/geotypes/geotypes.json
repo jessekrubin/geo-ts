@@ -8,7 +8,8 @@
         "BBox2dReadonly",
         "BBox3d",
         "BBox3dReadonly",
-        "BBoxReadonly"
+        "BBoxReadonly",
+        "GeoBBox"
       ]
     },
     {
@@ -35,6 +36,14 @@
       ]
     },
     {
+      "fspath": "./src/types/gdal.ts",
+      "types": [
+        "CornerCoordinates",
+        "GeoTransform",
+        "Wgs84Extent"
+      ]
+    },
+    {
       "fspath": "./src/types/geojson.ts",
       "types": [
         "Coordinate",
@@ -50,9 +59,6 @@
         "FeatureGenericOptions",
         "FeatureOptions",
         "FeatureType",
-        "GeojsonBBox",
-        "GeojsonBBox2d",
-        "GeojsonBBox3d",
         "GeoJsonGeometryTypes",
         "GeoJsonProperties",
         "GeoJsonTypes",
@@ -173,6 +179,12 @@
         "TilejsonVectorLayers",
         "TilejsonVersion"
       ]
+    },
+    {
+      "fspath": "./src/types/zbox.ts",
+      "types": [
+        "ZBox"
+      ]
     }
   ],
   "geotypes": [
@@ -193,6 +205,7 @@
     "CoordinateReferenceSystem",
     "CoordinateReferenceSystemNullable",
     "CoordLike",
+    "CornerCoordinates",
     "DeckglMapViewstate",
     "DeckglTilejson",
     "Feature",
@@ -203,9 +216,7 @@
     "FeatureGenericOptions",
     "FeatureOptions",
     "FeatureType",
-    "GeojsonBBox",
-    "GeojsonBBox2d",
-    "GeojsonBBox3d",
+    "GeoBBox",
     "GeoJsonGeometryTypes",
     "GeoJsonProperties",
     "GeoJsonTypes",
@@ -218,6 +229,7 @@
     "Geostats",
     "GeostatsAttribute",
     "GeostatsLayer",
+    "GeoTransform",
     "Latitude",
     "LatitudeWgs84",
     "LinearRing",
@@ -299,6 +311,8 @@
     "TilejsonVectorLayer",
     "TilejsonVectorLayers",
     "TilejsonVersion",
-    "Z"
+    "Wgs84Extent",
+    "Z",
+    "ZBox"
   ]
 }
