@@ -31,8 +31,7 @@
     "test": "vitest run",
     "dev": "vitest watch --coverage",
     "lint": "eslint .",
-    "fmt": "prettier --write .",
-    "prepublishOnly": "pnpm run build"
+    "fmt": "prettier --write ."
   },
   "devDependencies": {
     "@jsse/eslint-config": "^0.1.17",
