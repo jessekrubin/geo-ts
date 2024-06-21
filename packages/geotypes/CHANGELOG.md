@@ -1,5 +1,11 @@
 # @jsse/geotypes
 
+## 0.0.10
+
+### Patch Changes
+
+- 131543a: fix pre-publishing...
+
 ## 0.0.9
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @jsse/utiles
 
+## 0.0.10
+
+### Patch Changes
+
+- 131543a: fix pre-publishing...
+- Updated dependencies [131543a]
+  - @jsse/geotypes@0.0.10
+
 ## 0.0.9
 
 ### Patch Changes
