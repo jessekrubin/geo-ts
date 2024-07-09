@@ -37,15 +37,15 @@
     "@jsse/geotypes": "^0.0.12"
   },
   "devDependencies": {
-    "@jsse/eslint-config": "^0.1.17",
+    "@jsse/eslint-config": "^0.1.19",
     "@jsse/geotypes": "workspace:*",
     "@jsse/tsconfig": "^0.0.3",
-    "@vitest/coverage-v8": "^1.6.0",
+    "@vitest/coverage-v8": "^2.0.1",
     "eslint": "^8.56.0",
     "prettier": "^3.3.2",
     "tsup": "^8.1.0",
-    "tsx": "^4.15.7",
-    "typescript": "^5.4.5",
-    "vitest": "^1.6.0"
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.3",
+    "vitest": "^2.0.1"
   }
 }
