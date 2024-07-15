@@ -33,6 +33,7 @@ export type TilejsonCommon<TFormat extends TilejsonFormat = TilejsonFormat> = {
   vector_layers?: TilejsonVectorLayers;
 
   // optional
+  id?: string;
   version?: Nullable<string>;
   description?: Nullable<string>;
   minzoom?: Nullable<number>;
