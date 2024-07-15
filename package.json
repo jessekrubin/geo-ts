@@ -23,7 +23,7 @@
     "lint": "eslint .",
     "publish": "pnpm publish -r",
     "release": "pnpm run -r build && changeset publish",
-    "ci:version": "changeset version && pnpm install && pnpm fmt",
+    "ci:version": "changeset version && pnpm install --no-frozen-lockfile && pnpm fmt",
     "ci:publish": "pnpm publish -r",
     "test": "vitest run && vitest typecheck --run"
   },
