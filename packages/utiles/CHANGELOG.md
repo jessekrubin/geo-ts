@@ -1,5 +1,12 @@
 # @jsse/utiles
 
+## 0.0.13
+
+### Patch Changes
+
+- Updated dependencies [b2ff747]
+  - @jsse/geotypes@0.0.13
+
 ## 0.0.12
 
 ### Patch Changes
