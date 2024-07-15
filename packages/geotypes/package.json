@@ -24,7 +24,7 @@
   "scripts": {
     "build-fast": "tsup src/geojson.ts --format cjs,esm",
     "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.tsd.json",
-    "build": "pnpm run typecheck && pnpm run build:indexes && pnpm run build:tsup && pnpm run build:tsc",
+    "build": "pnpm run typecheck && pnpm run build:tsup && pnpm run build:tsc",
     "build:tsc": "tsc",
     "build:indexes": "tsx ./build.mts",
     "build:tsup": "tsup --format cjs,esm --dts",
