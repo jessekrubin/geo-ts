@@ -32,8 +32,20 @@ export type TilejsonCommon<TFormat extends TilejsonFormat = TilejsonFormat> = {
   tiles: string[];
   vector_layers?: TilejsonVectorLayers;
 
-  // optional
+  // jsse-recommended
+  /**
+   * Some unique identifier for the tileset (ideally lowercase and url-friendly)
+   *
+   * `name` is can be used in place of `id` often but not always
+   */
   id?: string;
+
+  /**
+   * Tilesize in pixels (generally default is 256 or 512)
+   */
+  tilesize?: number;
+
+  // optional
   version?: Nullable<string>;
   description?: Nullable<string>;
   minzoom?: Nullable<number>;
@@ -47,13 +59,12 @@ export type TilejsonCommon<TFormat extends TilejsonFormat = TilejsonFormat> = {
   grids?: Nullable<string[]>;
   data?: Nullable<string[]>;
   fillzoom?: Nullable<number>;
-
-  // extra
-  tilesize?: Nullable<number>;
 } & TilejsonVectorLayersGeneric<TFormat>;
 
 export type TilejsonVector = TilejsonCommon<TilejsonVectorFormat>;
-export type TilejsonRaster = TilejsonCommon<TilejsonRasterFormat>;
+export type TilejsonRaster = TilejsonCommon<TilejsonRasterFormat> & {
+  tilesize?: number;
+};
 export type Tilejson = TilejsonVector | TilejsonRaster;
 // TODO: remove
 export type Tilejson300 = Tilejson;
