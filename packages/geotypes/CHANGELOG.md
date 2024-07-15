@@ -1,5 +1,11 @@
 # @jsse/geotypes
 
+## 0.0.14
+
+### Patch Changes
+
+- bb4867c: Added tilesize to tilejson as rec field
+
 ## 0.0.13
 
 ### Patch Changes
