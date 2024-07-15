@@ -1,7 +1,7 @@
 {
   "name": "@jsse/geo",
   "type": "module",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "geo typescript",
   "author": "jessekrubin",
   "license": "MIT",

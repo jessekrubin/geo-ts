@@ -1,7 +1,7 @@
 {
   "name": "@jsse/utiles",
   "type": "module",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "utils + tiles = utiles | ultra-tiles",
   "author": "jessekrubin",
   "license": "MIT",

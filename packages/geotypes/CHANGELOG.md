@@ -1,5 +1,11 @@
 # @jsse/geotypes
 
+## 0.0.13
+
+### Patch Changes
+
+- b2ff747: Add optional string id field to tilejson type"
+
 ## 0.0.12
 
 ### Patch Changes
