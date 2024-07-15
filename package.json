@@ -23,14 +23,14 @@
     "lint": "eslint .",
     "publish": "pnpm publish -r",
     "release": "pnpm run -r build && changeset publish",
-    "ci:version": "changeset version && pnpm install && pnpm fmt",
+    "ci:version": "changeset version && pnpm install --no-frozen-lockfile && pnpm fmt",
     "ci:publish": "pnpm publish -r",
     "test": "vitest run && vitest typecheck --run"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.7",
     "@jsse/eslint-config": "^0.1.19",
-    "eslint": "^8.56.0",
+    "eslint": "^8.57.0",
     "prettier": "3.3.3",
     "tsup": "8.1.0",
     "tsx": "^4.16.2",
