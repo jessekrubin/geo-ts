@@ -1,4 +1,4 @@
-import { fs, glob, path } from "zx";
+import { fs, glob } from "zx";
 
 type FileTypeExports = {
   fspath: string;
@@ -80,12 +80,12 @@ async function exportedTypesForFile(file: string): Promise<FileTypeExports> {
 }
 
 async function typesIndex(files: FileTypeExports[]) {
-  const filepaths = files.map((file) =>
-    path.basename(file.fspath).replace(".ts", ".js"),
-  );
-  const lines = filepaths.map((file) => `export * from "./${file}"`);
-  const string = lines.join("\n");
-  await fs.writeFile("./src/types/index.ts", string);
+  // const filepaths = files.map((file) =>
+  //   path.basename(file.fspath).replace(".ts", ".js"),
+  // );
+  // const lines = filepaths.map((file) => `export * from "./${file}"`);
+  // const string = lines.join("\n");
+  // await fs.writeFile("./src/types/index.ts", string);
 
   const geotypesMetadata: GeotypesMetadata = {
     files,
