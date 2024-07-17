@@ -121,7 +121,7 @@ function noop<T>(v: T): T {
     type: "Feature",
     geometry: {
       type: "Point",
-      // @ts-expect-error 3d point
+      // @ts-expect-error - 3d point
       coordinates: [0, 0],
     },
     properties: {
