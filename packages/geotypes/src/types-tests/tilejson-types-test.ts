@@ -1,8 +1,8 @@
 /* eslint-disable unicorn/no-zero-fractions */
-import type { Tilejson300 } from "../geotypes.js";
+import type { Tilejson } from "../geotypes.js";
 
 {
-  const _validVectorTilejson: Tilejson300 & {
+  const _validVectorTilejson: Tilejson & {
     [key: string]: unknown;
   } = {
     tilejson: "3.0.0",
@@ -55,7 +55,7 @@ import type { Tilejson300 } from "../geotypes.js";
     ],
     attribution:
       '<a href="https://www.openmaptiles.org/" target="_blank">&copy; OpenMapTiles</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
-    bounds: [-180.0, -85.05113, 180.0, 85.05113],
+    bounds: [-180.0, -85.051_13, 180.0, 85.051_13],
     center: [0.0, 0.0, 0],
     description:
       "A tileset showcasing all layers in OpenMapTiles. https://openmaptiles.org",
@@ -77,7 +77,7 @@ import type { Tilejson300 } from "../geotypes.js";
     tiles: [],
     attribution:
       '<a href="https://www.openmaptiles.org/" target="_blank">&copy; OpenMapTiles</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
-    bounds: [-180.0, -85.05113, 180.0, 85.05113],
+    bounds: [-180.0, -85.051_13, 180.0, 85.051_13],
     center: [0.0, 0.0, 0],
     description:
       "A tileset showcasing all layers in OpenMapTiles. https://openmaptiles.org",
@@ -94,14 +94,14 @@ import type { Tilejson300 } from "../geotypes.js";
   /**
    * Same as above invalidVectorTilejson, but with a different `format`
    */
-  const _validRasterTilejson: Tilejson300 & {
+  const _validRasterTilejson: Tilejson & {
     [key: string]: unknown;
   } = {
     tilejson: "3.0.0",
     tiles: [],
     attribution:
       '<a href="https://www.openmaptiles.org/" target="_blank">&copy; OpenMapTiles</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
-    bounds: [-180.0, -85.05113, 180.0, 85.05113],
+    bounds: [-180.0, -85.051_13, 180.0, 85.051_13],
     center: [0.0, 0.0, 0],
     description:
       "A tileset showcasing all layers in OpenMapTiles. https://openmaptiles.org",

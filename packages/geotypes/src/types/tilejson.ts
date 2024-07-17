@@ -7,6 +7,28 @@ export type TilejsonVectorFormat = "pbf";
 export type TilejsonFormatExtra = "pbfgz" | "json" | "geojson" | "unknown";
 export type TilejsonFormat = TilejsonRasterFormat | TilejsonVectorFormat;
 
+export type TilejsonTerrain =
+  | "mapbox"
+  | "terrarium"
+  | {
+      /**
+       * Red channel scalar
+       */
+      r: number;
+      /**
+       * Green channel scalar
+       */
+      g: number;
+      /**
+       * Blue channel scalar
+       */
+      b: number;
+      /**
+       * Offset (probably in meters)
+       */
+      o: number;
+    };
+
 export type TilejsonVectorLayer = {
   id: string;
   fields: Record<string, string>;
@@ -45,6 +67,11 @@ export type TilejsonCommon<TFormat extends TilejsonFormat = TilejsonFormat> = {
    */
   tilesize?: number;
 
+  /**
+   * Terrain type/info for the tileset
+   */
+  terrain?: TilejsonTerrain;
+
   // optional
   version?: Nullable<string>;
   description?: Nullable<string>;
@@ -66,5 +93,14 @@ export type TilejsonRaster = TilejsonCommon<TilejsonRasterFormat> & {
   tilesize?: number;
 };
 export type Tilejson = TilejsonVector | TilejsonRaster;
-// TODO: remove
-export type Tilejson300 = Tilejson;
+
+/**
+ * UTilejson is a more strict version that requires several fields to be present that
+ * are not required in the Tilejson type.
+ */
+
+export type UTilejson = Tilejson & {
+  minzoom: number;
+  maxzoom: number;
+  bounds: [west: number, south: number, east: number, north: number];
+};
