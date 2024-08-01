@@ -35,18 +35,18 @@
     "prepare": "pnpm run build"
   },
   "devDependencies": {
-    "@jsse/eslint-config": "^0.1.19",
+    "@jsse/eslint-config": "^0.1.21",
     "@types/geojson": "^7946.0.14",
-    "@typescript-eslint/eslint-plugin": "^7.16.1",
-    "@typescript-eslint/parser": "^7.16.1",
-    "@vitest/coverage-v8": "^2.0.3",
-    "esbuild": "^0.21.5",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "@vitest/coverage-v8": "^2.0.5",
+    "esbuild": "^0.23.0",
     "eslint": "^8.56.0",
     "prettier": "3.3.3",
-    "tsup": "8.1.0",
-    "tsx": "^4.16.2",
-    "typescript": "5.5.3",
-    "vitest": "2.0.3",
+    "tsup": "8.2.3",
+    "tsx": "^4.16.4",
+    "typescript": "5.5.4",
+    "vitest": "2.0.5",
     "zx": "^8.1.4"
   }
 }
