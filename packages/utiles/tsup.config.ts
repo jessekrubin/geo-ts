@@ -1,7 +1,7 @@
 import { defineConfig } from "tsup";
 
 export default defineConfig({
-  entry: ["src/index.ts", "src/tilebelt.ts"],
+  entry: ["src/index.ts", "src/tilebelt.ts", "src/tile-type.ts"],
   splitting: false,
   format: ["cjs", "esm"],
   dts: true,

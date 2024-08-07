@@ -27,6 +27,16 @@
         "default": "./dist/tilebelt.cjs"
       }
     },
+    "./tile-type": {
+      "import": {
+        "types": "./dist/tile-type.d.ts",
+        "default": "./dist/tile-type.js"
+      },
+      "require": {
+        "types": "./dist/tile-type.d.cts",
+        "default": "./dist/tile-type.cjs"
+      }
+    },
     "./package.json": "./package.json"
   },
   "main": "./dist/index.cjs",
