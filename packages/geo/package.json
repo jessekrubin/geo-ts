@@ -28,7 +28,7 @@
     "lint": "eslint .",
     "fmt": "prettier --write . --ignore-path ../../.prettierignore",
     "nodetest": "node --import tsx --test ./src/*test.ts",
-    "prepare": "pnpm run build"
+    "prepublishOnly": "pnpm run build"
   },
   "publishConfig": {
     "access": "public"
