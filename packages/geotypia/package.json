@@ -39,7 +39,7 @@
     "lint": "eslint .",
     "fmt": "prettier --write .",
     "prepublishOnly": "pnpm run build",
-    "prepare": "ts-patch install && typia patch"
+    "prepublishOnly": "ts-patch install && typia patch"
   },
   "dependencies": {
     "@jsse/geotypes": "workspace:*"

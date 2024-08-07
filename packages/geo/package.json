@@ -1,16 +1,31 @@
 {
-  "name": "@jsse/geo",
+  "name": "@jsse/utiles",
   "type": "module",
   "version": "0.0.16",
-  "description": "geo typescript",
+  "description": "utils + tiles = utiles | ultra-tiles",
   "author": "jessekrubin",
   "license": "MIT",
   "keywords": [],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./tilebelt": {
+      "import": {
+        "types": "./dist/tilebelt.d.ts",
+        "default": "./dist/tilebelt.js"
+      },
+      "require": {
+        "types": "./dist/tilebelt.d.cts",
+        "default": "./dist/tilebelt.cjs"
+      }
     },
     "./package.json": "./package.json"
   },
@@ -28,7 +43,7 @@
     "lint": "eslint .",
     "fmt": "prettier --write . --ignore-path ../../.prettierignore",
     "nodetest": "node --import tsx --test ./src/*test.ts",
-    "prepare": "pnpm run build"
+    "prepublishOnly": "pnpm run build"
   },
   "publishConfig": {
     "access": "public"
@@ -38,7 +53,6 @@
   },
   "devDependencies": {
     "@jsse/eslint-config": "^0.2.2",
-    "@jsse/geotypes": "workspace:*",
     "@jsse/tsconfig": "^0.1.0",
     "@vitest/coverage-v8": "^2.0.5",
     "eslint": "^9.8.0",
