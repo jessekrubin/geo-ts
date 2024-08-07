@@ -1,5 +1,4 @@
 export type Nullable<T> = T | null;
-export type Fmt<T> = { [KeyType in keyof T]: T[KeyType] } & {};
 
 export type IsNull<T> = null extends T ? true : false;
 export type IsNullable<T> = null extends T ? true : false;
@@ -32,3 +31,17 @@ export type IsOptional<T> =
     : ExtendsUndefined<T> extends true
       ? true
       : false;
+
+/**
+ * Flatten/format type output for use in editor(s)
+ *
+ * Based on: https://github.com/sindresorhus/type-fest/blob/main/source/simplify.d.ts
+ */
+export type Fmt<T> = { [KeyType in keyof T]: T[KeyType] } & {};
+export type FmtDeep<T> = {
+  [KeyType in keyof T]: T[KeyType] extends Record<string, unknown>
+    ? FmtDeep<T[KeyType]>
+    : T[KeyType] extends Array<infer U>
+      ? U[]
+      : T[KeyType];
+};
