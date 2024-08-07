@@ -1,5 +1,4 @@
 export type Nullable<T> = T | null;
-// eslint-disable-next-line @typescript-eslint/ban-types
 export type Fmt<T> = { [KeyType in keyof T]: T[KeyType] } & {};
 
 export type IsNull<T> = null extends T ? true : false;
