@@ -1,5 +1,13 @@
 # @jsse/geo
 
+## 0.0.17
+
+### Patch Changes
+
+- d4d6f50: updated eslint to v9 and other dependencies
+- Updated dependencies [d4d6f50]
+  - @jsse/geotypes@0.0.17
+
 ## 0.0.16
 
 ### Patch Changes
