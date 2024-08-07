@@ -2,7 +2,7 @@ import type { BBox, BBox2d, BBox3d } from "@jsse/geotypes";
 import { MAX_LAT_WEB, MAX_LNG, MIN_LAT_WEB, MIN_LNG } from "./const.js";
 import type { TileArr } from "./types.js";
 import { bbox2bboxes, bbox2dify, bboxclip } from "./bbox.js";
-import { zbox, zboxgen } from "./zbox.js";
+import { zbox, zboxTilesCount, zboxgen } from "./zbox.js";
 
 export type TilesOptions = {
   bbox?: BBox2d | BBox3d;
@@ -57,7 +57,7 @@ export function ntiles({
     );
   }
   const zb = zbox({ bbox, z: zooms });
-  return (zb.max.x - zb.min.x + 1) * (zb.max.y - zb.min.y + 1);
+  return zboxTilesCount(zb);
 }
 
 export function* tilesgenz({

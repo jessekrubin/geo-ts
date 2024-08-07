@@ -21,6 +21,24 @@ export const WEBP_HEADERS: ReadonlyHeader = {
   "Content-Type": "image/webp",
 };
 
+export const PNG_BYTES_PREFIX = new Uint8Array([
+  0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a,
+]);
+export const JPG_BYTES_PREFIX = new Uint8Array([0xff, 0xd8]);
+export const GIF_BYTES_PREFIX = new Uint8Array([0x47, 0x49, 0x46, 0x38]);
+export const WEBP_BYTES_PREFIX = new Uint8Array([0x52, 0x49, 0x46, 0x46]);
+export const GZIP_BYTES_PREFIX = new Uint8Array([0x1f, 0x8b]);
+export const DEFLATE_BYTES_PREFIX = new Uint8Array([0x78, 0x9c]);
+export const ZSTD_BYTES_PREFIX = new Uint8Array([0x28, 0xb5, 0x2f, 0xfd]);
+
+export function bufStartsWith(buffer: Uint8Array, prefix: Uint8Array): boolean {
+  if (buffer.length < prefix.length) return false;
+  for (const [i, element] of prefix.entries()) {
+    if (buffer[i] !== element) return false;
+  }
+  return true;
+}
+
 /**
  * Given a buffer of unknown data, return either a format as an extension
  * string or false if the type cannot be determined.
