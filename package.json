@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.7",
-    "@jsse/eslint-config": "^0.2.1",
+    "@jsse/eslint-config": "^0.2.2",
     "eslint": "^9.8.0",
     "prettier": "3.3.3",
     "tsup": "8.2.4",

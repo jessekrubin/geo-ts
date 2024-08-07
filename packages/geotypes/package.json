@@ -35,7 +35,7 @@
     "prepare": "pnpm run build"
   },
   "devDependencies": {
-    "@jsse/eslint-config": "^0.2.1",
+    "@jsse/eslint-config": "^0.2.2",
     "@types/geojson": "^7946.0.14",
     "@typescript-eslint/eslint-plugin": "^8.0.1",
     "@typescript-eslint/parser": "^8.0.1",

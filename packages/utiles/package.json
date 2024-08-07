@@ -52,7 +52,7 @@
     "@jsse/geotypes": "workspace:*"
   },
   "devDependencies": {
-    "@jsse/eslint-config": "^0.2.1",
+    "@jsse/eslint-config": "^0.2.2",
     "@jsse/tsconfig": "^0.1.0",
     "@vitest/coverage-v8": "^2.0.5",
     "eslint": "^9.8.0",
