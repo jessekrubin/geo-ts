@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 import type { BBox2d } from "@jsse/geotypes";
-import { tilesarr, xyz2bbox } from "./index.js";
+import { ntiles, tilesarr, xyz2bbox } from "./index.js";
 
 /**
  * =======================================
@@ -89,7 +89,23 @@ describe("tiles-gen", () => {
     ];
     expect(tilesArr).toStrictEqual(expected);
     expect(tilesArr.length).toBe(2);
+
+    expect(ntiles({ bbox: bounds, zooms: [14] })).toBe(2);
   });
+
+  test("tiles-antimeridian-crossing-bbox", () => {
+    const bounds = [175, 5, -175, 10] as [number, number, number, number];
+    const tilesArr = tilesarr({ bbox: bounds, zooms: [2] });
+    expect(tilesArr).toBeTruthy();
+    expect(tilesArr.length).toBe(2);
+    const expected = [
+      [0, 1, 2],
+      [3, 1, 2],
+    ];
+    expect(tilesArr).toStrictEqual(expected);
+    expect(ntiles({ bbox: bounds, zooms: [2] })).toBe(2);
+  });
+
   test("tiles single zoom", () => {
     const bounds = [-105, 39.99, -104.99, 40] as [
       number,
