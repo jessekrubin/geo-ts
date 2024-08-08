@@ -1,5 +1,12 @@
 # @jsse/geo
 
+## 0.0.18
+
+### Patch Changes
+
+- Updated dependencies [bda2134]
+  - @jsse/geotypes@0.0.18
+
 ## 0.0.17
 
 ### Patch Changes

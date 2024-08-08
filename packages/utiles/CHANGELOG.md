@@ -1,5 +1,13 @@
 # @jsse/utiles
 
+## 0.0.18
+
+### Patch Changes
+
+- bda2134: exported tile-type from utiles and tilejson tiles in geotypes
+- Updated dependencies [bda2134]
+  - @jsse/geotypes@0.0.18
+
 ## 0.0.17
 
 ### Patch Changes
