@@ -1,5 +1,3 @@
-import type { FmtDeep } from "../utypes.js";
-
 export type TilejsonScheme = "xyz" | "tms";
 export type TilejsonVersion = "2.0.0" | "2.1.0" | "2.2.0" | "3.0.0";
 export type TilejsonRasterFormat = "png" | "jpg" | "webp";
@@ -87,12 +85,10 @@ export type TilejsonCommon<TFormat extends TilejsonFormat = TilejsonFormat> = {
   fillzoom?: number | null;
 } & TilejsonVectorLayersGeneric<TFormat>;
 
-export type TilejsonVector = FmtDeep<TilejsonCommon<"pbf">>;
-export type TilejsonRaster = FmtDeep<
-  TilejsonCommon<"png" | "jpg" | "webp"> & {
-    tilesize?: number;
-  }
->;
+export type TilejsonVector = TilejsonCommon<"pbf">;
+export type TilejsonRaster = TilejsonCommon<"png" | "jpg" | "webp"> & {
+  tilesize?: number;
+};
 export type Tilejson = TilejsonVector | TilejsonRaster;
 
 /**

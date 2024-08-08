@@ -4,7 +4,13 @@ export default defineConfig({
   test: {
     globals: false,
     threads: false,
-    reporters: ["verbose"],
-    exclude: ["**/node_modules/**", "**/packages/**"],
+    //reporters: ["verbose"],
+    exclude: [
+      "**/node_modules/**",
+      "**/_purgatory/**",
+      "**/dist/**",
+      "**/*.cjs",
+      "**/geotypia/**",
+    ],
   },
 });
