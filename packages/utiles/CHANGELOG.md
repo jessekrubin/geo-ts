@@ -1,5 +1,15 @@
 # @jsse/utiles
 
+## 0.0.19
+
+### Patch Changes
+
+- fd8ea7b: exported tile-type from utiles and tilejson tiles in geotypes
+- fd8ea7b: Remove `FmtDeep` from `UTileJson` wrapper type
+- Updated dependencies [fd8ea7b]
+- Updated dependencies [fd8ea7b]
+  - @jsse/geotypes@0.0.19
+
 ## 0.0.18
 
 ### Patch Changes
