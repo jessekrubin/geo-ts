@@ -17,3 +17,7 @@ export type Coord = Coord2d | Coord3d;
 export type Coord2dLike = Coord2d | LngLat | LonLat;
 export type Coord3dLike = Coord3d | LngLatZ | LonLatZ;
 export type CoordLike = Coord | LngLat | LonLat | LngLatZ | LonLatZ;
+/**
+ * The Official `@types/geojson` package has a `Position` that is an array of numbers...
+ */
+export type Position = number[];

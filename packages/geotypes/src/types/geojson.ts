@@ -6,6 +6,7 @@ import type {
   IsUndefined,
 } from "../utypes.js";
 import type { BBox } from "./bbox.js";
+import type { Position } from "./coord.js";
 
 export type Longitude = number;
 export type Latitude = number;
@@ -29,6 +30,7 @@ export type Coordinate3d = [x: Longitude, y: Latitude, z: number];
 export type Coordinate =
   | [x: Longitude, y: Latitude]
   | [x: Longitude, y: Latitude, z: number];
+export type GeojsonCoordLike = Coordinate | Position;
 
 export type GeoJsonGeometryTypes =
   | "Point"
@@ -50,16 +52,13 @@ export type GeometryCollectionType = "GeometryCollection";
  * A LineString is an array of two or more positions.
  * const lineString: LineStringCoordinates = [ [100.0, 0.0], [101.0, 1.0] ];
  */
-export type LineStringCoordinates<TCoordinate extends Coordinate = Coordinate> =
-  [TCoordinate, TCoordinate, ...TCoordinate[]];
+export type LineStringCoordinates<
+  TCoordinate extends GeojsonCoordLike = GeojsonCoordLike,
+> = [TCoordinate, TCoordinate, ...TCoordinate[]];
 
-export type LinearRing<TCoordinate extends Coordinate = Coordinate> = [
-  TCoordinate,
-  TCoordinate,
-  TCoordinate,
-  TCoordinate,
-  ...TCoordinate[],
-];
+export type LinearRing<
+  TCoordinate extends GeojsonCoordLike = GeojsonCoordLike,
+> = [TCoordinate, TCoordinate, TCoordinate, TCoordinate, ...TCoordinate[]];
 
 /**
  * A Polygon is an array of LinearRings. The first element in the array represents the exterior ring.
@@ -90,35 +89,46 @@ export type LinearRing<TCoordinate extends Coordinate = Coordinate> = [
 // > = [PolygonCoordinates<TCoordinate>, ...PolygonCoordinates<TCoordinate>[]];
 
 // Geometry object types
-export type PointGeometry<TCoordinate extends Coordinate = Coordinate> = {
+export type PointGeometry<
+  TCoordinate extends GeojsonCoordLike = GeojsonCoordLike,
+> = {
   type: "Point";
   coordinates: TCoordinate;
 };
-export type LineStringGeometry<TCoordinate extends Coordinate = Coordinate> = {
+export type LineStringGeometry<
+  TCoordinate extends GeojsonCoordLike = GeojsonCoordLike,
+> = {
   type: "LineString";
-  coordinates: [TCoordinate, TCoordinate, ...TCoordinate[]];
+  coordinates: TCoordinate[];
 };
-export type PolygonGeometry<TCoordinate extends Coordinate = Coordinate> = {
+export type PolygonGeometry<
+  TCoordinate extends GeojsonCoordLike = GeojsonCoordLike,
+> = {
   type: "Polygon";
   coordinates: TCoordinate[][];
 };
-export type MultiPointGeometry<TCoordinate extends Coordinate = Coordinate> = {
+export type MultiPointGeometry<
+  TCoordinate extends GeojsonCoordLike = GeojsonCoordLike,
+> = {
   type: "MultiPoint";
   coordinates: TCoordinate[];
 };
 export type MultiLineStringGeometry<
-  TCoordinate extends Coordinate = Coordinate,
+  TCoordinate extends GeojsonCoordLike = GeojsonCoordLike,
 > = {
   type: "MultiLineString";
   coordinates: TCoordinate[][];
 };
-export type MultiPolygonGeometry<TCoordinate extends Coordinate = Coordinate> =
-  {
-    type: "MultiPolygon";
-    coordinates: TCoordinate[][][];
-  };
+export type MultiPolygonGeometry<
+  TCoordinate extends GeojsonCoordLike = GeojsonCoordLike,
+> = {
+  type: "MultiPolygon";
+  coordinates: TCoordinate[][][];
+};
 
-export type PrimitiveGeometry<TCoordinate extends Coordinate = Coordinate> =
+export type PrimitiveGeometry<
+  TCoordinate extends GeojsonCoordLike = GeojsonCoordLike,
+> =
   | PointGeometry<TCoordinate>
   | LineStringGeometry<TCoordinate>
   | PolygonGeometry<TCoordinate>
@@ -135,7 +145,7 @@ export interface GeometryCollection<G extends Geometry = Geometry> {
   geometries: G[];
 }
 
-export type Geometry<TCoordinate extends Coordinate = Coordinate> =
+export type Geometry<TCoordinate extends GeojsonCoordLike = GeojsonCoordLike> =
   | PrimitiveGeometry<TCoordinate>
   | GeometryCollection<Geometry<TCoordinate>>;
 
@@ -190,7 +200,7 @@ export type FeatureGenericOptions<
 };
 
 export type FeatureGenericGeometry<
-  TCoordinate extends Coordinate = Coordinate,
+  TCoordinate extends GeojsonCoordLike = GeojsonCoordLike,
   TGeometry extends Geometry<TCoordinate> = Geometry<TCoordinate>,
 > = {
   Coordinate: TCoordinate;
@@ -199,7 +209,7 @@ export type FeatureGenericGeometry<
 
 export type FeatureGeneric<
   TFeatureId extends string | number | undefined = string | number | undefined,
-  TCoordinate extends Coordinate = Coordinate,
+  TCoordinate extends GeojsonCoordLike = GeojsonCoordLike,
   TGeometry extends Geometry<TCoordinate> = Geometry<TCoordinate>,
   // TProperties extends GeoJsonProperties | undefined = GeoJsonProperties | undefined,
   TBBox extends BBox | undefined = BBox | undefined,
@@ -326,7 +336,7 @@ export type PointFeature<
 > = Feature<PointGeometry, TProperties, TFeatureOptions>;
 
 export type LineStringFeature<
-  TCoordinate extends Coordinate = Coordinate,
+  TCoordinate extends GeojsonCoordLike = GeojsonCoordLike,
   TProperties extends GeoJsonProperties | undefined =
     | GeoJsonProperties
     | undefined,
@@ -334,7 +344,7 @@ export type LineStringFeature<
 > = Feature<LineStringGeometry<TCoordinate>, TProperties, FeatureOptions>;
 
 export type PolygonFeature<
-  TCoordinate extends Coordinate = Coordinate,
+  TCoordinate extends GeojsonCoordLike = GeojsonCoordLike,
   TProperties extends GeoJsonProperties | undefined =
     | GeoJsonProperties
     | undefined,
@@ -349,7 +359,7 @@ export type MultiPointFeature<
 > = Feature<MultiPointGeometry, TProperties, FeatureOptions>;
 
 export type MultiLineStringFeature<
-  TCoordinate extends Coordinate = Coordinate,
+  TCoordinate extends GeojsonCoordLike = GeojsonCoordLike,
   TProperties extends GeoJsonProperties | undefined =
     | GeoJsonProperties
     | undefined,
@@ -357,7 +367,7 @@ export type MultiLineStringFeature<
 > = Feature<MultiLineStringGeometry<TCoordinate>, TProperties, FeatureOptions>;
 
 export type MultiPolygonFeature<
-  TCoordinate extends Coordinate = Coordinate,
+  TCoordinate extends GeojsonCoordLike = GeojsonCoordLike,
   TProperties extends GeoJsonProperties | undefined =
     | GeoJsonProperties
     | undefined,
@@ -365,20 +375,25 @@ export type MultiPolygonFeature<
 > = Feature<MultiPolygonGeometry<TCoordinate>, TProperties, FeatureOptions>;
 
 // COMPAT W/ `@types/geojson`
-export type Point<TCoordinate extends Coordinate = Coordinate> =
+export type Point<TCoordinate extends GeojsonCoordLike = GeojsonCoordLike> =
   PointGeometry<TCoordinate>;
-export type LineString<TCoordinate extends Coordinate = Coordinate> =
-  LineStringGeometry<TCoordinate>;
-export type Polygon<TCoordinate extends Coordinate = Coordinate> =
+export type LineString<
+  TCoordinate extends GeojsonCoordLike = GeojsonCoordLike,
+> = LineStringGeometry<TCoordinate>;
+export type Polygon<TCoordinate extends GeojsonCoordLike = GeojsonCoordLike> =
   PolygonGeometry<TCoordinate>;
-export type MultiPoint<TCoordinate extends Coordinate = Coordinate> =
-  MultiPointGeometry<TCoordinate>;
-export type MultiLineString<TCoordinate extends Coordinate = Coordinate> =
-  MultiLineStringGeometry<TCoordinate>;
-export type MultiPolygon<TCoordinate extends Coordinate = Coordinate> =
-  MultiPolygonGeometry<TCoordinate>;
-export type GeometryObject<TCoordinate extends Coordinate = Coordinate> =
-  Geometry<TCoordinate>;
+export type MultiPoint<
+  TCoordinate extends GeojsonCoordLike = GeojsonCoordLike,
+> = MultiPointGeometry<TCoordinate>;
+export type MultiLineString<
+  TCoordinate extends GeojsonCoordLike = GeojsonCoordLike,
+> = MultiLineStringGeometry<TCoordinate>;
+export type MultiPolygon<
+  TCoordinate extends GeojsonCoordLike = GeojsonCoordLike,
+> = MultiPolygonGeometry<TCoordinate>;
+export type GeometryObject<
+  TCoordinate extends GeojsonCoordLike = GeojsonCoordLike,
+> = Geometry<TCoordinate>;
 
 /**
  * =================================================================================
