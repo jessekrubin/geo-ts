@@ -1,0 +1,54 @@
+{
+  "name": "@jsse/geo",
+  "type": "module",
+  "version": "0.0.29",
+  "description": "geo typescript",
+  "author": "jessekrubin",
+  "license": "MIT",
+  "keywords": [],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build-fast": "tsup src/index.ts --format cjs,esm",
+    "build": "pnpm run build:tsup && pnpm run build:tsc",
+    "build:tsup": "tsup --format cjs,esm --dts",
+    "build:tsc": "tsc --project tsconfig.json && tsc --project tsconfig.cjs.json",
+    "test": "vitest run",
+    "cov": "vitest run --coverage",
+    "dev": "vitest watch --coverage",
+    "lint": "eslint .",
+    "fmt": "prettier --write . --ignore-path ../../.prettierignore",
+    "nodetest": "node --import tsx --test ./src/*test.ts",
+    "prepublishOnly": "pnpm run build"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@jsse/geotypes": "workspace:*"
+  },
+  "devDependencies": {
+    "@jsse/eslint-config": "^0.2.16",
+    "@jsse/geotypes": "workspace:*",
+    "@jsse/tsconfig": "^0.1.0",
+    "@vitest/coverage-v8": "^2.1.1",
+    "eslint": "^9.11.0",
+    "prettier": "^3.3.3",
+    "tsup": "^8.3.0",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.2",
+    "vitest": "^2.1.1"
+  }
+}

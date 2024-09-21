@@ -1,0 +1,95 @@
+{
+  "name": "@jsse/utiles",
+  "type": "module",
+  "version": "0.0.29",
+  "description": "utils + tiles = utiles | ultra-tiles",
+  "author": "jessekrubin",
+  "license": "MIT",
+  "keywords": [
+    "maps",
+    "tiles",
+    "maplibre",
+    "mapbox",
+    "jawascript"
+  ],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./tilebelt": {
+      "import": {
+        "types": "./dist/tilebelt.d.ts",
+        "default": "./dist/tilebelt.js"
+      },
+      "require": {
+        "types": "./dist/tilebelt.d.cts",
+        "default": "./dist/tilebelt.cjs"
+      }
+    },
+    "./tile-cover": {
+      "import": {
+        "types": "./dist/tile-cover.d.ts",
+        "default": "./dist/tile-cover.js"
+      },
+      "require": {
+        "types": "./dist/tile-cover.d.cts",
+        "default": "./dist/tile-cover.cjs"
+      }
+    },
+    "./tile-type": {
+      "import": {
+        "types": "./dist/tile-type.d.ts",
+        "default": "./dist/tile-type.js"
+      },
+      "require": {
+        "types": "./dist/tile-type.d.cts",
+        "default": "./dist/tile-type.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build-fast": "tsup src/index.ts --format cjs,esm",
+    "build": "pnpm run build:tsup && pnpm run build:tsc",
+    "build:tsup": "tsup --format cjs,esm --dts",
+    "build:tsc": "tsc --project tsconfig.json && tsc --project tsconfig.cjs.json",
+    "test": "vitest run",
+    "cov": "vitest run --coverage",
+    "dev": "vitest watch --coverage",
+    "lint": "eslint .",
+    "fmt": "prettier --write . --ignore-path ../../.prettierignore",
+    "nodetest": "node --import tsx --test ./src/*test.ts",
+    "prepublishOnly": "pnpm run build"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@jsse/geotypes": "workspace:*"
+  },
+  "devDependencies": {
+    "@jsse/eslint-config": "^0.2.16",
+    "@jsse/tsconfig": "^0.1.0",
+    "@types/node": "^22.5.5",
+    "@vitest/coverage-v8": "^2.1.1",
+    "eslint": "^9.11.0",
+    "prettier": "^3.3.3",
+    "tsup": "^8.3.0",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.2",
+    "vitest": "^2.1.1"
+  }
+}

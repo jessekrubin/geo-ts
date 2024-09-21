@@ -1,0 +1,58 @@
+{
+  "name": "@jsse/geotypes",
+  "type": "module",
+  "version": "0.0.29",
+  "description": "geo types",
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./dist/*": {
+      "types": "./dist/esm/*",
+      "import": "./dist/esm/*",
+      "require": "./dist/cjs/*"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build-fast": "tsup src/geojson.ts --format cjs,esm",
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.tsd.json",
+    "build": "pnpm run typecheck && pnpm run build:tsup && pnpm run build:tsc",
+    "build:tsc": "tsc -p tsconfig.json && tsc -p tsconfig.cjs.json",
+    "build:indexes": "tsx ./build.mts",
+    "build:tsup": "tsup --format cjs,esm --dts",
+    "test": "vitest run",
+    "dev": "vitest watch --coverage",
+    "lint": "eslint .",
+    "fmt": "prettier --write .",
+    "prepublishOnly": "pnpm run build"
+  },
+  "devDependencies": {
+    "@jsse/eslint-config": "^0.2.16",
+    "@types/geojson": "^7946.0.14",
+    "@types/node": "^22.5.5",
+    "@typescript-eslint/eslint-plugin": "^8.6.0",
+    "@typescript-eslint/parser": "^8.6.0",
+    "@vitest/coverage-v8": "^2.1.1",
+    "esbuild": "^0.23.1",
+    "eslint": "^9.11.0",
+    "prettier": "3.3.3",
+    "tsup": "8.2.4",
+    "tsx": "^4.19.1",
+    "typescript": "5.5.4",
+    "vitest": "2.0.5",
+    "zx": "^8.1.8"
+  }
+}
