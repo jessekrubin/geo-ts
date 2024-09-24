@@ -1,5 +1,14 @@
 # @jsse/geo
 
+## 0.0.30
+
+### Patch Changes
+
+- [#3](https://github.com/jessekrubin/geo-ts/pull/3) [`4611667`](https://github.com/jessekrubin/geo-ts/commit/461166741ebe20a76be55072e343f70e7415598c) Thanks [@jessekrubin](https://github.com/jessekrubin)! - Added wrap longitude fns
+
+- Updated dependencies []:
+  - @jsse/geotypes@0.0.30
+
 ## 0.0.29
 
 ### Patch Changes
