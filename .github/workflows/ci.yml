@@ -95,7 +95,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.CHANGESETS_GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: publish
-        if: steps.changesets.outputs.hasChangesets == 'false' 
+        if: steps.changesets.outputs.hasChangesets == 'false'
         run: |
           pnpm publish -r
           rm -rf ~/.npmrc

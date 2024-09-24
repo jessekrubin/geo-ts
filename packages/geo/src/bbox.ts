@@ -22,7 +22,12 @@ export function bbox2d(
   ymax?: number,
 ): BBox2d {
   if (Array.isArray(bboxOrXmin)) {
-    return bboxOrXmin as BBox2d;
+    if (bboxOrXmin.length < 4) {
+      throw new Error("Invalid array length");
+    }
+    return bboxOrXmin.length === 4
+      ? (bboxOrXmin as BBox2d)
+      : (bboxOrXmin.slice(0, 4) as BBox2d);
   }
   return [bboxOrXmin, ymin as number, xmax as number, ymax as number];
 }
@@ -102,9 +107,9 @@ export function bbox(
   f?: number,
 ): BBox2d | BBox3d {
   if (Array.isArray(bboxOrA)) {
-    return bboxOrA.length === 4
-      ? bbox2d(bboxOrA as BBox2d)
-      : bbox3d(bboxOrA as BBox3d);
+    return bboxOrA.length >= 6
+      ? bbox3d(bboxOrA as BBox3d)
+      : bbox2d(bboxOrA as BBox2d);
   }
   return e === undefined || f === undefined
     ? bbox2d(bboxOrA, b as number, c as number, d as number)
