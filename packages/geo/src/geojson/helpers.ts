@@ -89,10 +89,12 @@ function _featureBase(
 function _featureProperties<TProperties = GeoJsonProperties>(
   properties?: TProperties,
 ): FeatureProperties<TProperties> {
-  // eslint-disable-next-line unicorn/no-null
   return (
-    properties === null ? null : (properties ?? {})
-  ) as FeatureProperties<TProperties>;
+    // eslint-disable-next-line unicorn/no-null
+    (
+      properties === null ? null : (properties ?? {})
+    ) as FeatureProperties<TProperties>
+  );
 }
 
 export function pointFeature<
