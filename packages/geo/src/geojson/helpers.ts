@@ -90,8 +90,8 @@ function _featureProperties<TProperties = GeoJsonProperties>(
   properties?: TProperties,
 ): FeatureProperties<TProperties> {
   return (
-    // eslint-disable-next-line unicorn/no-null
     (
+      // eslint-disable-next-line unicorn/no-null
       properties === null ? null : (properties ?? {})
     ) as FeatureProperties<TProperties>
   );
