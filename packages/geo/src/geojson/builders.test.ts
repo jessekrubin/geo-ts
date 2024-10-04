@@ -16,7 +16,6 @@ test("point-feature", () => {
   });
 
   const pfnullprops = pointFeature([0, 0], null);
-  console.log(pfnullprops);
   expect(pfnullprops).toEqual({
     type: "Feature",
     geometry: {
