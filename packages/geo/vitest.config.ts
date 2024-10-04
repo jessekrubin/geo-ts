@@ -6,15 +6,12 @@ export default defineConfig({
       exclude: ["node_modules", "dist", ".idea", ".git", ".cache"],
       include: ["**/*.{bench,benchmark}.?(c|m)[jt]s?(x)"],
     },
-    include: [
-      "./dist/**/*.test.js",
-      "./src/**/*.test.ts",
-    ],
+    include: ["./dist/**/*.test.js", "./src/**/*.test.ts"],
     exclude: [
       "**/node_modules/**",
       "**/cypress/**",
       "**/.{idea,git,cache,output,temp}/**",
-      "**/{karma,rollup,webpack,vite,vitest,jest,ava,babel,nyc,cypress,tsup,build,eslint,prettier}.config.*"
+      "**/{karma,rollup,webpack,vite,vitest,jest,ava,babel,nyc,cypress,tsup,build,eslint,prettier}.config.*",
     ],
     coverage: {
       provider: "v8",

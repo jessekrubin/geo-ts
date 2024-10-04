@@ -6,12 +6,6 @@
     "outDir": "dist/cjs",
     "verbatimModuleSyntax": null
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "src/**/*.test.*"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "src/**/*.test.*"]
 }
