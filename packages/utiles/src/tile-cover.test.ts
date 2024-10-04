@@ -1,4 +1,3 @@
- 
 import * as fs from "node:fs";
 import { promises as fsp } from "node:fs";
 import { expect, test } from "vitest";

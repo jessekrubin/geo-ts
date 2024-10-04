@@ -29,6 +29,7 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
+    "!**/*.test-data.*",
     "!**/*.test.*",
     "!**/*.tsbuildinfo",
     "CHANGELOG.md",

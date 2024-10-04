@@ -21,7 +21,7 @@ export default jsse(
     files: ["**/*.test.ts"],
     rules: {
       "no-console": "off",
-    }
+    },
   },
   {
     files: ["**/*.dts-test.ts", "**/*.test-dts.ts", "**/*.test-d.ts"],
