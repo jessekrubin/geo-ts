@@ -29,6 +29,9 @@ describe("fast-json-stable-stringify-generator", () => {
   });
 });
 
+const cmpFunction: CmpFunction = (a, b) => {
+  return a.key < b.key ? 1 : -1;
+};
 describe("fast-json-stable-stringify-unit", () => {
   describe.each([
     {
@@ -41,9 +44,6 @@ describe("fast-json-stable-stringify-unit", () => {
       test("custom comparison function", () => {
         expect.assertions(1);
         const obj = { c: 8, b: [{ z: 6, y: 5, x: 4 }, 7], a: 3 };
-        const cmpFunction: CmpFunction = (a, b) => {
-          return a.key < b.key ? 1 : -1;
-        };
 
         const s = stringify(obj, { cmp: cmpFunction });
         expect(s).toBe('{"c":8,"b":[{"z":6,"y":5,"x":4},7],"a":3}');

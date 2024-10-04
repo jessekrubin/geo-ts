@@ -16,7 +16,7 @@ export type Options = {
   sort?: boolean;
 };
 
-const stringifyOptions = (opts?: Options | CmpFunction): Options => {
+function stringifyOptions(opts?: Options | CmpFunction): Options {
   if (opts === undefined) {
     return { cmp: undefined, cycles: false, sort: true };
   } else if (typeof opts === "function") {
@@ -24,7 +24,7 @@ const stringifyOptions = (opts?: Options | CmpFunction): Options => {
   } else {
     return { sort: true, ...opts };
   }
-};
+}
 
 export function fastJsonStableStringifyFmt(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -86,7 +86,9 @@ export function fastJsonStableStringifyFmt(
     out = "{" + newLine;
     for (i = 0; i < keys.length; i++) {
       const key = keys[i];
-      const value = _stringify(node[key], depth + 1);
+      // @ts-expect-error index signature
+      const nodeValue = node[key];
+      const value = _stringify(nodeValue, depth + 1);
       if (!value) continue;
       if (i) out += "," + newLine;
       out += JSON.stringify(key) + ": " + value;
@@ -160,7 +162,9 @@ export function fastJsonStableStringify(
     out = "";
     for (i = 0; i < keys.length; i++) {
       const key = keys[i];
-      const value = _stringify(node[key]);
+      // @ts-expect-error index signature
+      const nodeValue = node[key];
+      const value = _stringify(nodeValue);
 
       if (!value) continue;
       if (out) out += ",";
@@ -287,7 +291,9 @@ export function fastishJsonStableStringify(
     // eslint-disable-next-line unicorn/no-for-loop
     for (let i = 0; i < keys.length; i++) {
       const key = keys[i];
-      const value = stringGenBuilder(_stringify(node[key]));
+      // @ts-expect-error index signature
+      const nodeValue = node[key];
+      const value = stringGenBuilder(_stringify(nodeValue));
       if (!value) continue;
       if (out) out += ",";
       out += JSON.stringify(key) + ":" + value;

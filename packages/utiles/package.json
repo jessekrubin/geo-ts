@@ -59,7 +59,11 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "!**/*.spec.*",
+    "!**/*.tsbuildinfo",
+    "README.md",
+    "dist/**/**",
+    "docs/**/**"
   ],
   "scripts": {
     "build-fast": "tsup src/index.ts --format cjs,esm",

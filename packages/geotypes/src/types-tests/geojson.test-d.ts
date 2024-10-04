@@ -2,7 +2,6 @@
 
 import type {
   Feature,
-  FeatureOptions,
   PointFeature,
   PointFeature2d,
   PointFeature3d,
@@ -14,15 +13,7 @@ function noop<T>(v: T): T {
 }
 
 {
-  // type ExampleOptions = FeatureOptionsGeneric;
-
-  type FeatureOptionsNothing = FeatureOptions;
-  type ExampleOptionsWithId = FeatureOptions<{
-    id: string;
-  }>;
-}
-{
-  type FeatureWithId = Feature<PointGeometry, undefined, { id: string }>;
+  type FeatureWithId = Feature<PointGeometry, unknown, { id: string }>;
   const featureWithNoProperties: FeatureWithId = {
     type: "Feature",
     geometry: {
@@ -30,6 +21,7 @@ function noop<T>(v: T): T {
       coordinates: [0, 0],
     },
     id: "some-id",
+    properties: {},
   };
   const validFeature: FeatureWithId = {
     type: "Feature",

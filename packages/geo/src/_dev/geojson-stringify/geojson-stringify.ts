@@ -23,26 +23,36 @@ type GeoJSONStringifyOptions = {
 
 function key2index(key: string | number): number {
   switch (key) {
-    case "$schema":
+    case "$schema": {
       return 0;
-    case "type":
+    }
+    case "type": {
       return 1;
-    case "id":
+    }
+    case "id": {
       return 2;
-    case "bbox":
+    }
+    case "bbox": {
       return 3;
-    case "crs":
+    }
+    case "crs": {
       return 4;
-    case "features":
+    }
+    case "features": {
       return 5;
-    case "geometry":
+    }
+    case "geometry": {
       return 6;
-    case "geometries":
+    }
+    case "geometries": {
       return 7;
-    case "properties":
+    }
+    case "properties": {
       return 8;
-    default:
+    }
+    default: {
       return 9;
+    }
   }
 }
 
