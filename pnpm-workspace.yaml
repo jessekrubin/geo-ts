@@ -1,7 +1,5 @@
 packages:
   - "packages/geo"
   - "packages/geotypes"
-  - "packages/geojson"
-  - "packages/geojson-fmt"
   - "packages/srtm"
   - "packages/utiles"
