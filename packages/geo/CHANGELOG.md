@@ -1,5 +1,14 @@
 # @jsse/geo
 
+## 0.0.31
+
+### Patch Changes
+
+- [#6](https://github.com/jessekrubin/geo-ts/pull/6) [`5fcb8e9`](https://github.com/jessekrubin/geo-ts/commit/5fcb8e9848c8aec375018671204d8d375975ae18) Thanks [@jessekrubin](https://github.com/jessekrubin)! - geojson helpers like turf but with coord type inference
+
+- Updated dependencies [[`5fcb8e9`](https://github.com/jessekrubin/geo-ts/commit/5fcb8e9848c8aec375018671204d8d375975ae18)]:
+  - @jsse/geotypes@0.0.31
+
 ## 0.0.30
 
 ### Patch Changes
