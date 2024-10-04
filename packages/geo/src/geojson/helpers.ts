@@ -6,12 +6,14 @@ import type {
   FeatureProperties,
   GeojsonCoord,
   GeoJsonProperties,
+  GeometryCollection,
   LineStringGeometry,
   MultiLineStringGeometry,
   MultiPointGeometry,
   MultiPolygonGeometry,
   PointGeometry,
   PolygonGeometry,
+  PrimitiveGeometry,
 } from "@jsse/geotypes";
 
 // =============================================================================
@@ -72,19 +74,72 @@ export function multiPolygonGeometry<TCoord extends GeojsonCoord>(
   };
 }
 
+export function geometryCollectionGeometry(
+  geometries: PrimitiveGeometry[],
+): GeometryCollection {
+  return {
+    type: "GeometryCollection",
+    geometries,
+  };
+}
+
+// Overload for Point
+export function geometry<TCoordinate extends GeojsonCoord = GeojsonCoord>(
+  type: "Point",
+  coords: TCoordinate,
+): PointGeometry<TCoordinate>;
+export function geometry<TCoordinate extends GeojsonCoord = GeojsonCoord>(
+  type: "LineString",
+  coords: TCoordinate[],
+): LineStringGeometry<TCoordinate>;
+export function geometry<TCoordinate extends GeojsonCoord = GeojsonCoord>(
+  type: "Polygon",
+  coords: TCoordinate[][],
+): PolygonGeometry<TCoordinate>;
+export function geometry<TCoordinate extends GeojsonCoord = GeojsonCoord>(
+  type: "MultiPoint",
+  coords: TCoordinate[],
+): MultiPointGeometry<TCoordinate>;
+export function geometry<TCoordinate extends GeojsonCoord = GeojsonCoord>(
+  type: "MultiLineString",
+  coords: TCoordinate[][],
+): MultiLineStringGeometry<TCoordinate>;
+export function geometry<TCoordinate extends GeojsonCoord = GeojsonCoord>(
+  type: "MultiPolygon",
+  coords: TCoordinate[][][],
+): MultiPolygonGeometry<TCoordinate>;
+export function geometry(
+  type: PrimitiveGeometry["type"],
+  coords: GeojsonCoord | GeojsonCoord[] | GeojsonCoord[][] | GeojsonCoord[][][],
+): PrimitiveGeometry {
+  switch (type) {
+    case "Point": {
+      return pointGeometry(coords as GeojsonCoord);
+    }
+    case "LineString": {
+      return lineStringGeometry(coords as GeojsonCoord[]);
+    }
+    case "Polygon": {
+      return polygonGeometry(coords as GeojsonCoord[][]);
+    }
+    case "MultiPoint": {
+      return multiPointGeometry(coords as GeojsonCoord[]);
+    }
+    case "MultiLineString": {
+      return multiLineStringGeometry(coords as GeojsonCoord[][]);
+    }
+    case "MultiPolygon": {
+      return multiPolygonGeometry(coords as GeojsonCoord[][][]);
+    }
+    default: {
+      throw new TypeError(`Invalid geometry type: ${type}`);
+    }
+  }
+}
+
 // =============================================================================
 // FEATURES
 // =============================================================================
-
-function _featureBase(
-  options?: FeatureOptions,
-): Pick<Feature, "type" | "id" | "bbox"> {
-  return {
-    type: "Feature",
-    ...(options?.id && { id: options.id }),
-    ...(options?.bbox && { bbox: options.bbox }),
-  };
-}
 
 function _featureProperties<TProperties = GeoJsonProperties>(
   properties?: TProperties,
@@ -104,9 +159,12 @@ export function pointFeature<
   options?: FeatureOptions,
 ): Feature<PointGeometry<TCoord>, TProperties> {
   return {
-    ..._featureBase(options),
-    geometry: pointGeometry(coord),
+    type: "Feature",
+    id: options?.id,
+    bbox: options?.bbox,
+    crs: options?.crs,
     properties: _featureProperties(properties),
+    geometry: pointGeometry(coord),
   };
 }
 
@@ -122,8 +180,9 @@ export function lineStringFeature<
     type: "Feature",
     id: options?.id,
     bbox: options?.bbox,
-    geometry: lineStringGeometry(coords),
+    crs: options?.crs,
     properties: _featureProperties(properties),
+    geometry: lineStringGeometry(coords),
   };
 }
 
@@ -139,8 +198,9 @@ export function polygonFeature<
     type: "Feature",
     id: options?.id,
     bbox: options?.bbox,
-    geometry: polygonGeometry(coords),
+    crs: options?.crs,
     properties: _featureProperties(properties),
+    geometry: polygonGeometry(coords),
   };
 }
 
@@ -156,8 +216,9 @@ export function multiPointFeature<
     type: "Feature",
     id: options?.id,
     bbox: options?.bbox,
-    geometry: multiPointGeometry(coords),
+    crs: options?.crs,
     properties: _featureProperties(properties),
+    geometry: multiPointGeometry(coords),
   };
 }
 
@@ -173,8 +234,9 @@ export function multiLineStringFeature<
     type: "Feature",
     id: options?.id,
     bbox: options?.bbox,
-    geometry: multiLineStringGeometry(coords),
+    crs: options?.crs,
     properties: _featureProperties(properties),
+    geometry: multiLineStringGeometry(coords),
   };
 }
 
@@ -190,13 +252,32 @@ export function multiPolygonFeature<
     type: "Feature",
     id: options?.id,
     bbox: options?.bbox,
-    geometry: multiPolygonGeometry(coords),
+    crs: options?.crs,
     properties: _featureProperties(properties),
+    geometry: multiPolygonGeometry(coords),
+  };
+}
+
+export function geometryCollectionFeature<
+  TProperties extends GeoJsonProperties = GeoJsonProperties,
+>(
+  geometries: PrimitiveGeometry[],
+  properties?: TProperties,
+  options: FeatureOptions = {},
+): Feature<GeometryCollection, TProperties> {
+  return {
+    type: "Feature",
+    id: options.id,
+    bbox: options.bbox,
+    crs: options.crs,
+    properties: _featureProperties(properties),
+    geometry: geometryCollectionGeometry(geometries),
   };
 }
 
 // turf helpers aliases
 export {
+  geometryCollectionFeature as geometryCollection,
   lineStringFeature as lineString,
   multiLineStringFeature as multiLineString,
   multiPointFeature as multiPoint,

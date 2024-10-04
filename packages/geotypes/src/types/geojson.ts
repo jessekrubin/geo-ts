@@ -109,9 +109,9 @@ export type PrimitiveGeometryCoords<
  * Use `interface` instead of `type` for declaration merging => recursive type
  */
 // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
-export interface GeometryCollection<G extends Geometry = Geometry> {
+export interface GeometryCollection<TGeometry extends Geometry = Geometry> {
   type: "GeometryCollection";
-  geometries: G[];
+  geometries: TGeometry[];
 }
 
 export type Geometry<TCoordinate extends GeojsonCoord = GeojsonCoord> =

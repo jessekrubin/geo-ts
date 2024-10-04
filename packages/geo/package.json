@@ -44,6 +44,7 @@
     "@jsse/geotypes": "workspace:*",
     "@jsse/tsconfig": "^0.1.0",
     "@vitest/coverage-v8": "^2.1.1",
+    "benchmark": "^2.1.4",
     "eslint": "^9.11.0",
     "prettier": "^3.3.3",
     "tsup": "^8.3.0",
