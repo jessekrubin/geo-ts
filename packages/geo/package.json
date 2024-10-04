@@ -12,19 +12,34 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./package.json": "./package.json"
+    "./json": {
+      "types": "./dist/json.d.ts",
+      "import": "./dist/json.js",
+      "require": "./dist/json.cjs"
+    },
+    "./lib/*": {
+      "types": "./dist/esm/*",
+      "import": "./dist/esm/*",
+      "require": "./dist/cjs/*"
+    },
+    "./package.json": "./package.json",
+    "./dist/*": "./dist/*"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
+    "!**/*.test.*",
+    "!**/*.tsbuildinfo",
+    "CHANGELOG.md",
+    "README.md",
     "dist"
   ],
   "scripts": {
     "build-fast": "tsup src/index.ts --format cjs,esm",
     "build": "pnpm run build:tsup && pnpm run build:tsc",
     "build:tsup": "tsup --format cjs,esm --dts",
-    "build:tsc": "tsc --project tsconfig.json && tsc --project tsconfig.cjs.json",
+    "build:tsc": "tsc -b tsconfig.build.json && tsx scripts/post-build.mts",
     "test": "vitest run",
     "cov": "vitest run --coverage",
     "dev": "vitest watch --coverage",
@@ -43,6 +58,7 @@
     "@jsse/eslint-config": "^0.2.16",
     "@jsse/geotypes": "workspace:*",
     "@jsse/tsconfig": "^0.1.0",
+    "@types/node": "^22.5.5",
     "@vitest/coverage-v8": "^2.1.1",
     "benchmark": "^2.1.4",
     "eslint": "^9.11.0",

@@ -51,6 +51,9 @@ importers:
       '@jsse/tsconfig':
         specifier: ^0.1.0
         version: 0.1.0
+      '@types/node':
+        specifier: ^22.5.5
+        version: 22.6.1
       '@vitest/coverage-v8':
         specifier: ^2.1.1
         version: 2.1.1(vitest@2.1.1(@types/node@22.6.1))

@@ -1,4 +1,8 @@
 export {
+  geometry,
+  geometryCollection,
+  geometryCollectionFeature,
+  geometryCollectionGeometry,
   lineString,
   lineStringFeature,
   lineStringGeometry,
@@ -17,4 +21,4 @@ export {
   polygon,
   polygonFeature,
   polygonGeometry,
-} from "./helpers.js";
+} from "./builders.js";

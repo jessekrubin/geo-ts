@@ -1,6 +1,6 @@
 import { expect, test } from "vitest";
 
-import { lineStringFeature, pointFeature } from "./helpers.js";
+import { lineStringFeature, pointFeature } from "./builders.js";
 
 test("point-feature", () => {
   const pf = pointFeature([0, 0], { howdy: "doody" });
