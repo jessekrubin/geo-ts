@@ -12,19 +12,35 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./package.json": "./package.json"
+    "./json": {
+      "types": "./dist/json.d.ts",
+      "import": "./dist/json.js",
+      "require": "./dist/json.cjs"
+    },
+    "./lib/*": {
+      "types": "./dist/esm/*",
+      "import": "./dist/esm/*",
+      "require": "./dist/cjs/*"
+    },
+    "./package.json": "./package.json",
+    "./dist/*": "./dist/*"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
+    "!**/*.test-data.*",
+    "!**/*.test.*",
+    "!**/*.tsbuildinfo",
+    "CHANGELOG.md",
+    "README.md",
     "dist"
   ],
   "scripts": {
     "build-fast": "tsup src/index.ts --format cjs,esm",
     "build": "pnpm run build:tsup && pnpm run build:tsc",
     "build:tsup": "tsup --format cjs,esm --dts",
-    "build:tsc": "tsc --project tsconfig.json && tsc --project tsconfig.cjs.json",
+    "build:tsc": "tsc -b tsconfig.build.json && tsx scripts/post-build.mts",
     "test": "vitest run",
     "cov": "vitest run --coverage",
     "dev": "vitest watch --coverage",
@@ -40,15 +56,17 @@
     "@jsse/geotypes": "workspace:*"
   },
   "devDependencies": {
-    "@jsse/eslint-config": "^0.2.16",
+    "@jsse/eslint-config": "^0.2.18",
     "@jsse/geotypes": "workspace:*",
-    "@jsse/tsconfig": "^0.1.0",
-    "@vitest/coverage-v8": "^2.1.1",
-    "eslint": "^9.11.0",
+    "@jsse/tsconfig": "^0.2.1",
+    "@types/node": "^22.7.4",
+    "@vitest/coverage-v8": "^2.1.2",
+    "benchmark": "^2.1.4",
+    "eslint": "^9.11.1",
     "prettier": "^3.3.3",
     "tsup": "^8.3.0",
     "tsx": "^4.19.1",
     "typescript": "^5.6.2",
-    "vitest": "^2.1.1"
+    "vitest": "^2.1.2"
   }
 }

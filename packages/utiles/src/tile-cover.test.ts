@@ -278,7 +278,6 @@ function resolveCoverTestFilepath(filename: string): string {
 test.each(coverRootTestData)("%s", async (data) => {
   const filepath = resolveCoverTestFilepath(data.file);
   const expectedTilesFilepath = filepath.replace(/\.geojson$/, ".tiles.jsonl");
-  // console.log(expectedTilesFilepath)
   const expectedTiles = await loadTilesJsonl(expectedTilesFilepath);
   const str = await fsp.readFile(filepath, "utf8");
   const geojsonData = JSON.parse(str);

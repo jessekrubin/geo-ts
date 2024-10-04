@@ -1,5 +1,5 @@
 // eslint.config.js
-import jsse from "@jsse/eslint-config";
+import { jsse } from "@jsse/eslint-config";
 
 export default jsse(
   {
@@ -7,12 +7,8 @@ export default jsse(
       // all /generated/ files
       "**/*-types-test.ts",
       "**/_purgatory/**",
-      "packages/geozod/**",
       "./packages/geojson/**",
-      "./packages/geozod/**",
       "**/generated/**/*",
-      "packages/geotypia/src/typia-src/**",
-      "./packages/geojson/**",
     ],
   },
   {
@@ -22,10 +18,17 @@ export default jsse(
     },
   },
   {
+    files: ["**/*.test.ts"],
+    rules: {
+      "no-console": "off",
+    },
+  },
+  {
     files: ["**/*.dts-test.ts", "**/*.test-dts.ts", "**/*.test-d.ts"],
     rules: {
       "unused-imports/no-unused-vars": "off",
       "no-lone-blocks": "off",
+      "no-console": "off",
     },
   },
 );

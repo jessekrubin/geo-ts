@@ -30,12 +30,10 @@ async function exportedTypesForFile(file: string): Promise<FileTypeExports> {
     .filter((line) => {
       const thingy =
         lineStartsWithExportType(line) && !lineIsCommentedOut(line);
-      // console.log(thingy, line)
       return thingy;
     })
     .map((line) => {
       const split = line.split(" ")[2].replace(";", "");
-      console.log(split);
       return split;
     })
     .map((typeAlias) => {
@@ -96,6 +94,7 @@ async function typesIndex(files: FileTypeExports[]) {
       // ),
       .sort((a, b) => a.localeCompare(b)),
   };
+  // eslint-disable-next-line no-console
   console.log(geotypesMetadata.geotypes);
   await fs.writeFile(
     "./geotypes.json",
@@ -117,5 +116,5 @@ async function main() {
 try {
   await main();
 } catch (e) {
-  console.log(e);
+  console.error(e);
 }

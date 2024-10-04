@@ -59,7 +59,11 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "!**/*.spec.*",
+    "!**/*.tsbuildinfo",
+    "README.md",
+    "dist/**/**",
+    "docs/**/**"
   ],
   "scripts": {
     "build-fast": "tsup src/index.ts --format cjs,esm",
@@ -81,15 +85,15 @@
     "@jsse/geotypes": "workspace:*"
   },
   "devDependencies": {
-    "@jsse/eslint-config": "^0.2.16",
-    "@jsse/tsconfig": "^0.1.0",
-    "@types/node": "^22.5.5",
-    "@vitest/coverage-v8": "^2.1.1",
-    "eslint": "^9.11.0",
+    "@jsse/eslint-config": "^0.2.18",
+    "@jsse/tsconfig": "^0.2.1",
+    "@types/node": "^22.7.4",
+    "@vitest/coverage-v8": "^2.1.2",
+    "eslint": "^9.11.1",
     "prettier": "^3.3.3",
     "tsup": "^8.3.0",
     "tsx": "^4.19.1",
     "typescript": "^5.6.2",
-    "vitest": "^2.1.1"
+    "vitest": "^2.1.2"
   }
 }

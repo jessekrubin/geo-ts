@@ -26,8 +26,8 @@ export {
   isCoord2d,
   isCoord3d,
 } from "./coord.js";
+export * from "./geojson/mod.js";
 export { haversine } from "./haversine.js";
 export { tuple } from "./tuple.js";
 export { vec } from "./vec.js";
 export { wrapLon, wrapLonEpsg3857 } from "./wrap.js";
-export * from "@jsse/geotypes";
