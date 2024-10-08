@@ -1,11 +1,8 @@
 {
   "extends": "../../tsconfig.cjs.json",
-  "compilerOptions": {},
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "compilerOptions": {
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

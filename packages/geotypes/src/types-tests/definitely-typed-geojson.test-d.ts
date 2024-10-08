@@ -1,9 +1,14 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment,@typescript-eslint/consistent-type-imports,unicorn/no-zero-fractions,unicorn/switch-case-braces */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/consistent-type-definitions */
+/* eslint-disable @typescript-eslint/consistent-type-imports */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable unicorn/no-null */
+/* eslint-disable unicorn/no-zero-fractions */
+/* eslint-disable unicorn/switch-case-braces */
 /* eslint-disable unicorn/throw-new-error */
-/* eslint-disable @typescript-eslint/consistent-type-definitions */
+
 import {
   Feature,
   FeatureCollection,
@@ -212,7 +217,14 @@ const multiPolygon: MultiPolygon = {
 
 const geometryCollection: GeometryCollection = {
   type: "GeometryCollection",
-  geometries: [point, multiPoint, lineString, multiLineString, polygon, multiPolygon],
+  geometries: [
+    point,
+    multiPoint,
+    lineString,
+    multiLineString,
+    polygon,
+    multiPolygon,
+  ],
 };
 
 // allow nested GeometryCollection.
@@ -225,7 +237,9 @@ const geometryCollectionWithGeometryCollection: GeometryCollection = {
   geometries: [geometryCollection],
 };
 
-const geometryCollectionWithGenerics: GeometryCollection<Point | LineString | Polygon> = {
+const geometryCollectionWithGenerics: GeometryCollection<
+  Point | LineString | Polygon
+> = {
   type: "GeometryCollection",
   geometries: [
     point,
@@ -350,7 +364,11 @@ const pt: Feature<Point> = {
 };
 
 if (pt.properties) {
-  if (pt.properties.foo == null || pt.properties.hello == null || pt.properties[1] == null) {
+  if (
+    pt.properties.foo == null ||
+    pt.properties.hello == null ||
+    pt.properties[1] == null
+  ) {
     throw TypeError("Properties should not be null or undefined.");
   }
 } else {
@@ -424,17 +442,31 @@ const collectionAllNull: FeatureCollection<null, null> = {
   features: [featureAllNull],
 };
 
-const collectionMaybeNull: FeatureCollection<Point | null, TestProperty | null> = {
+const collectionMaybeNull: FeatureCollection<
+  Point | null,
+  TestProperty | null
+> = {
   type: "FeatureCollection",
-  features: [featureAllNull, featurePropertyNull, featureGeometryNull, featureNoNull],
+  features: [
+    featureAllNull,
+    featurePropertyNull,
+    featureGeometryNull,
+    featureNoNull,
+  ],
 };
 
-const collectionPropertyMaybeNull: FeatureCollection<Point, TestProperty | null> = {
+const collectionPropertyMaybeNull: FeatureCollection<
+  Point,
+  TestProperty | null
+> = {
   type: "FeatureCollection",
   features: [featurePropertyNull, featureNoNull],
 };
 
-const collectionGeometryMaybeNull: FeatureCollection<Point | null, TestProperty> = {
+const collectionGeometryMaybeNull: FeatureCollection<
+  Point | null,
+  TestProperty
+> = {
   type: "FeatureCollection",
   features: [featureGeometryNull, featureNoNull],
 };

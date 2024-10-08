@@ -26,9 +26,9 @@ export default jsse(
   {
     files: ["**/*.dts-test.ts", "**/*.test-dts.ts", "**/*.test-d.ts"],
     rules: {
-      "unused-imports/no-unused-vars": "off",
-      "no-lone-blocks": "off",
       "no-console": "off",
+      "no-lone-blocks": "off",
+      "unused-imports/no-unused-vars": "off",
     },
   },
 );

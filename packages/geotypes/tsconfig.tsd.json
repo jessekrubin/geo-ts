@@ -1,22 +1,15 @@
 {
   "compilerOptions": {
+    "lib": ["es6"],
     "module": "node16",
-    "lib": [
-      "es6"
-    ],
+    "types": [],
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "types": [],
     "noEmit": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
 }
