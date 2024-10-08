@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "@jsse/tsconfig/tsconfig.json",
   "buildOptions": {
     "incremental": false
@@ -7,8 +8,12 @@
     "incremental": false
   },
   "references": [
-    { "path": "./tsconfig.cjs.json" },
-    { "path": "./tsconfig.json" }
+    {
+      "path": "./tsconfig.cjs.json"
+    },
+    {
+      "path": "./tsconfig.json"
+    }
   ],
   "files": []
 }

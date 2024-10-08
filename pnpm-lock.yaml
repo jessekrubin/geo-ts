@@ -17,6 +17,9 @@ importers:
       '@jsse/eslint-config':
         specifier: ^0.2.18
         version: 0.2.18(@eslint-react/eslint-plugin@1.14.3(eslint@9.11.1)(typescript@5.6.2))(@typescript-eslint/utils@8.8.0(eslint@9.11.1)(typescript@5.6.2))(eslint@9.11.1)(typescript@5.6.2)(vitest@2.1.2(@types/node@22.7.4))
+      '@jsse/tsconfig':
+        specifier: ^0.2.1
+        version: 0.2.1
       dprint:
         specifier: ^0.47.2
         version: 0.47.2

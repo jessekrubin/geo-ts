@@ -1,13 +1,10 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable @typescript-eslint/consistent-type-definitions */
+/* eslint-disable @typescript-eslint/ban-ts-comment,@typescript-eslint/consistent-type-imports,unicorn/no-zero-fractions,unicorn/switch-case-braces */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable unicorn/no-null */
-/* eslint-disable unicorn/switch-case-braces */
 /* eslint-disable unicorn/throw-new-error */
-
-import type {
+/* eslint-disable @typescript-eslint/consistent-type-definitions */
+import {
   Feature,
   FeatureCollection,
   GeoJsonGeometryTypes,
@@ -20,7 +17,7 @@ import type {
   MultiPolygon,
   Point,
   Polygon,
-} from "../types/geojson.js";
+} from "geojson";
 
 let featureCollection: FeatureCollection = {
   type: "FeatureCollection",
@@ -30,7 +27,7 @@ let featureCollection: FeatureCollection = {
       type: "Feature",
       geometry: {
         type: "Point",
-        coordinates: [102, 0.5],
+        coordinates: [102.0, 0.5],
       },
       properties: {
         prop0: "value0",
@@ -42,15 +39,15 @@ let featureCollection: FeatureCollection = {
       geometry: {
         type: "LineString",
         coordinates: [
-          [102, 0],
-          [103, 1],
-          [104, 0],
-          [105, 1],
+          [102.0, 0.0],
+          [103.0, 1.0],
+          [104.0, 0.0],
+          [105.0, 1.0],
         ],
       },
       properties: {
         prop0: "value0",
-        prop1: 0,
+        prop1: 0.0,
       },
     },
     {
@@ -59,11 +56,11 @@ let featureCollection: FeatureCollection = {
         type: "Polygon",
         coordinates: [
           [
-            [100, 0],
-            [101, 0],
-            [101, 1],
-            [100, 1],
-            [100, 0],
+            [100.0, 0.0],
+            [101.0, 0.0],
+            [101.0, 1.0],
+            [100.0, 1.0],
+            [100.0, 0.0],
           ],
         ],
       },
@@ -91,15 +88,15 @@ geojsonTypes; // $ExpectType "FeatureCollection" | "Feature" | "Point" | "MultiP
 
 const featureWithPolygon: Feature<Polygon> = {
   type: "Feature",
-  bbox: [-180, -90, 180, 90],
+  bbox: [-180.0, -90.0, 180.0, 90.0],
   geometry: {
     type: "Polygon",
     coordinates: [
       [
-        [-180, 10],
-        [20, 90],
-        [180, -5],
-        [-30, -90],
+        [-180.0, 10.0],
+        [20.0, 90.0],
+        [180.0, -5.0],
+        [-30.0, -90.0],
       ],
     ],
   },
@@ -113,18 +110,17 @@ featureWithPolygon.geometry.coordinates; // $ExpectType number[][][] || Position
 
 const point: Point = {
   type: "Point",
-  coordinates: [100, 0],
+  coordinates: [100.0, 0.0],
 };
 
 // This type is commonly used in the turf package
-const _pointCoordinates: number[] = point.coordinates;
-console.log(_pointCoordinates);
+const pointCoordinates: number[] = point.coordinates;
 
 const lineString: LineString = {
   type: "LineString",
   coordinates: [
-    [100, 0],
-    [101, 1],
+    [100.0, 0.0],
+    [101.0, 1.0],
   ],
 };
 
@@ -132,11 +128,11 @@ const polygon: Polygon = {
   type: "Polygon",
   coordinates: [
     [
-      [100, 0],
-      [101, 0],
-      [101, 1],
-      [100, 1],
-      [100, 0],
+      [100.0, 0.0],
+      [101.0, 0.0],
+      [101.0, 1.0],
+      [100.0, 1.0],
+      [100.0, 0.0],
     ],
   ],
 };
@@ -145,11 +141,11 @@ const polygonWithHole: Polygon = {
   type: "Polygon",
   coordinates: [
     [
-      [100, 0],
-      [101, 0],
-      [101, 1],
-      [100, 1],
-      [100, 0],
+      [100.0, 0.0],
+      [101.0, 0.0],
+      [101.0, 1.0],
+      [100.0, 1.0],
+      [100.0, 0.0],
     ],
     [
       [100.2, 0.2],
@@ -164,8 +160,8 @@ const polygonWithHole: Polygon = {
 const multiPoint: MultiPoint = {
   type: "MultiPoint",
   coordinates: [
-    [100, 0],
-    [101, 1],
+    [100.0, 0.0],
+    [101.0, 1.0],
   ],
 };
 
@@ -173,12 +169,12 @@ const multiLineString: MultiLineString = {
   type: "MultiLineString",
   coordinates: [
     [
-      [100, 0],
-      [101, 1],
+      [100.0, 0.0],
+      [101.0, 1.0],
     ],
     [
-      [102, 2],
-      [103, 3],
+      [102.0, 2.0],
+      [103.0, 3.0],
     ],
   ],
 };
@@ -188,20 +184,20 @@ const multiPolygon: MultiPolygon = {
   coordinates: [
     [
       [
-        [102, 2],
-        [103, 2],
-        [103, 3],
-        [102, 3],
-        [102, 2],
+        [102.0, 2.0],
+        [103.0, 2.0],
+        [103.0, 3.0],
+        [102.0, 3.0],
+        [102.0, 2.0],
       ],
     ],
     [
       [
-        [100, 0],
-        [101, 0],
-        [101, 1],
-        [100, 1],
-        [100, 0],
+        [100.0, 0.0],
+        [101.0, 0.0],
+        [101.0, 1.0],
+        [100.0, 1.0],
+        [100.0, 0.0],
       ],
       [
         [100.2, 0.2],
@@ -216,14 +212,7 @@ const multiPolygon: MultiPolygon = {
 
 const geometryCollection: GeometryCollection = {
   type: "GeometryCollection",
-  geometries: [
-    point,
-    multiPoint,
-    lineString,
-    multiLineString,
-    polygon,
-    multiPolygon,
-  ],
+  geometries: [point, multiPoint, lineString, multiLineString, polygon, multiPolygon],
 };
 
 // allow nested GeometryCollection.
@@ -236,9 +225,7 @@ const geometryCollectionWithGeometryCollection: GeometryCollection = {
   geometries: [geometryCollection],
 };
 
-const geometryCollectionWithGenerics: GeometryCollection<
-  Point | LineString | Polygon
-> = {
+const geometryCollectionWithGenerics: GeometryCollection<Point | LineString | Polygon> = {
   type: "GeometryCollection",
   geometries: [
     point,
@@ -363,11 +350,7 @@ const pt: Feature<Point> = {
 };
 
 if (pt.properties) {
-  if (
-    pt.properties.foo == null ||
-    pt.properties.hello == null ||
-    pt.properties[1] == null
-  ) {
+  if (pt.properties.foo == null || pt.properties.hello == null || pt.properties[1] == null) {
     throw TypeError("Properties should not be null or undefined.");
   }
 } else {
@@ -441,31 +424,17 @@ const collectionAllNull: FeatureCollection<null, null> = {
   features: [featureAllNull],
 };
 
-const collectionMaybeNull: FeatureCollection<
-  Point | null,
-  TestProperty | null
-> = {
+const collectionMaybeNull: FeatureCollection<Point | null, TestProperty | null> = {
   type: "FeatureCollection",
-  features: [
-    featureAllNull,
-    featurePropertyNull,
-    featureGeometryNull,
-    featureNoNull,
-  ],
+  features: [featureAllNull, featurePropertyNull, featureGeometryNull, featureNoNull],
 };
 
-const collectionPropertyMaybeNull: FeatureCollection<
-  Point,
-  TestProperty | null
-> = {
+const collectionPropertyMaybeNull: FeatureCollection<Point, TestProperty | null> = {
   type: "FeatureCollection",
   features: [featurePropertyNull, featureNoNull],
 };
 
-const collectionGeometryMaybeNull: FeatureCollection<
-  Point | null,
-  TestProperty
-> = {
+const collectionGeometryMaybeNull: FeatureCollection<Point | null, TestProperty> = {
   type: "FeatureCollection",
   features: [featureGeometryNull, featureNoNull],
 };

@@ -1,11 +1,13 @@
 {
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "module": "CommonJS",
-    "moduleResolution": "node",
-    "outDir": "dist/cjs",
-    "verbatimModuleSyntax": null
-  },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "src/**/*.test.*"]
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "../../tsconfig.cjs.json",
+  "compilerOptions": {},
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "src/**/*.test.*"
+  ]
 }

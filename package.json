@@ -30,6 +30,7 @@
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.9",
     "@jsse/eslint-config": "^0.2.18",
+    "@jsse/tsconfig": "^0.2.1",
     "dprint": "^0.47.2",
     "eslint": "^9.11.1",
     "prettier": "3.3.3",
