@@ -16,9 +16,6 @@ export type GeoJsonTypes =
   | "Feature"
   | "FeatureCollection"
   | GeoJsonGeometryTypes;
-export type FeatureType = "Feature";
-export type FeatureCollectionType = "FeatureCollection";
-export type GeometryCollectionType = "GeometryCollection";
 
 /**
  * A LineString is an array of two or more positions.

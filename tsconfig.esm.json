@@ -1,0 +1,7 @@
+{
+  "$schema": "http://json.schemastore.org/tsconfig",
+  "extends": "@jsse/tsconfig",
+  "compilerOptions": {
+    "outDir": "${configDir}/dist/esm"
+  }
+}
