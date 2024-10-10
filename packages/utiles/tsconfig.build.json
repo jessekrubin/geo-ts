@@ -7,8 +7,12 @@
     "incremental": false
   },
   "references": [
-    { "path": "./tsconfig.cjs.json" },
-    { "path": "./tsconfig.json" }
+    {
+      "path": "./tsconfig.cjs.json"
+    },
+    {
+      "path": "./tsconfig.json"
+    }
   ],
   "files": []
 }
