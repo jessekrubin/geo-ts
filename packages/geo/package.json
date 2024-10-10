@@ -58,7 +58,7 @@
   "devDependencies": {
     "@jsse/eslint-config": "^0.2.18",
     "@jsse/geotypes": "workspace:*",
-    "@jsse/tsconfig": "^0.2.1",
+    "@jsse/tsconfig": "^0.2.2",
     "@types/node": "^22.7.4",
     "@vitest/coverage-v8": "^2.1.2",
     "benchmark": "^2.1.4",
