@@ -29,13 +29,13 @@
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.9",
-    "@jsse/eslint-config": "^0.2.18",
-    "dprint": "^0.47.2",
-    "eslint": "^9.11.1",
+    "@jsse/eslint-config": "^0.2.22",
+    "dprint": "^0.47.4",
+    "eslint": "^9.13.0",
     "prettier": "3.3.3",
     "tsup": "8.3.0",
     "tsx": "^4.19.1",
-    "typescript": "5.6.2",
-    "vitest": "2.1.2"
+    "typescript": "5.6.3",
+    "vitest": "2.1.3"
   }
 }
