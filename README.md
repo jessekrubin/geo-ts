@@ -2,7 +2,7 @@
 
 geospatial typescript mono-repo
 
-## packages 
+## packages
 
 **Packages are under `./packages/*`**
 
@@ -24,7 +24,7 @@ geospatial typescript mono-repo
 
 - Figuring out changesets
 
-___
+---
 
 ## related
 

@@ -16,6 +16,7 @@ export default jsse(
       "unused-imports/no-unused-vars": "off",
       "no-unused-vars": "off",
       "no-lone-blocks": "off",
+      "no-console": "off",
     },
   },
 );

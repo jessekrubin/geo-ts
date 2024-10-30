@@ -16,7 +16,7 @@
     "buildog": "pnpm run -r build",
     "change": "changeset",
     "dev": "vitest watch",
-    "fmt": "prettier --write . --cache",
+    "fmt": "prettier --write .",
     "fmtc": "prettier --check .",
     "fmtl": "prettier --list-different .",
     "lint": "eslint .",
@@ -29,13 +29,14 @@
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.9",
-    "@jsse/eslint-config": "^0.2.18",
+    "@jsse/eslint-config": "^0.2.21",
+    "@jsse/tsconfig": "^0.2.1",
     "dprint": "^0.47.2",
-    "eslint": "^9.11.1",
+    "eslint": "^9.12.0",
     "prettier": "3.3.3",
     "tsup": "8.3.0",
     "tsx": "^4.19.1",
-    "typescript": "5.6.2",
+    "typescript": "5.6.3",
     "vitest": "2.1.2"
   }
 }

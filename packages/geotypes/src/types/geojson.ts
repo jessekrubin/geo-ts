@@ -1,8 +1,9 @@
-import type { IsUnknown } from "../utypes.js";
+import type { IsEqual, IsUnknown } from "../utypes.js";
 import type { BBox } from "./bbox.js";
 import type { Coord2d, Coord3d } from "./coord.js";
 import type { GeojsonCoordinateReferenceSystem } from "./geojson-crs.js";
 
+export type { BBox } from "./bbox.js";
 export type GeojsonCoord = Coord2d | Coord3d;
 export type GeoJsonGeometryTypes =
   | "Point"
@@ -16,9 +17,6 @@ export type GeoJsonTypes =
   | "Feature"
   | "FeatureCollection"
   | GeoJsonGeometryTypes;
-export type FeatureType = "Feature";
-export type FeatureCollectionType = "FeatureCollection";
-export type GeometryCollectionType = "GeometryCollection";
 
 /**
  * A LineString is an array of two or more positions.
@@ -366,3 +364,139 @@ export type GeometryCollectionFeature2d<TProperties = GeoJsonProperties> =
   GeometryCollectionFeature<Geometry2d, TProperties>;
 export type GeometryCollectionFeature3d<TProperties = GeoJsonProperties> =
   GeometryCollectionFeature<Geometry3d, TProperties>;
+
+// =============================================================================
+// GEOJSON UTIL TYPES
+// =============================================================================
+
+/**
+ * type is a GeoJSON Geometry
+ */
+export type IsGeometry<T> = T extends Geometry ? true : false;
+
+/**
+ * type is a GeoJSON Feature
+ */
+export type IsFeature<T> = T extends Feature ? true : false;
+
+/**
+ * Extracts the coordinate type from a GeoJSON type.
+ *
+ * @typeParam T - The GeoJSON type to extract from.
+ */
+export type ExtractCoordType<T> = T extends Coord2d | Coord3d
+  ? T
+  : // If T is a Geometry with coordinate type TCoordinate
+    T extends Geometry<infer TCoordinate>
+    ? TCoordinate
+    : // If T is a GeometryCollection, recursively extract from its geometries
+      T extends GeometryCollection<infer TGeometry>
+      ? ExtractCoordType<TGeometry>
+      : // If T is a Feature, extract from its geometry
+        T extends Feature<infer TGeometry>
+        ? ExtractCoordType<TGeometry>
+        : // If T is a FeatureCollection, extract from its features
+          T extends FeatureCollection<infer TGeometry>
+          ? ExtractCoordType<TGeometry>
+          : // Default to never if none of the above
+            never;
+
+// =============================================================================
+// TRANSFORM TYPES
+// =============================================================================
+export type TransformGeometryCoordType<
+  TGeometry extends Geometry | null,
+  TCoordFrom extends GeojsonCoord,
+  TCoordTo extends GeojsonCoord,
+> = TGeometry extends null
+  ? null
+  : TGeometry extends PointGeometry<TCoordFrom>
+    ? PointGeometry<TCoordTo>
+    : TGeometry extends LineStringGeometry<TCoordFrom>
+      ? LineStringGeometry<TCoordTo>
+      : TGeometry extends PolygonGeometry<TCoordFrom>
+        ? PolygonGeometry<TCoordTo>
+        : TGeometry extends MultiPointGeometry<TCoordFrom>
+          ? MultiPointGeometry<TCoordTo>
+          : TGeometry extends MultiLineStringGeometry<TCoordFrom>
+            ? MultiLineStringGeometry<TCoordTo>
+            : TGeometry extends MultiPolygonGeometry<TCoordFrom>
+              ? MultiPolygonGeometry<TCoordTo>
+              : TGeometry extends GeometryCollection<infer TGeometry>
+                ? GeometryCollection<
+                    TransformGeometryCoordType<TGeometry, TCoordFrom, TCoordTo>
+                  >
+                : TGeometry;
+
+export type TransformFeatureCoordType<
+  TFeature extends Feature,
+  TCoordFrom extends GeojsonCoord,
+  TCoordTo extends GeojsonCoord,
+> =
+  TFeature extends Feature<
+    infer TGeometry,
+    infer TProperties,
+    infer TFeatureOptions
+  >
+    ? Feature<
+        TransformGeometryCoordType<TGeometry, TCoordFrom, TCoordTo>,
+        TProperties,
+        TFeatureOptions
+      >
+    : TFeature;
+
+export type TransformFeatureCollectionCoordType<
+  TFeatureCollection extends FeatureCollection,
+  TCoordFrom extends GeojsonCoord,
+  TCoordTo extends GeojsonCoord,
+> =
+  TFeatureCollection extends FeatureCollection<
+    infer TGeometry,
+    infer TProperties,
+    infer TFeatureOptions
+  >
+    ? FeatureCollection<
+        TransformGeometryCoordType<TGeometry, TCoordFrom, TCoordTo>,
+        TProperties,
+        TFeatureOptions
+      >
+    : TFeatureCollection;
+
+export type TransformCoordType<
+  T,
+  TCoordFrom extends GeojsonCoord,
+  TCoordTo extends GeojsonCoord,
+> = T extends Geometry | null
+  ? TransformGeometryCoordType<T, TCoordFrom, TCoordTo>
+  : T extends Feature
+    ? TransformFeatureCoordType<T, TCoordFrom, TCoordTo>
+    : T extends FeatureCollection
+      ? TransformFeatureCollectionCoordType<T, TCoordFrom, TCoordTo>
+      : T;
+
+// =============================================================================
+// ASSERTION TYPES
+// =============================================================================
+
+/**
+ * Asserts that a type is a GeoJSON coordinate type.
+ */
+export type AssertCoordType<T, TCoordinate> = IsEqual<
+  ExtractCoordType<T>,
+  TCoordinate
+>;
+
+/**
+ * Asserts that a type is a GeoJSON 2D coordinate type.
+ */
+export type AssertCoord2d<T> = AssertCoordType<T, Coord2d>;
+
+/**
+ * Asserts that a type is a GeoJSON 3D coordinate type.
+ */
+export type AssertCoord3d<T> = AssertCoordType<T, Coord3d>;
+
+/**
+ * Asserts that a type is a GeoJSON 2D or 3D coordinate type.
+ */
+export type AssertGeojsonCoord<T> = AssertCoordType<T, Coord2d | Coord3d>;
