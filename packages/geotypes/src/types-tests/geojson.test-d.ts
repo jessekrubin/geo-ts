@@ -3,8 +3,8 @@
 import type { Coord2d, Coord3d } from "../types/coord.js";
 import type {
   AssertCoord2d,
-  AssertGeojsonCoord,
   AssertCoord3d,
+  AssertGeojsonCoord,
   ExtractCoordType,
   Feature,
   FeatureCollection,
@@ -44,7 +44,7 @@ function noop<T>(v: T): T {
     id: "some-id",
   };
 
-  type extractedCoord = ExtractCoordType<Feature>
+  type extractedCoord = ExtractCoordType<Feature>;
 
   noop(featureWithNoProperties);
   noop(validFeature);
@@ -152,7 +152,9 @@ function noop<T>(v: T): T {
   type e = ExtractCoordType<Feature<MixedGeometries>>;
   const eTrue: AssertGeojsonCoord<e> = true;
 
-  type MixedCoordGeometryCollection = GeometryCollection<PointGeometry<Coord2d> | PolygonGeometry<Coord3d>>;
+  type MixedCoordGeometryCollection = GeometryCollection<
+    PointGeometry<Coord2d> | PolygonGeometry<Coord3d>
+  >;
   type f = ExtractCoordType<Feature<MixedCoordGeometryCollection>>;
   const fTrue: AssertCoord3d<f> = false;
 

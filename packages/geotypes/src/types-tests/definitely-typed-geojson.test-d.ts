@@ -3,7 +3,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-console */
 /* eslint-disable unicorn/no-null */
 /* eslint-disable unicorn/switch-case-braces */
 /* eslint-disable unicorn/throw-new-error */

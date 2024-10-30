@@ -1,43 +1,16 @@
 import { describe, expect, test } from "vitest";
 import type { CmpFunction } from "./fast-json-stable-stringify.js";
-import {
-  fastishJsonStableStringify,
-  fastJsonStableStringify,
-  fastJsonStableStringifyFmt,
-} from "./fast-json-stable-stringify.js";
+import { fastJsonStableStringify } from "./fast-json-stable-stringify.js";
 import {
   randomJsonArray,
   randomJsonObj,
 } from "./fast-json-stable-stringify.test-data.js";
-
-describe("fast-json-stable-stringify-generator", () => {
-  test("simple object", () => {
-    expect(fastJsonStableStringify({ a: 3, b: 4 })).toBe('{"a":3,"b":4}');
-    expect(fastishJsonStableStringify({ b: 4, a: 3 })).toBe('{"a":3,"b":4}');
-  });
-
-  test("big object", () => {
-    expect(fastJsonStableStringify(randomJsonObj)).toBe(
-      fastishJsonStableStringify(randomJsonObj),
-    );
-  });
-
-  test("big array", () => {
-    expect(fastJsonStableStringify(randomJsonArray)).toBe(
-      fastishJsonStableStringify(randomJsonArray),
-    );
-  });
-});
 
 const cmpFunction: CmpFunction = (a, b) => {
   return a.key < b.key ? 1 : -1;
 };
 describe("fast-json-stable-stringify-unit", () => {
   describe.each([
-    {
-      stringify: fastishJsonStableStringify,
-      fnid: "faster-json-stable-stringify",
-    },
     { stringify: fastJsonStableStringify, fnid: "fast-json-stable-stringify" },
   ])("$fnid", ({ stringify }) => {
     describe("cmp.js", () => {
@@ -201,7 +174,9 @@ test.each(
 )("fast-json-stable-stringify-fmt: $name", ({ obj }) => {
   const stableStr = fastJsonStableStringify(obj);
   if (stableStr) {
-    const indentedStr = fastJsonStableStringifyFmt(obj);
+    const indentedStr = fastJsonStableStringify(obj, {
+      fmt: true,
+    });
     const jsonStringifiedIndent2 = JSON.stringify(
       JSON.parse(stableStr),
       undefined,

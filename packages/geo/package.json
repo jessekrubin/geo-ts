@@ -56,19 +56,19 @@
     "@jsse/geotypes": "workspace:*"
   },
   "devDependencies": {
-    "@jsse/eslint-config": "^0.2.18",
+    "@jsse/eslint-config": "^0.2.24",
     "@jsse/geotypes": "workspace:*",
     "@jsse/tsconfig": "^0.2.2",
     "@turf/helpers": "^7.1.0",
     "@turf/turf": "^7.1.0",
-    "@types/node": "^22.7.4",
-    "@vitest/coverage-v8": "^2.1.2",
+    "@types/node": "^22.8.4",
+    "@vitest/coverage-v8": "^2.1.4",
     "benchmark": "^2.1.4",
-    "eslint": "^9.11.1",
+    "eslint": "^9.13.0",
     "prettier": "^3.3.3",
-    "tsup": "^8.3.0",
-    "tsx": "^4.19.1",
+    "tsup": "^8.3.5",
+    "tsx": "^4.19.2",
     "typescript": "^5.6.2",
-    "vitest": "^2.1.2"
+    "vitest": "^2.1.4"
   }
 }
