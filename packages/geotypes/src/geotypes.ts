@@ -12,4 +12,5 @@ export * from "./types/simplestyle.js";
 export * from "./types/sprite.js";
 export * from "./types/srtm.js";
 export * from "./types/tilejson.js";
+export * from "./types/vec.js"
 export * from "./types/zbox.js";

@@ -1,0 +1,6 @@
+export type Vec1 = [number];
+export type Vec2 = [number, number];
+export type Vec3 = [number, number, number];
+export type Vec4 = [number, number, number, number];
+export type Vec5 = [number, number, number, number, number];
+export type Vec6 = [number, number, number, number, number, number];

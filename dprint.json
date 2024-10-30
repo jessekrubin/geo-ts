@@ -15,7 +15,8 @@
     "semi": true,
     "singleQuote": false,
     "trailingComma": "all",
-    "useTabs": false
+    "useTabs": false,
+    "plugin.jsDoc": true
   },
   "includes": [
     "**/*.{ts,tsx,mts,cts,cjs,mjs,js,jsx,json,geojson,md,toml,Dockerfile,dockerfile}",

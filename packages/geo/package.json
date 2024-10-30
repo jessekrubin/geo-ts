@@ -59,6 +59,8 @@
     "@jsse/eslint-config": "^0.2.18",
     "@jsse/geotypes": "workspace:*",
     "@jsse/tsconfig": "^0.2.2",
+    "@turf/helpers": "^7.1.0",
+    "@turf/turf": "^7.1.0",
     "@types/node": "^22.7.4",
     "@vitest/coverage-v8": "^2.1.2",
     "benchmark": "^2.1.4",
