@@ -1,7 +1,7 @@
 {
   "name": "@jsse/srtm",
   "type": "module",
-  "version": "0.0.31",
+  "version": "0.0.32",
   "description": "srtm tile utils/types/tools",
   "author": "jessekrubin",
   "license": "MIT",
