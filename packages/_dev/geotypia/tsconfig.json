@@ -3,6 +3,8 @@
   "compilerOptions": {
     "target": "ES2020",
     "rootDir": "src",
+    "strict": true,
+    "strictNullChecks": true,
     "noImplicitAny": true,
     "noEmit": false,
     "outDir": "dist/esm",
@@ -11,9 +13,7 @@
       {
         "transform": "typia/lib/transform"
       }
-    ],
-    "strictNullChecks": true,
-    "strict": true
+    ]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
