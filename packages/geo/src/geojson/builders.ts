@@ -1,12 +1,16 @@
 import type {
+  BBox,
   Coord2d,
   Coord3d,
   Feature,
+  FeatureCollection,
   FeatureOptions,
   FeatureProperties,
   GeojsonCoord,
   GeoJsonProperties,
+  Geometry,
   GeometryCollection,
+  GeometryObject,
   LineStringGeometry,
   MultiLineStringGeometry,
   MultiPointGeometry,
@@ -272,6 +276,21 @@ export function geometryCollectionFeature<
     crs: options.crs,
     properties: _featureProperties(properties),
     geometry: geometryCollectionGeometry(geometries),
+  };
+}
+
+export function featureCollection<
+  G extends GeometryObject = Geometry,
+  P extends GeoJsonProperties = GeoJsonProperties,
+>(
+  features: Feature<G, P>[],
+  options: { bbox?: BBox; id?: string | number } = {},
+): FeatureCollection<G, P> {
+  return {
+    type: "FeatureCollection",
+    id: options.id,
+    bbox: options.bbox,
+    features,
   };
 }
 

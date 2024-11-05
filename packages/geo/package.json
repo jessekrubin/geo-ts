@@ -53,13 +53,15 @@
     "access": "public"
   },
   "dependencies": {
-    "@jsse/geotypes": "workspace:*"
+    "@jsse/geotypes": "workspace:*",
+    "@turf/meta": "^7.1.0"
   },
   "devDependencies": {
     "@jsse/eslint-config": "^0.2.24",
     "@jsse/geotypes": "workspace:*",
     "@jsse/tsconfig": "^0.2.2",
     "@turf/helpers": "^7.1.0",
+    "@turf/random": "^7.1.0",
     "@turf/turf": "^7.1.0",
     "@types/node": "^22.8.4",
     "@vitest/coverage-v8": "^2.1.4",

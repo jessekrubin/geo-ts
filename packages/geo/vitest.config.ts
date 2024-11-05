@@ -1,6 +1,9 @@
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
+  esbuild: {
+    target: "es2017",
+  },
   test: {
     benchmark: {
       exclude: ["node_modules", "dist", ".idea", ".git", ".cache"],

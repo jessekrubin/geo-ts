@@ -9,6 +9,7 @@ export default jsse(
       "**/_purgatory/**",
       "./packages/geojson/**",
       "**/generated/**/*",
+      "**/packages/_dev/**",
     ],
   },
   {
