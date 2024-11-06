@@ -1,8 +1,8 @@
 {
-  "name": "@jsse/geo",
+  "name": "@jsse/geotypia",
   "type": "module",
-  "version": "0.0.32",
-  "description": "geo typescript",
+  "version": "0.0.31",
+  "description": "geo-types + typia",
   "author": "jessekrubin",
   "license": "MIT",
   "keywords": [],
@@ -12,65 +12,53 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./json": {
-      "types": "./dist/json.d.ts",
-      "import": "./dist/json.js",
-      "require": "./dist/json.cjs"
-    },
-    "./lib/*": {
-      "types": "./dist/esm/*",
-      "import": "./dist/esm/*",
-      "require": "./dist/cjs/*"
-    },
-    "./package.json": "./package.json",
-    "./dist/*": "./dist/*"
+    "./package.json": "./package.json"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "!**/*.test-data.*",
-    "!**/*.test.*",
-    "!**/*.tsbuildinfo",
-    "CHANGELOG.md",
-    "README.md",
     "dist"
   ],
   "scripts": {
     "build-fast": "tsup src/index.ts --format cjs,esm",
     "build": "pnpm run build:tsup && pnpm run build:tsc",
     "build:tsup": "tsup --format cjs,esm --dts",
-    "build:tsc": "tsc -b tsconfig.build.json && tsx scripts/post-build.mts",
+    "build:tsc": "tsc --project tsconfig.json && tsc --project tsconfig.cjs.json",
+    "gen:typia": "typia generate --input src/templates --output src/generated --project tsconfig.json",
     "test": "vitest run",
     "cov": "vitest run --coverage",
     "dev": "vitest watch --coverage",
     "lint": "eslint .",
     "fmt": "prettier --write . --ignore-path ../../.prettierignore",
     "nodetest": "node --import tsx --test ./src/*test.ts",
-    "prepublishOnly": "pnpm run build"
+    "prepublishOnly": "pnpm run build",
+    "prepare": "ts-patch install && typia patch"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
     "@jsse/geotypes": "workspace:*",
-    "@turf/meta": "^7.1.0"
+    "typia": "^6.11.3"
   },
   "devDependencies": {
-    "@jsse/eslint-config": "^0.2.24",
+    "@jsse/eslint-config": "^0.2.25",
     "@jsse/geotypes": "workspace:*",
     "@jsse/tsconfig": "^0.2.2",
+    "@ryoppippi/unplugin-typia": "npm:@jsr/ryoppippi__unplugin-typia@^1.0.7",
+    "@turf/clone": "^7.1.0",
     "@turf/helpers": "^7.1.0",
-    "@turf/random": "^7.1.0",
-    "@turf/turf": "^7.1.0",
-    "@types/node": "^22.8.4",
+    "@turf/meta": "^7.1.0",
     "@vitest/coverage-v8": "^2.1.4",
     "benchmark": "^2.1.4",
-    "eslint": "^9.13.0",
+    "esbuild": "^0.24.0",
+    "eslint": "^9.14.0",
     "prettier": "^3.3.3",
+    "ts-patch": "^3.2.1",
     "tsup": "^8.3.5",
     "tsx": "^4.19.2",
-    "typescript": "^5.6.3",
+    "typescript": "^5.6.2",
     "vitest": "^2.1.4"
   }
 }

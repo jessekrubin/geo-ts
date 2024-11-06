@@ -1,0 +1,20 @@
+{
+  "extends": "@jsse/tsconfig/tsconfig.json",
+  "compilerOptions": {
+    "target": "ES2020",
+    "rootDir": "src",
+    "strict": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "noEmit": false,
+    "outDir": "dist/esm",
+    "skipLibCheck": true,
+    "plugins": [
+      {
+        "transform": "typia/lib/transform"
+      }
+    ]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

@@ -43,16 +43,16 @@
     "@jsse/eslint-config": "^0.2.18",
     "@types/geojson": "^7946.0.14",
     "@types/node": "^22.7.4",
-    "@typescript-eslint/eslint-plugin": "^8.8.0",
-    "@typescript-eslint/parser": "^8.8.0",
+    "@typescript-eslint/eslint-plugin": "^8.13.0",
+    "@typescript-eslint/parser": "^8.13.0",
     "@vitest/coverage-v8": "^2.1.2",
     "esbuild": "^0.24.0",
     "eslint": "^9.11.1",
     "prettier": "3.3.3",
-    "tsup": "8.3.0",
+    "tsup": "8.3.5",
     "tsx": "^4.19.1",
-    "typescript": "5.6.2",
-    "vitest": "2.1.2",
+    "typescript": "5.6.3",
+    "vitest": "2.1.4",
     "zx": "^8.1.8"
   }
 }

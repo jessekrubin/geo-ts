@@ -3,3 +3,4 @@ packages:
   - "packages/geotypes"
   - "packages/srtm"
   - "packages/utiles"
+#  - "packages/_dev/geotypia"
