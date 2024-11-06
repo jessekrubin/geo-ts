@@ -42,7 +42,7 @@
   "devDependencies": {
     "@jsse/eslint-config": "^0.2.18",
     "@types/geojson": "^7946.0.14",
-    "@types/node": "^22.7.4",
+    "@types/node": "^22.9.0",
     "@typescript-eslint/eslint-plugin": "^8.13.0",
     "@typescript-eslint/parser": "^8.13.0",
     "@vitest/coverage-v8": "^2.1.2",
