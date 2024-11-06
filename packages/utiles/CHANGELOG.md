@@ -1,5 +1,14 @@
 # @jsse/utiles
 
+## 0.0.34
+
+### Patch Changes
+
+- [#19](https://github.com/jessekrubin/geo-ts/pull/19) [`8033c45`](https://github.com/jessekrubin/geo-ts/commit/8033c457c6f2e7acdf31ec0c7216318b17a6120a) Thanks [@jessekrubin](https://github.com/jessekrubin)! - Dependencies upgraded
+
+- Updated dependencies [[`8033c45`](https://github.com/jessekrubin/geo-ts/commit/8033c457c6f2e7acdf31ec0c7216318b17a6120a)]:
+  - @jsse/geotypes@0.0.34
+
 ## 0.0.33
 
 ### Patch Changes
