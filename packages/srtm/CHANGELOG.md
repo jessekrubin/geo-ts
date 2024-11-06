@@ -1,5 +1,14 @@
 # @jsse/srtm
 
+## 0.0.33
+
+### Patch Changes
+
+- [#15](https://github.com/jessekrubin/geo-ts/pull/15) [`1c83eec`](https://github.com/jessekrubin/geo-ts/commit/1c83eec7296af5c4f3bf7de8ddff9fe983e783f3) Thanks [@jessekrubin](https://github.com/jessekrubin)! - dep updates
+
+- Updated dependencies [[`1c83eec`](https://github.com/jessekrubin/geo-ts/commit/1c83eec7296af5c4f3bf7de8ddff9fe983e783f3)]:
+  - @jsse/geotypes@0.0.33
+
 ## 0.0.32
 
 ### Patch Changes

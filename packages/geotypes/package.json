@@ -1,7 +1,7 @@
 {
   "name": "@jsse/geotypes",
   "type": "module",
-  "version": "0.0.32",
+  "version": "0.0.33",
   "description": "geo types",
   "publishConfig": {
     "access": "public"
