@@ -1,5 +1,14 @@
 # @jsse/utiles
 
+## 0.0.32
+
+### Patch Changes
+
+- [#12](https://github.com/jessekrubin/geo-ts/pull/12) [`5e06a99`](https://github.com/jessekrubin/geo-ts/commit/5e06a997210b1481cab4077938853e621845e0cf) Thanks [@jessekrubin](https://github.com/jessekrubin)! - deduped ts-config files"
+
+- Updated dependencies [[`c04909d`](https://github.com/jessekrubin/geo-ts/commit/c04909d582cea15f576a4314e90d14398d40aab1), [`5e06a99`](https://github.com/jessekrubin/geo-ts/commit/5e06a997210b1481cab4077938853e621845e0cf)]:
+  - @jsse/geotypes@0.0.32
+
 ## 0.0.31
 
 ### Patch Changes
