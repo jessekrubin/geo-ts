@@ -10,7 +10,6 @@ import type {
   GeoJsonProperties,
   Geometry,
   GeometryCollection,
-  GeometryObject,
   LineStringGeometry,
   MultiLineStringGeometry,
   MultiPointGeometry,
@@ -280,12 +279,14 @@ export function geometryCollectionFeature<
 }
 
 export function featureCollection<
-  G extends GeometryObject = Geometry,
-  P extends GeoJsonProperties = GeoJsonProperties,
+  TGeometry extends Geometry<TCoord>,
+  TFeature extends Feature<TGeometry, TProperties>,
+  TProperties extends GeoJsonProperties = GeoJsonProperties,
+  TCoord extends GeojsonCoord = GeojsonCoord,
 >(
-  features: Feature<G, P>[],
+  features: TFeature[],
   options: { bbox?: BBox; id?: string | number } = {},
-): FeatureCollection<G, P> {
+): FeatureCollection<TGeometry, TProperties> {
   return {
     type: "FeatureCollection",
     id: options.id,
