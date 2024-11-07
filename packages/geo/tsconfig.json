@@ -4,9 +4,9 @@
     "target": "ES5",
     "rootDir": "src",
     "noImplicitAny": true,
+    "downlevelIteration": true,
     "noEmit": false,
-    "skipLibCheck": true,
-    "downlevelIteration": true
+    "skipLibCheck": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
