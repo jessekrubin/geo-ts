@@ -85,15 +85,15 @@
     "@jsse/geotypes": "workspace:*"
   },
   "devDependencies": {
-    "@jsse/eslint-config": "^0.2.25",
-    "@jsse/tsconfig": "^0.2.2",
+    "@jsse/eslint-config": "^0.2.26",
+    "@jsse/tsconfig": "^0.2.3",
     "@types/node": "^22.9.0",
-    "@vitest/coverage-v8": "^2.1.4",
-    "eslint": "^9.14.0",
+    "@vitest/coverage-v8": "^2.1.5",
+    "eslint": "^9.15.0",
     "prettier": "^3.3.3",
     "tsup": "^8.3.5",
     "tsx": "^4.19.2",
     "typescript": "^5.6.3",
-    "vitest": "^2.1.4"
+    "vitest": "^2.1.5"
   }
 }
