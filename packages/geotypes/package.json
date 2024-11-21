@@ -13,6 +13,16 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
+    "./geojson": {
+      "types": "./dist/esm/geojson.d.ts",
+      "import": "./dist/esm/geojson.js",
+      "require": "./dist/cjs/geojson.js"
+    },
+    "./lib/*": {
+      "types": "./dist/esm/*",
+      "import": "./dist/esm/*",
+      "require": "./dist/cjs/*"
+    },
     "./dist/*": {
       "types": "./dist/esm/*",
       "import": "./dist/esm/*",

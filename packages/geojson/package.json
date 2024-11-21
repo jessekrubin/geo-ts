@@ -1,8 +1,8 @@
 {
-  "name": "@jsse/geo",
+  "name": "@jsse/geojson",
   "type": "module",
   "version": "0.0.34",
-  "description": "geo typescript",
+  "description": "geojson utils/tools/types/things",
   "author": "jessekrubin",
   "license": "MIT",
   "keywords": [],
@@ -12,35 +12,19 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./json": {
-      "types": "./dist/json.d.ts",
-      "import": "./dist/json.js",
-      "require": "./dist/json.cjs"
-    },
-    "./lib/*": {
-      "types": "./dist/esm/*",
-      "import": "./dist/esm/*",
-      "require": "./dist/cjs/*"
-    },
-    "./package.json": "./package.json",
-    "./dist/*": "./dist/*"
+    "./package.json": "./package.json"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "!**/*.test-data.*",
-    "!**/*.test.*",
-    "!**/*.tsbuildinfo",
-    "CHANGELOG.md",
-    "README.md",
     "dist"
   ],
   "scripts": {
     "build-fast": "tsup src/index.ts --format cjs,esm",
     "build": "pnpm run build:tsup && pnpm run build:tsc",
     "build:tsup": "tsup --format cjs,esm --dts",
-    "build:tsc": "tsc -b tsconfig.build.json && tsx scripts/post-build.mts",
+    "build:tsc": "tsc --project tsconfig.json",
     "test": "vitest run",
     "cov": "vitest run --coverage",
     "dev": "vitest watch --coverage",
@@ -53,20 +37,15 @@
     "access": "public"
   },
   "dependencies": {
-    "@jsse/geojson": "workspace:*",
-    "@jsse/geotypes": "workspace:*",
-    "@turf/meta": "^7.1.0"
+    "@jsse/geotypes": "workspace:*"
   },
   "devDependencies": {
     "@jsse/eslint-config": "^0.2.25",
     "@jsse/geotypes": "workspace:*",
     "@jsse/tsconfig": "^0.2.2",
     "@turf/helpers": "^7.1.0",
-    "@turf/random": "^7.1.0",
-    "@turf/turf": "^7.1.0",
-    "@types/node": "^22.9.0",
+    "@turf/meta": "^7.1.0",
     "@vitest/coverage-v8": "^2.1.4",
-    "benchmark": "^2.1.4",
     "eslint": "^9.14.0",
     "prettier": "^3.3.3",
     "tsup": "^8.3.5",

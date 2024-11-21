@@ -22,4 +22,10 @@ export {
   polygonFeature,
   polygonGeometry,
 } from "./builders.js";
-export { coordAll, coordEach } from "./meta/mod.js";
+export { geojsonStringify } from "./geojson-stringify/geojson-stringify.js";
+export { isGeojsonType, isGeometryType } from "./is.js";
+export { coordAll } from "./meta/coord-all.js";
+export { coordEach } from "./meta/coord-each.js";
+export { coordGen } from "./meta/coord-gen.js";
+
+export const pkgid = Symbol.for("@jsse/geojson");

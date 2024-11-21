@@ -1,0 +1,5 @@
+{
+  "extends": "@jsse/tsconfig/cjs",
+  "compilerOptions": {},
+  "include": ["src/**/*"]
+}
