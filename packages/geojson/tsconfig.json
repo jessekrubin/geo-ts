@@ -5,7 +5,6 @@
     "rootDir": "src",
     "noImplicitAny": true,
     "noEmit": false,
-    "outDir": "dist/esm",
     "skipLibCheck": true
   },
   "include": ["src/**/*"],

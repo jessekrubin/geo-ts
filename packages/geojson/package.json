@@ -24,7 +24,7 @@
     "build-fast": "tsup src/index.ts --format cjs,esm",
     "build": "pnpm run build:tsup && pnpm run build:tsc",
     "build:tsup": "tsup --format cjs,esm --dts",
-    "build:tsc": "tsc --project tsconfig.json && tsc --project tsconfig.cjs.json",
+    "build:tsc": "tsc --project tsconfig.json",
     "test": "vitest run",
     "cov": "vitest run --coverage",
     "dev": "vitest watch --coverage",
