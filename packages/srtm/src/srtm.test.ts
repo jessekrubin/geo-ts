@@ -5,9 +5,9 @@ import {
   ll2srtm,
   parseSrtm,
   parseSrtmString,
+  srtm2bbox,
   SRTM_LAT_RE,
   SRTM_LNG_RE,
-  srtm2bbox,
   srtmid2srtm,
   xy2srtm,
 } from "./srtm.js";
