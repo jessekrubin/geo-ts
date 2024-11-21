@@ -9,6 +9,4 @@ geo-spatial typescript
 ```bash
 npm install @jsse/geo
 pnpm add @jsse/geo
-yarn add @jsse/geo
-bun add @jsse/geo # gen-z
 ```
