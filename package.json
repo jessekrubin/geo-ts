@@ -16,7 +16,7 @@
     "buildog": "pnpm run -r build",
     "change": "changeset",
     "dev": "vitest watch",
-    "fmt": "prettier --write .",
+    "fmt": "prettier --write . --cache",
     "fmtc": "prettier --check .",
     "fmtl": "prettier --list-different .",
     "lint": "eslint .",
