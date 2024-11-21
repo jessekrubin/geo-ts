@@ -1,5 +1,12 @@
 # @jsse/utiles
 
+## 0.0.35
+
+### Patch Changes
+
+- Updated dependencies [[`ac179e6`](https://github.com/jessekrubin/geo-ts/commit/ac179e697937885360acf1ebe31774e1d700d3c7)]:
+  - @jsse/geotypes@0.0.35
+
 ## 0.0.34
 
 ### Patch Changes
