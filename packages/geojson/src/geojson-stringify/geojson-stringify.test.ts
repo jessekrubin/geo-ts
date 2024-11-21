@@ -5,6 +5,7 @@ import { geojsonStringify } from "./geojson-stringify.js";
 
 const aGeojsonFeature: Feature = {
   type: "Feature",
+  properties: {},
   geometry: {
     type: "MultiPoint",
     coordinates: [
@@ -12,19 +13,17 @@ const aGeojsonFeature: Feature = {
       [-122, 38],
     ],
   },
-  properties: {},
 };
 
 const aGeojsonFeatureCollection: FeatureCollection = {
-  type: "FeatureCollection",
   features: [
     {
-      type: "Feature",
-      geometry: {
-        type: "Point",
-        coordinates: [-123, 39],
-      },
       properties: {},
+      geometry: {
+        coordinates: [-123, 39],
+        type: "Point",
+      },
+      type: "Feature",
     },
     {
       type: "Feature",
@@ -35,6 +34,7 @@ const aGeojsonFeatureCollection: FeatureCollection = {
       properties: {},
     },
   ],
+  type: "FeatureCollection",
 };
 
 const fixtures = [
@@ -53,6 +53,11 @@ const fixtures = [
 ];
 
 test.each(fixtures)("geojsonStringify: $name", ({ input, expected }) => {
-  const actual = geojsonStringify(input);
-  expect(actual).toEqual(expected);
+  const formattedMinified = geojsonStringify(input);
+  expect(formattedMinified).toEqual(expected);
+
+  const formattedPretty = geojsonStringify(input, { fmt: true });
+  expect(formattedPretty).toEqual(
+    JSON.stringify(JSON.parse(expected), undefined, 2),
+  );
 });
