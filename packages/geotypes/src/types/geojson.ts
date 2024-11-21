@@ -315,9 +315,9 @@ export type MultiLineStringFeature<
   TProperties = GeoJsonProperties,
 > = Feature<MultiLineStringGeometry<TCoordinate>, TProperties>;
 export type MultiPointFeature<
-  TCoodinate extends GeojsonCoord = GeojsonCoord,
+  TCoordinate extends GeojsonCoord = GeojsonCoord,
   TProperties = GeoJsonProperties,
-> = Feature<MultiPointGeometry<TCoodinate>, TProperties>;
+> = Feature<MultiPointGeometry<TCoordinate>, TProperties>;
 export type MultiPolygonFeature<
   TCoordinate extends GeojsonCoord = GeojsonCoord,
   TProperties = GeoJsonProperties,

@@ -6,9 +6,7 @@ Geo-spatial typescript types library
 
 **Features:**
 
-- GeoJSON types with "stronger" typing than `@types/geojson`
-- GeoJSON builders (akin to `@turf/helpers`) w/ better type inference
-- GeoJSON utilities (akin to `@turf/meta`) w/ better type inference via type gymnastics
+- GeoJSON types with stricter typing than `@types/geojson` but also fully compatible with `@types/geojson`
 
 ## Install
 

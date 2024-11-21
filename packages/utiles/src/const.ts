@@ -77,7 +77,7 @@ export const MAX_EXTENT_WGS84 = [
 export const MIN_LNG_WEB_MERCATOR = -20_037_508.342_789_244;
 
 /**
- * Minium longitude value in Web Mercator
+ * Minimum longitude value in Web Mercator
  */
 export const MAX_LNG_WEB_MERCATOR = 20_037_508.342_789_244;
 
