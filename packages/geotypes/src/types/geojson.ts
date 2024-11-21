@@ -150,7 +150,7 @@ export type FeatureCollection<
 
 export type GeoJSON<TCoordinate extends GeojsonCoord = GeojsonCoord> =
   | Geometry<TCoordinate>
-  | Feature<Geometry<TCoordinate>>
+  | Feature<Geometry<TCoordinate> | null>
   | FeatureCollection<Geometry<TCoordinate>>;
 
 // =====================================================================

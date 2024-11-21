@@ -53,6 +53,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@jsse/geojson": "workspace:*",
     "@jsse/geotypes": "workspace:*",
     "@turf/meta": "^7.1.0"
   },

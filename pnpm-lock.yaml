@@ -44,6 +44,9 @@ importers:
 
   packages/geo:
     dependencies:
+      '@jsse/geojson':
+        specifier: workspace:*
+        version: link:../geojson
       '@jsse/geotypes':
         specifier: workspace:*
         version: link:../geotypes
@@ -106,6 +109,12 @@ importers:
       '@jsse/tsconfig':
         specifier: ^0.2.2
         version: 0.2.2
+      '@turf/helpers':
+        specifier: ^7.1.0
+        version: 7.1.0
+      '@turf/meta':
+        specifier: ^7.1.0
+        version: 7.1.0
       '@vitest/coverage-v8':
         specifier: ^2.1.4
         version: 2.1.4(vitest@2.1.4(@types/node@22.9.0))

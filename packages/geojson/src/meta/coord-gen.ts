@@ -75,7 +75,9 @@ export function* coordGen<
       yield* geometryCoordGen(feature.geometry, { excludeWrapCoord });
     }
   } else if (geojson.type === "Feature") {
-    yield* geometryCoordGen(geojson.geometry, { excludeWrapCoord });
+    if (geojson.geometry) {
+      yield* geometryCoordGen(geojson.geometry, { excludeWrapCoord });
+    }
   } else if (isGeometryType(geojson.type)) {
     yield* geometryCoordGen(geojson, { excludeWrapCoord });
   } else {

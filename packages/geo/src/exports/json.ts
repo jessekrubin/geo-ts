@@ -1,1 +1,1 @@
-export * from "../geojson/mod.js";
+export * from "@jsse/geojson";
