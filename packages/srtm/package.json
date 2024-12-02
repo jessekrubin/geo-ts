@@ -42,13 +42,13 @@
   "devDependencies": {
     "@jsse/eslint-config": "^0.2.25",
     "@jsse/geotypes": "workspace:*",
-    "@jsse/tsconfig": "^0.2.2",
-    "@vitest/coverage-v8": "^2.1.4",
-    "eslint": "^9.14.0",
-    "prettier": "^3.3.3",
+    "@jsse/tsconfig": "^0.2.4",
+    "@vitest/coverage-v8": "^2.1.7",
+    "eslint": "^9.16.0",
+    "prettier": "^3.4.1",
     "tsup": "^8.3.5",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2",
-    "vitest": "^2.1.4"
+    "vitest": "^2.1.7"
   }
 }
