@@ -85,12 +85,12 @@
     "@jsse/geotypes": "workspace:*"
   },
   "devDependencies": {
-    "@jsse/eslint-config": "^0.2.31",
+    "@jsse/eslint-config": "^0.2.32",
     "@jsse/tsconfig": "^0.2.4",
-    "@types/node": "^22.10.10",
-    "@vitest/coverage-v8": "^3.0.4",
-    "eslint": "^9.19.0",
-    "prettier": "^3.4.2",
+    "@types/node": "^22.13.4",
+    "@vitest/coverage-v8": "^3.0.5",
+    "eslint": "^9.20.1",
+    "prettier": "^3.5.1",
     "tsup": "^8.3.6",
     "tsx": "^4.19.2",
     "typescript": "^5.7.3",
