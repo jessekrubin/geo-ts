@@ -44,7 +44,7 @@ jobs:
 
       - name: Install deps
         run: pnpm i
-      - uses: extractions/setup-just@v2
+      - uses: extractions/setup-just@v3
       - name: Build and Test
         run: just ci
 
@@ -80,7 +80,7 @@ jobs:
 
       - name: Install deps
         run: pnpm i
-      - uses: extractions/setup-just@v2
+      - uses: extractions/setup-just@v3
       - name: create-release-pr
         id: changesets
         uses: changesets/action@v1
