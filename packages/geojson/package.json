@@ -40,7 +40,7 @@
     "@jsse/geotypes": "workspace:*"
   },
   "devDependencies": {
-    "@jsse/eslint-config": "^0.3.0",
+    "@jsse/eslint-config": "^0.3.2",
     "@jsse/geotypes": "workspace:*",
     "@jsse/tsconfig": "^0.2.4",
     "@turf/helpers": "^7.2.0",
