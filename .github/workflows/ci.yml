@@ -27,6 +27,7 @@ jobs:
       - uses: pnpm/action-setup@v4
         with:
           run_install: false
+          version: 10
 
       - name: pnpm-store-dir
         shell: bash
@@ -63,6 +64,7 @@ jobs:
       - uses: pnpm/action-setup@v4
         with:
           run_install: false
+          version: 10
 
       - name: pnpm-store-dir
         shell: bash
