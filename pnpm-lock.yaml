@@ -27,8 +27,8 @@ importers:
         specifier: ^9.25.1
         version: 9.25.1
       eslint-plugin-perfectionist:
-        specifier: ~4.11.0
-        version: 4.11.0(eslint@9.25.1)(typescript@5.8.3)
+        specifier: ~4.12.1
+        version: 4.12.1(eslint@9.25.1)(typescript@5.8.3)
       prettier:
         specifier: 3.5.3
         version: 3.5.3
@@ -904,6 +904,7 @@ packages:
 
   '@eslint-react/tools@1.14.3':
     resolution: {integrity: sha512-NtewO4fWxzGtVCjAhD6NG4FwLev5Xq87KWpW92brPF+AvTzkr04abt3/14CpojJlW9L9SMK6FsX9tFVP7ZBqJQ==}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
 
   '@eslint-react/types@1.14.3':
     resolution: {integrity: sha512-Hi3rBCX0pAxoQs3MQYX/rt4Fxdz97U0pTjSQsm03dGUBb/BEVgrVK9SEZkCqpfPZ7NXrVhuiYudoJRUylNZyCw==}
@@ -2222,8 +2223,8 @@ packages:
     resolution: {integrity: sha512-brcKcxGnISN2CcVhXJ/kEQlNa0MEfGRtwKtWA16SkqXHKitaKIMrfemJKLKX1YqDU5C/5JY3PvZXd5jEW04e0Q==}
     engines: {node: '>=5.0.0'}
 
-  eslint-plugin-perfectionist@4.11.0:
-    resolution: {integrity: sha512-5s+ehXydnLPQpLDj5mJ0CnYj2fQe6v6gKA3tS+FZVBLzwMOh8skH+l+1Gni08rG0SdEcNhJyjQp/mEkDYK8czw==}
+  eslint-plugin-perfectionist@4.12.1:
+    resolution: {integrity: sha512-0w0zF4ugHqFfsSFfZcg/pQTUoKkSJOYqqFPURRgA8hkpZsbYksCO4rfpDdiMkOgCJ3y4wxPvwKm3eTrP7jl7zg==}
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
       eslint: '>=8.45.0'
@@ -4334,7 +4335,7 @@ snapshots:
       eslint-plugin-jsonc: 2.20.0(eslint@9.25.1)
       eslint-plugin-n: 17.17.0(eslint@9.25.1)
       eslint-plugin-no-only-tests: 3.3.0
-      eslint-plugin-perfectionist: 4.11.0(eslint@9.25.1)(typescript@5.8.3)
+      eslint-plugin-perfectionist: 4.12.1(eslint@9.25.1)(typescript@5.8.3)
       eslint-plugin-toml: 0.12.0(eslint@9.25.1)
       eslint-plugin-tsdoc: 0.4.0
       eslint-plugin-unicorn: 58.0.0(eslint@9.25.1)
@@ -6322,7 +6323,7 @@ snapshots:
 
   eslint-plugin-no-only-tests@3.3.0: {}
 
-  eslint-plugin-perfectionist@4.11.0(eslint@9.25.1)(typescript@5.8.3):
+  eslint-plugin-perfectionist@4.12.1(eslint@9.25.1)(typescript@5.8.3):
     dependencies:
       '@typescript-eslint/types': 8.31.0
       '@typescript-eslint/utils': 8.31.0(eslint@9.25.1)(typescript@5.8.3)
