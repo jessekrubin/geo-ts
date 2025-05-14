@@ -1,4 +1,7 @@
-build: build-packages lint
+build: typecheck build-packages lint
+
+typecheck:
+    pnpm run -r typecheck
 
 # command run in ci
 ci: build-packages test lint

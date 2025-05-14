@@ -1,19 +1,12 @@
 {
+  "extends": "@jsse/tsconfig/tsconfig.json",
   "compilerOptions": {
-    "target": "es2020",
     "module": "Node16",
     "moduleResolution": "Node16",
-    "resolveJsonModule": true,
-    "allowJs": true,
-    "strict": true,
     "strictNullChecks": true,
     "noImplicitAny": true,
-    "noUnusedLocals": true,
-    "declaration": true,
     "noEmit": false,
-    "outDir": "dist/esm",
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
     "skipLibCheck": true,
     "plugins": []
   },
