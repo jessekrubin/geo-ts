@@ -66,9 +66,9 @@
     "docs/**/**"
   ],
   "scripts": {
-    "build-fast": "tsup src/index.ts --format cjs,esm",
-    "build": "pnpm run build:tsup && pnpm run build:tsc",
-    "build:tsup": "tsup --format cjs,esm --dts",
+    "build-fast": "tsdown src/index.ts --format cjs,esm",
+    "build": "pnpm run build:tsdown && pnpm run build:tsc",
+    "build:tsdown": "tsdown --format cjs,esm --dts",
     "build:tsc": "tsc --project tsconfig.json && tsc --project tsconfig.cjs.json",
     "test": "vitest run",
     "cov": "vitest run --coverage",
@@ -76,7 +76,8 @@
     "lint": "eslint .",
     "fmt": "prettier --write . --ignore-path ../../.prettierignore",
     "nodetest": "node --import tsx --test ./src/*test.ts",
-    "prepublishOnly": "pnpm run build"
+    "prepublishOnly": "pnpm run build",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
   },
   "publishConfig": {
     "access": "public"
@@ -91,7 +92,8 @@
     "@vitest/coverage-v8": "^3.1.2",
     "eslint": "^9.25.1",
     "prettier": "^3.5.3",
-    "tsup": "^8.4.0",
+    "publint": "^0.3.12",
+    "tsdown": "^0.11.9",
     "tsx": "^4.19.3",
     "typescript": "^5.8.3",
     "vitest": "^3.1.2"

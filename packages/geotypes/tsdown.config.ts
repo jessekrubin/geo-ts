@@ -1,7 +1,7 @@
-import { defineConfig } from "tsup";
+import { defineConfig } from "tsdown";
 
 export default defineConfig({
-  entry: ["src/srtm.ts"],
+  entry: ["src/index.ts"],
   splitting: false,
   format: ["cjs", "esm"],
   dts: true,
