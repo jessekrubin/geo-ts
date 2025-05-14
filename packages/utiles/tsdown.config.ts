@@ -1,4 +1,4 @@
-import { defineConfig } from "tsup";
+import { defineConfig } from "tsdown";
 
 export default defineConfig({
   entry: [
@@ -7,7 +7,6 @@ export default defineConfig({
     "src/tile-type.ts",
     "src/tile-cover.ts",
   ],
-  splitting: false,
   format: ["cjs", "esm"],
   dts: true,
   outDir: "dist",

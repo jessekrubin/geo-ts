@@ -119,7 +119,7 @@
 ### Patch Changes
 
 - 9864edf: - tilejson.terrain can be `mapbox` / `terrarium` / `{r, g, b, offset}`
-  - utilejson type with required fields for sanity
+    - utilejson type with required fields for sanity
 
 ## 0.0.14
 
