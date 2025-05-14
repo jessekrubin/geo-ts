@@ -53,12 +53,20 @@ export type LineStringGeometry<
   TCoordinate extends GeojsonCoord = GeojsonCoord,
 > = {
   type: "LineString";
+  /**
+   * @minItems 2
+   */
   coordinates: TCoordinate[];
   bbox?: BBox;
 };
+
+/**
+ * @minItems 4
+ */
+type PolygonLinearRing<TCoordinate extends GeojsonCoord = GeojsonCoord> = TCoordinate[];
 export type PolygonGeometry<TCoordinate extends GeojsonCoord = GeojsonCoord> = {
   type: "Polygon";
-  coordinates: TCoordinate[][];
+  coordinates: PolygonLinearRing<TCoordinate>[];
   bbox?: BBox;
 };
 export type MultiPointGeometry<

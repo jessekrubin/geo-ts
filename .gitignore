@@ -188,3 +188,4 @@ third-party/
 deployment.tar.gz
 .npmrc
 .netrc
+geo-test-data/

@@ -5,7 +5,7 @@
     { "repo": "jessekrubin/geo-ts" }
   ],
   "commit": false,
-  "fixed": [["@jsse/geo", "@jsse/geotypes", "@jsse/utiles"]],
+  "fixed": [["@jsse/geo", "@jsse/geotypes", "@jsse/utiles", "@jsse/geotypia"]],
   "linked": [],
   "access": "restricted",
   "baseBranch": "main",

@@ -1,7 +1,9 @@
 packages:
-  - "packages/geo"
-  - "packages/geojson"
-  - "packages/geotypes"
-  - "packages/srtm"
-  - "packages/utiles"
-#  - "packages/_dev/geotypia"
+  - packages/geo
+  - packages/geojson
+  - packages/geotypes
+  - packages/srtm
+  - packages/utiles
+  - packages/_dev/geotypia
+onlyBuiltDependencies:
+  - esbuild
