@@ -32,11 +32,11 @@
     "@jsse/tsconfig": "^0.3.0",
     "dprint": "^0.49.1",
     "eslint": "^9.26.0",
-    "eslint-plugin-perfectionist": "~4.11.0",
+    "eslint-plugin-perfectionist": "~4.13.0",
     "prettier": "3.5.3",
     "tsup": "8.4.0",
     "tsx": "^4.19.4",
     "typescript": "5.8.3",
-    "vitest": "3.1.2"
+    "vitest": "3.1.3"
   }
 }
