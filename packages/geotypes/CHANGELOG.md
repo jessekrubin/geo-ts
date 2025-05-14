@@ -1,5 +1,11 @@
 # @jsse/geotypes
 
+## 0.0.36
+
+### Patch Changes
+
+- [#53](https://github.com/jessekrubin/geo-ts/pull/53) [`a9a5331`](https://github.com/jessekrubin/geo-ts/commit/a9a53316d0dad44d8300c92513c48efd2ee2a228) Thanks [@jessekrubin](https://github.com/jessekrubin)! - migrate to tsdown
+
 ## 0.0.35
 
 ### Patch Changes
@@ -119,7 +125,7 @@
 ### Patch Changes
 
 - 9864edf: - tilejson.terrain can be `mapbox` / `terrarium` / `{r, g, b, offset}`
-    - utilejson type with required fields for sanity
+  - utilejson type with required fields for sanity
 
 ## 0.0.14
 
