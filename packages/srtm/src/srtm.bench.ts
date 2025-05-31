@@ -32,7 +32,7 @@ const TEST_DATA = [
 bench(
   "is-srtm-string",
   () => {
-    for (const { str, ok } of TEST_DATA) {
+    for (const { str } of TEST_DATA) {
       isSrtmString(str);
     }
   },
@@ -44,7 +44,7 @@ bench(
 bench(
   "is-srtm-string-v1",
   () => {
-    for (const { str, ok } of TEST_DATA) {
+    for (const { str } of TEST_DATA) {
       isSrtmString_v1(str);
     }
   },

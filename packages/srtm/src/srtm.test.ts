@@ -8,12 +8,10 @@ import {
   parseSrtmString,
   srtm2bbox,
   SRTM_LAT_RE,
+  SRTM_LAT_RE_CASE_INSENSITIVE,
   SRTM_LNG_RE,
-  srtmid2srtm,
-  xy2srtm,
+  SRTM_LNG_RE_CASE_INSENSITIVE, srtmid2srtm , xy2srtm
 } from "./srtm.js";
-import { SRTM_LNG_RE_CASE_INSENSITIVE } from "./srtm.js";
-import { SRTM_LAT_RE_CASE_INSENSITIVE } from "./srtm.js";
 
 /**
  * Creates a typed tuple
