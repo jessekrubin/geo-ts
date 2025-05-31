@@ -102,7 +102,7 @@ export const SRTM_RE_V1 =
  */
 export function isSrtmString(
   str: string,
-  ignoreCase: boolean= false,
+  ignoreCase: boolean = false,
 ): str is SrtmString {
   return ignoreCase ? SRTM_RE_CASE_INSENSITIVE.test(str) : SRTM_RE.test(str);
 }
@@ -131,8 +131,13 @@ export function isSrtmString_v1(str: string): str is SrtmString {
  * @param ignoreCase - whether to ignore case (default: false)
  * @returns true if the string is a valid SRTM longitude string, false otherwise
  */
-export function isSrtmLngString(str: string, ignoreCase: boolean = false): boolean {
-  return ignoreCase ? SRTM_LNG_RE_CASE_INSENSITIVE.test(str) : SRTM_LNG_RE.test(str);
+export function isSrtmLngString(
+  str: string,
+  ignoreCase: boolean = false,
+): boolean {
+  return ignoreCase
+    ? SRTM_LNG_RE_CASE_INSENSITIVE.test(str)
+    : SRTM_LNG_RE.test(str);
 }
 
 /**
@@ -141,8 +146,13 @@ export function isSrtmLngString(str: string, ignoreCase: boolean = false): boole
  * @param ignoreCase - whether to ignore case (default: false)
  * @returns true if the string is a valid SRTM latitude string, false otherwise
  */
-export function isSrtmLatString(str: string, ignoreCase: boolean = false): boolean {
-  return ignoreCase ? SRTM_LAT_RE_CASE_INSENSITIVE.test(str) : SRTM_LAT_RE.test(str);
+export function isSrtmLatString(
+  str: string,
+  ignoreCase: boolean = false,
+): boolean {
+  return ignoreCase
+    ? SRTM_LAT_RE_CASE_INSENSITIVE.test(str)
+    : SRTM_LAT_RE.test(str);
 }
 
 /**
@@ -183,7 +193,6 @@ export function ll2srtm({ lng, lat }: { lng: number; lat: number }): SrtmTile {
     },
   };
 }
-
 
 export function parseSrtmString(str: string): SrtmTile {
   if (!isSrtmString(str)) {

@@ -1,7 +1,7 @@
 {
   "name": "@jsse/geojson",
   "type": "module",
-  "version": "0.0.36",
+  "version": "0.0.37",
   "description": "geojson utils/tools/types/things",
   "author": "jessekrubin",
   "license": "MIT",
