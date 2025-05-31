@@ -2,6 +2,7 @@ import { assert, describe, expect, test } from "vitest";
 import {
   bbox2srtms,
   isSrtmString,
+  isSrtmString_v1,
   ll2srtm,
   parseSrtm,
   parseSrtmString,
@@ -11,6 +12,8 @@ import {
   srtmid2srtm,
   xy2srtm,
 } from "./srtm.js";
+import { SRTM_LNG_RE_CASE_INSENSITIVE } from "./srtm.js";
+import { SRTM_LAT_RE_CASE_INSENSITIVE } from "./srtm.js";
 
 /**
  * Creates a typed tuple
@@ -20,7 +23,7 @@ export function tuple<T extends unknown[]>(...args: T): T {
 }
 
 describe("srtm", () => {
-  test.each([
+  const SRTM_STR_TEST_DATA_UPPERCASE = [
     // valid
     { str: "N00E000", ok: true },
     { str: "S90W179", ok: true },
@@ -38,18 +41,43 @@ describe("srtm", () => {
     { str: "S00E181", ok: false },
     { str: "S00W181", ok: false },
     { str: "S91W000", ok: false },
-  ])("is-srtm-string %j", ({ str, ok }) => {
+  ];
+  const SRTM_STR_TEST_DATA_LOWERCASE = SRTM_STR_TEST_DATA_UPPERCASE.map(
+    (d) => ({
+      str: d.str.toLowerCase(),
+      ok: d.ok,
+    }),
+  );
+  const SRTM_STR_TEST_DATA = [...SRTM_STR_TEST_DATA_UPPERCASE , ...SRTM_STR_TEST_DATA_LOWERCASE];
+
+  test.each(SRTM_STR_TEST_DATA)("is-srtm-string %j", ({ str, ok }) => {
+    const lngPart = str.slice(3, 7);
+    const lngOk = SRTM_LNG_RE_CASE_INSENSITIVE.test(lngPart);
+    const latPart = str.slice(0, 3);
+    const latOk = SRTM_LAT_RE_CASE_INSENSITIVE.test(latPart);
+    expect(latOk && lngOk).toBe(ok);
+    expect(isSrtmString(str, true)).toBe(ok);
+  });
+
+  test.each(SRTM_STR_TEST_DATA_UPPERCASE)("is-srtm-string-case-insensitive %j", ({ str, ok }) => {
     const lngPart = str.slice(3, 7);
     const lngOk = SRTM_LNG_RE.test(lngPart);
     const latPart = str.slice(0, 3);
     const latOk = SRTM_LAT_RE.test(latPart);
-    if ((latOk && lngOk) !== ok) {
-      console.log({ lngPart, lngOk });
-      console.log({ latPart, latOk });
-    }
     expect(latOk && lngOk).toBe(ok);
     expect(isSrtmString(str)).toBe(ok);
   });
+
+  test.each(SRTM_STR_TEST_DATA_UPPERCASE)("is-srtm-string-v1 %j", ({ str, ok }) => {
+    const lngPart = str.slice(3, 7);
+    const lngOk = SRTM_LNG_RE.test(lngPart);
+    const latPart = str.slice(0, 3);
+    const latOk = SRTM_LAT_RE.test(latPart);
+
+    expect(latOk && lngOk).toBe(ok);
+    expect(isSrtmString_v1(str)).toBe(ok);
+  });
+
   test("ll2srtm", () => {
     for (let lng = -180; lng <= 180; lng += 5) {
       for (let lat = -90; lat <= 90; lat += 5) {

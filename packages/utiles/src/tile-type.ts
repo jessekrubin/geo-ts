@@ -191,7 +191,7 @@ export function dimensions(buffer: Uint8Array): [number, number] | false {
           buffer[i + 7] ?? 0,
         );
         // Invalid chunk.
-        if (!(length || chunktype === "IEND")) return false;
+        if (!length && chunktype !== "IEND") return false;
         // Length + type.
         i += 8;
         if (chunktype === "IHDR" && i + 8 < buffer.length) {
