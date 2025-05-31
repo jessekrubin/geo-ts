@@ -10,7 +10,9 @@ import {
   SRTM_LAT_RE,
   SRTM_LAT_RE_CASE_INSENSITIVE,
   SRTM_LNG_RE,
-  SRTM_LNG_RE_CASE_INSENSITIVE, srtmid2srtm , xy2srtm
+  SRTM_LNG_RE_CASE_INSENSITIVE,
+  srtmid2srtm,
+  xy2srtm,
 } from "./srtm.js";
 
 /**
@@ -46,7 +48,10 @@ describe("srtm", () => {
       ok: d.ok,
     }),
   );
-  const SRTM_STR_TEST_DATA = [...SRTM_STR_TEST_DATA_UPPERCASE , ...SRTM_STR_TEST_DATA_LOWERCASE];
+  const SRTM_STR_TEST_DATA = [
+    ...SRTM_STR_TEST_DATA_UPPERCASE,
+    ...SRTM_STR_TEST_DATA_LOWERCASE,
+  ];
 
   test.each(SRTM_STR_TEST_DATA)("is-srtm-string %j", ({ str, ok }) => {
     const lngPart = str.slice(3, 7);
@@ -57,24 +62,30 @@ describe("srtm", () => {
     expect(isSrtmString(str, true)).toBe(ok);
   });
 
-  test.each(SRTM_STR_TEST_DATA_UPPERCASE)("is-srtm-string-case-insensitive %j", ({ str, ok }) => {
-    const lngPart = str.slice(3, 7);
-    const lngOk = SRTM_LNG_RE.test(lngPart);
-    const latPart = str.slice(0, 3);
-    const latOk = SRTM_LAT_RE.test(latPart);
-    expect(latOk && lngOk).toBe(ok);
-    expect(isSrtmString(str)).toBe(ok);
-  });
+  test.each(SRTM_STR_TEST_DATA_UPPERCASE)(
+    "is-srtm-string-case-insensitive %j",
+    ({ str, ok }) => {
+      const lngPart = str.slice(3, 7);
+      const lngOk = SRTM_LNG_RE.test(lngPart);
+      const latPart = str.slice(0, 3);
+      const latOk = SRTM_LAT_RE.test(latPart);
+      expect(latOk && lngOk).toBe(ok);
+      expect(isSrtmString(str)).toBe(ok);
+    },
+  );
 
-  test.each(SRTM_STR_TEST_DATA_UPPERCASE)("is-srtm-string-v1 %j", ({ str, ok }) => {
-    const lngPart = str.slice(3, 7);
-    const lngOk = SRTM_LNG_RE.test(lngPart);
-    const latPart = str.slice(0, 3);
-    const latOk = SRTM_LAT_RE.test(latPart);
+  test.each(SRTM_STR_TEST_DATA_UPPERCASE)(
+    "is-srtm-string-v1 %j",
+    ({ str, ok }) => {
+      const lngPart = str.slice(3, 7);
+      const lngOk = SRTM_LNG_RE.test(lngPart);
+      const latPart = str.slice(0, 3);
+      const latOk = SRTM_LAT_RE.test(latPart);
 
-    expect(latOk && lngOk).toBe(ok);
-    expect(isSrtmString_v1(str)).toBe(ok);
-  });
+      expect(latOk && lngOk).toBe(ok);
+      expect(isSrtmString_v1(str)).toBe(ok);
+    },
+  );
 
   test("ll2srtm", () => {
     for (let lng = -180; lng <= 180; lng += 5) {

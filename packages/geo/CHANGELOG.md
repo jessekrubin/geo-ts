@@ -1,5 +1,13 @@
 # @jsse/geo
 
+## 0.0.37
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @jsse/geotypes@0.0.37
+  - @jsse/geojson@0.0.37
+
 ## 0.0.36
 
 ### Patch Changes

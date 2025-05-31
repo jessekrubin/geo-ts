@@ -1,5 +1,14 @@
 # @jsse/utiles
 
+## 0.0.37
+
+### Patch Changes
+
+- [#58](https://github.com/jessekrubin/geo-ts/pull/58) [`c24684c`](https://github.com/jessekrubin/geo-ts/commit/c24684c45ed4094f61a9ccbe331180f0aa6b77e8) Thanks [@jessekrubin](https://github.com/jessekrubin)! - update deps and srtm parsing fix
+
+- Updated dependencies []:
+  - @jsse/geotypes@0.0.37
+
 ## 0.0.36
 
 ### Patch Changes
