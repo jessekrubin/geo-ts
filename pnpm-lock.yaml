@@ -91,8 +91,8 @@ importers:
         specifier: ^0.3.12
         version: 0.3.12
       tsdown:
-        specifier: ^0.12.5
-        version: 0.12.5(publint@0.3.12)(typescript@5.8.3)
+        specifier: ^0.12.6
+        version: 0.12.6(publint@0.3.12)(typescript@5.8.3)
       tsx:
         specifier: ^4.19.3
         version: 4.19.4
@@ -134,8 +134,8 @@ importers:
         specifier: ^0.3.12
         version: 0.3.12
       tsdown:
-        specifier: ^0.12.5
-        version: 0.12.5(publint@0.3.12)(typescript@5.8.3)
+        specifier: ^0.12.6
+        version: 0.12.6(publint@0.3.12)(typescript@5.8.3)
       tsx:
         specifier: ^4.19.3
         version: 4.19.4
@@ -179,8 +179,8 @@ importers:
         specifier: ^0.3.12
         version: 0.3.12
       tsdown:
-        specifier: ^0.12.5
-        version: 0.12.5(publint@0.3.12)(typescript@5.8.3)
+        specifier: ^0.12.6
+        version: 0.12.6(publint@0.3.12)(typescript@5.8.3)
       tsx:
         specifier: ^4.19.3
         version: 4.19.4
@@ -219,8 +219,8 @@ importers:
         specifier: ^0.3.12
         version: 0.3.12
       tsdown:
-        specifier: ^0.12.5
-        version: 0.12.5(publint@0.3.12)(typescript@5.8.3)
+        specifier: ^0.12.6
+        version: 0.12.6(publint@0.3.12)(typescript@5.8.3)
       tsx:
         specifier: ^4.19.3
         version: 4.19.4
@@ -259,8 +259,8 @@ importers:
         specifier: ^0.3.12
         version: 0.3.12
       tsdown:
-        specifier: ^0.12.5
-        version: 0.12.5(publint@0.3.12)(typescript@5.8.3)
+        specifier: ^0.12.6
+        version: 0.12.6(publint@0.3.12)(typescript@5.8.3)
       tsx:
         specifier: ^4.19.3
         version: 4.19.4
@@ -765,6 +765,7 @@ packages:
 
   '@eslint-react/tools@1.14.3':
     resolution: {integrity: sha512-NtewO4fWxzGtVCjAhD6NG4FwLev5Xq87KWpW92brPF+AvTzkr04abt3/14CpojJlW9L9SMK6FsX9tFVP7ZBqJQ==}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
 
   '@eslint-react/types@1.14.3':
     resolution: {integrity: sha512-Hi3rBCX0pAxoQs3MQYX/rt4Fxdz97U0pTjSQsm03dGUBb/BEVgrVK9SEZkCqpfPZ7NXrVhuiYudoJRUylNZyCw==}
@@ -1950,11 +1951,11 @@ packages:
     resolution: {integrity: sha512-aNJhOQsUS5D9k/YkMUaLLniIpxEBUR0ZwT0RXGQV5YpaGwE2nx6FcKuVkC6wRaZXTr8X0NpV/2HFbcvNuI2jtA==}
     hasBin: true
 
-  dts-resolver@2.0.1:
-    resolution: {integrity: sha512-Pe2kqaQTNVxleYpt9Q9658fn6rEpoZbMbDpEBbcU6pnuGM3Q0IdM+Rv67kN6qcyp8Bv2Uv9NYy5Y1rG1LSgfoQ==}
+  dts-resolver@2.1.0:
+    resolution: {integrity: sha512-bgBo2md8jS5V11Rfhw23piIxJDEEDAnQ8hzh+jwKjX50P424IQhiZVVwyEe/n6vPWgEIe3NKrlRUyLMK9u0kaQ==}
     engines: {node: '>=20.18.0'}
     peerDependencies:
-      oxc-resolver: ^9.0.2
+      oxc-resolver: '>=11.0.0'
     peerDependenciesMeta:
       oxc-resolver:
         optional: true
@@ -3050,8 +3051,8 @@ packages:
   robust-predicates@3.0.2:
     resolution: {integrity: sha512-IXgzBWvWQwE6PrDI05OvmXUIruQTcoMDzRsOd5CDvHCVLcLHMTSYvOK5Cm46kWqlV3yAbuSpBZdJ5oP5OUoStg==}
 
-  rolldown-plugin-dts@0.13.6:
-    resolution: {integrity: sha512-eeiRAhGWK/v3hFFSWQ1FeE+tvRIIKxGH7uA/THMC1FD3HuTtltxx79+8TqAuD4msfgApJyB9k4Gu3YSWPwkTIQ==}
+  rolldown-plugin-dts@0.13.7:
+    resolution: {integrity: sha512-D1ite1Ye8OaNi0utY4yoC/anZMmAjd2vBAYDEKuTrcz5B1hK0/CXiQAsiaPp8RIrsotFAOklj7LvT5i3p0HV6w==}
     engines: {node: '>=20.18.0'}
     peerDependencies:
       rolldown: ^1.0.0-beta.9
@@ -3299,16 +3300,19 @@ packages:
   ts-pattern@5.7.1:
     resolution: {integrity: sha512-EGs8PguQqAAUIcQfK4E9xdXxB6s2GK4sJfT/vcc9V1ELIvC4LH/zXu2t/5fajtv6oiRCxdv7BgtVK3vWgROxag==}
 
-  tsdown@0.12.5:
-    resolution: {integrity: sha512-5tzqVakJOdIVJLBB6K1e7L4pPTkyLxArkidwsY1jd4P1/4GplYxeHGRmGz8evsXaPJW6IumdbDvIVnmWMnIy2A==}
+  tsdown@0.12.6:
+    resolution: {integrity: sha512-NIqmptXCYc0iZzSGNpFtWATTDM5MyqDfV7bhgqfrw8KJlEFLI9zYyF4uFDheEvudTMNH5dkcQUJaklpmHsA37A==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     peerDependencies:
+      '@arethetypeswrong/core': ^0.18.1
       publint: ^0.3.0
       typescript: ^5.0.0
       unplugin-lightningcss: ^0.4.0
       unplugin-unused: ^0.5.0
     peerDependenciesMeta:
+      '@arethetypeswrong/core':
+        optional: true
       publint:
         optional: true
       typescript:
@@ -5938,7 +5942,7 @@ snapshots:
       '@dprint/win32-arm64': 0.50.0
       '@dprint/win32-x64': 0.50.0
 
-  dts-resolver@2.0.1: {}
+  dts-resolver@2.1.0: {}
 
   earcut@2.2.4: {}
 
@@ -7300,7 +7304,7 @@ snapshots:
 
   robust-predicates@3.0.2: {}
 
-  rolldown-plugin-dts@0.13.6(rolldown@1.0.0-beta.10-commit.87188ed)(typescript@5.8.3):
+  rolldown-plugin-dts@0.13.7(rolldown@1.0.0-beta.10-commit.87188ed)(typescript@5.8.3):
     dependencies:
       '@babel/generator': 7.27.3
       '@babel/parser': 7.27.4
@@ -7308,7 +7312,7 @@ snapshots:
       ast-kit: 2.1.0
       birpc: 2.3.0
       debug: 4.4.1
-      dts-resolver: 2.0.1
+      dts-resolver: 2.1.0
       get-tsconfig: 4.10.1
       rolldown: 1.0.0-beta.10-commit.87188ed
     optionalDependencies:
@@ -7557,7 +7561,7 @@ snapshots:
 
   ts-pattern@5.7.1: {}
 
-  tsdown@0.12.5(publint@0.3.12)(typescript@5.8.3):
+  tsdown@0.12.6(publint@0.3.12)(typescript@5.8.3):
     dependencies:
       ansis: 4.1.0
       cac: 6.7.14
@@ -7567,7 +7571,7 @@ snapshots:
       empathic: 1.1.0
       hookable: 5.5.3
       rolldown: 1.0.0-beta.10-commit.87188ed
-      rolldown-plugin-dts: 0.13.6(rolldown@1.0.0-beta.10-commit.87188ed)(typescript@5.8.3)
+      rolldown-plugin-dts: 0.13.7(rolldown@1.0.0-beta.10-commit.87188ed)(typescript@5.8.3)
       semver: 7.7.2
       tinyexec: 1.0.1
       tinyglobby: 0.2.14

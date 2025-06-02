@@ -93,7 +93,7 @@
     "eslint": "^9.28.0",
     "prettier": "^3.5.3",
     "publint": "^0.3.12",
-    "tsdown": "^0.12.5",
+    "tsdown": "^0.12.6",
     "tsx": "^4.19.3",
     "typescript": "^5.8.3",
     "vitest": "^3.1.4"
