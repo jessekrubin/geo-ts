@@ -12,9 +12,6 @@ updates:
         patterns:
           - "*"
 
-    reviewers:
-      - "jessekrubin"
-
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
