@@ -31,7 +31,7 @@
     "@jsse/eslint-config": "^0.4.5",
     "@jsse/tsconfig": "^0.3.0",
     "dprint": "^0.50.1",
-    "eslint": "^9.31.0",
+    "eslint": "^9.32.0",
     "eslint-plugin-perfectionist": "~4.15.0",
     "prettier": "3.6.2",
     "tsup": "8.5.0",
