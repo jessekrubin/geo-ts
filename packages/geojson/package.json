@@ -41,7 +41,7 @@
     "@jsse/geotypes": "workspace:*"
   },
   "devDependencies": {
-    "@jsse/eslint-config": "^0.4.5",
+    "@jsse/eslint-config": "^0.4.8",
     "@jsse/geotypes": "workspace:*",
     "@jsse/tsconfig": "^0.3.0",
     "@turf/helpers": "^7.2.0",
@@ -50,9 +50,9 @@
     "eslint": "^9.32.0",
     "prettier": "^3.6.2",
     "publint": "^0.3.12",
-    "tsdown": "^0.13.0",
+    "tsdown": "^0.13.2",
     "tsx": "^4.20.3",
-    "typescript": "^5.8.3",
+    "typescript": "^5.9.2",
     "vitest": "^3.2.4"
   }
 }
