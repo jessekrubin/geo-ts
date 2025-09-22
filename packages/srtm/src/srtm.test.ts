@@ -254,9 +254,7 @@ test("srtm-valid-is-180x360", () => {
     `invalid ids: ${invalidIds.length}, ${invalidIds.join(", ")}`,
   ).toBe(0);
   expect(idsSet.size).toBe(180 * 360);
-  expect([...idsSet].toSorted(
-    (a, b) => a - b,
-  )).toStrictEqual(expectedIds);
+  expect([...idsSet].toSorted((a, b) => a - b)).toStrictEqual(expectedIds);
 });
 
 /**
