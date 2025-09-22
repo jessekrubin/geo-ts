@@ -27,7 +27,7 @@ function _tilesopts(options: {
   return {
     bbox: truncate ? bboxclip(bbox2dify(bbox)) : bbox2dify(bbox),
     zooms: Array.isArray(zooms)
-      ? [...new Set(zooms)].sort((a, b) => a - b)
+      ? [...new Set(zooms)].toSorted()
       : [zooms],
   };
 }

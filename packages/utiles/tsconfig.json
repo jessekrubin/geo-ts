@@ -1,6 +1,7 @@
 {
   "extends": "@jsse/tsconfig/tsconfig.json",
   "compilerOptions": {
+    "lib": ["es2023"],
     "noImplicitAny": true,
     "noEmit": false,
     "skipLibCheck": true
