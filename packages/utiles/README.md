@@ -16,7 +16,6 @@ web-map-tile-utils ala jawascript/typescript
 - mercantile like utils generators/traversers and such
 - slightly more performant version of `@mapbox/tile-cover` by using more modern js feats
 
-
 ## Install
 
 ```bash
