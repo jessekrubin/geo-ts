@@ -65,7 +65,7 @@ async function exportedTypesForFile(file: string): Promise<FileTypeExports> {
       `Duplicate types found in ${file}: ${duplicates.join(", ")}`,
     );
   }
-  const typesFinal = types.sort((a, b) => a.localeCompare(b));
+  const typesFinal = types.toSorted((a, b) => a.localeCompare(b));
   if (typesFinal.includes("type")) {
     throw new Error(
       `type is a reserved word, cannot export type named 'type' in ${file}`,
@@ -92,7 +92,7 @@ async function typesIndex(files: FileTypeExports[]) {
       // ...new Set(
       //   ...files.map((file) => file.types),
       // ),
-      .sort((a, b) => a.localeCompare(b)),
+      .toSorted((a, b) => a.localeCompare(b)),
   };
   // eslint-disable-next-line no-console
   console.log(geotypesMetadata.geotypes);
@@ -106,7 +106,7 @@ async function main() {
   const filesAll = await glob("./src/types/*.ts");
   const files = filesAll
     .filter((file) => !file.includes("index.ts"))
-    .sort((a, b) => a.localeCompare(b));
+    .toSorted((a, b) => a.localeCompare(b));
   const allTypes = await Promise.all(
     files.map(async (file) => exportedTypesForFile(file)),
   );

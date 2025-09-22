@@ -1,5 +1,6 @@
 {
   "extends": "@jsse/tsconfig/cjs",
   "compilerOptions": {},
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "*.test.ts"]
 }

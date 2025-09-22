@@ -1,4 +1,4 @@
-build: typecheck build-packages lint
+build: build-packages typecheck lint
 
 typecheck:
     pnpm run -r typecheck
