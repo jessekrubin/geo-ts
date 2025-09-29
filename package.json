@@ -29,13 +29,13 @@
     "@changesets/changelog-github": "^0.5.1",
     "@changesets/cli": "^2.29.7",
     "@jsse/eslint-config": "^0.4.14",
-    "@jsse/tsconfig": "^0.3.0",
+    "@jsse/tsconfig": "^0.4.0",
     "dprint": "^0.50.2",
     "eslint": "^9.36.0",
     "eslint-plugin-perfectionist": "~4.15.0",
     "prettier": "3.6.2",
     "tsup": "8.5.0",
-    "tsx": "^4.20.5",
+    "tsx": "^4.20.6",
     "typescript": "5.9.2",
     "vitest": "3.2.4"
   }
