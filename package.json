@@ -28,10 +28,10 @@
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.1",
     "@changesets/cli": "^2.29.7",
-    "@jsse/eslint-config": "^0.4.17",
+    "@jsse/eslint-config": "^0.4.18",
     "@jsse/tsconfig": "^0.4.0",
     "dprint": "^0.50.2",
-    "eslint": "^9.37.0",
+    "eslint": "^9.38.0",
     "eslint-plugin-perfectionist": "~4.15.1",
     "prettier": "3.6.2",
     "tsup": "8.5.0",

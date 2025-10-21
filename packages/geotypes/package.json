@@ -50,20 +50,20 @@
     "prepublishOnly": "pnpm run build"
   },
   "devDependencies": {
-    "@jsse/eslint-config": "^0.4.17",
+    "@jsse/eslint-config": "^0.4.18",
     "@types/geojson": "^7946.0.16",
-    "@types/node": "^24.7.2",
-    "@typescript-eslint/eslint-plugin": "^8.46.0",
-    "@typescript-eslint/parser": "^8.46.0",
+    "@types/node": "^24.8.1",
+    "@typescript-eslint/eslint-plugin": "^8.46.1",
+    "@typescript-eslint/parser": "^8.46.1",
     "@vitest/coverage-v8": "^3.2.4",
-    "esbuild": "^0.25.10",
-    "eslint": "^9.37.0",
+    "esbuild": "^0.25.11",
+    "eslint": "^9.38.0",
     "prettier": "3.6.2",
-    "publint": "^0.3.14",
-    "tsdown": "^0.15.6",
+    "publint": "^0.3.15",
+    "tsdown": "^0.15.8",
     "tsx": "^4.20.6",
     "typescript": "5.9.3",
     "vitest": "3.2.4",
-    "zx": "^8.8.4"
+    "zx": "^8.8.5"
   }
 }
