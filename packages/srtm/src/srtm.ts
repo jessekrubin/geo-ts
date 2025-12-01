@@ -96,7 +96,6 @@ export const SRTM_RE_V1 =
  *  - N90; b/c anything at 90 degrees north should translate to N89
  *  - E000; b/c it would really be W000
  *  - W180; b/c anything at 180 degrees west should translate to W179
- *
  * @param str
  * @returns true if the string is a valid SRTM string, false otherwise
  */

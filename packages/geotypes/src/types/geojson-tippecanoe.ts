@@ -1,6 +1,5 @@
 /**
  * Tippecanoe GeoJSON Extension(s)
- *
  * @see https://github.com/felt/tippecanoe?tab=readme-ov-file#geojson-extension
  */
 

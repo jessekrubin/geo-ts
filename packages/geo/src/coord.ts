@@ -102,7 +102,6 @@ export function assertsCoord2d(
 
 /**
  * Convert array to coord (stupid util)
- *
  * @param arr {number[]} array of numbers with length 2 or 3
  * @returns {Coord2d | Coord3d} coord
  * @throws {Error} Invalid array length
