@@ -26,17 +26,17 @@
     "test": "vitest run"
   },
   "devDependencies": {
-    "@changesets/changelog-github": "^0.5.1",
-    "@changesets/cli": "^2.29.7",
-    "@jsse/eslint-config": "^0.4.18",
+    "@changesets/changelog-github": "^0.5.2",
+    "@changesets/cli": "^2.29.8",
+    "@jsse/eslint-config": "^0.4.24",
     "@jsse/tsconfig": "^0.4.0",
     "dprint": "^0.50.2",
-    "eslint": "^9.38.0",
+    "eslint": "^9.39.1",
     "eslint-plugin-perfectionist": "~4.15.1",
-    "prettier": "3.6.2",
-    "tsup": "8.5.0",
-    "tsx": "^4.20.6",
+    "prettier": "3.7.3",
+    "tsup": "8.5.1",
+    "tsx": "^4.21.0",
     "typescript": "5.9.3",
-    "vitest": "3.2.4"
+    "vitest": "4.0.14"
   }
 }

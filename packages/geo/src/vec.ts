@@ -8,7 +8,6 @@
  *
  * A quick test of bundling this with esbuild shows that it DOES inline it,
  * so you/one (theoretically) gets type inference w/o an extra function call.
- *
  * @example
  * ```ts
  * const a = tuple([1, 2, 3]); // a: [number, number, number]
@@ -17,7 +16,6 @@
  * // or
  * : const a = [1, 2, 3] as [number, number, number];
  * ```
- *
  * @param array - An array of numbers.
  * @returns The input array.
  */

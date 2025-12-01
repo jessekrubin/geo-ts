@@ -8,7 +8,6 @@ export function isZoom(z: unknown): z is ZoomInt {
  * Convert zooms array to zset (u32) number where each bit represents a zoom level
  *
  * 0b11110000_00000000_00000000_00000000 = 3_758_096_384 -> [0, 1, 2]
- *
  * @param zooms C
  * @param options Options object
  * @param options.err Throw an error if an invalid zoom is found
@@ -47,7 +46,6 @@ export function zvec2zset(
  * Convert zset (u32) number to zooms array where each bit represents a zoom level
  *
  * 0b00000000_00000000_00000000_00000111 = 7 -> [0, 1, 2]
- *
  * @param zset
  * @returns zooms array
  */

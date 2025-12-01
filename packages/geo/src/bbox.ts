@@ -157,7 +157,6 @@ export function bboxesAntimeridian<T extends BBox>(bbox: T): [T] | [T, T] {
 
 /**
  * Convert array to bbox (stupid util)
- *
  * @param arr {number[]} array of numbers
  * @returns {BBox2d | BBox3d} bbox
  * @throws {Error} Invalid array length

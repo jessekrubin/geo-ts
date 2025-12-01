@@ -36,7 +36,6 @@ export type LinearRing<TCoordinate extends GeojsonCoord = GeojsonCoord> = [
 
 /**
  * GeoJson Point Geometry
- *
  * @example
  * const point: PointGeometry = {
  *   type: "Point",
@@ -381,7 +380,6 @@ export type IsFeature<T> = T extends Feature ? true : false;
 
 /**
  * Extracts the coordinate type from a GeoJSON type.
- *
  * @typeParam T - The GeoJSON type to extract from.
  */
 export type ExtractCoordType<T> = T extends Coord2d | Coord3d

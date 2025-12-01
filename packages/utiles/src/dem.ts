@@ -4,7 +4,6 @@
  * REF: https://docs.mapbox.com/data/tilesets/reference/mapbox-terrain-dem-v1/
  *
  * height = -10000 + ((R * 256 * 256 + G * 256 + B) * 0.1)
- *
  * @param r uint8
  * @param g uint8
  * @param b uint8
@@ -30,7 +29,6 @@ export function rgbdemEncode(z: number): [r: number, g: number, b: number] {
  * REF: https://github.com/tilezen/joerd/blob/master/docs/formats.md
  *
  * height = (r * 256 + g + b / 256) - 32768
- *
  * @param r uint8
  * @param g uint8
  * @param b uint8

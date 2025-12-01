@@ -1,6 +1,5 @@
 /**
  * GeoJSON SimpleStyle specification types
- *
  * @see https://github.com/mapbox/simplestyle-spec
  */
 type HexDigitChar = "a" | "b" | "c" | "d" | "e" | "f";

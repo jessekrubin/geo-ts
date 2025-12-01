@@ -32,7 +32,6 @@ export type SouthWestSrtmString = `${SrtmSouthLatitudes}${SrtmWestLongitudes}`;
  * HGT (height/srtm) filename types
  *
  * There are 180 * 360 = 64,800 possible hgt strings.
- *
  * @example `N01E001` would be geo-bbox { minLat: 1, maxLat: 2, minLon: 1, maxLon: 2 }
  * @example `N01W001` would be geo-bbox { minLat: 1, maxLat: 2, minLon: -1, maxLon: 0 }
  *

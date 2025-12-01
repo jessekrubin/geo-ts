@@ -2,7 +2,6 @@ import type { TileArr } from "./types.js";
 
 /**
  * Return quadkey for tile x, y, z
- *
  * @name xyz2quadkey
  * @param {[number, number, number]} xyz tuple/array [x, y, z]
  * @returns {string} quadkey
@@ -22,7 +21,6 @@ export function xyz2quadkey(xyz: TileArr): string {
 
 /**
  * Return tile x, y, z for quadkey
- *
  * @name quadkey2xyz
  * @param {string} quadkey - quadkey
  * @returns {TileArr} x, y, z

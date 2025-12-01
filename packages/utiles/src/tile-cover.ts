@@ -252,7 +252,6 @@ function polygonCover(
 /**
  * Given a geometry, create cells and return them in their raw form,
  * as an array of cell identifiers.
- *
  * @alias geojson2tiles
  * @param {object} geom GeoJSON geometry
  * @param {object} limits an object with min_zoom and max_zoom properties
@@ -330,7 +329,6 @@ export function geom2tiles(geom: Geometry, limits: Limits): TileArr[] {
 /**
  * Given a geometry, create cells and return them in their raw form,
  * as an array of cell identifiers.
- *
  * @alias geojson2tiles
  * @param {object} geom GeoJSON geometry
  * @param {object} limits an object with min_zoom and max_zoom properties
@@ -363,7 +361,6 @@ export function tiles(geom: Geometry, limits: Limits | LimitsSnake): TileArr[] {
 /**
  * Given a geometry, create cells and return them as
  * [quadkey](http://msdn.microsoft.com/en-us/library/bb259689.aspx) indexes.
- *
  * @alias indexes
  * @param {object} geom GeoJSON geometry
  * @param {object} limits an object with minzoom/min_zoom and maxzoom/max_zoom properties
@@ -380,7 +377,6 @@ export function indexes(
 /**
  * Given a geometry, create cells and return them in a format easily readable
  * by any software that reads GeoJSON.
- *
  * @alias geojson
  * @param {object} geom GeoJSON geometry
  * @param {object} limits an object with min_zoom and max_zoom properties

@@ -48,7 +48,6 @@ export function bufStartsWith(buffer: Uint8Array, prefix: Uint8Array): boolean {
  * pbf
  * jpg
  * webp
- *
  * @param {Uint8Array} buffer input
  * @returns {string | boolean} identifier
  */
@@ -104,7 +103,6 @@ export function type(buffer: Uint8Array): Extensions | false {
 /**
  * Return headers - Content-Type and Content-Encoding -
  * for a response containing this kind of image.
- *
  * @param {Uint8Array | false} buffer input
  * @returns {Header} headers
  */
@@ -169,7 +167,6 @@ export function headers(buffer: Uint8Array | false): Header {
 /**
  * Determine the width and height of an image contained in a buffer,
  * returned as a [x, y] array.
- *
  * @param {Uint8Array} buffer input
  * @returns {Array<number>|boolean} dimensions
  */

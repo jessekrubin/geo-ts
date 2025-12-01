@@ -7,6 +7,7 @@ export default defineConfig({
     "src/tile-type.ts",
     "src/tile-cover.ts",
   ],
+  fixedExtension: false,
   format: ["cjs", "esm"],
   dts: true,
   outDir: "dist",

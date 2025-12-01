@@ -5,6 +5,7 @@ export default defineConfig({
   splitting: false,
   format: ["cjs", "esm"],
   dts: true,
+  fixedExtension: false,
   outDir: "dist",
   clean: true,
   target: "esnext",
