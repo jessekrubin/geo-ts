@@ -33,10 +33,10 @@
     "dprint": "^0.50.2",
     "eslint": "^9.39.1",
     "eslint-plugin-perfectionist": "~4.15.1",
-    "prettier": "3.7.3",
+    "prettier": "3.7.4",
     "tsup": "8.5.1",
     "tsx": "^4.21.0",
     "typescript": "5.9.3",
-    "vitest": "4.0.14"
+    "vitest": "4.0.15"
   }
 }
