@@ -59,21 +59,21 @@
     "@turf/meta": "^7.3.1"
   },
   "devDependencies": {
-    "@jsse/eslint-config": "^0.4.25",
+    "@jsse/eslint-config": "^0.4.26",
     "@jsse/geotypes": "workspace:*",
     "@jsse/tsconfig": "^0.4.0",
     "@turf/helpers": "^7.3.1",
     "@turf/random": "^7.3.1",
     "@turf/turf": "^7.3.1",
-    "@types/node": "^25.0.3",
-    "@vitest/coverage-v8": "^4.0.16",
+    "@types/node": "^25.0.6",
+    "@vitest/coverage-v8": "^4.0.17",
     "benchmark": "^2.1.4",
     "eslint": "^9.39.2",
     "prettier": "^3.7.4",
     "publint": "^0.3.16",
-    "tsdown": "^0.18.4",
+    "tsdown": "^0.19.0",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.16"
+    "vitest": "^4.0.17"
   }
 }
