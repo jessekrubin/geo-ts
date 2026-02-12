@@ -7,6 +7,7 @@ export default defineConfig({
   outDir: "dist",
   clean: true,
   fixedExtension: false,
+  inlineOnly: false, // TODO: rm if tsdown fixes this...
   target: "esnext",
   tsconfig: "./tsconfig.json",
 });
