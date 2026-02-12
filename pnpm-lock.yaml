@@ -14,9 +14,12 @@ importers:
       '@changesets/cli':
         specifier: ^2.29.8
         version: 2.29.8(@types/node@25.2.3)
+      '@eslint/js':
+        specifier: ^9.39.2
+        version: 9.39.2
       '@jsse/eslint-config':
-        specifier: ^0.4.31
-        version: 0.4.31(eslint@9.39.2)(typescript@5.9.3)(vitest@4.0.18(@types/node@25.2.3)(tsx@4.21.0)(yaml@2.8.2))
+        specifier: ^0.5.1
+        version: 0.5.1(eslint@9.39.2)(typescript@5.9.3)(vitest@4.0.18(@types/node@25.2.3)(tsx@4.21.0)(yaml@2.8.2))
       '@jsse/tsconfig':
         specifier: ^0.4.0
         version: 0.4.0
@@ -58,8 +61,8 @@ importers:
         version: 7.3.4
     devDependencies:
       '@jsse/eslint-config':
-        specifier: ^0.4.31
-        version: 0.4.31(eslint@9.39.2)(typescript@5.9.3)(vitest@4.0.18(@types/node@25.2.3)(tsx@4.21.0)(yaml@2.8.2))
+        specifier: ^0.5.1
+        version: 0.5.1(eslint@9.39.2)(typescript@5.9.3)(vitest@4.0.18(@types/node@25.2.3)(tsx@4.21.0)(yaml@2.8.2))
       '@jsse/tsconfig':
         specifier: ^0.4.0
         version: 0.4.0
@@ -110,8 +113,8 @@ importers:
         version: link:../geotypes
     devDependencies:
       '@jsse/eslint-config':
-        specifier: ^0.4.31
-        version: 0.4.31(eslint@9.39.2)(typescript@5.9.3)(vitest@4.0.18(@types/node@25.2.3)(tsx@4.21.0)(yaml@2.8.2))
+        specifier: ^0.5.1
+        version: 0.5.1(eslint@9.39.2)(typescript@5.9.3)(vitest@4.0.18(@types/node@25.2.3)(tsx@4.21.0)(yaml@2.8.2))
       '@jsse/tsconfig':
         specifier: ^0.4.0
         version: 0.4.0
@@ -149,8 +152,8 @@ importers:
   packages/geotypes:
     devDependencies:
       '@jsse/eslint-config':
-        specifier: ^0.4.31
-        version: 0.4.31(eslint@9.39.2)(typescript@5.9.3)(vitest@4.0.18(@types/node@25.2.3)(tsx@4.21.0)(yaml@2.8.2))
+        specifier: ^0.5.1
+        version: 0.5.1(eslint@9.39.2)(typescript@5.9.3)(vitest@4.0.18(@types/node@25.2.3)(tsx@4.21.0)(yaml@2.8.2))
       '@types/geojson':
         specifier: ^7946.0.16
         version: 7946.0.16
@@ -201,8 +204,8 @@ importers:
         version: link:../geotypes
     devDependencies:
       '@jsse/eslint-config':
-        specifier: ^0.4.31
-        version: 0.4.31(eslint@9.39.2)(typescript@5.9.3)(vitest@4.0.18(@types/node@25.2.3)(tsx@4.21.0)(yaml@2.8.2))
+        specifier: ^0.5.1
+        version: 0.5.1(eslint@9.39.2)(typescript@5.9.3)(vitest@4.0.18(@types/node@25.2.3)(tsx@4.21.0)(yaml@2.8.2))
       '@jsse/tsconfig':
         specifier: ^0.4.0
         version: 0.4.0
@@ -238,8 +241,8 @@ importers:
         version: link:../geotypes
     devDependencies:
       '@jsse/eslint-config':
-        specifier: ^0.4.31
-        version: 0.4.31(eslint@9.39.2)(typescript@5.9.3)(vitest@4.0.18(@types/node@25.2.3)(tsx@4.21.0)(yaml@2.8.2))
+        specifier: ^0.5.1
+        version: 0.5.1(eslint@9.39.2)(typescript@5.9.3)(vitest@4.0.18(@types/node@25.2.3)(tsx@4.21.0)(yaml@2.8.2))
       '@jsse/tsconfig':
         specifier: ^0.4.0
         version: 0.4.0
@@ -731,12 +734,12 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@jsse/eslint-config@0.4.31':
-    resolution: {integrity: sha512-cxfXapH2jbr5IxG5EasNEojpvnXCSq53jb0EgWbMqqkm0024uh2umccnRuSUZJo4Rnjtox77nJlx6/i3fD9O3Q==}
+  '@jsse/eslint-config@0.5.1':
+    resolution: {integrity: sha512-TUJ/4+017OyE1LzkKJWfPZIyeY30miGlGERiJ91ajoxmuK8yH4O7Nk2PepTrPkuM9Zd+/944Z6KTJH1kF72bvg==}
     hasBin: true
     peerDependencies:
       '@eslint-react/eslint-plugin': ^2.0.4
-      eslint: ^9.39.1
+      eslint: ^9.39.1 || ^10.0.0
       eslint-plugin-react: ^7.37.5
       eslint-plugin-react-hooks: ^7.0.0
       eslint-plugin-react-refresh: ^0.5.0
@@ -1025,8 +1028,8 @@ packages:
   '@standard-schema/spec@1.1.0':
     resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
 
-  '@stylistic/eslint-plugin@5.7.1':
-    resolution: {integrity: sha512-zjTUwIsEfT+k9BmXwq1QEFYsb4afBlsI1AXFyWQBgggMzwBFOuu92pGrE5OFx90IOjNl+lUbQoTG7f8S0PkOdg==}
+  '@stylistic/eslint-plugin@5.8.0':
+    resolution: {integrity: sha512-WNPVF/FfBAjyi3OA7gok8swRiImNLKI4dmV3iK/GC/0xSJR7eCzBFsw9hLZVgb1+MYNLy7aDsjohxN1hA/FIfQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: '>=9.0.0'
@@ -1987,8 +1990,8 @@ packages:
   eslint-plugin-tsdoc@0.5.0:
     resolution: {integrity: sha512-ush8ehCwub2rgE16OIgQPFyj/o0k3T8kL++9IrAI4knsmupNo8gvfO2ERgDHWWgTC5MglbwLVRswU93HyXqNpw==}
 
-  eslint-plugin-unicorn@62.0.0:
-    resolution: {integrity: sha512-HIlIkGLkvf29YEiS/ImuDZQbP12gWyx5i3C6XrRxMvVdqMroCI9qoVYCoIl17ChN+U89pn9sVwLxhIWj5nEc7g==}
+  eslint-plugin-unicorn@63.0.0:
+    resolution: {integrity: sha512-Iqecl9118uQEXYh7adylgEmGfkn5es3/mlQTLLkd4pXkIk9CTGrAbeUux+YljSa2ohXCBmQQ0+Ej1kZaFgcfkA==}
     engines: {node: ^20.10.0 || >=21.0.0}
     peerDependencies:
       eslint: '>=9.38.0'
@@ -3716,13 +3719,13 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@jsse/eslint-config@0.4.31(eslint@9.39.2)(typescript@5.9.3)(vitest@4.0.18(@types/node@25.2.3)(tsx@4.21.0)(yaml@2.8.2))':
+  '@jsse/eslint-config@0.5.1(eslint@9.39.2)(typescript@5.9.3)(vitest@4.0.18(@types/node@25.2.3)(tsx@4.21.0)(yaml@2.8.2))':
     dependencies:
       '@eslint-community/eslint-plugin-eslint-comments': 4.6.0(eslint@9.39.2)
       '@eslint/compat': 2.0.2(eslint@9.39.2)
       '@eslint/js': 9.39.2
       '@eslint/markdown': 7.5.1
-      '@stylistic/eslint-plugin': 5.7.1(eslint@9.39.2)
+      '@stylistic/eslint-plugin': 5.8.0(eslint@9.39.2)
       '@typescript-eslint/eslint-plugin': 8.55.0(@typescript-eslint/parser@8.55.0(eslint@9.39.2)(typescript@5.9.3))(eslint@9.39.2)(typescript@5.9.3)
       '@typescript-eslint/parser': 8.55.0(eslint@9.39.2)(typescript@5.9.3)
       '@vitest/eslint-plugin': 1.6.7(eslint@9.39.2)(typescript@5.9.3)(vitest@4.0.18(@types/node@25.2.3)(tsx@4.21.0)(yaml@2.8.2))
@@ -3742,7 +3745,7 @@ snapshots:
       eslint-plugin-pnpm: 1.5.0(eslint@9.39.2)
       eslint-plugin-toml: 1.0.4(eslint@9.39.2)
       eslint-plugin-tsdoc: 0.5.0(eslint@9.39.2)(typescript@5.9.3)
-      eslint-plugin-unicorn: 62.0.0(eslint@9.39.2)
+      eslint-plugin-unicorn: 63.0.0(eslint@9.39.2)
       eslint-plugin-unused-imports: 4.4.1(@typescript-eslint/eslint-plugin@8.55.0(@typescript-eslint/parser@8.55.0(eslint@9.39.2)(typescript@5.9.3))(eslint@9.39.2)(typescript@5.9.3))(eslint@9.39.2)
       eslint-plugin-yml: 3.1.2(eslint@9.39.2)
       jsonc-eslint-parser: 2.4.2
@@ -3933,7 +3936,7 @@ snapshots:
 
   '@standard-schema/spec@1.1.0': {}
 
-  '@stylistic/eslint-plugin@5.7.1(eslint@9.39.2)':
+  '@stylistic/eslint-plugin@5.8.0(eslint@9.39.2)':
     dependencies:
       '@eslint-community/eslint-utils': 4.9.1(eslint@9.39.2)
       '@typescript-eslint/types': 8.55.0
@@ -5747,17 +5750,15 @@ snapshots:
       - supports-color
       - typescript
 
-  eslint-plugin-unicorn@62.0.0(eslint@9.39.2):
+  eslint-plugin-unicorn@63.0.0(eslint@9.39.2):
     dependencies:
       '@babel/helper-validator-identifier': 7.28.5
       '@eslint-community/eslint-utils': 4.9.1(eslint@9.39.2)
-      '@eslint/plugin-kit': 0.4.1
       change-case: 5.4.4
       ci-info: 4.4.0
       clean-regexp: 1.0.0
       core-js-compat: 3.48.0
       eslint: 9.39.2
-      esquery: 1.7.0
       find-up-simple: 1.0.1
       globals: 16.5.0
       indent-string: 5.0.0

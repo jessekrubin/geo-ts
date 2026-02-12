@@ -28,7 +28,8 @@
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.2",
     "@changesets/cli": "^2.29.8",
-    "@jsse/eslint-config": "^0.4.31",
+    "@eslint/js": "^9.39.2",
+    "@jsse/eslint-config": "^0.5.1",
     "@jsse/tsconfig": "^0.4.0",
     "dprint": "^0.51.1",
     "eslint": "^9.39.2",
