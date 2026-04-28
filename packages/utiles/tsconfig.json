@@ -2,6 +2,8 @@
   "extends": "@jsse/tsconfig/tsconfig.json",
   "compilerOptions": {
     "lib": ["es2023"],
+    "rootDir": "./src",
+    "types": ["node"],
     "noImplicitAny": true,
     "noEmit": false,
     "skipLibCheck": true
