@@ -1,6 +1,10 @@
 {
   "extends": "@jsse/tsconfig/tsconfig.cjs.json",
-  "compilerOptions": {},
+  "compilerOptions": {
+    "rootDir": "./src",
+    "module": "node16",
+    "moduleResolution": "node16"
+  },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "./src/types-tests/**/*"]
 }

@@ -1,7 +1,8 @@
 {
   "extends": "@jsse/tsconfig/tsconfig.json",
   "compilerOptions": {
-    "lib": ["es2023"],
+    "lib": ["es2023", "dom"],
+    "rootDir": "./src",
     "module": "Node16",
     "moduleResolution": "Node16",
     "strictNullChecks": true,

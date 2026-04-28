@@ -1,10 +1,8 @@
 {
   "extends": "@jsse/tsconfig",
   "compilerOptions": {
-    "target": "ES5",
     "rootDir": "src",
     "noImplicitAny": true,
-    "downlevelIteration": true,
     "noEmit": false,
     "skipLibCheck": true
   },
