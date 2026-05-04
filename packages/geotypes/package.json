@@ -50,7 +50,7 @@
     "prepublishOnly": "pnpm run build"
   },
   "devDependencies": {
-    "@jsse/eslint-config": "^0.7.2",
+    "@jsse/eslint-config": "^0.7.3",
     "@types/geojson": "^7946.0.16",
     "@types/node": "^25.6.0",
     "@typescript-eslint/eslint-plugin": "^8.59.1",
