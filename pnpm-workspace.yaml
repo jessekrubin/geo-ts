@@ -4,6 +4,9 @@ packages:
   - packages/geotypes
   - packages/srtm
   - packages/utiles
+allowBuilds:
+  dprint: true
+  esbuild: true
 onlyBuiltDependencies:
   - dprint
   - esbuild
