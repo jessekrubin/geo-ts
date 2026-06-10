@@ -40,25 +40,25 @@
   },
   "dependencies": {
     "@jsse/geotypes": "workspace:*",
-    "typia": "^6.11.3"
+    "typia": "^12.1.1"
   },
   "devDependencies": {
-    "@jsse/eslint-config": "^0.2.25",
+    "@jsse/eslint-config": "^0.7.7",
     "@jsse/geotypes": "workspace:*",
-    "@jsse/tsconfig": "^0.2.2",
-    "@ryoppippi/unplugin-typia": "npm:@jsr/ryoppippi__unplugin-typia@^1.0.7",
-    "@turf/clone": "^7.1.0",
-    "@turf/helpers": "^7.1.0",
-    "@turf/meta": "^7.1.0",
-    "@vitest/coverage-v8": "^2.1.4",
+    "@jsse/tsconfig": "^0.5.1",
+    "@ryoppippi/unplugin-typia": "npm:@jsr/ryoppippi__unplugin-typia@^1.2.0",
+    "@turf/clone": "^7.3.5",
+    "@turf/helpers": "^7.3.5",
+    "@turf/meta": "^7.3.5",
+    "@vitest/coverage-v8": "^4.1.8",
     "benchmark": "^2.1.4",
-    "esbuild": "^0.24.0",
-    "eslint": "^9.14.0",
-    "prettier": "^3.3.3",
-    "ts-patch": "^3.2.1",
-    "tsup": "^8.3.5",
-    "tsx": "^4.19.2",
-    "typescript": "^5.6.2",
-    "vitest": "^2.1.4"
+    "esbuild": "^0.28.0",
+    "eslint": "^9.39.4",
+    "prettier": "^3.8.4",
+    "ts-patch": "^4.0.1",
+    "tsup": "^8.5.1",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.8"
   }
 }
