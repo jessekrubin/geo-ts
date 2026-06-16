@@ -7,16 +7,11 @@
  */
 export type GeojsonNamedCoordinateReferenceSystem = {
   type: "name";
-  properties: {
-    name: string;
-  };
+  properties: { name: string };
 };
 export type GeojsonLinkedCoordinateReferenceSystem = {
   type: "link";
-  properties: {
-    href: string;
-    type: string;
-  };
+  properties: { href: string; type: string };
 };
 
 export type GeojsonCoordinateReferenceSystem =

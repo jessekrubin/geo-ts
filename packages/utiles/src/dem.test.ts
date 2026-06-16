@@ -4,7 +4,7 @@ import * as dem from "./dem.js";
 describe("terrarium", () => {
   test("terrarium2hgt", () => {
     expect(dem.terrariumDecode(0, 0, 0)).toBe(-32_768);
-    expect(dem.terrariumDecode(255, 255, 255)).toBe(32_767.996_093_75);
+    expect(dem.terrariumDecode(255, 255, 255)).toBe(32_767.99609375);
     expect(dem.terrariumDecode(137, 219, 68)).toBeCloseTo(2523.266, 1);
   });
   test("hgt2terrarium", () => {

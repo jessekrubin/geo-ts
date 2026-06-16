@@ -26,14 +26,8 @@ export function zboxIsAntimeridian(zbox: ZBox) {
 
 export function zboxAntimeridianSplit(zbox: ZBox): ZBox[] {
   return [
-    {
-      ...zbox,
-      max: { ...zbox.max, x: 2 ** zbox.z - 1 },
-    },
-    {
-      ...zbox,
-      min: { ...zbox.min, x: 0 },
-    },
+    { ...zbox, max: { ...zbox.max, x: 2 ** zbox.z - 1 } },
+    { ...zbox, min: { ...zbox.min, x: 0 } },
   ];
 }
 
@@ -41,11 +35,7 @@ export function zbox({ bbox, z }: { bbox: BBox; z: number }): ZBox {
   const [w, s, e, n] = bboxclip(bbox2dify(bbox));
   const [xmin, ymin] = tile(w, n, z);
   const [xmax, ymax] = tile(e, s, z);
-  return {
-    z,
-    min: { x: xmin, y: ymin },
-    max: { x: xmax, y: ymax },
-  };
+  return { z, min: { x: xmin, y: ymin }, max: { x: xmax, y: ymax } };
 }
 
 export function zboxTilesCount(zbox: ZBox): number {

@@ -1,14 +1,6 @@
-export type LngLat = {
-  lng: number;
-  lat: number;
-};
-export type LonLat = {
-  lon: number;
-  lat: number;
-};
-export type Z = {
-  z: number;
-};
+export type LngLat = { lng: number; lat: number };
+export type LonLat = { lon: number; lat: number };
+export type Z = { z: number };
 export type LngLatZ = LngLat & Z;
 export type LonLatZ = LonLat & Z;
 export type Coord2d = [x: number, y: number];

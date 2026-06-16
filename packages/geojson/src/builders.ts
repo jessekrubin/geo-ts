@@ -26,64 +26,43 @@ import type {
 export function pointGeometry<TCoord extends GeojsonCoord>(
   coord: TCoord,
 ): PointGeometry<TCoord> {
-  return {
-    type: "Point",
-    coordinates: coord,
-  };
+  return { type: "Point", coordinates: coord };
 }
 
 export function lineStringGeometry<TCoord extends GeojsonCoord>(
   coords: TCoord[],
 ): LineStringGeometry<TCoord> {
-  return {
-    type: "LineString",
-    coordinates: coords,
-  };
+  return { type: "LineString", coordinates: coords };
 }
 
 export function polygonGeometry<TCoord extends GeojsonCoord>(
   coords: TCoord[][],
 ): PolygonGeometry<TCoord> {
-  return {
-    type: "Polygon",
-    coordinates: coords,
-  };
+  return { type: "Polygon", coordinates: coords };
 }
 
 export function multiPointGeometry<TCoord extends GeojsonCoord>(
   coords: TCoord[],
 ): MultiPointGeometry<TCoord> {
-  return {
-    type: "MultiPoint",
-    coordinates: coords,
-  };
+  return { type: "MultiPoint", coordinates: coords };
 }
 
 export function multiLineStringGeometry<TCoord extends GeojsonCoord>(
   coords: TCoord[][],
 ): MultiLineStringGeometry<TCoord> {
-  return {
-    type: "MultiLineString",
-    coordinates: coords,
-  };
+  return { type: "MultiLineString", coordinates: coords };
 }
 
 export function multiPolygonGeometry<TCoord extends GeojsonCoord>(
   coords: TCoord[][][],
 ): MultiPolygonGeometry<TCoord> {
-  return {
-    type: "MultiPolygon",
-    coordinates: coords,
-  };
+  return { type: "MultiPolygon", coordinates: coords };
 }
 
 export function geometryCollectionGeometry(
   geometries: PrimitiveGeometry[],
 ): GeometryCollection {
-  return {
-    type: "GeometryCollection",
-    geometries,
-  };
+  return { type: "GeometryCollection", geometries };
 }
 
 // Overload for Point

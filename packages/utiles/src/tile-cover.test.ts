@@ -9,154 +9,28 @@ type TestFileLimit = {
   limits: { minzoom: number; maxzoom: number };
 };
 const TEST_FILE_LIMITS: TestFileLimit[] = [
-  {
-    file: "road.geojson",
-    limits: {
-      minzoom: 1,
-      maxzoom: 12,
-    },
-  },
-  {
-    file: "world.geojson",
-    limits: {
-      minzoom: 1,
-      maxzoom: 6,
-    },
-  },
+  { file: "road.geojson", limits: { minzoom: 1, maxzoom: 12 } },
+  { file: "world.geojson", limits: { minzoom: 1, maxzoom: 6 } },
   // og
-  {
-    file: "point.geojson",
-    limits: {
-      minzoom: 1,
-      maxzoom: 15,
-    },
-  },
-  {
-    file: "line.geojson",
-    limits: {
-      minzoom: 1,
-      maxzoom: 12,
-    },
-  },
-  {
-    file: "edgeline.geojson",
-    limits: {
-      minzoom: 15,
-      maxzoom: 15,
-    },
-  },
-  {
-    file: "polygon.geojson",
-    limits: {
-      minzoom: 1,
-      maxzoom: 15,
-    },
-  },
-  {
-    file: "multipoint.geojson",
-    limits: {
-      minzoom: 1,
-      maxzoom: 12,
-    },
-  },
-  {
-    file: "multiline.geojson",
-    limits: {
-      minzoom: 1,
-      maxzoom: 8,
-    },
-  },
-  {
-    file: "uk.geojson",
-    limits: {
-      minzoom: 7,
-      maxzoom: 9,
-    },
-  },
-  {
-    file: "building.geojson",
-    limits: {
-      minzoom: 18,
-      maxzoom: 18,
-    },
-  },
-  {
-    file: "donut.geojson",
-    limits: {
-      minzoom: 16,
-      maxzoom: 16,
-    },
-  },
-  {
-    file: "russia.geojson",
-    limits: {
-      minzoom: 6,
-      maxzoom: 6,
-    },
-  },
-  {
-    file: "degenring.geojson",
-    limits: {
-      minzoom: 11,
-      maxzoom: 15,
-    },
-  },
-  {
-    file: "invalid_polygon.geojson",
-    limits: {
-      minzoom: 1,
-      maxzoom: 12,
-    },
-  },
-  {
-    file: "highzoom.geojson",
-    limits: {
-      minzoom: 23,
-      maxzoom: 23,
-    },
-  },
-  {
-    file: "small_poly.geojson",
-    limits: {
-      minzoom: 10,
-      maxzoom: 10,
-    },
-  },
-  {
-    file: "spiked.geojson",
-    limits: {
-      minzoom: 10,
-      maxzoom: 10,
-    },
-  },
-  {
-    file: "blocky.geojson",
-    limits: {
-      minzoom: 6,
-      maxzoom: 6,
-    },
-  },
-  {
-    file: "pyramid.geojson",
-    limits: {
-      minzoom: 10,
-      maxzoom: 10,
-    },
-  },
-  {
-    file: "tetris.geojson",
-    limits: {
-      minzoom: 10,
-      maxzoom: 10,
-    },
-  },
-  {
-    file: "zero.geojson",
-    limits: {
-      minzoom: 10,
-      maxzoom: 10,
-    },
-  },
+  { file: "point.geojson", limits: { minzoom: 1, maxzoom: 15 } },
+  { file: "line.geojson", limits: { minzoom: 1, maxzoom: 12 } },
+  { file: "edgeline.geojson", limits: { minzoom: 15, maxzoom: 15 } },
+  { file: "polygon.geojson", limits: { minzoom: 1, maxzoom: 15 } },
+  { file: "multipoint.geojson", limits: { minzoom: 1, maxzoom: 12 } },
+  { file: "multiline.geojson", limits: { minzoom: 1, maxzoom: 8 } },
+  { file: "uk.geojson", limits: { minzoom: 7, maxzoom: 9 } },
+  { file: "building.geojson", limits: { minzoom: 18, maxzoom: 18 } },
+  { file: "donut.geojson", limits: { minzoom: 16, maxzoom: 16 } },
+  { file: "russia.geojson", limits: { minzoom: 6, maxzoom: 6 } },
+  { file: "degenring.geojson", limits: { minzoom: 11, maxzoom: 15 } },
+  { file: "invalid_polygon.geojson", limits: { minzoom: 1, maxzoom: 12 } },
+  { file: "highzoom.geojson", limits: { minzoom: 23, maxzoom: 23 } },
+  { file: "small_poly.geojson", limits: { minzoom: 10, maxzoom: 10 } },
+  { file: "spiked.geojson", limits: { minzoom: 10, maxzoom: 10 } },
+  { file: "blocky.geojson", limits: { minzoom: 6, maxzoom: 6 } },
+  { file: "pyramid.geojson", limits: { minzoom: 10, maxzoom: 10 } },
+  { file: "tetris.geojson", limits: { minzoom: 10, maxzoom: 10 } },
+  { file: "zero.geojson", limits: { minzoom: 10, maxzoom: 10 } },
 ];
 
 async function loadTilesJsonl(
@@ -173,10 +47,7 @@ async function loadTilesJsonl(
 function tileSetsDiff(
   a: [number, number, number][],
   b: [number, number, number][],
-): {
-  inA: [number, number, number][];
-  inB: [number, number, number][];
-} {
+): { inA: [number, number, number][]; inB: [number, number, number][] } {
   const aSet = new Set(a.map((tile) => tile.join(",")));
   const bSet = new Set(b.map((tile) => tile.join(",")));
   const inA: TileArr[] = [];
@@ -231,10 +102,7 @@ function coverTestData(dirpath: string) {
       if (!limits) {
         throw new Error(`No limits found for ${file}`);
       }
-      return {
-        file,
-        limits: limits.limits,
-      };
+      return { file, limits: limits.limits };
     })
     .filter((file2limit) => {
       return !file2limit.file.includes("world");
@@ -251,13 +119,7 @@ function coverWorldTestData(dirpath: string) {
   );
   // limits are always 6 for world
   return coverFiles.map((file) => {
-    return {
-      file,
-      limits: {
-        min_zoom: 1,
-        max_zoom: 6,
-      },
-    };
+    return { file, limits: { min_zoom: 1, max_zoom: 6 } };
   });
 }
 
@@ -327,16 +189,10 @@ test.each(coverWorldTestDataArr)("world %s", async (data) => {
   const expectedTiles = await loadTilesJsonl(expectedTilesFilepath);
   const str = await fsp.readFile(filepath, "utf8");
   const geojsonData = JSON.parse(str);
-  const calculatedTiles = cover.tiles(geojsonData, {
-    minzoom: 1,
-    maxzoom: 6,
-  });
+  const calculatedTiles = cover.tiles(geojsonData, { minzoom: 1, maxzoom: 6 });
   const diff = tileSetsDiff(calculatedTiles, expectedTiles);
   if (diff.inA.length > 0 || diff.inB.length > 0) {
-    console.log({
-      expectedTiles,
-      calculated: calculatedTiles,
-    });
+    console.log({ expectedTiles, calculated: calculatedTiles });
     console.log("inA", diff.inA);
     console.log("inB", diff.inB);
   }

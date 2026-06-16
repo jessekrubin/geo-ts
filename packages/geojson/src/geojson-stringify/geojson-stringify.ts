@@ -4,9 +4,7 @@ import {
   type KeyValue,
 } from "./fast-json-stable-stringify/fast-json-stable-stringify.js";
 
-type GeoJSONStringifyOptions = {
-  fmt?: boolean;
-};
+type GeoJSONStringifyOptions = { fmt?: boolean };
 
 /**
  * Sort-fn GeoJSON object keys order is:

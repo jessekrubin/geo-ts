@@ -33,7 +33,7 @@ describe("quadkey", () => {
     expect(() => ut.quadkey2xyz("4")).toThrow();
     expect(() => ut.quadkey2xyz(1235)).toThrow();
     expect(() => ut.quadkey2xyz(-1235)).toThrow();
-    expect(() => ut.quadkey2xyz(3.141_59)).toThrow();
+    expect(() => ut.quadkey2xyz(3.14159)).toThrow();
     expect(() => ut.quadkey2xyz("a;sldkfj;aslkdjfa;sl")).toThrow();
   });
 });

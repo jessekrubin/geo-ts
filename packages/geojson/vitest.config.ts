@@ -16,7 +16,7 @@ export default defineConfig({
         "**/*.d.ts",
         "**/virtual:*",
         "**/__x00__*",
-        "**/\u0000*",
+        "**/\u{0}*",
         "cypress/**",
         "test?(s)/**",
         "test?(-*).?(c|m)[jt]s?(x)",

@@ -169,7 +169,7 @@ export function bboxesAntimeridian<T extends BBox>(bbox: T): [T] | [T, T] {
  */
 export function arr2bbox(arr: number[]): BBox2d | BBox3d {
   if (arr.length < 4 || arr.length > 6) throw new Error("Invalid array length");
-  if (!arr.every((n) => typeof n === "number")) {
+  if (arr.some((n) => typeof n !== "number")) {
     throw new Error("Invalid array type");
   }
   return arr.length === 6
@@ -187,10 +187,10 @@ export function bboxIsWebMercator(bbox: BBox2d | BBox3d): boolean {
   return bbox.length === 4
     ? bbox[0] >= -180 &&
         bbox[2] <= 180 &&
-        bbox[1] >= -85.051_128_779_806_59 &&
-        bbox[3] <= 85.051_128_779_806_6
+        bbox[1] >= -85.05112877980659 &&
+        bbox[3] <= 85.0511287798066
     : bbox[0] >= -180 &&
         bbox[3] <= 180 &&
-        bbox[1] >= -85.051_128_779_806_59 &&
-        bbox[4] <= 85.051_128_779_806_6;
+        bbox[1] >= -85.05112877980659 &&
+        bbox[4] <= 85.0511287798066;
 }

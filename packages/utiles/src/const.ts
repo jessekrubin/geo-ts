@@ -54,12 +54,12 @@ export const MAX_LAT = 90;
 /**
  * Maximum latitude value in degrees (Web Mercator)
  */
-export const MIN_LAT_WEB = -85.051_128_779_806_6;
+export const MIN_LAT_WEB = -85.0511287798066;
 
 /**
  * Minimum latitude value in degrees (Web Mercator)
  */
-export const MAX_LAT_WEB = 85.051_128_779_806_6;
+export const MAX_LAT_WEB = 85.0511287798066;
 
 /**
  * Maximum longitude value in degrees (Web Mercator)
@@ -74,22 +74,22 @@ export const MAX_EXTENT_WGS84 = [
 /**
  * Maximum longitude value in Web Mercator
  */
-export const MIN_LNG_WEB_MERCATOR = -20_037_508.342_789_244;
+export const MIN_LNG_WEB_MERCATOR = -20_037_508.342789244;
 
 /**
  * Minimum longitude value in Web Mercator
  */
-export const MAX_LNG_WEB_MERCATOR = 20_037_508.342_789_244;
+export const MAX_LNG_WEB_MERCATOR = 20_037_508.342789244;
 
 /**
  * Maximum latitude value in Web Mercator
  */
-export const MIN_LAT_WEB_MERCATOR = -20_037_508.342_789_244;
+export const MIN_LAT_WEB_MERCATOR = -20_037_508.342789244;
 
 /**
  * Minimum latitude value in Web Mercator
  */
-export const MAX_LAT_WEB_MERCATOR = 20_037_508.342_789_244;
+export const MAX_LAT_WEB_MERCATOR = 20_037_508.342789244;
 
 export const MAX_EXTENT_MERC = [
   MIN_LNG_WEB_MERCATOR,

@@ -23,10 +23,7 @@ const TEST_DATA_UPPER = [
 
 const TEST_DATA = [
   ...TEST_DATA_UPPER,
-  ...TEST_DATA_UPPER.map((d) => ({
-    str: d.str.toLowerCase(),
-    ok: d.ok,
-  })),
+  ...TEST_DATA_UPPER.map((d) => ({ str: d.str.toLowerCase(), ok: d.ok })),
 ];
 
 bench(
@@ -36,9 +33,7 @@ bench(
       isSrtmString(str);
     }
   },
-  {
-    iterations: 10_000,
-  },
+  { iterations: 10_000 },
 );
 
 bench(
@@ -48,7 +43,5 @@ bench(
       isSrtmString_v1(str);
     }
   },
-  {
-    iterations: 10_000,
-  },
+  { iterations: 10_000 },
 );

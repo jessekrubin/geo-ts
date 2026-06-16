@@ -1,4 +1,7 @@
 // eslint.config.js
 import jsse from "@jsse/eslint-config";
+import { fileURLToPath } from "node:url";
 
-export default jsse({});
+const tsconfigRootDir = fileURLToPath(new URL(".", import.meta.url));
+
+export default jsse({ typescript: { parserOptions: { tsconfigRootDir } } });

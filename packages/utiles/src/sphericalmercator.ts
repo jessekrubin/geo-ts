@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/consistent-class-member-order */
 import type { BBox2d, Coord2d } from "@jsse/geotypes";
 import { DEG2RAD, RAD2DEG } from "./const.js";
 import { ll2xy, xy2ll } from "./proj.js";
@@ -6,10 +7,7 @@ function isFloat(n: number): boolean {
   return Number(n) === n && n % 1 !== 0;
 }
 
-type Options = {
-  size?: number;
-  antimeridian?: boolean;
-};
+type Options = { size?: number; antimeridian?: boolean };
 
 type SphericalMercatorCache = {
   /**
@@ -34,9 +32,9 @@ type SphericalMercatorCache = {
 };
 
 export class SphericalMercator {
+  private static cache: Record<number, SphericalMercatorCache> = {};
   private readonly size: number;
   private readonly expansion: number;
-  private static cache: Record<number, SphericalMercatorCache> = {};
   private readonly Bc: number[];
   private readonly Cc: number[];
   private readonly zc: number[];
@@ -46,7 +44,7 @@ export class SphericalMercator {
     this.size = options.size || 256;
     this.expansion = options.antimeridian === true ? 2 : 1;
 
-    if (!SphericalMercator.cache[this.size]) {
+    if (!Object.hasOwn(SphericalMercator.cache, this.size)) {
       SphericalMercator.cache[this.size] = SphericalMercator.BuildCache(
         this.size,
       );
@@ -77,10 +75,7 @@ export class SphericalMercator {
   }
 
   public static GetCache(size: number): SphericalMercatorCache {
-    if (!SphericalMercator.cache[size]) {
-      SphericalMercator.cache[size] = SphericalMercator.BuildCache(size);
-    }
-    return SphericalMercator.cache[size];
+    return (this.cache[size] ??= this.BuildCache(size));
   }
 
   // Convert lon/lat to screen pixel value
@@ -97,32 +92,30 @@ export class SphericalMercator {
       x = Math.min(x, ac * this.expansion);
       y = Math.min(y, ac);
       return [x, y];
-    } else {
-      const d = this._zc(zoom);
-      const f = Math.min(Math.max(Math.sin(DEG2RAD * ll[1]), -0.9999), 0.9999);
-      let x = Math.round(d + ll[0] * this._bc(zoom));
-      let y = Math.round(
-        d + 0.5 * Math.log((1 + f) / (1 - f)) * -this._cc(zoom),
-      );
-      x = Math.min(x, this._ac(zoom) * this.expansion);
-      y = Math.min(y, this._ac(zoom));
-      return [x, y];
     }
+
+    const d = this.#zc(zoom);
+    const f = Math.min(Math.max(Math.sin(DEG2RAD * ll[1]), -0.9999), 0.9999);
+    let x = Math.round(d + ll[0] * this.#bc(zoom));
+    let y = Math.round(d + 0.5 * Math.log((1 + f) / (1 - f)) * -this.#cc(zoom));
+    x = Math.min(x, this.#ac(zoom) * this.expansion);
+    y = Math.min(y, this.#ac(zoom));
+    return [x, y];
   }
 
-  _ac(zoom: number): number {
+  #ac(zoom: number): number {
     return this.Ac[zoom] ?? this.size * 2 ** zoom;
   }
 
-  _bc(zoom: number): number {
+  #bc(zoom: number): number {
     return this.Bc[zoom] ?? this.size / 360;
   }
 
-  _cc(zoom: number): number {
+  #cc(zoom: number): number {
     return this.Cc[zoom] ?? this.size / (2 * Math.PI);
   }
 
-  _zc(zoom: number): number {
+  #zc(zoom: number): number {
     return this.zc[zoom] ?? (this.size * 2 ** zoom) / 2;
   }
 
@@ -137,12 +130,11 @@ export class SphericalMercator {
       const lon = (px[0] - zc) / bc;
       const lat = RAD2DEG * (2 * Math.atan(Math.exp(g)) - 0.5 * Math.PI);
       return [lon, lat];
-    } else {
-      const g = (px[1] - this._zc(zoom)) / -this._cc(zoom);
-      const lon = (px[0] - this._zc(zoom)) / this._bc(zoom);
-      const lat = RAD2DEG * (2 * Math.atan(Math.exp(g)) - 0.5 * Math.PI);
-      return [lon, lat];
     }
+    const g = (px[1] - this.#zc(zoom)) / -this.#cc(zoom);
+    const lon = (px[0] - this.#zc(zoom)) / this.#bc(zoom);
+    const lat = RAD2DEG * (2 * Math.atan(Math.exp(g)) - 0.5 * Math.PI);
+    return [lon, lat];
   }
 
   // Convert tile xyz value to bbox
@@ -232,7 +224,8 @@ export class SphericalMercator {
     bbox: BBox2d,
     to: "900913" | "EPSG:3857" | "WEBM" | "LL" | "WGS84",
   ): BBox2d {
-    return to === "900913" || to === "EPSG:3857" || to === "WEBM"
+    // eslint-disable-next-line unicorn/prefer-minimal-ternary
+    return ["900913", "EPSG:3857", "WEBM"].includes(to)
       ? this.convert2web(bbox)
       : this.convert2ll(bbox);
   }

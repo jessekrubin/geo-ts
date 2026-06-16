@@ -27,6 +27,7 @@ export function xyz2quadkey(xyz: TileArr): string {
  */
 export function quadkey2xyz(quadkey: string | number): TileArr {
   if (typeof quadkey === "number") {
+    // eslint-disable-next-line unicorn/prefer-number-is-safe-integer
     if (!Number.isInteger(quadkey) || quadkey < 0) {
       throw new Error(`Invalid quadkey: ${quadkey}`);
     }

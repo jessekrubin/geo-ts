@@ -25,22 +25,14 @@ function noop<T>(v: T): T {
   type FeatureWithId = Feature<PointGeometry, unknown, { id: string }>;
   const featureWithNoProperties: FeatureWithId = {
     type: "Feature",
-    geometry: {
-      type: "Point",
-      coordinates: [0, 0],
-    },
+    geometry: { type: "Point", coordinates: [0, 0] },
     id: "some-id",
     properties: {},
   };
   const validFeature: FeatureWithId = {
     type: "Feature",
-    geometry: {
-      type: "Point",
-      coordinates: [0, 0],
-    },
-    properties: {
-      howdy: "partner",
-    },
+    geometry: { type: "Point", coordinates: [0, 0] },
+    properties: { howdy: "partner" },
     id: "some-id",
   };
 
@@ -52,56 +44,36 @@ function noop<T>(v: T): T {
   // @ts-expect-error id is required
   const invalidFeature: FeatureWithId = {
     type: "Feature",
-    geometry: {
-      type: "Point",
-      coordinates: [0, 0],
-    },
-    properties: {
-      howdy: "partner",
-    },
+    geometry: { type: "Point", coordinates: [0, 0] },
+    properties: { howdy: "partner" },
   };
 
   type FeatureWithProperties = Feature<
     PointGeometry,
-    { howdy: "doody" } | undefined
+    undefined | { howdy: "doody" }
   >;
   type FeatureWithPropertiesProperties = FeatureWithProperties["properties"];
 
   const featureWithProperties: FeatureWithProperties = {
     type: "Feature",
-    geometry: {
-      type: "Point",
-      coordinates: [0, 0],
-    },
-    properties: {
-      howdy: "doody",
-    },
+    geometry: { type: "Point", coordinates: [0, 0] },
+    properties: { howdy: "doody" },
   };
 }
 
 {
   const pointFeature = {
     type: "Feature",
-    geometry: {
-      type: "Point",
-      coordinates: [0, 0],
-    },
-    properties: {
-      howdy: "partner",
-    },
+    geometry: { type: "Point", coordinates: [0, 0] },
+    properties: { howdy: "partner" },
   } satisfies Feature;
 }
 
 {
   const pointFeature = {
     type: "Feature",
-    geometry: {
-      type: "Point",
-      coordinates: [0, 0],
-    },
-    properties: {
-      howdy: "partner",
-    },
+    geometry: { type: "Point", coordinates: [0, 0] },
+    properties: { howdy: "partner" },
     id: "some-id",
   } satisfies PointFeature;
 }
@@ -109,13 +81,8 @@ function noop<T>(v: T): T {
 {
   const pointFeature = {
     type: "Feature",
-    geometry: {
-      type: "Point",
-      coordinates: [0, 0],
-    },
-    properties: {
-      howdy: "partner",
-    },
+    geometry: { type: "Point", coordinates: [0, 0] },
+    properties: { howdy: "partner" },
   } satisfies PointFeature2d;
 }
 
@@ -127,9 +94,7 @@ function noop<T>(v: T): T {
       // @ts-expect-error - 3d point
       coordinates: [0, 0],
     },
-    properties: {
-      howdy: "partner",
-    },
+    properties: { howdy: "partner" },
   } satisfies PointFeature3d;
 }
 

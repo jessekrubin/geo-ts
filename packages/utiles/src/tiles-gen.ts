@@ -14,11 +14,7 @@ function _tilesopts(options: {
   bbox?: BBox;
   zooms: number[] | number;
   truncate?: boolean;
-}): {
-  bbox: BBox2d;
-  zooms: number[];
-  truncate?: boolean;
-} {
+}): { bbox: BBox2d; zooms: number[]; truncate?: boolean } {
   const {
     bbox = [MIN_LNG, MIN_LAT_WEB, MAX_LNG, MAX_LAT_WEB],
     zooms,
@@ -26,7 +22,9 @@ function _tilesopts(options: {
   } = { ...options };
   return {
     bbox: truncate ? bboxclip(bbox2dify(bbox)) : bbox2dify(bbox),
-    zooms: Array.isArray(zooms) ? [...new Set(zooms)].toSorted() : [zooms],
+    zooms: Array.isArray(zooms)
+      ? [...new Set(zooms)].toSorted((a, b) => a - b)
+      : [zooms],
   };
 }
 
@@ -45,12 +43,7 @@ export function ntiles({
 }): number {
   if (Array.isArray(zooms)) {
     return [...new Set(zooms)].reduce(
-      (acc, zoom) =>
-        acc +
-        ntiles({
-          bbox,
-          zooms: zoom,
-        }),
+      (acc, zoom) => acc + ntiles({ bbox, zooms: zoom }),
       0,
     );
   }

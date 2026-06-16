@@ -19,18 +19,12 @@ const aGeojsonFeatureCollection: FeatureCollection = {
   features: [
     {
       properties: {},
-      geometry: {
-        coordinates: [-123, 39],
-        type: "Point",
-      },
+      geometry: { coordinates: [-123, 39], type: "Point" },
       type: "Feature",
     },
     {
       type: "Feature",
-      geometry: {
-        type: "Point",
-        coordinates: [-122, 38],
-      },
+      geometry: { type: "Point", coordinates: [-122, 38] },
       properties: {},
     },
   ],

@@ -41,57 +41,56 @@ export type TilejsonVectorLayers = TilejsonVectorLayer[];
 type TilejsonVectorLayersGeneric<TFormat extends TilejsonFormat> =
   TFormat extends TilejsonVectorFormat
     ? { vector_layers: TilejsonVectorLayer[] }
-    : {
-        vector_layers?: TilejsonVectorLayer[];
-      };
+    : { vector_layers?: TilejsonVectorLayer[] };
 
-export type TilejsonCommon<TFormat extends TilejsonFormat = TilejsonFormat> = {
-  // required
-  name: string;
-  format: TFormat;
-  tilejson: TilejsonVersion;
-  tiles: string[];
+export type TilejsonCommon<TFormat extends TilejsonFormat = TilejsonFormat> =
+  TilejsonVectorLayersGeneric<TFormat> & {
+    // required
+    name: string;
+    format: TFormat;
+    tilejson: TilejsonVersion;
+    tiles: string[];
 
-  // jsse-recommended
-  /**
-   * Some unique identifier for the tileset (ideally lowercase and url-friendly)
-   *
-   * `name` is can be used in place of `id` often but not always
-   */
-  id?: string;
+    // jsse-recommended
+    /**
+     * Some unique identifier for the tileset (ideally lowercase and url-friendly)
+     *
+     * `name` is can be used in place of `id` often but not always
+     */
+    id?: string;
 
-  /**
-   * tile-kind (`raster`, `vector`, or `unknown`)
-   *
-   * `kind` is not part of the tilejson spec, but is useful for j(e)sse (aka me)
-   */
-  kind?: TileKind;
+    /**
+     * tile-kind (`raster`, `vector`, or `unknown`)
+     *
+     * `kind` is not part of the tilejson spec, but is useful for j(e)sse (aka me)
+     */
+    kind?: TileKind;
 
-  /**
-   * Tilesize in pixels (generally default is 256 or 512)
-   */
-  tilesize?: number;
+    /**
+     * Tilesize in pixels (generally default is 256 or 512)
+     */
+    tilesize?: number;
 
-  /**
-   * Terrain type/info for the tileset
-   */
-  terrain?: TilejsonTerrain;
+    /**
+     * Terrain type/info for the tileset
+     */
+    terrain?: TilejsonTerrain;
 
-  // optional
-  version?: string | null;
-  description?: string | null;
-  minzoom?: number | null;
-  maxzoom?: number | null;
-  bounds?: [west: number, south: number, east: number, north: number] | null;
-  center?: [lon: number, lat: number, zoom: number] | null;
-  attribution?: string | null;
-  template?: string | null;
-  scheme?: TilejsonScheme | null;
-  legend?: string | null;
-  grids?: string[] | null;
-  data?: string[] | null;
-  fillzoom?: number | null;
-} & TilejsonVectorLayersGeneric<TFormat>;
+    // optional
+    version?: string | null;
+    description?: string | null;
+    minzoom?: number | null;
+    maxzoom?: number | null;
+    bounds?: [west: number, south: number, east: number, north: number] | null;
+    center?: [lon: number, lat: number, zoom: number] | null;
+    attribution?: string | null;
+    template?: string | null;
+    scheme?: TilejsonScheme | null;
+    legend?: string | null;
+    grids?: string[] | null;
+    data?: string[] | null;
+    fillzoom?: number | null;
+  };
 
 export type TilejsonVector = TilejsonCommon<"pbf"> & { kind?: "vector" };
 export type TilejsonRaster = TilejsonCommon<"png" | "jpg" | "webp"> & {

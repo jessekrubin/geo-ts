@@ -23,6 +23,7 @@ export function ll2xy(ll: Coord2d): Coord2d {
     Math.min(
       Math.max(
         WGS84_EQUATORIAL_RADIUS *
+          // eslint-disable-next-line unicorn/max-nested-calls
           Math.log(Math.tan(Math.PI * 0.25 + 0.5 * ll[1] * DEG2RAD)),
         -MAX_LNG_WEB_MERCATOR,
       ),

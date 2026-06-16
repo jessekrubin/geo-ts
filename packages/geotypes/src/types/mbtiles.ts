@@ -1,7 +1,4 @@
-export type MbtilesMetadataRow = {
-  name: string;
-  value: string;
-};
+export type MbtilesMetadataRow = { name: string; value: string };
 export type MbtilesMetadataRows = MbtilesMetadataRow[];
 export type MbtilesTilesRow<TTileData = Uint16Array> = {
   zoom_level: number;

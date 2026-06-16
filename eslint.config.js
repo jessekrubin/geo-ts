@@ -1,5 +1,8 @@
 // eslint.config.js
 import { jsse } from "@jsse/eslint-config";
+import { fileURLToPath } from "node:url";
+
+const tsconfigRootDir = fileURLToPath(new URL(".", import.meta.url));
 
 export default jsse(
   {
@@ -11,19 +14,10 @@ export default jsse(
       "**/generated/**/*",
       "**/packages/_dev/**",
     ],
+    typescript: { parserOptions: { tsconfigRootDir } },
   },
-  {
-    files: ["schemas/**/*"],
-    rules: {
-      "unicorn/filename-case": "off",
-    },
-  },
-  {
-    files: ["**/*.test.ts"],
-    rules: {
-      "no-console": "off",
-    },
-  },
+  { files: ["schemas/**/*"], rules: { "unicorn/filename-case": "off" } },
+  { files: ["**/*.test.ts"], rules: { "no-console": "off" } },
   {
     files: ["**/*.dts-test.ts", "**/*.test-dts.ts", "**/*.test-d.ts"],
     rules: {

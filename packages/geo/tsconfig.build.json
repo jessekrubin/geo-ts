@@ -1,18 +1,10 @@
 {
   "extends": "@jsse/tsconfig/tsconfig.json",
-  "buildOptions": {
-    "incremental": false
-  },
-  "compilerOptions": {
-    "incremental": false
-  },
+  "buildOptions": { "incremental": false },
+  "compilerOptions": { "incremental": false },
   "references": [
-    {
-      "path": "./tsconfig.cjs.json"
-    },
-    {
-      "path": "./tsconfig.json"
-    }
+    { "path": "./tsconfig.cjs.json" },
+    { "path": "./tsconfig.json" }
   ],
   "files": []
 }

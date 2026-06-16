@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-number-is-safe-integer */
 import type { TileArr, TileLike, TileObj } from "./types.js";
 import { MAX_ZOOM } from "./const.js";
 

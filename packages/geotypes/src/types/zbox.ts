@@ -3,12 +3,6 @@
  */
 export type ZBox = {
   z: number;
-  min: {
-    x: number;
-    y: number;
-  };
-  max: {
-    x: number;
-    y: number;
-  };
+  min: { x: number; y: number };
+  max: { x: number; y: number };
 };
