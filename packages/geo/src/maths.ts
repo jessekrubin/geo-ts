@@ -33,7 +33,8 @@ export function roundf(
 ): number {
   if (precision < 0) {
     throw new Error("decimals must be >= 0");
-  } else if (precision === 0) {
+  }
+  if (precision === 0) {
     return Math.round(num);
   }
   const exp = base ** precision;

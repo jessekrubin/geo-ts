@@ -6,22 +6,14 @@ test("point-feature", () => {
   const pf = pointFeature([0, 0], { howdy: "doody" });
   expect(pf).toEqual({
     type: "Feature",
-    geometry: {
-      type: "Point",
-      coordinates: [0, 0],
-    },
-    properties: {
-      howdy: "doody",
-    },
+    geometry: { type: "Point", coordinates: [0, 0] },
+    properties: { howdy: "doody" },
   });
 
   const pfnullprops = pointFeature([0, 0], null);
   expect(pfnullprops).toEqual({
     type: "Feature",
-    geometry: {
-      type: "Point",
-      coordinates: [0, 0],
-    },
+    geometry: { type: "Point", coordinates: [0, 0] },
     properties: null,
   });
 });
@@ -43,8 +35,6 @@ test("line-string-feature", () => {
         [1, 1],
       ],
     },
-    properties: {
-      howdy: "doody",
-    },
+    properties: { howdy: "doody" },
   });
 });

@@ -50,7 +50,7 @@ describe("tiles-gen", () => {
   test("tile2bbox", () => {
     const testTile = [486, 332, 10] as [number, number, number];
     const expected = [
-      -9.140_625, 53.120_405_283_106_57, -8.789_062_5, 53.330_872_983_017_04,
+      -9.140625, 53.12040528310657, -8.7890625, 53.33087298301704,
     ] as const;
     const output = xyz2bbox(testTile);
     expect(output).toStrictEqual(expected);
@@ -61,8 +61,7 @@ describe("tiles-gen", () => {
   test("tile2bbox 2", () => {
     const testTile = [750, 2550, 12] as [number, number, number];
     const expected = [
-      -114.082_031_25, -40.380_028_402_511_82, -113.994_140_625,
-      -40.313_043_208_880_906,
+      -114.08203125, -40.38002840251182, -113.994140625, -40.313043208880906,
     ] as const;
     const output = xyz2bbox(testTile);
     expect(output).toStrictEqual(expected);

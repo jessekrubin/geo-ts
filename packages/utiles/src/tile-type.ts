@@ -1,24 +1,13 @@
-export type Header = {
-  "Content-Type"?: string;
-  "Content-Encoding"?: string;
-};
+export type Header = { "Content-Type"?: string; "Content-Encoding"?: string };
 
 export type ReadonlyHeader = Readonly<Header>;
 
 export type Extensions = "png" | "pbf" | "jpg" | "webp" | "gif";
 
-export const PNG_HEADERS: ReadonlyHeader = {
-  "Content-Type": "image/png",
-};
-export const JPG_HEADERS: ReadonlyHeader = {
-  "Content-Type": "image/jpeg",
-};
-export const GIF_HEADERS: ReadonlyHeader = {
-  "Content-Type": "image/gif",
-};
-export const WEBP_HEADERS: ReadonlyHeader = {
-  "Content-Type": "image/webp",
-};
+export const PNG_HEADERS: ReadonlyHeader = { "Content-Type": "image/png" };
+export const JPG_HEADERS: ReadonlyHeader = { "Content-Type": "image/jpeg" };
+export const GIF_HEADERS: ReadonlyHeader = { "Content-Type": "image/gif" };
+export const WEBP_HEADERS: ReadonlyHeader = { "Content-Type": "image/webp" };
 
 export const PNG_BYTES_PREFIX = new Uint8Array([
   0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a,
@@ -63,14 +52,16 @@ export function type(buffer: Uint8Array): Extensions | false {
     buffer[7] === 0x0a
   ) {
     return "png";
-  } else if (
+  }
+  if (
     buffer[0] === 0xff &&
     buffer[1] === 0xd8 &&
     buffer.at(-2) === 0xff &&
     buffer.at(-1) === 0xd9
   ) {
     return "jpg";
-  } else if (
+  }
+  if (
     buffer[0] === 0x47 &&
     buffer[1] === 0x49 &&
     buffer[2] === 0x46 &&
@@ -79,7 +70,8 @@ export function type(buffer: Uint8Array): Extensions | false {
     buffer[5] === 0x61
   ) {
     return "gif";
-  } else if (
+  }
+  if (
     buffer[0] === 0x52 &&
     buffer[1] === 0x49 &&
     buffer[2] === 0x46 &&
@@ -91,10 +83,12 @@ export function type(buffer: Uint8Array): Extensions | false {
   ) {
     return "webp";
     // deflate: recklessly assumes contents are PBF.
-  } else if (buffer[0] === 0x78 && buffer[1] === 0x9c) {
+  }
+  if (buffer[0] === 0x78 && buffer[1] === 0x9c) {
     return "pbf";
     // gzip: recklessly assumes contents are PBF.
-  } else if (buffer[0] === 0x1f && buffer[1] === 0x8b) {
+  }
+  if (buffer[0] === 0x1f && buffer[1] === 0x8b) {
     return "pbf";
   }
   return false;
@@ -121,14 +115,16 @@ export function headers(buffer: Uint8Array | false): Header {
     buffer[7] === 0x0a
   ) {
     return PNG_HEADERS;
-  } else if (
+  }
+  if (
     buffer[0] === 0xff &&
     buffer[1] === 0xd8 &&
     buffer.at(-2) === 0xff &&
     buffer.at(-1) === 0xd9
   ) {
     return JPG_HEADERS;
-  } else if (
+  }
+  if (
     buffer[0] === 0x47 &&
     buffer[1] === 0x49 &&
     buffer[2] === 0x46 &&
@@ -137,7 +133,8 @@ export function headers(buffer: Uint8Array | false): Header {
     buffer[5] === 0x61
   ) {
     return GIF_HEADERS;
-  } else if (
+  }
+  if (
     buffer[0] === 0x52 &&
     buffer[1] === 0x49 &&
     buffer[2] === 0x46 &&
@@ -149,13 +146,15 @@ export function headers(buffer: Uint8Array | false): Header {
   ) {
     return WEBP_HEADERS;
     // deflate: recklessly assumes contents are PBF.
-  } else if (buffer[0] === 0x78 && buffer[1] === 0x9c) {
+  }
+  if (buffer[0] === 0x78 && buffer[1] === 0x9c) {
     return {
       "Content-Type": "application/x-protobuf",
       "Content-Encoding": "deflate",
     };
     // gzip: recklessly assumes contents are PBF.
-  } else if (buffer[0] === 0x1f && buffer[1] === 0x8b) {
+  }
+  if (buffer[0] === 0x1f && buffer[1] === 0x8b) {
     return {
       "Content-Type": "application/x-protobuf",
       "Content-Encoding": "gzip",
@@ -176,11 +175,8 @@ export function dimensions(buffer: Uint8Array): [number, number] | false {
       let i = 8;
       while (i + 8 < buffer.length) {
         // Ensure buffer is long enough
-        const length = new DataView(
-          buffer.buffer,
-          buffer.byteOffset + i,
-          4,
-        ).getUint32(0, false);
+        const view = new DataView(buffer.buffer, buffer.byteOffset + i, 4);
+        const length = view.getUint32(0, false);
         const chunktype = String.fromCodePoint(
           buffer[i + 4] ?? 0,
           buffer[i + 5] ?? 0,
@@ -216,15 +212,16 @@ export function dimensions(buffer: Uint8Array): [number, number] | false {
         // Invalid chunk.
         if (buffer[i] !== 0xff) return false;
         const chunktype = buffer[i + 1];
-        const length = (buffer[i + 2] ?? 0) * 256 + (buffer[i + 3] ?? 0);
         // Entropy-encoded begins after this chunk. Bail.
         if (chunktype === 0xda) {
           return false;
-        } else if (chunktype === 0xc0 && i + 8 < buffer.length) {
+        }
+        if (chunktype === 0xc0 && i + 8 < buffer.length) {
           const h = (buffer[i + 5] ?? 0) * 256 + (buffer[i + 6] ?? 0);
           const w = (buffer[i + 7] ?? 0) * 256 + (buffer[i + 8] ?? 0);
           return [w, h];
         }
+        const length = (buffer[i + 2] ?? 0) * 256 + (buffer[i + 3] ?? 0);
         i += 2 + length;
       }
       break;

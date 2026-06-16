@@ -14,11 +14,11 @@ describe("tilebelt tests", () => {
     expect(geojson.type).toBe("Polygon");
     expect(geojson.coordinates).toEqual([
       [
-        [-178.242_187_5, 84.738_387_120_953_39],
-        [-178.242_187_5, 84.706_048_935_041_5],
-        [-177.890_625, 84.706_048_935_041_5],
-        [-177.890_625, 84.738_387_120_953_39],
-        [-178.242_187_5, 84.738_387_120_953_39],
+        [-178.2421875, 84.73838712095339],
+        [-178.2421875, 84.7060489350415],
+        [-177.890625, 84.7060489350415],
+        [-177.890625, 84.73838712095339],
+        [-178.2421875, 84.73838712095339],
       ],
     ]);
   });
@@ -27,7 +27,7 @@ describe("tilebelt tests", () => {
     const ext = tilebelt.tileToBBOX(tile1);
     expect(ext).toBeTruthy();
     expect(ext).toEqual([
-      -178.242_187_5, 84.706_048_935_041_5, -177.890_625, 84.738_387_120_953_39,
+      -178.2421875, 84.7060489350415, -177.890625, 84.73838712095339,
     ]);
   });
 
@@ -98,8 +98,8 @@ describe("tilebelt tests", () => {
 
   test("point to tile verified", () => {
     const tile = tilebelt.pointToTile(
-      -77.032_393_813_133_23,
-      38.913_265_165_594_42,
+      -77.03239381313323,
+      38.91326516559442,
       10,
     );
     expect(tile.length).toBe(3);
@@ -125,8 +125,7 @@ describe("tilebelt tests", () => {
 
   test("bbox to tile -- big", () => {
     const bbox = [
-      -84.726_562_499_999_99, 11.178_401_873_711_785, -5.625,
-      61.606_396_371_386_28,
+      -84.72656249999999, 11.178401873711785, -5.625, 61.60639637138628,
     ] as [number, number, number, number];
     const tile = tilebelt.bboxToTile(bbox);
     expect(tile).toBeTruthy();
@@ -146,8 +145,8 @@ describe("tilebelt tests", () => {
 
   test("bbox to tile -- dc", () => {
     const bbox = [
-      -77.046_153_545_379_64, 38.899_967_510_782_346, -77.036_647_796_630_86,
-      38.907_281_424_813_29,
+      -77.04615354537964, 38.899967510782346, -77.03664779663086,
+      38.90728142481329,
     ] as [number, number, number, number];
     const tile = tilebelt.bboxToTile(bbox);
     expect(tile).toBeTruthy();
@@ -189,13 +188,13 @@ describe("tilebelt tests", () => {
 
   test("pointToTileFraction", () => {
     const tile = tilebelt.pointToTileFraction(
-      -95.939_655_303_955_08,
-      41.260_001_085_686_97,
+      -95.93965530395508,
+      41.26000108568697,
       9,
     );
     expect(tile).toBeTruthy();
-    expect(tile[0]).toBe(119.552_490_234_375);
-    expect(tile[1]).toBe(191.471_191_406_25);
+    expect(tile[0]).toBe(119.552490234375);
+    expect(tile[1]).toBe(191.47119140625);
     expect(tile[2]).toBe(9);
   });
 
@@ -217,7 +216,7 @@ describe("tilebelt tests", () => {
 
     // BBox
     // https://github.com/mapbox/tilebelt/issues/12
-    expect(tilebelt.bboxToTile([-0.000_001, -85, 1_000_000, 85])).toEqual([
+    expect(tilebelt.bboxToTile([-0.000001, -85, 1_000_000, 85])).toEqual([
       0, 0, 0,
     ]);
   });

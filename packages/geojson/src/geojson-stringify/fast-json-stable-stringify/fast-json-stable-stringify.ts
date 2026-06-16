@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/no-array-sort */
 /* eslint-disable prefer-template */
 export type KeyValue<KeyType = string | number, ValueType = never> = {
   key: KeyType;
@@ -15,11 +16,10 @@ export type Options = {
 function stringifyOptions(opts?: Options | CmpFunction): Options {
   if (opts === undefined) {
     return { cmp: undefined, cycles: false, sort: true };
-  } else if (typeof opts === "function") {
-    return { cmp: opts, cycles: false, sort: true };
-  } else {
-    return { sort: true, ...opts };
   }
+  return typeof opts === "function"
+    ? { cmp: opts, cycles: false, sort: true }
+    : { sort: true, ...opts };
 }
 
 export function fastJsonStableStringify(

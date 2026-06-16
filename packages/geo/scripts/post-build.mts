@@ -6,15 +6,9 @@ const VERBOSE =
 const cjsOutDir = "dist/cjs";
 const esmOutDir = "dist/esm";
 
-const packageJsonCjs = {
-  type: "commonjs",
-  sideEffects: false,
-};
+const packageJsonCjs = { type: "commonjs", sideEffects: false };
 
-const packageJsonEsm = {
-  type: "module",
-  sideEffects: false,
-};
+const packageJsonEsm = { type: "module", sideEffects: false };
 
 const log: typeof console.log = (...args: Parameters<typeof console.log>) => {
   if (VERBOSE) {

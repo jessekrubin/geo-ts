@@ -122,10 +122,7 @@
       "fspath": "./src/types/mbtiles.ts",
       "types": ["MbtilesMetadataRow", "MbtilesMetadataRows", "MbtilesTilesRow"]
     },
-    {
-      "fspath": "./src/types/rect.ts",
-      "types": ["Rect2d", "Rect3d"]
-    },
+    { "fspath": "./src/types/rect.ts", "types": ["Rect2d", "Rect3d"] },
     {
       "fspath": "./src/types/simplestyle.ts",
       "types": ["SimpleStyleProperties"]
@@ -160,10 +157,7 @@
         "TilejsonVersion"
       ]
     },
-    {
-      "fspath": "./src/types/zbox.ts",
-      "types": ["ZBox"]
-    }
+    { "fspath": "./src/types/zbox.ts", "types": ["ZBox"] }
   ],
   "geotypes": [
     "BBox",

@@ -2,9 +2,7 @@
 import type { Tilejson } from "../geotypes.js";
 
 {
-  const _validVectorTilejson: Tilejson & {
-    [key: string]: unknown;
-  } = {
+  const _validVectorTilejson: Tilejson & { [key: string]: unknown } = {
     tilejson: "3.0.0",
     tiles: [],
     vector_layers: [
@@ -55,7 +53,7 @@ import type { Tilejson } from "../geotypes.js";
     ],
     attribution:
       '<a href="https://www.openmaptiles.org/" target="_blank">&copy; OpenMapTiles</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
-    bounds: [-180.0, -85.051_13, 180.0, 85.051_13],
+    bounds: [-180.0, -85.05113, 180.0, 85.05113],
     center: [0.0, 0.0, 0],
     description:
       "A tileset showcasing all layers in OpenMapTiles. https://openmaptiles.org",
@@ -70,14 +68,12 @@ import type { Tilejson } from "../geotypes.js";
 
 {
   // @ts-expect-error missing vector_layers
-  const _invalidVectorTilejson: Tilejson300 & {
-    [key: string]: unknown;
-  } = {
+  const _invalidVectorTilejson: Tilejson300 & { [key: string]: unknown } = {
     tilejson: "3.0.0",
     tiles: [],
     attribution:
       '<a href="https://www.openmaptiles.org/" target="_blank">&copy; OpenMapTiles</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
-    bounds: [-180.0, -85.051_13, 180.0, 85.051_13],
+    bounds: [-180.0, -85.05113, 180.0, 85.05113],
     center: [0.0, 0.0, 0],
     description:
       "A tileset showcasing all layers in OpenMapTiles. https://openmaptiles.org",
@@ -94,14 +90,12 @@ import type { Tilejson } from "../geotypes.js";
   /**
    * Same as above invalidVectorTilejson, but with a different `format`
    */
-  const _validRasterTilejson: Tilejson & {
-    [key: string]: unknown;
-  } = {
+  const _validRasterTilejson: Tilejson & { [key: string]: unknown } = {
     tilejson: "3.0.0",
     tiles: [],
     attribution:
       '<a href="https://www.openmaptiles.org/" target="_blank">&copy; OpenMapTiles</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
-    bounds: [-180.0, -85.051_13, 180.0, 85.051_13],
+    bounds: [-180.0, -85.05113, 180.0, 85.05113],
     center: [0.0, 0.0, 0],
     description:
       "A tileset showcasing all layers in OpenMapTiles. https://openmaptiles.org",

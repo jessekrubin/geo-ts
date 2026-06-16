@@ -1,13 +1,7 @@
 import { fs, glob } from "zx";
 
-type FileTypeExports = {
-  fspath: string;
-  types: string[];
-};
-type GeotypesMetadata = {
-  files: FileTypeExports[];
-  geotypes: string[];
-};
+type FileTypeExports = { fspath: string; types: string[] };
+type GeotypesMetadata = { files: FileTypeExports[]; geotypes: string[] };
 
 function lineIsCommentedOut(line: string) {
   if (line.startsWith("//")) {
@@ -22,9 +16,7 @@ function lineStartsWithExportType(line: string) {
   return line.startsWith("export type");
 }
 async function exportedTypesForFile(file: string): Promise<FileTypeExports> {
-  const string = await fs.readFile(file, {
-    encoding: "utf8",
-  });
+  const string = await fs.readFile(file, { encoding: "utf8" });
   const lines = string.split("\n");
   const exportedTypes = lines
     .filter((line) => {
@@ -33,7 +25,7 @@ async function exportedTypesForFile(file: string): Promise<FileTypeExports> {
       return thingy;
     })
     .map((line) => {
-      const split = line.split(" ")[2].replace(";", "");
+      const split = line.split(" ", 3)[2].replace(";", "");
       return split;
     })
     .map((typeAlias) => {
@@ -48,7 +40,7 @@ async function exportedTypesForFile(file: string): Promise<FileTypeExports> {
         line.includes("export interface") &&
         line.startsWith("export interface"),
     )
-    .map((line) => line.split(" ")[2].replace(";", ""))
+    .map((line) => line.split(" ", 3)[2].replace(";", ""))
     .map((iname) =>
       iname.includes("<")
         ? iname.slice(0, Math.max(0, iname.indexOf("<")))
@@ -71,10 +63,7 @@ async function exportedTypesForFile(file: string): Promise<FileTypeExports> {
       `type is a reserved word, cannot export type named 'type' in ${file}`,
     );
   }
-  return {
-    fspath: file,
-    types: typesFinal,
-  };
+  return { fspath: file, types: typesFinal };
 }
 
 async function typesIndex(files: FileTypeExports[]) {

@@ -50,11 +50,7 @@ export type PointGeometry<TCoordinate extends GeojsonCoord = GeojsonCoord> = {
 };
 export type LineStringGeometry<
   TCoordinate extends GeojsonCoord = GeojsonCoord,
-> = {
-  type: "LineString";
-  coordinates: TCoordinate[];
-  bbox?: BBox;
-};
+> = { type: "LineString"; coordinates: TCoordinate[]; bbox?: BBox };
 export type PolygonGeometry<TCoordinate extends GeojsonCoord = GeojsonCoord> = {
   type: "Polygon";
   coordinates: TCoordinate[][];
@@ -62,34 +58,21 @@ export type PolygonGeometry<TCoordinate extends GeojsonCoord = GeojsonCoord> = {
 };
 export type MultiPointGeometry<
   TCoordinate extends GeojsonCoord = GeojsonCoord,
-> = {
-  type: "MultiPoint";
-  coordinates: TCoordinate[];
-  bbox?: BBox;
-};
+> = { type: "MultiPoint"; coordinates: TCoordinate[]; bbox?: BBox };
 export type MultiLineStringGeometry<
   TCoordinate extends GeojsonCoord = GeojsonCoord,
-> = {
-  type: "MultiLineString";
-  coordinates: TCoordinate[][];
-  bbox?: BBox;
-};
+> = { type: "MultiLineString"; coordinates: TCoordinate[][]; bbox?: BBox };
 export type MultiPolygonGeometry<
   TCoordinate extends GeojsonCoord = GeojsonCoord,
-> = {
-  type: "MultiPolygon";
-  coordinates: TCoordinate[][][];
-  bbox?: BBox;
-};
+> = { type: "MultiPolygon"; coordinates: TCoordinate[][][]; bbox?: BBox };
 
 export type PrimitiveGeometry<TCoordinate extends GeojsonCoord = GeojsonCoord> =
-
-    | PointGeometry<TCoordinate>
-    | LineStringGeometry<TCoordinate>
-    | PolygonGeometry<TCoordinate>
-    | MultiPointGeometry<TCoordinate>
-    | MultiLineStringGeometry<TCoordinate>
-    | MultiPolygonGeometry<TCoordinate>;
+  | PointGeometry<TCoordinate>
+  | LineStringGeometry<TCoordinate>
+  | PolygonGeometry<TCoordinate>
+  | MultiPointGeometry<TCoordinate>
+  | MultiLineStringGeometry<TCoordinate>
+  | MultiPolygonGeometry<TCoordinate>;
 
 export type PrimitiveGeometryCoords<
   TCoordinate extends GeojsonCoord = GeojsonCoord,
@@ -116,7 +99,7 @@ export type Geometry<TCoordinate extends GeojsonCoord = GeojsonCoord> =
   | GeometryCollection<Geometry<TCoordinate>>;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type GeoJsonProperties<TValue = any> = { [name: string]: TValue } | null;
+export type GeoJsonProperties<TValue = any> = null | { [name: string]: TValue };
 
 export type FeatureOptions = {
   id?: string | number;
@@ -131,21 +114,21 @@ export type Feature<
   TGeometry extends Geometry | null = Geometry | null,
   TProperties = GeoJsonProperties,
   TFeatureOptions extends FeatureOptions = FeatureOptions,
-> = {
+> = TFeatureOptions & {
   type: "Feature";
   geometry: TGeometry;
   // IsUndefined<TProperties> extends true ? GeoJsonProperties : TProperties;
   properties: FeatureProperties<TProperties>;
-} & TFeatureOptions;
+};
 
 export type FeatureCollection<
   TGeometry extends Geometry | null = Geometry,
   TProperties = GeoJsonProperties,
   TFeatureOptions extends FeatureOptions = FeatureOptions,
-> = {
+> = TFeatureOptions & {
   type: "FeatureCollection";
   features: Feature<TGeometry, TProperties, TFeatureOptions>[];
-} & TFeatureOptions;
+};
 
 export type GeoJSON<TCoordinate extends GeojsonCoord = GeojsonCoord> =
   | Geometry<TCoordinate>

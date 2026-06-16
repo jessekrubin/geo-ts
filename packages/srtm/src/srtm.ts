@@ -33,21 +33,21 @@ export type SrtmTileXy = {
   y: number;
 };
 
-export type SrtmTileIx = {
+export type SrtmTileIx = SrtmTileXy & {
   /**
    * Srtm row major index; 0 <= id < 64800
    */
   id: number;
-} & SrtmTileXy;
-export type SrtmTile = { str: SrtmString; ix: SrtmTileIx } & SrtmTileLngLat;
+};
+export type SrtmTile = SrtmTileLngLat & { str: SrtmString; ix: SrtmTileIx };
 export type SrtmLike =
   | SrtmTileLngLat
   | SrtmString
   | SrtmTileXy
-  | { lng: number; lat: number }
   | number
   | bigint
-  | string;
+  | string
+  | { lng: number; lat: number };
 
 const SRTM_MAX_ID = 180 * 360 - 1;
 
@@ -103,7 +103,7 @@ export function isSrtmString(
   str: string,
   ignoreCase: boolean = false,
 ): str is SrtmString {
-  return ignoreCase ? SRTM_RE_CASE_INSENSITIVE.test(str) : SRTM_RE.test(str);
+  return (ignoreCase ? SRTM_RE_CASE_INSENSITIVE : SRTM_RE).test(str);
 }
 
 /**
@@ -134,6 +134,7 @@ export function isSrtmLngString(
   str: string,
   ignoreCase: boolean = false,
 ): boolean {
+  // eslint-disable-next-line unicorn/prefer-minimal-ternary
   return ignoreCase
     ? SRTM_LNG_RE_CASE_INSENSITIVE.test(str)
     : SRTM_LNG_RE.test(str);
@@ -149,6 +150,7 @@ export function isSrtmLatString(
   str: string,
   ignoreCase: boolean = false,
 ): boolean {
+  // eslint-disable-next-line unicorn/prefer-minimal-ternary
   return ignoreCase
     ? SRTM_LAT_RE_CASE_INSENSITIVE.test(str)
     : SRTM_LAT_RE.test(str);
@@ -165,10 +167,10 @@ export function isSrtmLatString(
  *   - W180; b/c anything at 180 degrees west should translate to W179
  */
 export function ll2srtm({ lng, lat }: { lng: number; lat: number }): SrtmTile {
-  if (lat < -90 || lat > 90 || Number.isNaN(lat)) {
+  if (Math.abs(lat) > 90 || Number.isNaN(lat)) {
     throw new Error(`latitude ${lat} is out of range`);
   }
-  if (lng < -180 || lng > 180 || Number.isNaN(lng)) {
+  if (Math.abs(lng) > 180 || Number.isNaN(lng)) {
     throw new Error(`longitude ${lng} is out of range`);
   }
   const ns = lat >= 0 ? "N" : "S";
@@ -185,11 +187,7 @@ export function ll2srtm({ lng, lat }: { lng: number; lat: number }): SrtmTile {
     ew,
     lng: lngInt,
     str: `${ns}${latStr}${ew}${lngStr}` as SrtmString,
-    ix: {
-      x,
-      y,
-      id: y * 360 + x,
-    },
+    ix: { x, y, id: y * 360 + x },
   };
 }
 
@@ -197,24 +195,13 @@ export function parseSrtmString(str: string): SrtmTile {
   if (!isSrtmString(str)) {
     throw new Error(`invalid srtm string: ${str}`);
   }
-  const ns = str[0] as "N" | "S";
-  const lat = Number.parseInt(str.slice(1, 3), 10);
-  const ew = str[3] as "E" | "W";
-  const lng = Number.parseInt(str.slice(4, 7), 10);
+  const ns = str.at(0) as "N" | "S";
+  const lat = Math.trunc(Number(str.slice(1, 3)));
+  const ew = str.at(3) as "E" | "W";
+  const lng = Math.trunc(Number(str.slice(4, 7)));
   const x = (ew === "W" ? -lng : lng) + 180;
   const y = (ns === "S" ? -lat : lat) + 90;
-  return {
-    str,
-    ns,
-    lat,
-    ew,
-    lng,
-    ix: {
-      x,
-      y,
-      id: y * 360 + x,
-    },
-  };
+  return { str, ns, lat, ew, lng, ix: { x, y, id: y * 360 + x } };
 }
 
 export function xy2srtm({ x, y }: SrtmTileXy): SrtmTile {
@@ -223,8 +210,8 @@ export function xy2srtm({ x, y }: SrtmTileXy): SrtmTile {
     x > 359 ||
     y < 0 ||
     y > 179 ||
-    !Number.isInteger(x) ||
-    !Number.isInteger(y)
+    !Number.isSafeInteger(x) ||
+    !Number.isSafeInteger(y)
   ) {
     throw new Error(`invalid srtm x/y: ${x}/${y}`);
   }
@@ -232,7 +219,12 @@ export function xy2srtm({ x, y }: SrtmTileXy): SrtmTile {
 }
 
 export function srtmid2srtm(id: number | bigint): SrtmTile {
-  if (id < 0 || id > SRTM_MAX_ID || Number.isNaN(id) || !Number.isInteger(id)) {
+  if (
+    id < 0 ||
+    id > SRTM_MAX_ID ||
+    Number.isNaN(id) ||
+    !Number.isSafeInteger(id)
+  ) {
     throw new Error(`invalid srtm id '${id}'; 0 <= integer < 64800`);
   }
   const x = Number(id) % 360;

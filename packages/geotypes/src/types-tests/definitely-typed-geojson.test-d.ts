@@ -27,13 +27,8 @@ let featureCollection: FeatureCollection = {
     {
       id: 1234,
       type: "Feature",
-      geometry: {
-        type: "Point",
-        coordinates: [102, 0.5],
-      },
-      properties: {
-        prop0: "value0",
-      },
+      geometry: { type: "Point", coordinates: [102, 0.5] },
+      properties: { prop0: "value0" },
     },
     {
       id: "stringid",
@@ -47,10 +42,7 @@ let featureCollection: FeatureCollection = {
           [105, 1],
         ],
       },
-      properties: {
-        prop0: "value0",
-        prop1: 0,
-      },
+      properties: { prop0: "value0", prop1: 0 },
     },
     {
       type: "Feature",
@@ -66,12 +58,7 @@ let featureCollection: FeatureCollection = {
           ],
         ],
       },
-      properties: {
-        prop0: "value0",
-        prop1: {
-          that: "this",
-        },
-      },
+      properties: { prop0: "value0", prop1: { that: "this" } },
     },
   ],
 };
@@ -110,10 +97,7 @@ featureWithPolygon.geometry; // $ExpectType Polygon
 featureWithPolygon.geometry.type; // $ExpectType "Polygon"
 featureWithPolygon.geometry.coordinates; // $ExpectType number[][][] || Position[][]
 
-const point: Point = {
-  type: "Point",
-  coordinates: [100, 0],
-};
+const point: Point = { type: "Point", coordinates: [100, 0] };
 
 // This type is commonly used in the turf package
 const _pointCoordinates: number[] = point.coordinates;
@@ -275,70 +259,22 @@ let feature: Feature<GeometryObject> = {
 
 feature.properties; // $ExpectType GeoJsonProperties
 
-feature = {
-  type: "Feature",
-  geometry: polygon,
-  properties: null,
-};
-feature = {
-  type: "Feature",
-  geometry: polygonWithHole,
-  properties: null,
-};
-feature = {
-  type: "Feature",
-  geometry: multiPoint,
-  properties: null,
-};
-feature = {
-  type: "Feature",
-  geometry: multiLineString,
-  properties: null,
-};
-feature = {
-  type: "Feature",
-  geometry: multiPolygon,
-  properties: null,
-};
-feature = {
-  type: "Feature",
-  geometry: geometryCollection,
-  properties: null,
-};
+feature = { type: "Feature", geometry: polygon, properties: null };
+feature = { type: "Feature", geometry: polygonWithHole, properties: null };
+feature = { type: "Feature", geometry: multiPoint, properties: null };
+feature = { type: "Feature", geometry: multiLineString, properties: null };
+feature = { type: "Feature", geometry: multiPolygon, properties: null };
+feature = { type: "Feature", geometry: geometryCollection, properties: null };
 
 featureCollection = {
   type: "FeatureCollection",
   features: [
-    {
-      type: "Feature",
-      geometry: lineString,
-      properties: { test: "OK" },
-    },
-    {
-      type: "Feature",
-      geometry: polygon,
-      properties: { test: "OK" },
-    },
-    {
-      type: "Feature",
-      geometry: polygonWithHole,
-      properties: { test: "OK" },
-    },
-    {
-      type: "Feature",
-      geometry: multiPoint,
-      properties: { test: "OK" },
-    },
-    {
-      type: "Feature",
-      geometry: multiLineString,
-      properties: { test: "OK" },
-    },
-    {
-      type: "Feature",
-      geometry: multiPolygon,
-      properties: { test: "OK" },
-    },
+    { type: "Feature", geometry: lineString, properties: { test: "OK" } },
+    { type: "Feature", geometry: polygon, properties: { test: "OK" } },
+    { type: "Feature", geometry: polygonWithHole, properties: { test: "OK" } },
+    { type: "Feature", geometry: multiPoint, properties: { test: "OK" } },
+    { type: "Feature", geometry: multiLineString, properties: { test: "OK" } },
+    { type: "Feature", geometry: multiPolygon, properties: { test: "OK" } },
     {
       type: "Feature",
       geometry: geometryCollection,
@@ -350,15 +286,8 @@ featureCollection = {
 // Allow access to custom properties
 const pt: Feature<Point> = {
   type: "Feature",
-  properties: {
-    foo: "bar",
-    hello: "world",
-    1: 2,
-  },
-  geometry: {
-    type: "Point",
-    coordinates: [0, 0],
-  },
+  properties: { foo: "bar", hello: "world", 1: 2 },
+  geometry: { type: "Point", coordinates: [0, 0] },
 };
 
 if (pt.properties) {
@@ -380,18 +309,12 @@ interface TestProperty {
   hello: string;
 }
 
-const testProps: TestProperty = {
-  foo: "baz",
-  hello: "world",
-};
+const testProps: TestProperty = { foo: "baz", hello: "world" };
 
 const typedPropertiesFeature: Feature<Point> = {
   type: "Feature",
   properties: testProps,
-  geometry: {
-    type: "Point",
-    coordinates: [0, 0],
-  },
+  geometry: { type: "Point", coordinates: [0, 0] },
 };
 
 const typedPropertiesFeatureCollection: FeatureCollection<Point> = {
@@ -505,6 +428,7 @@ for (const { geometry } of collectionDefault.features) {
   switch (geometry.type) {
     case "Point":
       isPoint = geometry;
+      // eslint-disable-next-line unicorn/no-break-in-nested-loop
       break;
     case "GeometryCollection":
       for (const child of geometry.geometries) {
@@ -512,6 +436,7 @@ for (const { geometry } of collectionDefault.features) {
           isPoint = child;
         }
       }
+      // eslint-disable-next-line unicorn/no-break-in-nested-loop
       break;
   }
 }

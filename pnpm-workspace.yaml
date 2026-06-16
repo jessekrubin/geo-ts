@@ -11,3 +11,5 @@ onlyBuiltDependencies:
   - dprint
   - esbuild
   - unrs-resolver
+minimumReleaseAgeExclude:
+  - "@jsse/*"

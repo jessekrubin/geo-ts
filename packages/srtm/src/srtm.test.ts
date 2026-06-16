@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/no-top-level-side-effects */
 import { assert, describe, expect, test } from "vitest";
 import {
   bbox2srtms,
@@ -43,10 +44,7 @@ describe("srtm", () => {
     { str: "S91W000", ok: false },
   ];
   const SRTM_STR_TEST_DATA_LOWERCASE = SRTM_STR_TEST_DATA_UPPERCASE.map(
-    (d) => ({
-      str: d.str.toLowerCase(),
-      ok: d.ok,
-    }),
+    (d) => ({ str: d.str.toLowerCase(), ok: d.ok }),
   );
   const SRTM_STR_TEST_DATA = [
     ...SRTM_STR_TEST_DATA_UPPERCASE,
@@ -138,9 +136,7 @@ describe("srtm", () => {
       const count = dupcount.get(key) || 0;
       dupcount.set(key, count + 1);
     }
-    const duplicates = [...dupcount.entries()].filter(
-      ([_, count]) => count > 1,
-    );
+    const duplicates = [...dupcount].filter(([_, count]) => count > 1);
     expect(duplicates).toStrictEqual([]);
   });
 
@@ -153,9 +149,7 @@ describe("srtm", () => {
       const count = dupcount.get(key) || 0;
       dupcount.set(key, count + 1);
     }
-    const duplicates = [...dupcount.entries()].filter(
-      ([_, count]) => count > 1,
-    );
+    const duplicates = [...dupcount].filter(([_, count]) => count > 1);
     expect(duplicates).toStrictEqual([]);
   });
 
@@ -273,20 +267,13 @@ test("srtm-invalid", () => {
 
 test("bae-area-srtm-tiles", () => {
   // tile id (20, 49, 7) bbox of bay area
-  const bbox = tuple(
-    -123.75,
-    36.597_889_133_070_21,
-    -120.9375,
-    38.822_590_976_177_1,
-  );
+  const bbox = tuple(-123.75, 36.59788913307021, -120.9375, 38.8225909761771);
   const srtmtiles = [...bbox2srtms(bbox)];
   const geojsonPolygons = srtmtiles.map((srtm) => {
     const bbox = srtm2bbox(srtm);
     return {
       type: "Feature",
-      properties: {
-        srtm,
-      },
+      properties: { srtm },
       geometry: {
         type: "Polygon",
         coordinates: [
@@ -310,15 +297,15 @@ test("bae-area-srtm-tiles", () => {
       type: "Polygon",
       coordinates: [
         [
-          [-123.75, 36.597_889_133_070_21],
-          [-123.75, 38.822_590_976_177_1],
-          [-120.9375, 38.822_590_976_177_1],
-          [-120.9375, 36.597_889_133_070_21],
-          [-123.75, 36.597_889_133_070_21],
+          [-123.75, 36.59788913307021],
+          [-123.75, 38.8225909761771],
+          [-120.9375, 38.8225909761771],
+          [-120.9375, 36.59788913307021],
+          [-123.75, 36.59788913307021],
         ],
       ],
     },
-    bbox: [-123.75, 36.597_889_133_070_21, -120.9375, 38.822_590_976_177_1],
+    bbox: [-123.75, 36.59788913307021, -120.9375, 38.8225909761771],
     properties: {
       title: "XYZ tile (20, 49, 7)",
       properties: {
@@ -444,15 +431,15 @@ test("bae-area-srtm-tiles", () => {
           type: "Polygon",
           coordinates: [
             [
-              [-123.75, 36.597_889_133_070_21],
-              [-123.75, 38.822_590_976_177_1],
-              [-120.9375, 38.822_590_976_177_1],
-              [-120.9375, 36.597_889_133_070_21],
-              [-123.75, 36.597_889_133_070_21],
+              [-123.75, 36.59788913307021],
+              [-123.75, 38.8225909761771],
+              [-120.9375, 38.8225909761771],
+              [-120.9375, 36.59788913307021],
+              [-123.75, 36.59788913307021],
             ],
           ],
         },
-        bbox: [-123.75, 36.597_889_133_070_21, -120.9375, 38.822_590_976_177_1],
+        bbox: [-123.75, 36.59788913307021, -120.9375, 38.8225909761771],
         properties: {
           title: "XYZ tile (20, 49, 7)",
           properties: {

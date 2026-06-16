@@ -34,14 +34,8 @@ describe("fast-json-stable-stringify-unit", () => {
 
       test("cyclic (default)", () => {
         expect.assertions(1);
-        const one: {
-          a: number;
-          two?: unknown;
-        } = { a: 1 };
-        const two: {
-          a: number;
-          one: typeof one;
-        } = { a: 2, one };
+        const one: { a: number; two?: unknown } = { a: 1 };
+        const two: { a: number; one: typeof one } = { a: 2, one };
         one.two = two;
         try {
           stringify(one);
@@ -55,10 +49,7 @@ describe("fast-json-stable-stringify-unit", () => {
 
       test("cyclic (specifically allowed)", () => {
         expect.assertions(1);
-        const one: {
-          a: number;
-          two?: unknown;
-        } = { a: 1 };
+        const one: { a: number; two?: unknown } = { a: 1 };
         const two = { a: 2, one };
         one.two = two;
         expect(stringify(one, { cycles: true })).toBe(
@@ -102,7 +93,7 @@ describe("fast-json-stable-stringify-unit", () => {
 
       test("object with NaN and Infinity", () => {
         expect.assertions(1);
-        const obj = { a: 3, b: Number.NaN, c: Number.POSITIVE_INFINITY };
+        const obj = { a: 3, b: NaN, c: Infinity };
         expect(stringify(obj)).toBe('{"a":3,"b":null,"c":null}');
       });
 
@@ -128,37 +119,19 @@ describe("fast-json-stable-stringify-unit", () => {
     describe("to-json.js", () => {
       test("toJSON function", () => {
         expect.assertions(1);
-        const obj = {
-          one: 1,
-          two: 2,
-          toJSON() {
-            return { one: 1 };
-          },
-        };
+        const obj = { one: 1, two: 2, toJSON: () => ({ one: 1 }) };
         expect(stringify(obj)).toBe('{"one":1}');
       });
 
       test("toJSON returns string", () => {
         expect.assertions(1);
-        const obj = {
-          one: 1,
-          two: 2,
-          toJSON() {
-            return "one";
-          },
-        };
+        const obj = { one: 1, two: 2, toJSON: () => "one" };
         expect(stringify(obj)).toBe('"one"');
       });
 
       test("toJSON returns array", () => {
         expect.assertions(1);
-        const obj = {
-          one: 1,
-          two: 2,
-          toJSON() {
-            return ["one"];
-          },
-        };
+        const obj = { one: 1, two: 2, toJSON: () => ["one"] };
         expect(stringify(obj)).toBe('["one"]');
       });
     });
@@ -174,9 +147,7 @@ test.each(
 )("fast-json-stable-stringify-fmt: $name", ({ obj }) => {
   const stableStr = fastJsonStableStringify(obj);
   if (stableStr) {
-    const indentedStr = fastJsonStableStringify(obj, {
-      fmt: true,
-    });
+    const indentedStr = fastJsonStableStringify(obj, { fmt: true });
     const jsonStringifiedIndent2 = JSON.stringify(
       JSON.parse(stableStr),
       undefined,

@@ -280,9 +280,7 @@ export type GeodeticCrs = ObjectUsage &
     id?: unknown;
     ids?: unknown;
   };
-export type OneAndOnlyOneOfDatumOrDatumEnsemble = {
-  [k: string]: unknown;
-};
+export type OneAndOnlyOneOfDatumOrDatumEnsemble = { [k: string]: unknown };
 export type GeodeticReferenceFrame = ObjectUsage & {
   type?: "GeodeticReferenceFrame";
   name: string;
@@ -519,9 +517,7 @@ export type DerivedVerticalCrs = ObjectUsage & {
  * One and only one of datum and datum_ensemble must be provided
  */
 export type VerticalCrs = ObjectUsage &
-  OneAndOnlyOneOfDatumOrDatumEnsemble & {
-    [k: string]: unknown;
-  } & {
+  OneAndOnlyOneOfDatumOrDatumEnsemble & { [k: string]: unknown } & {
     type?: "VerticalCRS";
     name: string;
     datum?: VerticalReferenceFrame | DynamicVerticalReferenceFrame;
@@ -642,13 +638,8 @@ export type ConcatenatedOperation = ObjectUsage & {
   ids?: unknown;
 };
 
-export type IdIdsMutuallyExclusive = {
-  [k: string]: unknown;
-};
-export type ValueAndUnit = {
-  value: number;
-  unit: Unit;
-};
+export type IdIdsMutuallyExclusive = { [k: string]: unknown };
+export type ValueAndUnit = { value: number; unit: Unit };
 export type Id = {
   authority: string;
   code: string | number;
@@ -659,15 +650,8 @@ export type Id = {
 /**
  * Association to a PointMotionOperation
  */
-export type DeformationModel = {
-  name: string;
-  id?: Id;
-};
-export type GeoidModel = {
-  name: string;
-  interpolation_crs?: Crs;
-  id?: Id;
-};
+export type DeformationModel = { name: string; id?: Id };
+export type GeoidModel = { name: string; interpolation_crs?: Crs; id?: Id };
 export type CoordinateMetadata = {
   $schema?: string;
   type?: "CoordinateMetadata";

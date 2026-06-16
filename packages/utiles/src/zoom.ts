@@ -1,7 +1,7 @@
 import { type ZoomInt } from "./types.js";
 
 export function isZoom(z: unknown): z is ZoomInt {
-  return typeof z === "number" && Number.isInteger(z) && z >= 0 && z <= 30;
+  return typeof z === "number" && Number.isSafeInteger(z) && z >= 0 && z <= 30;
 }
 
 /**
@@ -13,12 +13,7 @@ export function isZoom(z: unknown): z is ZoomInt {
  * @param options.err Throw an error if an invalid zoom is found
  * @returns zset integer number (u32)
  */
-export function zvec2zset(
-  zooms: ZoomInt[],
-  options?: {
-    err?: boolean;
-  },
-) {
+export function zvec2zset(zooms: ZoomInt[], options?: { err?: boolean }) {
   if (zooms.length === 0) {
     return 0;
   }
@@ -56,6 +51,7 @@ export function zset2zvec(zset: number): number[] {
   if (
     zset > 0b1111_1111_1111_1111_1111_1111_1111_1111 ||
     zset < 0 ||
+    // eslint-disable-next-line unicorn/prefer-number-is-safe-integer
     !Number.isInteger(zset)
   ) {
     throw new Error(`Invalid zset: ${zset}`);
@@ -70,13 +66,12 @@ export function zset2zvec(zset: number): number[] {
       }
     }
     return zoomLevels;
-  } else {
-    const zoomLevels: number[] = [];
-    for (let i = 0; i < 31; i++) {
-      if (zset & (1 << i)) {
-        zoomLevels.push(i);
-      }
-    }
-    return zoomLevels;
   }
+  const zoomLevels: number[] = [];
+  for (let i = 0; i < 31; i++) {
+    if (zset & (1 << i)) {
+      zoomLevels.push(i);
+    }
+  }
+  return zoomLevels;
 }

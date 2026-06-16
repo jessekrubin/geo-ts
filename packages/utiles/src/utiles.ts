@@ -10,6 +10,7 @@ export function xyz(x: number, y: number, z: number): TileArr {
   if (z < 0 || z > MAX_ZOOM) {
     throw new Error(`Invalid zoom: ${z}`);
   }
+  // eslint-disable-next-line unicorn/prefer-number-is-safe-integer
   if (!Number.isInteger(x) || !Number.isInteger(y) || !Number.isInteger(z)) {
     throw new TypeError(`Invalid tile: ${x}, ${y}, ${z}`);
   }
@@ -188,9 +189,7 @@ export function xyz2geojson(xyz: TileArr): Polygon<[number, number]> {
 
 export type TilePolygonFeature = Feature<
   Polygon<[number, number]>,
-  {
-    xyz: TileArr;
-  },
+  { xyz: TileArr },
   { bbox: BBox2d; id: string }
 >;
 
@@ -200,9 +199,7 @@ export function xyz2feature(xyz: TileArr): TilePolygonFeature {
     type: "Feature",
     id: `x${xyz[0]}y${xyz[1]}z${xyz[2]}`,
     bbox,
-    properties: {
-      xyz,
-    },
+    properties: { xyz },
     geometry: xyz2geojson(xyz),
   };
 }

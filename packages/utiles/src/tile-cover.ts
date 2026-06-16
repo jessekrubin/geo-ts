@@ -17,19 +17,15 @@ import {
 
 type TileHash = Set<number>;
 
-type LimitsSnake = {
-  min_zoom: number;
-  max_zoom: number;
-};
+type LimitsSnake = { min_zoom: number; max_zoom: number };
 
-type Limits = {
-  minzoom: number;
-  maxzoom: number;
-};
+type Limits = { minzoom: number; maxzoom: number };
 
 function _limits(limits: LimitsSnake | Limits): Limits {
   return {
+    // eslint-disable-next-line unicorn/prefer-minimal-ternary
     minzoom: "min_zoom" in limits ? limits.min_zoom : limits.minzoom,
+    // eslint-disable-next-line unicorn/prefer-minimal-ternary
     maxzoom: "max_zoom" in limits ? limits.max_zoom : limits.maxzoom,
   };
 }
@@ -40,11 +36,7 @@ function toID(x: number, y: number, z: number): number {
 }
 
 function tileToFeature(t: [number, number, number]) {
-  return {
-    type: "Feature",
-    geometry: xyz2geojson(t),
-    properties: {},
-  };
+  return { type: "Feature", geometry: xyz2geojson(t), properties: {} };
 }
 
 function fromID(id: number): [number, number, number] {
@@ -174,6 +166,7 @@ function lineStringCover(
       }
       // if invalid tile break
       if (x < 0 - 1 || y < 0 - 5 || x > minxy + 1 || y > minxy + 1) {
+        // eslint-disable-next-line unicorn/no-break-in-nested-loop
         break;
       }
       tileHash.add(toID(x, y, maxzoom));
@@ -202,6 +195,7 @@ function polygonCover(
       const m = (j + 1) % len;
       const ringj = ring[j];
       const ringk = ring[k];
+      // eslint-disable-next-line unicorn/no-computed-property-existence-check
       if (ringj && ringk && ring[m]) {
         if (ringj.length > 0) {
           y = ringj[1];
@@ -360,7 +354,7 @@ export function tiles(geom: Geometry, limits: Limits | LimitsSnake): TileArr[] {
 
 /**
  * Given a geometry, create cells and return them as
- * [quadkey](http://msdn.microsoft.com/en-us/library/bb259689.aspx) indexes.
+ * [quadkey](https://msdn.microsoft.com/en-us/library/bb259689.aspx) indexes.
  * @alias indexes
  * @param {object} geom GeoJSON geometry
  * @param {object} limits an object with minzoom/min_zoom and maxzoom/max_zoom properties

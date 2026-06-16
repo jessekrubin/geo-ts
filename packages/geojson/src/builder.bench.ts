@@ -3,14 +3,8 @@ import { bench, describe } from "vitest";
 import * as geo from "./builders.js";
 
 const libs = [
-  {
-    name: "geo",
-    lib: geo as unknown as typeof turfHelpers,
-  },
-  {
-    name: "turfHelpers",
-    lib: turfHelpers,
-  },
+  { name: "geo", lib: geo as unknown as typeof turfHelpers },
+  { name: "turfHelpers", lib: turfHelpers },
 ];
 const benchOptions = {
   // sequential: true,
