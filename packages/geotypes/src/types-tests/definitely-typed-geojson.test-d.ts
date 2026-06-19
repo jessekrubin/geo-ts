@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-assignment */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/consistent-type-definitions */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
