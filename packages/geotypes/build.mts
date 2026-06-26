@@ -4,20 +4,15 @@ type FileTypeExports = { fspath: string; types: string[] };
 type GeotypesMetadata = { files: FileTypeExports[]; geotypes: string[] };
 
 function lineIsCommentedOut(line: string) {
-  if (line.startsWith("//")) {
-    return true;
-  }
-  if (line.startsWith("/*")) {
-    return true;
-  }
-  return false;
+  return line.startsWith("//") || line.startsWith("/*");
 }
+
 function lineStartsWithExportType(line: string) {
   return line.startsWith("export type");
 }
 async function exportedTypesForFile(file: string): Promise<FileTypeExports> {
   const string = await fs.readFile(file, { encoding: "utf8" });
-  const lines = string.split("\n");
+  const lines: string[] = string.split("\n");
   const exportedTypes = lines
     .filter((line) => {
       const thingy =

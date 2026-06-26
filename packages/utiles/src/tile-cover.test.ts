@@ -54,16 +54,20 @@ function tileSetsDiff(
   const inA: TileArr[] = [];
   const inB: TileArr[] = [];
   for (const tile of aSet) {
-    if (!bSet.has(tile)) {
-      const tInA = tile.split(",").map(Number) as [number, number, number];
-      inA.push(tInA);
+    if (bSet.has(tile)) {
+      continue;
     }
+
+    const tInA = tile.split(",").map(Number) as [number, number, number];
+    inA.push(tInA);
   }
   for (const tile of bSet) {
-    if (!aSet.has(tile)) {
-      const tInB = tile.split(",").map(Number) as [number, number, number];
-      inB.push(tInB);
+    if (aSet.has(tile)) {
+      continue;
     }
+
+    const tInB = tile.split(",").map(Number) as [number, number, number];
+    inB.push(tInB);
   }
   return { inA, inB };
 }

@@ -147,8 +147,8 @@ export function lnglatz2xyzf(lng: number, lat: number, z: number): TileArr {
   const y = z2 * (0.5 - (0.25 * Math.log((1 + sin) / (1 - sin))) / Math.PI);
 
   // Wrap Tile X
-  x = x % z2;
-  if (x < 0) x = x + z2;
+  x %= z2;
+  if (x < 0) x += z2;
   return [x, y, z];
 }
 

@@ -45,7 +45,7 @@ export function quadkey2xyz(quadkey: string | number): TileArr {
     const q = +char;
     if (q === 1) x |= mask;
     if (q === 2) y |= mask;
-    if (q === 3) {
+    else if (q === 3) {
       x |= mask;
       y |= mask;
     }
