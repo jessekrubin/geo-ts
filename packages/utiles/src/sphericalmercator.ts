@@ -4,7 +4,7 @@ import { DEG2RAD, RAD2DEG } from "./const.js";
 import { ll2xy, xy2ll } from "./proj.js";
 
 function isFloat(n: number): boolean {
-  return Number(n) === n && n % 1 !== 0;
+  return n % 1 !== 0 && !Number.isNaN(n) && Number.isFinite(n);
 }
 
 type Options = { size?: number; antimeridian?: boolean };
@@ -148,8 +148,8 @@ export class SphericalMercator {
     if (tms_style) {
       y = 2 ** zoom - 1 - y;
     }
-    const ll = [x * this.size, (+y + 1) * this.size] as [number, number]; // lower left
-    const ur = [(+x + 1) * this.size, y * this.size] as [number, number]; // upper right
+    const ll = [x * this.size, (y + 1) * this.size] as [number, number]; // lower left
+    const ur = [(x + 1) * this.size, y * this.size] as [number, number]; // upper right
     const bbox = [...this.ll(ll, zoom), ...this.ll(ur, zoom)] as [
       number,
       number,
@@ -224,7 +224,6 @@ export class SphericalMercator {
     bbox: BBox2d,
     to: "900913" | "EPSG:3857" | "WEBM" | "LL" | "WGS84",
   ): BBox2d {
-    // eslint-disable-next-line unicorn/prefer-minimal-ternary
     return ["900913", "EPSG:3857", "WEBM"].includes(to)
       ? this.convert2web(bbox)
       : this.convert2ll(bbox);

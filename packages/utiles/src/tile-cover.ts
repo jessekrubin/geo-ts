@@ -23,9 +23,7 @@ type Limits = { minzoom: number; maxzoom: number };
 
 function _limits(limits: LimitsSnake | Limits): Limits {
   return {
-    // eslint-disable-next-line unicorn/prefer-minimal-ternary
     minzoom: "min_zoom" in limits ? limits.min_zoom : limits.minzoom,
-    // eslint-disable-next-line unicorn/prefer-minimal-ternary
     maxzoom: "max_zoom" in limits ? limits.max_zoom : limits.maxzoom,
   };
 }
@@ -67,6 +65,7 @@ function mergeTiles(
 
     for (const t of tiles) {
       // if xy even it is the up
+      // eslint-disable-next-line unicorn/prefer-continue
       if (t[0] % 2 === 0 && t[1] % 2 === 0) {
         const id2 = toID(t[0] + 1, t[1], z);
         const id3 = toID(t[0], t[1] + 1, z);
@@ -233,6 +232,7 @@ function polygonCover(
     }
     const maxX = intersectionsI1[0];
     for (let x = minX; x < maxX; x++) {
+      // eslint-disable-next-line unicorn/prefer-continue
       if (y !== undefined) {
         const id = toID(x, y, zoom);
         if (!tileHash.has(id)) {

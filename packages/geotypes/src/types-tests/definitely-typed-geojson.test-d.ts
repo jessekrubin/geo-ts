@@ -5,7 +5,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable unicorn/no-null */
 /* eslint-disable unicorn/switch-case-braces */
-/* eslint-disable unicorn/throw-new-error */
 
 import type {
   Feature,
@@ -297,10 +296,10 @@ if (pt.properties) {
     pt.properties.hello == null ||
     pt.properties[1] == null
   ) {
-    throw TypeError("Properties should not be null or undefined.");
+    throw new TypeError("Properties should not be null or undefined.");
   }
 } else {
-  throw TypeError("Feature should have a 'properties' property.");
+  throw new TypeError("Feature should have a 'properties' property.");
 }
 
 // Optional generic for properties
