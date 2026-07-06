@@ -14,7 +14,7 @@ export default jsse(
       "**/generated/**/*",
       "**/packages/_dev/**",
     ],
-    typescript: { parserOptions: { tsconfigRootDir } },
+    typescript: { strict: true, parserOptions: { tsconfigRootDir } },
   },
   { files: ["schemas/**/*"], rules: { "unicorn/filename-case": "off" } },
   { files: ["**/*.test.ts"], rules: { "no-console": "off" } },
