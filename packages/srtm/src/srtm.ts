@@ -134,7 +134,6 @@ export function isSrtmLngString(
   str: string,
   ignoreCase: boolean = false,
 ): boolean {
-  // eslint-disable-next-line unicorn/prefer-minimal-ternary
   return ignoreCase
     ? SRTM_LNG_RE_CASE_INSENSITIVE.test(str)
     : SRTM_LNG_RE.test(str);
@@ -150,7 +149,6 @@ export function isSrtmLatString(
   str: string,
   ignoreCase: boolean = false,
 ): boolean {
-  // eslint-disable-next-line unicorn/prefer-minimal-ternary
   return ignoreCase
     ? SRTM_LAT_RE_CASE_INSENSITIVE.test(str)
     : SRTM_LAT_RE.test(str);
