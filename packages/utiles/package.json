@@ -1,10 +1,7 @@
 {
   "name": "@jsse/utiles",
-  "type": "module",
   "version": "0.0.37",
   "description": "utils + tiles = utiles | ultra-tiles",
-  "author": "jessekrubin",
-  "license": "MIT",
   "keywords": [
     "maps",
     "tiles",
@@ -12,6 +9,19 @@
     "mapbox",
     "jawascript"
   ],
+  "license": "MIT",
+  "author": "jessekrubin",
+  "files": [
+    "!**/*.spec.*",
+    "!**/*.tsbuildinfo",
+    "README.md",
+    "dist/**/**",
+    "docs/**/**"
+  ],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": {
@@ -55,16 +65,9 @@
     },
     "./package.json": "./package.json"
   },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "!**/*.spec.*",
-    "!**/*.tsbuildinfo",
-    "README.md",
-    "dist/**/**",
-    "docs/**/**"
-  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build-fast": "tsdown src/index.ts --format cjs,esm",
     "build": "pnpm run build:tsdown && pnpm run build:tsc",
@@ -79,23 +82,20 @@
     "prepublishOnly": "pnpm run build",
     "typecheck": "tsc --noEmit -p tsconfig.json"
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "dependencies": {
     "@jsse/geotypes": "workspace:*"
   },
   "devDependencies": {
-    "@jsse/eslint-config": "^0.9.1",
+    "@jsse/eslint-config": "^0.9.2",
     "@jsse/tsconfig": "^0.5.2",
     "@types/node": "^24.13.2",
-    "@vitest/coverage-v8": "^4.1.9",
+    "@vitest/coverage-v8": "^4.1.10",
     "eslint": "^10.6.0",
     "prettier": "^3.9.4",
     "publint": "^0.3.21",
     "tsdown": "^0.22.3",
     "tsx": "^4.23.0",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.9"
+    "vitest": "^4.1.10"
   }
 }
