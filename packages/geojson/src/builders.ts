@@ -127,6 +127,7 @@ function _featureProperties<TProperties = GeoJsonProperties>(
   properties?: TProperties,
 ): FeatureProperties<TProperties> {
   if (properties === undefined) {
+    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
     return {} as FeatureProperties<TProperties>;
   }
   return properties;

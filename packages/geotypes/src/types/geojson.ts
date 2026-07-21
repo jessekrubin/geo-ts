@@ -14,9 +14,7 @@ export type GeoJsonGeometryTypes =
   | "MultiPolygon"
   | "GeometryCollection";
 export type GeoJsonTypes =
-  | "Feature"
-  | "FeatureCollection"
-  | GeoJsonGeometryTypes;
+  "Feature" | "FeatureCollection" | GeoJsonGeometryTypes;
 
 /**
  * A LineString is an array of two or more positions.
@@ -95,8 +93,7 @@ export interface GeometryCollection<TGeometry extends Geometry = Geometry> {
 }
 
 export type Geometry<TCoordinate extends GeojsonCoord = GeojsonCoord> =
-  | PrimitiveGeometry<TCoordinate>
-  | GeometryCollection<Geometry<TCoordinate>>;
+  PrimitiveGeometry<TCoordinate> | GeometryCollection<Geometry<TCoordinate>>;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type GeoJsonProperties<TValue = any> = null | { [name: string]: TValue };

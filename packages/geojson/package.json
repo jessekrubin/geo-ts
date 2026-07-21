@@ -1,11 +1,17 @@
 {
   "name": "@jsse/geojson",
-  "type": "module",
   "version": "0.0.37",
   "description": "geojson utils/tools/types/things",
-  "author": "jessekrubin",
-  "license": "MIT",
   "keywords": [],
+  "license": "MIT",
+  "author": "jessekrubin",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -14,12 +20,9 @@
     },
     "./package.json": "./package.json"
   },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build-fast": "tsdown src/index.ts --format cjs,esm",
     "build": "pnpm run build:tsdown && pnpm run build:tsc",
@@ -34,15 +37,11 @@
     "nodetest": "node --import tsx --test ./src/*test.ts",
     "prepublishOnly": "pnpm run build"
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "dependencies": {
     "@jsse/geotypes": "workspace:*"
   },
   "devDependencies": {
     "@jsse/eslint-config": "^0.9.9",
-    "@jsse/geotypes": "workspace:*",
     "@jsse/tsconfig": "^0.5.2",
     "@turf/helpers": "^7.3.5",
     "@turf/meta": "^7.3.5",

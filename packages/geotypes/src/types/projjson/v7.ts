@@ -578,9 +578,7 @@ export type Datum =
   | ParametricDatum
   | EngineeringDatum;
 export type SingleOperation =
-  | Conversion
-  | Transformation
-  | PointMotionOperation;
+  Conversion | Transformation | PointMotionOperation;
 export type Transformation = ObjectUsage & {
   type?: "Transformation";
   name: string;

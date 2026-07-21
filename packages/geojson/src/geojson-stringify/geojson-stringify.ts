@@ -2,7 +2,7 @@ import type { GeoJSON } from "@jsse/geotypes";
 import {
   fastJsonStableStringify,
   type KeyValue,
-} from "./fast-json-stable-stringify/fast-json-stable-stringify.js";
+} from "./fast-json-stable-stringify/mod.js";
 
 type GeoJSONStringifyOptions = { fmt?: boolean };
 

@@ -37,20 +37,16 @@ export function fastJsonStableStringify(
   options?: Options | CmpFunction,
 ): string | undefined {
   const { cmp, cycles, sort, fmt } = stringifyOptions(options);
-  // if (fmt) {
-  //   return fastJsonStableStringifyFmt(data, {
-  //     cmp,
-  //     cycles,
-  //     sort,
-  //   });
-  // }
+
   const cmpFn =
     cmp &&
     (function (f: (a: KeyValue, b: KeyValue) => number) {
       return function (node: never) {
         return function (a: PropertyKey, b: PropertyKey) {
-          const aobj = { key: a, value: node[a] } as KeyValue;
-          const bobj = { key: b, value: node[b] } as KeyValue;
+          const aKey = typeof a === "symbol" ? a.toString() : a;
+          const bKey = typeof b === "symbol" ? b.toString() : b;
+          const aobj = { key: aKey, value: node[a] } satisfies KeyValue;
+          const bobj = { key: bKey, value: node[b] } satisfies KeyValue;
           return f(aobj, bobj);
         };
       };
@@ -77,7 +73,7 @@ export function fastJsonStableStringify(
 
       const newLine = "\n" + indent.repeat(depth + 1);
       let i;
-      let out = "\n" + indent.repeat(depth + 1);
+      let out: string;
       if (Array.isArray(node)) {
         if (node.length === 0) return "[]";
         out = "[" + newLine;
@@ -95,7 +91,8 @@ export function fastJsonStableStringify(
         throw new TypeError("Converting circular structure to JSON");
       }
 
-      const seenIndex = seen.push(node) - 1;
+      seen.push(node);
+      const seenIndex = seen.length - 1;
       const keys = sort
         ? Object.keys(node).sort(cmpFn && cmpFn(node as never))
         : Object.keys(node);
@@ -143,7 +140,8 @@ export function fastJsonStableStringify(
       throw new TypeError("Converting circular structure to JSON");
     }
 
-    const seenIndex = seen.push(node) - 1;
+    seen.push(node);
+    const seenIndex = seen.length - 1;
     const keys = sort
       ? Object.keys(node).sort(cmpFn && cmpFn(node as never))
       : Object.keys(node);

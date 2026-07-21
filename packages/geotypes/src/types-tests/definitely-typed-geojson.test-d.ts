@@ -405,6 +405,7 @@ const collectionDefault: FeatureCollection = {
 };
 
 collectionDefault.features[0].geometry; // $ExpectType Geometry
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 collectionDefault.features[0].properties!.foo; // $ExpectType any
 
 isNull = featureAllNull.geometry;
