@@ -65,7 +65,7 @@
     "@turf/helpers": "^7.3.5",
     "@turf/random": "^7.3.5",
     "@turf/turf": "^7.3.5",
-    "@types/node": "^24.13.2",
+    "@types/node": "^24.13.3",
     "@vitest/coverage-v8": "^4.1.10",
     "benchmark": "^2.1.4",
     "eslint": "^10.7.0",
