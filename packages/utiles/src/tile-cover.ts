@@ -174,7 +174,7 @@ function lineStringCover(
       prevY = y;
     }
   }
-  if (ring && ring[0] !== undefined && y !== undefined && y === ring[0][1]) {
+  if (y !== undefined && ring && ring[0] !== undefined && y === ring[0][1]) {
     ring.pop();
   }
 }
