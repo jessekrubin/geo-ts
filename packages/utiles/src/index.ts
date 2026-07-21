@@ -1,4 +1,6 @@
 export * from "./bbox.js";
+export { childIx } from "./child-ix.js";
+export * from "./const.js";
 export * from "./dem.js";
 export { isTileLike } from "./guard.js";
 export { isTileObj } from "./guard.js";

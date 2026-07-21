@@ -5,7 +5,7 @@ export const DEG2RAD = Math.PI / 180;
 /**
  * Alias for DEG2RAD
  */
-export const D2R = DEG2RAD;
+export const D2R = Math.PI / 180;
 
 /**
  * Radians to degrees conversion factor
@@ -14,7 +14,7 @@ export const RAD2DEG = 180 / Math.PI;
 /**
  * Alias for RAD2DEG
  */
-export const R2D = RAD2DEG;
+export const R2D = 180 / Math.PI;
 
 /**
  * Earth radius in meters at the equator (WGS84)
