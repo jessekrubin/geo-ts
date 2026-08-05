@@ -41,16 +41,16 @@
     "@jsse/geotypes": "workspace:*"
   },
   "devDependencies": {
-    "@jsse/eslint-config": "^0.9.11",
+    "@jsse/eslint-config": "^0.9.16",
     "@jsse/tsconfig": "^0.5.2",
-    "@turf/helpers": "^7.3.5",
-    "@turf/meta": "^7.3.5",
+    "@turf/helpers": "^7.4.0",
+    "@turf/meta": "^7.4.0",
     "@vitest/coverage-v8": "^4.1.10",
-    "eslint": "^10.7.0",
+    "eslint": "^10.8.0",
     "prettier": "^3.9.6",
     "publint": "^0.3.22",
-    "tsdown": "^0.22.13",
-    "tsx": "^4.23.1",
+    "tsdown": "^0.22.14",
+    "tsx": "^4.23.5",
     "typescript": "^6.0.3",
     "vitest": "^4.1.10"
   }
