@@ -50,7 +50,7 @@
     "prepublishOnly": "pnpm run build"
   },
   "devDependencies": {
-    "@jsse/eslint-config": "^0.9.16",
+    "@jsse/eslint-config": "^0.9.19",
     "@types/geojson": "^7946.0.16",
     "@types/node": "^24.13.3",
     "@typescript-eslint/eslint-plugin": "^8.65.0",
@@ -59,9 +59,9 @@
     "esbuild": "^0.28.1",
     "eslint": "^10.8.0",
     "prettier": "3.9.6",
-    "publint": "^0.3.22",
+    "publint": "^0.3.23",
     "tsdown": "^0.22.14",
-    "tsx": "^4.23.5",
+    "tsx": "^4.23.9",
     "typescript": "6.0.3",
     "vitest": "4.1.10",
     "zx": "^8.8.5"
