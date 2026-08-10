@@ -43,9 +43,13 @@ export function quadkey2xyz(quadkey: string | number): TileArr {
       throw new Error(`Invalid quadkey: ${quadkey}`);
     }
     const q = +char;
+    // if (q === 0) continue;
+    // else if (q === 1) x |= mask;
     if (q === 1) x |= mask;
+    // eslint-disable-next-line unicorn/prefer-else-if
     if (q === 2) y |= mask;
-    else if (q === 3) {
+    // eslint-disable-next-line unicorn/prefer-else-if
+    if (q === 3) {
       x |= mask;
       y |= mask;
     }

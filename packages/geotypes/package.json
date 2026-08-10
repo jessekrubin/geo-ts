@@ -28,8 +28,7 @@
     },
     "./dist/*": {
       "types": "./dist/esm/*",
-      "import": "./dist/esm/*",
-      "require": "./dist/cjs/*"
+      "import": "./dist/esm/*"
     },
     "./package.json": "./package.json"
   },
@@ -40,7 +39,7 @@
     "build-fast": "tsdown src/geojson.ts --format cjs,esm",
     "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.tsd.json",
     "build": "pnpm run typecheck && pnpm run build:tsdown && pnpm run build:tsc",
-    "build:tsc": "tsc -p tsconfig.json && tsc -p tsconfig.cjs.json",
+    "build:tsc": "tsc -p tsconfig.json",
     "build:indexes": "tsx ./build.mts",
     "build:tsdown": "tsdown --format cjs,esm --dts",
     "test": "vitest run",
@@ -50,20 +49,19 @@
     "prepublishOnly": "pnpm run build"
   },
   "devDependencies": {
-    "@jsse/eslint-config": "^0.9.16",
+    "@jsse/eslint-config": "^0.9.19",
+    "@jsse/tsconfig": "^0.6.1",
     "@types/geojson": "^7946.0.16",
     "@types/node": "^24.13.3",
-    "@typescript-eslint/eslint-plugin": "^8.65.0",
-    "@typescript-eslint/parser": "^8.65.0",
     "@vitest/coverage-v8": "^4.1.10",
-    "esbuild": "^0.28.1",
-    "eslint": "^10.8.0",
-    "prettier": "3.9.6",
-    "publint": "^0.3.22",
+    "esbuild": "^0.28.2",
+    "eslint": "^10.8.1",
+    "prettier": "^3.9.6",
+    "publint": "^0.3.23",
     "tsdown": "^0.22.14",
-    "tsx": "^4.23.5",
-    "typescript": "6.0.3",
-    "vitest": "4.1.10",
+    "tsx": "^4.23.11",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.10",
     "zx": "^8.8.5"
   }
 }
