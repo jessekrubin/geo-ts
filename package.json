@@ -31,10 +31,11 @@
     "dprint": "^0.55.2",
     "eslint": "^10.8.1",
     "eslint-plugin-perfectionist": "~5.10.1",
-    "prettier": "3.9.6",
+    "prettier": "^3.9.6",
+    "syncpack": "^15.3.3",
     "tsx": "^4.23.11",
-    "typescript": "6.0.3",
-    "vitest": "4.1.10"
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.10"
   },
   "engines": {
     "node": "^18.0.0 || >=20.0.0"
