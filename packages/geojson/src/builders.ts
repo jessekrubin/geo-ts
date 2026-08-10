@@ -119,6 +119,20 @@ export function geometry(
   }
 }
 
+function featureOptions(options?: FeatureOptions): FeatureOptions {
+  const fields: FeatureOptions = {};
+  if (options?.id !== undefined) {
+    fields.id = options.id;
+  }
+  if (options?.bbox !== undefined) {
+    fields.bbox = options.bbox;
+  }
+  if (options?.crs !== undefined) {
+    fields.crs = options.crs;
+  }
+  return fields;
+}
+
 // =============================================================================
 // FEATURES
 // =============================================================================
@@ -143,9 +157,7 @@ export function pointFeature<
 ): Feature<PointGeometry<TCoord>, TProperties> {
   return {
     type: "Feature",
-    id: options?.id,
-    bbox: options?.bbox,
-    crs: options?.crs,
+    ...featureOptions(options),
     properties: _featureProperties(properties),
     geometry: pointGeometry(coord),
   };
@@ -161,9 +173,7 @@ export function lineStringFeature<
 ): Feature<LineStringGeometry<TCoord>, TProperties> {
   return {
     type: "Feature",
-    id: options?.id,
-    bbox: options?.bbox,
-    crs: options?.crs,
+    ...featureOptions(options),
     properties: _featureProperties(properties),
     geometry: lineStringGeometry(coords),
   };
@@ -179,9 +189,7 @@ export function polygonFeature<
 ): Feature<PolygonGeometry<TCoord>, TProperties> {
   return {
     type: "Feature",
-    id: options?.id,
-    bbox: options?.bbox,
-    crs: options?.crs,
+    ...featureOptions(options),
     properties: _featureProperties(properties),
     geometry: polygonGeometry(coords),
   };
@@ -197,9 +205,7 @@ export function multiPointFeature<
 ): Feature<MultiPointGeometry<TCoord>, TProperties, FeatureOptions> {
   return {
     type: "Feature",
-    id: options?.id,
-    bbox: options?.bbox,
-    crs: options?.crs,
+    ...featureOptions(options),
     properties: _featureProperties(properties),
     geometry: multiPointGeometry(coords),
   };
@@ -215,9 +221,7 @@ export function multiLineStringFeature<
 ): Feature<MultiLineStringGeometry<TCoord>, TProperties, FeatureOptions> {
   return {
     type: "Feature",
-    id: options?.id,
-    bbox: options?.bbox,
-    crs: options?.crs,
+    ...featureOptions(options),
     properties: _featureProperties(properties),
     geometry: multiLineStringGeometry(coords),
   };
@@ -233,9 +237,7 @@ export function multiPolygonFeature<
 ): Feature<MultiPolygonGeometry<TCoord>, TProperties> {
   return {
     type: "Feature",
-    id: options?.id,
-    bbox: options?.bbox,
-    crs: options?.crs,
+    ...featureOptions(options),
     properties: _featureProperties(properties),
     geometry: multiPolygonGeometry(coords),
   };
@@ -250,9 +252,7 @@ export function geometryCollectionFeature<
 ): Feature<GeometryCollection, TProperties> {
   return {
     type: "Feature",
-    id: options.id,
-    bbox: options.bbox,
-    crs: options.crs,
+    ...featureOptions(options),
     properties: _featureProperties(properties),
     geometry: geometryCollectionGeometry(geometries),
   };
@@ -267,10 +267,19 @@ export function featureCollection<
   features: TFeature[],
   options: { bbox?: BBox; id?: string | number } = {},
 ): FeatureCollection<TGeometry, TProperties> {
+  const opts: {
+    bbox?: BBox;
+    id?: string | number;
+  } = {};
+  if (options.bbox !== undefined) {
+    opts.bbox = options.bbox;
+  }
+  if (options.id !== undefined) {
+    opts.id = options.id;
+  }
   return {
     type: "FeatureCollection",
-    id: options.id,
-    bbox: options.bbox,
+    ...opts,
     features,
   };
 }

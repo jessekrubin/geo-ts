@@ -8,7 +8,7 @@ export type KeyValue<KeyType = string | number, ValueType = never> = {
 export type CmpFunction = (a: KeyValue, b: KeyValue) => number;
 export type Options = {
   fmt?: boolean;
-  cmp?: CmpFunction;
+  cmp?: CmpFunction | undefined;
   cycles?: boolean;
   sort?: boolean;
 };

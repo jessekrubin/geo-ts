@@ -8,7 +8,7 @@ function* geometryCoordGen<
   TCoordinate extends GeojsonCoord = GeojsonCoord,
 >(
   geometry: TGeometry,
-  options?: { excludeWrapCoord?: boolean },
+  options?: { excludeWrapCoord?: boolean | undefined },
 ): CoordGenerator<TCoordinate> {
   switch (geometry.type) {
     case "Point": {
