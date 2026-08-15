@@ -59,7 +59,7 @@
     "@turf/meta": "^7.4.0"
   },
   "devDependencies": {
-    "@jsse/eslint-config": "^0.9.19",
+    "@jsse/eslint-config": "^0.9.20",
     "@jsse/geotypes": "workspace:*",
     "@jsse/tsconfig": "^0.6.1",
     "@turf/helpers": "^7.4.0",
@@ -72,7 +72,7 @@
     "prettier": "^3.9.6",
     "publint": "^0.3.23",
     "tsdown": "^0.22.14",
-    "tsx": "^4.23.11",
+    "tsx": "^4.23.12",
     "typescript": "^6.0.3",
     "vitest": "^4.1.10"
   }

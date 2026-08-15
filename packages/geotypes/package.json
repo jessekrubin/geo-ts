@@ -49,7 +49,7 @@
     "prepublishOnly": "pnpm run build"
   },
   "devDependencies": {
-    "@jsse/eslint-config": "^0.9.19",
+    "@jsse/eslint-config": "^0.9.20",
     "@jsse/tsconfig": "^0.6.1",
     "@types/geojson": "^7946.0.16",
     "@types/node": "^24.13.3",
@@ -59,7 +59,7 @@
     "prettier": "^3.9.6",
     "publint": "^0.3.23",
     "tsdown": "^0.22.14",
-    "tsx": "^4.23.11",
+    "tsx": "^4.23.12",
     "typescript": "^6.0.3",
     "vitest": "^4.1.10",
     "zx": "^8.8.5"
