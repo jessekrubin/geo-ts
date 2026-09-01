@@ -37,6 +37,9 @@ export function quadkey2xyz(quadkey: string | number): TileArr {
     }
     quadkey = quadkey.toString();
   }
+  if (quadkey.length === 0) {
+    return [0, 0, 0];
+  }
   if (!QUADKEY_REGEX.test(quadkey)) {
     throw new Error(`Invalid quadkey: ${quadkey}`);
   }
