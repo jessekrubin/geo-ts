@@ -87,9 +87,9 @@ jobs:
         id: changesets
         uses: changesets/action@v2
         with:
-          version: pnpm ci:version
-          commit: "chore: update versions"
-          title: "chore: update versions"
+          version-script: pnpm ci:version
+          commit-message: "chore: update versions"
+          pr-title: "chore: update versions"
           cwd: ${{ github.workspace }}
         env:
           # See https://github.com/changesets/action/issues/147
