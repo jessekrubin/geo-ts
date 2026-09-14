@@ -1,6 +1,8 @@
 import { test } from "vitest";
 import { isSrtmString, isSrtmString_v1 } from "./srtm.js";
 
+const _isSrtmString = isSrtmString;
+const _isSrtmString_v1 = isSrtmString_v1;
 const TEST_DATA_UPPER = [
   // valid
   { str: "N00E000", ok: true },
@@ -29,7 +31,7 @@ const TEST_DATA = [
 test("is-srtm-string", async ({ bench }) => {
   await bench("is-srtm-string", () => {
     for (const { str } of TEST_DATA) {
-      isSrtmString(str);
+      _isSrtmString(str);
     }
   }).run();
 });
@@ -37,7 +39,7 @@ test("is-srtm-string", async ({ bench }) => {
 test("is-srtm-string-v1", async ({ bench }) => {
   await bench("is-srtm-string-v1", () => {
     for (const { str } of TEST_DATA) {
-      isSrtmString_v1(str);
+      _isSrtmString_v1(str);
     }
   }).run();
 });
