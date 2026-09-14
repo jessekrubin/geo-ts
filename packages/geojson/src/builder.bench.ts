@@ -1,9 +1,28 @@
 import * as turfHelpers from "@turf/helpers";
 import { test, describe } from "vitest";
-import * as geo from "./builders.js";
+import * as _geo from "./builders.js";
 
+const point = _geo.point;
+const lineString = _geo.lineString;
+const polygon = _geo.polygon;
+const multiPoint = _geo.multiPoint;
+const multiLineString = _geo.multiLineString;
+const multiPolygon = _geo.multiPolygon;
+const featureCollection = _geo.featureCollection;
+const geometryCollection = _geo.geometryCollection;
+const jsse = {
+  point,
+  lineString,
+  polygon,
+  multiPoint,
+  multiLineString,
+  multiPolygon,
+  featureCollection,
+  geometryCollection,
+};
 const libs = [
-  { name: "geo", lib: geo as unknown as typeof turfHelpers },
+  // { name: "geo", lib: geo as unknown as typeof turfHelpers },
+  { name: "geo", lib: jsse as unknown as typeof turfHelpers },
   { name: "turfHelpers", lib: turfHelpers },
 ];
 const benchOptions = {
