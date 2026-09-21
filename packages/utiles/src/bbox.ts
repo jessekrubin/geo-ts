@@ -3,10 +3,7 @@ import type { ZoomInt } from "./types.js";
 import { MAX_LAT_WEB, MAX_ZOOM, MIN_LAT_WEB } from "./const.js";
 
 export function bbox2dify(bbox: BBox2d | BBox3d): BBox2d {
-  if (bbox.length === 6) {
-    return [bbox[0], bbox[1], bbox[3], bbox[4]];
-  }
-  return bbox;
+  return bbox.length === 6 ? [bbox[0], bbox[1], bbox[3], bbox[4]] : bbox;
 }
 
 export function bboxIsAntimeridian(bbox: BBox): boolean {

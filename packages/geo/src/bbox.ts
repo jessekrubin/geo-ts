@@ -59,6 +59,7 @@ export function bbox3d(
   ymax?: number,
   zmax?: number,
 ): BBox3d {
+  // eslint-disable-next-line unicorn/prefer-ternary
   if (Array.isArray(bboxOrXmin)) {
     return bboxOrXmin as BBox3d;
   }

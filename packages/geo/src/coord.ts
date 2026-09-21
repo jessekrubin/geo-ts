@@ -31,10 +31,7 @@ export function coord2d(x: number, y: number): Coord2d;
  * @returns {Coord2d} - 2d coordinate array.
  */
 export function coord2d(x: Coord2d | number, y?: number): Coord2d {
-  if (Array.isArray(x)) {
-    return x as Coord2d;
-  }
-  return [x, y as number];
+  return Array.isArray(x) ? (x as Coord2d) : [x, y as number];
 }
 
 export function coord3d(c3d: Coord3d): Coord3d;
@@ -47,10 +44,7 @@ export function coord3d(x: number, y: number, z: number): Coord3d;
  * @returns {Coord3d} - 3d coordinate array.
  */
 export function coord3d(x: Coord3d | number, y?: number, z?: number): Coord3d {
-  if (Array.isArray(x)) {
-    return x as Coord3d;
-  }
-  return [x, y as number, z as number];
+  return Array.isArray(x) ? (x as Coord3d) : [x, y as number, z as number];
 }
 
 /**
@@ -65,6 +59,7 @@ export function coords(coords: Coord2d[]): Coord2d[];
 export function coords(coords: Coord3d[]): Coord3d[];
 export function coords(coords: (Coord2d | Coord3d)[]): (Coord2d | Coord3d)[];
 export function coords(...args: Coord[] | Coord[][]): Coord[] {
+  // eslint-disable-next-line unicorn/prefer-ternary
   if (Array.isArray(args[0]) && Array.isArray((args[0] as Coord[])[0])) {
     // Flatten the array if the first argument is an array of arrays
     return (args as Coord[][])[0] || [];

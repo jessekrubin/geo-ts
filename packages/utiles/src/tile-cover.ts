@@ -194,7 +194,7 @@ function polygonCover(
       const m = (j + 1) % len;
       const ringj = ring[j];
       const ringk = ring[k];
-      // eslint-disable-next-line unicorn/no-computed-property-existence-check
+      // eslint-disable-next-line unicorn/no-computed-property-existence-check, unicorn/prefer-continue
       if (ringj && ringk && ring[m]) {
         if (ringj.length > 0) {
           y = ringj[1];
