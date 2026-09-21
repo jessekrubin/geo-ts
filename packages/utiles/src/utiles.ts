@@ -68,10 +68,7 @@ export function xy(lon: number, lat: number): [number, number] {
 }
 
 export function parent(xyz: TileArr): TileArr | undefined {
-  if (xyz[2] === 0) {
-    return;
-  }
-  return [xyz[0] >> 1, xyz[1] >> 1, xyz[2] - 1];
+  return xyz[2] === 0 ? undefined : [xyz[0] >> 1, xyz[1] >> 1, xyz[2] - 1];
 }
 
 /**
@@ -82,6 +79,7 @@ export function parent(xyz: TileArr): TileArr | undefined {
  */
 export function grandparent(xyz: TileArr): TileArr | undefined {
   const p = parent(xyz);
+  // eslint-disable-next-line unicorn/prefer-ternary
   if (!p) {
     return;
   }
@@ -119,6 +117,7 @@ export function siblings(
   xyz: TileArr,
 ): [TileArr, TileArr, TileArr, TileArr] | undefined {
   const p = parent(xyz);
+  // eslint-disable-next-line unicorn/prefer-ternary
   if (!p) {
     return;
   }
@@ -233,6 +232,7 @@ export function hasTile(tile: TileArr, tiles: TileArr[]): boolean {
 
 export function hasSiblings(tile: TileArr, tiles: TileArr[]): boolean {
   const sibs = siblings(tile);
+  // eslint-disable-next-line unicorn/prefer-ternary
   if (sibs === undefined) {
     return false;
   }

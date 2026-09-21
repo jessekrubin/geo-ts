@@ -21,7 +21,7 @@ export function xyz2quadkey(xyz: TileArr): string {
 
 const QUADKEY_REGEX = /^[0-3]+$/;
 
-type QuadKeyChar = "0" | "1" | "2" | "3";
+export type QuadKeyChar = "0" | "1" | "2" | "3";
 
 /**
  * Return tile x, y, z for quadkey
@@ -45,21 +45,16 @@ export function quadkey2xyz(quadkey: string | number): TileArr {
   }
   let x = 0;
   let y = 0;
-  const z = quadkey.length;
-  for (let i = z; i > 0; i--) {
-    const mask = 1 << (i - 1);
-    const char = quadkey[z - i] as QuadKeyChar;
-    const q = +char;
-    if (q === 1) x |= mask;
-    // eslint-disable-next-line unicorn/prefer-else-if
-    if (q === 2) y |= mask;
-    // eslint-disable-next-line unicorn/prefer-else-if
-    if (q === 3) {
-      x |= mask;
-      y |= mask;
-    }
+
+  for (let i = 0; i < quadkey.length; i++) {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const q = quadkey.codePointAt(i)! - 48;
+
+    x = x * 2 + (q & 1);
+    y = y * 2 + (q >> 1);
   }
-  return [x, y, z];
+
+  return [x, y, quadkey.length];
 }
 
 export { quadkey2xyz as qk2xyz, xyz2quadkey as xyz2qk };

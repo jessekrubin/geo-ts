@@ -39,6 +39,7 @@ export function zbox({ bbox, z }: { bbox: BBox; z: number }): ZBox {
 }
 
 export function zboxTilesCount(zbox: ZBox): number {
+  // eslint-disable-next-line unicorn/prefer-ternary
   if (zboxIsAntimeridian(zbox)) {
     return zboxAntimeridianSplit(zbox).reduce(
       (acc, z) => acc + zboxTilesCount(z),

@@ -265,6 +265,7 @@ export function parseSrtm(input: SrtmLike): SrtmTile {
   if (typeof input === "string") {
     return parseSrtmString(input);
   }
+  // eslint-disable-next-line unicorn/prefer-ternary
   if ("x" in input && "y" in input) {
     return xy2srtm(input);
   }

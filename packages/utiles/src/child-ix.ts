@@ -10,6 +10,7 @@ import type { TileArr } from "./types.js";
  * @param xyz
  */
 export function childIx(xyz: TileArr): 0 | 1 | 2 | 3 | undefined {
+  // eslint-disable-next-line unicorn/prefer-ternary
   if (xyz[2] === 0) return undefined;
   return (((xyz[0] & 1) << 1) | (xyz[1] & 1)) as 0 | 1 | 2 | 3;
 }
