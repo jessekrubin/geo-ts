@@ -10,4 +10,9 @@ export default jsse({
     parserOptions: { tsconfigRootDir },
   },
   sortImports: true,
+}, {
+  files: ["test-data/cover/world/**/*.geojson"],
+  rules: {
+    "unicorn/filename-case": "off"
+  },
 });

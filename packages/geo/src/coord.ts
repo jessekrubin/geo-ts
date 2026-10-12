@@ -59,7 +59,6 @@ export function coords(coords: Coord2d[]): Coord2d[];
 export function coords(coords: Coord3d[]): Coord3d[];
 export function coords(coords: (Coord2d | Coord3d)[]): (Coord2d | Coord3d)[];
 export function coords(...args: Coord[] | Coord[][]): Coord[] {
-  // eslint-disable-next-line unicorn/prefer-ternary
   if (Array.isArray(args[0]) && Array.isArray((args[0] as Coord[])[0])) {
     // Flatten the array if the first argument is an array of arrays
     return (args as Coord[][])[0] || [];
