@@ -6,6 +6,7 @@ const tsconfigRootDir = fileURLToPath(new URL(".", import.meta.url));
 
 export default jsse(
   {
+    pnpm: true,
     ignores: [
       // all /generated/ files
       "**/*-types-test.ts",

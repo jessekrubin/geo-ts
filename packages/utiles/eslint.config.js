@@ -9,6 +9,7 @@ export default jsse({
     strict: true,
     parserOptions: { tsconfigRootDir },
   },
+  pnpm: true,
   sortImports: true,
 }, {
   files: ["test-data/cover/world/**/*.geojson"],
