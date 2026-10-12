@@ -162,48 +162,126 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  default:
+    '@changesets/changelog-github':
+      specifier: ^1.0.1
+      version: 1.0.1
+    '@changesets/cli':
+      specifier: ^3.0.3
+      version: 3.0.3
+    '@eslint/js':
+      specifier: ^10.0.1
+      version: 10.0.1
+    '@jsse/eslint-config':
+      specifier: ^0.9.28
+      version: 0.9.28
+    '@jsse/tsconfig':
+      specifier: ^0.6.1
+      version: 0.6.1
+    '@turf/helpers':
+      specifier: ^7.4.0
+      version: 7.4.0
+    '@turf/meta':
+      specifier: ^7.4.0
+      version: 7.4.0
+    '@turf/random':
+      specifier: ^7.4.0
+      version: 7.4.0
+    '@turf/turf':
+      specifier: ^7.4.0
+      version: 7.4.0
+    '@types/geojson':
+      specifier: ^7946.0.16
+      version: 7946.0.16
+    '@types/node':
+      specifier: ^24.19.1
+      version: 24.19.2
+    '@vitest/coverage-v8':
+      specifier: ^5.0.3
+      version: 5.0.3
+    benchmark:
+      specifier: ^2.1.4
+      version: 2.1.4
+    dprint:
+      specifier: ^0.61.1
+      version: 0.61.1
+    esbuild:
+      specifier: ^0.28.2
+      version: 0.28.2
+    eslint:
+      specifier: ^10.12.0
+      version: 10.12.0
+    eslint-plugin-perfectionist:
+      specifier: ~5.12.1
+      version: 5.12.1
+    prettier:
+      specifier: ^3.9.10
+      version: 3.9.10
+    publint:
+      specifier: ^0.3.25
+      version: 0.3.25
+    syncpack:
+      specifier: ^15.3.3
+      version: 15.3.3
+    tsdown:
+      specifier: ^0.23.1
+      version: 0.23.1
+    tsx:
+      specifier: ^4.23.15
+      version: 4.23.15
+    typescript:
+      specifier: ^6.0.3
+      version: 6.0.3
+    vitest:
+      specifier: ^5.0.3
+      version: 5.0.3
+    zx:
+      specifier: ^8.8.5
+      version: 8.8.5
+
 importers:
 
   .:
     devDependencies:
       '@changesets/changelog-github':
-        specifier: ^1.0.1
+        specifier: 'catalog:'
         version: 1.0.1
       '@changesets/cli':
-        specifier: ^3.0.3
+        specifier: 'catalog:'
         version: 3.0.3
       '@eslint/js':
-        specifier: ^10.0.1
+        specifier: 'catalog:'
         version: 10.0.1(eslint@10.12.0)
       '@jsse/eslint-config':
-        specifier: ^0.9.28
+        specifier: 'catalog:'
         version: 0.9.28(@typescript-eslint/typescript-estree@8.71.1(typescript@6.0.3))(@typescript-eslint/utils@8.71.1(eslint@10.12.0)(typescript@6.0.3))(eslint@10.12.0)(typescript@6.0.3)(vitest@5.0.3)
       '@jsse/tsconfig':
-        specifier: ^0.6.1
+        specifier: 'catalog:'
         version: 0.6.1
       dprint:
-        specifier: ^0.61.1
+        specifier: 'catalog:'
         version: 0.61.1
       eslint:
-        specifier: ^10.12.0
+        specifier: 'catalog:'
         version: 10.12.0
       eslint-plugin-perfectionist:
-        specifier: ~5.12.1
+        specifier: 'catalog:'
         version: 5.12.1(eslint@10.12.0)(typescript@6.0.3)
       prettier:
-        specifier: ^3.9.10
+        specifier: 'catalog:'
         version: 3.9.10
       syncpack:
-        specifier: ^15.3.3
+        specifier: 'catalog:'
         version: 15.3.3
       tsx:
-        specifier: ^4.23.15
+        specifier: 'catalog:'
         version: 4.23.15
       typescript:
-        specifier: ^6.0.3
+        specifier: 'catalog:'
         version: 6.0.3
       vitest:
-        specifier: ^5.0.3
+        specifier: 'catalog:'
         version: 5.0.3(@types/node@26.6.5)(@vitest/coverage-v8@5.0.3)(vite@8.3.4(@types/node@26.6.5)(esbuild@0.28.2)(tsx@4.23.15)(yaml@2.9.1))
 
   packages/geo:
@@ -215,53 +293,53 @@ importers:
         specifier: workspace:*
         version: link:../geotypes
       '@turf/meta':
-        specifier: ^7.4.0
+        specifier: 'catalog:'
         version: 7.4.0
     devDependencies:
       '@jsse/eslint-config':
-        specifier: ^0.9.28
+        specifier: 'catalog:'
         version: 0.9.28(@typescript-eslint/typescript-estree@8.71.1(typescript@6.0.3))(@typescript-eslint/utils@8.71.1(eslint@10.12.0)(typescript@6.0.3))(eslint@10.12.0)(typescript@6.0.3)(vitest@5.0.3)
       '@jsse/tsconfig':
-        specifier: ^0.6.1
+        specifier: 'catalog:'
         version: 0.6.1
       '@turf/helpers':
-        specifier: ^7.4.0
+        specifier: 'catalog:'
         version: 7.4.0
       '@turf/random':
-        specifier: ^7.4.0
+        specifier: 'catalog:'
         version: 7.4.0
       '@turf/turf':
-        specifier: ^7.4.0
+        specifier: 'catalog:'
         version: 7.4.0
       '@types/node':
-        specifier: ^24.19.1
+        specifier: 'catalog:'
         version: 24.19.2
       '@vitest/coverage-v8':
-        specifier: ^5.0.3
+        specifier: 'catalog:'
         version: 5.0.3(vitest@5.0.3)
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       eslint:
-        specifier: ^10.12.0
+        specifier: 'catalog:'
         version: 10.12.0
       prettier:
-        specifier: ^3.9.10
+        specifier: 'catalog:'
         version: 3.9.10
       publint:
-        specifier: ^0.3.25
+        specifier: 'catalog:'
         version: 0.3.25
       tsdown:
-        specifier: ^0.23.1
+        specifier: 'catalog:'
         version: 0.23.1(publint@0.3.25)(tsx@4.23.15)(typescript@6.0.3)
       tsx:
-        specifier: ^4.23.15
+        specifier: 'catalog:'
         version: 4.23.15
       typescript:
-        specifier: ^6.0.3
+        specifier: 'catalog:'
         version: 6.0.3
       vitest:
-        specifier: ^5.0.3
+        specifier: 'catalog:'
         version: 5.0.3(@types/node@24.19.2)(@vitest/coverage-v8@5.0.3)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(tsx@4.23.15)(yaml@2.9.1))
 
   packages/geojson:
@@ -310,46 +388,46 @@ importers:
   packages/geotypes:
     devDependencies:
       '@jsse/eslint-config':
-        specifier: ^0.9.28
+        specifier: 'catalog:'
         version: 0.9.28(@typescript-eslint/typescript-estree@8.71.1(typescript@6.0.3))(@typescript-eslint/utils@8.71.1(eslint@10.12.0)(typescript@6.0.3))(eslint@10.12.0)(typescript@6.0.3)(vitest@5.0.3)
       '@jsse/tsconfig':
-        specifier: ^0.6.1
+        specifier: 'catalog:'
         version: 0.6.1
       '@types/geojson':
-        specifier: ^7946.0.16
+        specifier: 'catalog:'
         version: 7946.0.16
       '@types/node':
-        specifier: ^24.19.1
+        specifier: 'catalog:'
         version: 24.19.2
       '@vitest/coverage-v8':
-        specifier: ^5.0.3
+        specifier: 'catalog:'
         version: 5.0.3(vitest@5.0.3)
       esbuild:
-        specifier: ^0.28.2
+        specifier: 'catalog:'
         version: 0.28.2
       eslint:
-        specifier: ^10.12.0
+        specifier: 'catalog:'
         version: 10.12.0
       prettier:
-        specifier: ^3.9.10
+        specifier: 'catalog:'
         version: 3.9.10
       publint:
-        specifier: ^0.3.25
+        specifier: 'catalog:'
         version: 0.3.25
       tsdown:
-        specifier: ^0.23.1
+        specifier: 'catalog:'
         version: 0.23.1(publint@0.3.25)(tsx@4.23.15)(typescript@6.0.3)
       tsx:
-        specifier: ^4.23.15
+        specifier: 'catalog:'
         version: 4.23.15
       typescript:
-        specifier: ^6.0.3
+        specifier: 'catalog:'
         version: 6.0.3
       vitest:
-        specifier: ^5.0.3
+        specifier: 'catalog:'
         version: 5.0.3(@types/node@24.19.2)(@vitest/coverage-v8@5.0.3)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(tsx@4.23.15)(yaml@2.9.1))
       zx:
-        specifier: ^8.8.5
+        specifier: 'catalog:'
         version: 8.8.5
 
   packages/srtm:
@@ -359,34 +437,34 @@ importers:
         version: link:../geotypes
     devDependencies:
       '@jsse/eslint-config':
-        specifier: ^0.9.28
+        specifier: 'catalog:'
         version: 0.9.28(@typescript-eslint/typescript-estree@8.71.1(typescript@6.0.3))(@typescript-eslint/utils@8.71.1(eslint@10.12.0)(typescript@6.0.3))(eslint@10.12.0)(typescript@6.0.3)(vitest@5.0.3)
       '@jsse/tsconfig':
-        specifier: ^0.6.1
+        specifier: 'catalog:'
         version: 0.6.1
       '@vitest/coverage-v8':
-        specifier: ^5.0.3
+        specifier: 'catalog:'
         version: 5.0.3(vitest@5.0.3)
       eslint:
-        specifier: ^10.12.0
+        specifier: 'catalog:'
         version: 10.12.0
       prettier:
-        specifier: ^3.9.10
+        specifier: 'catalog:'
         version: 3.9.10
       publint:
-        specifier: ^0.3.25
+        specifier: 'catalog:'
         version: 0.3.25
       tsdown:
-        specifier: ^0.23.1
+        specifier: 'catalog:'
         version: 0.23.1(publint@0.3.25)(tsx@4.23.15)(typescript@6.0.3)
       tsx:
-        specifier: ^4.23.15
+        specifier: 'catalog:'
         version: 4.23.15
       typescript:
-        specifier: ^6.0.3
+        specifier: 'catalog:'
         version: 6.0.3
       vitest:
-        specifier: ^5.0.3
+        specifier: 'catalog:'
         version: 5.0.3(@types/node@26.6.5)(@vitest/coverage-v8@5.0.3)(vite@8.3.4(@types/node@26.6.5)(esbuild@0.28.2)(tsx@4.23.15)(yaml@2.9.1))
 
   packages/utiles:
@@ -396,37 +474,37 @@ importers:
         version: link:../geotypes
     devDependencies:
       '@jsse/eslint-config':
-        specifier: ^0.9.28
+        specifier: 'catalog:'
         version: 0.9.28(@typescript-eslint/typescript-estree@8.71.1(typescript@6.0.3))(@typescript-eslint/utils@8.71.1(eslint@10.12.0)(typescript@6.0.3))(eslint@10.12.0)(typescript@6.0.3)(vitest@5.0.3)
       '@jsse/tsconfig':
-        specifier: ^0.6.1
+        specifier: 'catalog:'
         version: 0.6.1
       '@types/node':
-        specifier: ^24.19.1
+        specifier: 'catalog:'
         version: 24.19.2
       '@vitest/coverage-v8':
-        specifier: ^5.0.3
+        specifier: 'catalog:'
         version: 5.0.3(vitest@5.0.3)
       eslint:
-        specifier: ^10.12.0
+        specifier: 'catalog:'
         version: 10.12.0
       prettier:
-        specifier: ^3.9.10
+        specifier: 'catalog:'
         version: 3.9.10
       publint:
-        specifier: ^0.3.25
+        specifier: 'catalog:'
         version: 0.3.25
       tsdown:
-        specifier: ^0.23.1
+        specifier: 'catalog:'
         version: 0.23.1(publint@0.3.25)(tsx@4.23.15)(typescript@6.0.3)
       tsx:
-        specifier: ^4.23.15
+        specifier: 'catalog:'
         version: 4.23.15
       typescript:
-        specifier: ^6.0.3
+        specifier: 'catalog:'
         version: 6.0.3
       vitest:
-        specifier: ^5.0.3
+        specifier: 'catalog:'
         version: 5.0.3(@types/node@24.19.2)(@vitest/coverage-v8@5.0.3)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(tsx@4.23.15)(yaml@2.9.1))
 
 packages:

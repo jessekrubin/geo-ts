@@ -5,6 +5,7 @@ const tsconfigRootDir = fileURLToPath(new URL(".", import.meta.url));
 
 export default jsse(
   {
+    pnpm: true,
     sortImports: true,
     typescript: {
       strict: true,
