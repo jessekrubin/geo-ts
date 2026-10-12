@@ -88,7 +88,7 @@ export function type(buffer: Uint8Array): Extensions | false {
     return "pbf";
     // gzip: recklessly assumes contents are PBF.
   }
-  // eslint-disable-next-line unicorn/prefer-combined-guards, unicorn/prefer-ternary
+  // eslint-disable-next-line unicorn/prefer-ternary
   if (buffer[0] === 0x1f && buffer[1] === 0x8b) {
     return "pbf";
   }
@@ -155,7 +155,7 @@ export function headers(buffer: Uint8Array | false): Header {
     };
     // gzip: recklessly assumes contents are PBF.
   }
-  // eslint-disable-next-line unicorn/prefer-ternary
+   
   if (buffer[0] === 0x1f && buffer[1] === 0x8b) {
     return {
       "Content-Type": "application/x-protobuf",

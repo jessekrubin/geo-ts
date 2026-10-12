@@ -78,12 +78,7 @@ export function parent(xyz: TileArr): TileArr | undefined {
  * @param xyz
  */
 export function grandparent(xyz: TileArr): TileArr | undefined {
-  const p = parent(xyz);
-  // eslint-disable-next-line unicorn/prefer-ternary
-  if (!p) {
-    return;
-  }
-  return parent(p);
+  return xyz[2] < 2 ? undefined : [xyz[0] >> 2, xyz[1] >> 2, xyz[2] - 2];
 }
 
 export function children(xyz: TileArr): [TileArr, TileArr, TileArr, TileArr] {
@@ -117,7 +112,7 @@ export function siblings(
   xyz: TileArr,
 ): [TileArr, TileArr, TileArr, TileArr] | undefined {
   const p = parent(xyz);
-  // eslint-disable-next-line unicorn/prefer-ternary
+
   if (!p) {
     return;
   }

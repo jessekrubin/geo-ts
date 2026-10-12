@@ -26,7 +26,7 @@ const TEST_FILE_LIMITS: TestFileLimit[] = [
   { file: "degenring.geojson", limits: { minzoom: 11, maxzoom: 15 } },
   { file: "invalid_polygon.geojson", limits: { minzoom: 1, maxzoom: 12 } },
   { file: "highzoom.geojson", limits: { minzoom: 23, maxzoom: 23 } },
-  { file: "small_poly.geojson", limits: { minzoom: 10, maxzoom: 10 } },
+  { file: "small-poly.geojson", limits: { minzoom: 10, maxzoom: 10 } },
   { file: "spiked.geojson", limits: { minzoom: 10, maxzoom: 10 } },
   { file: "blocky.geojson", limits: { minzoom: 6, maxzoom: 6 } },
   { file: "pyramid.geojson", limits: { minzoom: 10, maxzoom: 10 } },
