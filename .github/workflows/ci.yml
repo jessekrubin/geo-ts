@@ -24,10 +24,10 @@ jobs:
         with:
           node-version: ${{ matrix['node-version'] }}
 
-      - uses: pnpm/action-setup@v6.1.0
+      - name: pnpm-setup
+        uses: pnpm/setup@fbda4c85fc2e1e08721cd8763afea8f48d60f024 # v3.0.0
         with:
-          run_install: false
-          version: 11
+          install: false
 
       - name: pnpm-store-dir
         shell: bash
@@ -61,11 +61,10 @@ jobs:
           node-version: ${{ matrix['node-version'] }}
       - name: setup-npmrc
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-      - uses: pnpm/action-setup@v6.1.0
+      - name: pnpm-setup
+        uses: pnpm/setup@fbda4c85fc2e1e08721cd8763afea8f48d60f024 # v3.0.0
         with:
-          run_install: false
-          version: 11
-
+          install: false
       - name: pnpm-store-dir
         shell: bash
         run: |
