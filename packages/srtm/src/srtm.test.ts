@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/no-top-level-side-effects */
 import { assert, describe, expect, test } from "vitest";
 import {
   bbox2srtms,
@@ -98,15 +97,14 @@ describe("srtm", () => {
         );
         assert(srtm.ns === (lat >= 0 ? "N" : "S"));
         assert(srtm.ew === (lng >= 0 ? "E" : "W"));
-        if (lat === 90) {
-          assert(srtm.lat === 89);
-        } else {
-          assert(srtm.lat === Math.floor(Math.abs(lat)));
-        }
-        if (lng !== 180 && lng !== -180) {
-          assert(srtm.lng === Math.floor(Math.abs(lng)));
-        } else {
+        assert(
+          lat === 90 ? srtm.lat === 89 : srtm.lat === Math.floor(Math.abs(lat)),
+        );
+        // eslint-disable-next-line unicorn/prefer-ternary
+        if (lng === 180 || lng === -180) {
           assert(srtm.lng === 179);
+        } else {
+          assert(srtm.lng === Math.floor(Math.abs(lng)));
         }
         const roundTrip = parseSrtmString(srtm.str);
         expect(roundTrip).toStrictEqual(srtm);
