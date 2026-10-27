@@ -82,13 +82,12 @@ export function type(buffer: Uint8Array): Extensions | false {
     buffer[11] === 0x50
   ) {
     return "webp";
-    // deflate: recklessly assumes contents are PBF.
   }
+  // deflate: recklessly assumes contents are PBF.
   if (buffer[0] === 0x78 && buffer[1] === 0x9c) {
     return "pbf";
-    // gzip: recklessly assumes contents are PBF.
   }
-  // eslint-disable-next-line unicorn/prefer-ternary
+  // gzip: recklessly assumes contents are PBF.
   if (buffer[0] === 0x1f && buffer[1] === 0x8b) {
     return "pbf";
   }
@@ -155,7 +154,7 @@ export function headers(buffer: Uint8Array | false): Header {
     };
     // gzip: recklessly assumes contents are PBF.
   }
-   
+
   if (buffer[0] === 0x1f && buffer[1] === 0x8b) {
     return {
       "Content-Type": "application/x-protobuf",

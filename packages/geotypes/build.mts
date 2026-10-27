@@ -1,6 +1,7 @@
 import { fs, glob } from "zx";
 
 type FileTypeExports = { fspath: string; types: string[] };
+// eslint-disable-next-line unicorn/prefer-smaller-scope
 type GeotypesMetadata = { files: FileTypeExports[]; geotypes: string[] };
 
 function lineIsCommentedOut(line: string) {
