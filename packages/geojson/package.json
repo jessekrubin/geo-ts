@@ -45,13 +45,13 @@
     "@jsse/tsconfig": "^0.6.1",
     "@turf/helpers": "^7.4.0",
     "@turf/meta": "^7.4.0",
-    "@vitest/coverage-v8": "^5.0.5",
+    "@vitest/coverage-v8": "^5.1.0",
     "eslint": "catalog:",
     "prettier": "^3.9.10",
     "publint": "^0.3.25",
     "tsdown": "catalog:",
     "tsx": "^4.23.15",
     "typescript": "^6.0.3",
-    "vitest": "^5.0.5"
+    "vitest": "^5.1.0"
   }
 }
