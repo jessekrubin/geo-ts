@@ -19,7 +19,7 @@ catalog:
   "@changesets/changelog-github": ^1.0.1
   "@changesets/cli": ^3.0.3
   "@eslint/js": ^10.0.1
-  "@jsse/eslint-config": ^0.9.31
+  "@jsse/eslint-config": ^0.9.32
   "@jsse/tsconfig": ^0.6.1
   "@turf/helpers": ^7.4.0
   "@turf/meta": ^7.4.0
@@ -33,10 +33,10 @@ catalog:
   esbuild: ^0.28.2
   eslint: ^10.13.0
   eslint-plugin-perfectionist: ~5.13.0
-  prettier: ^3.9.10
+  prettier: ^3.10.1
   publint: ^0.3.25
   syncpack: ^15.3.3
-  tsdown: ^0.23.5
+  tsdown: ^0.23.7
   tsx: ^4.23.15
   typescript: ^6.0.3
   vitest: ^5.1.0

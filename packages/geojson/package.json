@@ -47,7 +47,7 @@
     "@turf/meta": "^7.4.0",
     "@vitest/coverage-v8": "^5.1.0",
     "eslint": "catalog:",
-    "prettier": "^3.9.10",
+    "prettier": "^3.10.1",
     "publint": "^0.3.25",
     "tsdown": "catalog:",
     "tsx": "^4.23.15",
