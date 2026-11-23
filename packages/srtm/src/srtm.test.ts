@@ -97,9 +97,7 @@ describe("srtm", () => {
         );
         assert(srtm.ns === (lat >= 0 ? "N" : "S"));
         assert(srtm.ew === (lng >= 0 ? "E" : "W"));
-        assert(
-          lat === 90 ? srtm.lat === 89 : srtm.lat === Math.floor(Math.abs(lat)),
-        );
+        assert(srtm.lat === (lat === 90 ? 89 : Math.floor(Math.abs(lat))));
         // eslint-disable-next-line unicorn/prefer-ternary
         if (lng === 180 || lng === -180) {
           assert(srtm.lng === 179);
