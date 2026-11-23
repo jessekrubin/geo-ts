@@ -142,17 +142,25 @@ export function bbox3d2bbox2d(bbox: BBox3d): BBox2d {
 }
 
 export function bboxIsAntimeridian(bbox: BBox2d | BBox3d): boolean {
-  return bbox.length === 4 ? bbox[0] > bbox[2] : bbox[0] > bbox[3];
+  return bbox[0] > (bbox.length === 4 ? bbox[2] : bbox[3]);
 }
 
 export function bboxesAntimeridian<T extends BBox>(bbox: T): [T] | [T, T] {
   if (!bboxIsAntimeridian(bbox)) {
     return [bbox];
   }
-  const [xmin, ymin, xmax, ymax, ...rest] = bbox;
-  const bboxLeft = [xmin, ymin, 180, ymax, ...rest] as T;
-  const bboxRight = [-180, ymin, xmax, ymax, ...rest] as T;
-  return [bboxLeft, bboxRight];
+  if (bbox.length === 4) {
+    const [xmin, ymin, xmax, ymax] = bbox;
+    return [
+      [xmin, ymin, 180, ymax],
+      [-180, ymin, xmax, ymax],
+    ] as [T, T];
+  }
+  const [xmin, ymin, zmin, xmax, ymax, zmax] = bbox as BBox3d;
+  return [
+    [xmin, ymin, zmin, 180, ymax, zmax],
+    [-180, ymin, zmin, xmax, ymax, zmax],
+  ] as [T, T];
 }
 
 /**
