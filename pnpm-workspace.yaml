@@ -26,8 +26,8 @@ catalog:
   "@turf/random": ^7.4.0
   "@turf/turf": ^7.4.0
   "@types/geojson": ^7946.0.16
-  "@types/node": ^24.19.1
-  "@vitest/coverage-v8": ^5.1.1
+  "@types/node": ^24.19.4
+  "@vitest/coverage-v8": ^5.1.2
   benchmark: ^2.1.4
   dprint: ^0.65.0
   esbuild: ^0.28.2
@@ -35,9 +35,9 @@ catalog:
   eslint-plugin-perfectionist: ~5.14.0
   prettier: ^3.10.1
   publint: ^0.3.25
-  syncpack: ^15.3.3
+  syncpack: ^15.3.4
   tsdown: ^0.23.7
   tsx: ^4.23.15
   typescript: ^6.0.3
-  vitest: ^5.1.1
+  vitest: ^5.1.2
   zx: ^8.8.5
